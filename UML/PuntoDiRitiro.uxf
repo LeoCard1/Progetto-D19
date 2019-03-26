@@ -1,0 +1,48 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>150</x><y>130</y><w>210</w><h>210</h></coordinates><panel_attributes>*Punto di Ritiro*
+--
+-id: String
+-listaBox: ArrayList&lt;Box&gt;
+-boxDisponibili: ArrayList&lt;Box&gt;
+--
++aggiungiPacco(String cod): void
++confrontoDate(): void
++aggiungiBox(Box box): void
+-generaPassword(): String
++svuotaBox(String cod): void
++ritiraPacco(String cod): void
++generaStatistiche(): String
++smistaPacchi(Corriere co): void
++generaIDCorrieri(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>200</x><y>570</y><w>210</w><h>90</h></coordinates><panel_attributes>*Corriere*
+--
+-id: String
+-pacchi: ArrayList&lt;Pacco&gt;
+--
++aggiungiPacco(Pacco pa): void
++rimuoviPacco(Pacco pa): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>660</x><y>340</y><w>210</w><h>140</h></coordinates><panel_attributes>*Box | Classe Astratta*
+--
+-disponibilità: boolean
+-dimensioni: Dimensione
+-pacco: Pacco
+-codice: int
+-data: Date
+--
++aggiungiPacco(Pacco pa): void
++rimuoviPacco(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>480</y><w>210</w><h>40</h></coordinates><panel_attributes>*Box Piccolo*
+--
+-dimensioni: Dimensione</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>660</x><y>520</y><w>210</w><h>40</h></coordinates><panel_attributes>*Box Medio*
+--
+-dimensioni: Dimensione</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>880</x><y>480</y><w>210</w><h>40</h></coordinates><panel_attributes>*Box Grande*
+--
+-dimensioni: Dimensione</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1160</x><y>40</y><w>210</w><h>90</h></coordinates><panel_attributes>*Dimensione*
+--
+-altezza: double
+-lunghezza: double
+-larghezza: double
+--
++compareTo(Object o): int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1170</x><y>450</y><w>210</w><h>60</h></coordinates><panel_attributes>*Pacco*
+--
+-id: String
+-dimensioni: Dimensione</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>250</x><y>330</y><w>30</w><h>260</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;10;240</additional_attributes></element><element><id>Relation</id><coordinates><x>860</x><y>390</y><w>360</w><h>80</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;340;10;340;60</additional_attributes></element><element><id>Relation</id><coordinates><x>1250</x><y>120</y><w>30</w><h>350</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;330;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>840</x><y>100</y><w>340</w><h>260</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;240;10;10;320;10</additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>240</y><w>380</w><h>120</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;360;10;360;100</additional_attributes></element><element><id>Relation</id><coordinates><x>400</x><y>500</y><w>830</w><h>150</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;130;810;130;810;10</additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>430</y><w>150</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;10;10;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>860</x><y>430</y><w>150</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;130;10;130;50</additional_attributes></element><element><id>Relation</id><coordinates><x>760</x><y>470</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;50</additional_attributes></element></diagram>
