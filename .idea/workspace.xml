@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4ae2c09-4cdb-448c-a885-1b25ee78febf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LockerSystem/BoxType/Box.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LockerSystem/BoxType/LargeBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LockerSystem/BoxType/MediumBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LockerSystem/BoxType/SmallBox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LockerSystem/DeliveryMan.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LockerSystem/Package.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LockerSystem/Size.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Management/PickupPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UML/PuntoDiRitiro.uxf" beforeDir="false" afterPath="$PROJECT_DIR$/UML/PuntoDiRitiro.uxf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Prova" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LockerSystem/BoxType/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LockerSystem/BoxType/Box.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LockerSystem/BoxType/LargeBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LockerSystem/BoxType/LargeBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LockerSystem/BoxType/MediumBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LockerSystem/BoxType/MediumBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LockerSystem/BoxType/SmallBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LockerSystem/BoxType/SmallBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LockerSystem/Size.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LockerSystem/Size.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,8 +31,8 @@
       <file leaf-file-name="SmallBox.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LockerSystem/BoxType/SmallBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+            <state relative-caret-position="54">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -47,17 +40,17 @@
       <file leaf-file-name="MediumBox.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LockerSystem/BoxType/MediumBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+            <state relative-caret-position="54">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LargeBox.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LargeBox.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LockerSystem/BoxType/LargeBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="54">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -71,11 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Box.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Box.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/LockerSystem/BoxType/Box.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="18">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -92,8 +85,8 @@
       <file leaf-file-name="Size.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LockerSystem/Size.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="90">
+              <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -108,16 +101,22 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="ZappaRoberto" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Box.java" />
-        <option value="$PROJECT_DIR$/src/LockerSystem/BoxType/Box.java" />
         <option value="$PROJECT_DIR$/src/LockerSystem/BoxType/SmallBox.java" />
         <option value="$PROJECT_DIR$/src/LockerSystem/BoxType/MediumBox.java" />
         <option value="$PROJECT_DIR$/src/LockerSystem/BoxType/LargeBox.java" />
+        <option value="$PROJECT_DIR$/src/LockerSystem/Size.java" />
+        <option value="$PROJECT_DIR$/src/LockerSystem/BoxType/Box.java" />
       </list>
     </option>
   </component>
@@ -239,6 +238,14 @@
       <option name="presentableId" value="Default" />
       <updated>1553773357910</updated>
     </task>
+    <task id="LOCAL-00001" summary="Classi base programma">
+      <created>1554819868989</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1554819868989</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -250,7 +257,7 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32930845" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
@@ -276,37 +283,17 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Classi base programma" />
+    <option name="LAST_COMMIT_MESSAGE" value="Classi base programma" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Progetto-D19.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LockerSystem/BoxType/Box.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LockerSystem/DeliveryMan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/LockerSystem/Package.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LockerSystem/Size.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
@@ -317,24 +304,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LockerSystem/BoxType/SmallBox.java">
+    <entry file="file://$PROJECT_DIR$/src/LockerSystem/DeliveryMan.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
-          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LockerSystem/BoxType/SmallBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/LockerSystem/BoxType/MediumBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+        <state relative-caret-position="54">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/LockerSystem/BoxType/LargeBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="54">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LockerSystem/Size.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LockerSystem/BoxType/Box.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
