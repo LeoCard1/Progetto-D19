@@ -18,7 +18,7 @@ public abstract class Box {
         code++;
     }
 
-    public void addPackage(Package pacco){
+    public void addPackage(Package pack){
         availability = false;
         this.pack = pack;
         date = new Date();
