@@ -8,6 +8,7 @@ public class DeliveryMan {
 
     DeliveryMan(String id){
         this.id = id;
+        listaPacchi = new ArrayList<>();
     }
 
     public void addPackage(Package pacco){
