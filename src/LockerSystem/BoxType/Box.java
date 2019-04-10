@@ -13,6 +13,7 @@ public abstract class Box {
     private Date date;
 
     public Box(){
+        pacco = null;
         availability = true;
         code++;
     }
@@ -20,11 +21,12 @@ public abstract class Box {
     public void addPackage(Package pacco){
         this.pacco = pacco;
         availability = false;
+        date = new Date();
     }
 
     public void removePackage(){
         pacco = null;
         availability = true;
     }
-
+    
 }

@@ -1,6 +1,7 @@
 package LockerSystem;
 
 public class Size {
+
     private double height;
     private double lenght;
     private double width;
