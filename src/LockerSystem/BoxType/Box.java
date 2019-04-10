@@ -10,7 +10,7 @@ public abstract class Box {
     protected Size size;
     private Package pacco;
     protected static int code;
-    protected Date date;
+    private Date date;
 
     public Box(){
         availability = true;
@@ -23,7 +23,8 @@ public abstract class Box {
     }
 
     public void removePackage(){
-         availability = true;
+        pacco = null;
+        availability = true;
     }
 
 }
