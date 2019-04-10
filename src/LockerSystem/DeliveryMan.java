@@ -6,7 +6,7 @@ public class DeliveryMan {
     private String id; // id univoco che identifica un fattorino
     private ArrayList<Package> listaPacchi;
 
-    DeliveryMan(String id){
+    public DeliveryMan(String id){
         this.id = id;
         listaPacchi = new ArrayList<>();
     }
