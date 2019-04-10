@@ -8,25 +8,26 @@ public abstract class Box {
 
     protected boolean availability;
     protected Size size;
-    private Package pacco;
+    private Package pack;
     protected static int code;
     private Date date;
 
     public Box(){
-        pacco = null;
         availability = true;
+        pack = null;
         code++;
     }
 
     public void addPackage(Package pacco){
-        this.pacco = pacco;
         availability = false;
+        this.pack = pack;
         date = new Date();
     }
 
     public void removePackage(){
-        pacco = null;
         availability = true;
+        pack = null;
+        date = null;
     }
-    
+
 }
