@@ -21,4 +21,8 @@ public class DeliveryMan {
     public void removePackage(Package pack){
         listaPacchi.remove(pack);
     }
+
+    public int getPackCounter() {
+        return packCounter;
+    }
 }

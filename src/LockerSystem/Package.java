@@ -8,4 +8,12 @@ public class Package {
         this.dimension = dimension;
         this.id = id;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public Size getDimension() {
+        return dimension;
+    }
 }
