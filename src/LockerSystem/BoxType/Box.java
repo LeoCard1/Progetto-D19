@@ -14,7 +14,6 @@ public abstract class Box {
 
     public Box(){
         availability = true;
-        pack = null;
         code++;
     }
 

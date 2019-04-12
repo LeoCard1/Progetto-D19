@@ -61,6 +61,7 @@ public class GridBoxesPanel extends JPanel {
             JButton bu = new JButton("•");
             bu.setFont(new Font(Font.SERIF, Font.PLAIN, 30));
             bu.setForeground(Color.RED);
+            bu.setBackground(Color.ORANGE);
             grid.add(bu);
         }
 
