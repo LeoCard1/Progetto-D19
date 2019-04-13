@@ -27,7 +27,7 @@ public class GraIntMain extends JFrame {
     private void initPanel() {
         JTabbedPane tabP = new JTabbedPane();
         add(tabP);
-        tabP.addTab("Locker System", new JPanel());
-        tabP.addTab("ViewBoxes", new ViewBoxesPanel(piPo));
+        tabP.addTab("Locker System", new BoxAccessPanel());
+        tabP.addTab("View Boxes", new ViewBoxesPanel(piPo));
     }
 }
