@@ -1,16 +1,23 @@
 package GraphicalInterface;
 
+import Management.PickupPoint;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class BoxAccessPanel extends JPanel {
-    public BoxAccessPanel() {
-        setLayout(new BorderLayout());
+    private PickupPoint piPo;
+
+    public BoxAccessPanel(PickupPoint pipo) {
+        piPo = pipo;
+
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         initPanel();
     }
 
     private void initPanel() {
         add(languagePanel());
+        add(new InsertCodePanel(piPo));
     }
 
     private JPanel languagePanel() {
