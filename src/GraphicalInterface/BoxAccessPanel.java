@@ -3,7 +3,6 @@ package GraphicalInterface;
 import Management.PickupPoint;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class BoxAccessPanel extends JPanel {
     private PickupPoint piPo;

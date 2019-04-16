@@ -11,6 +11,7 @@ public class GridBoxesPanel extends JPanel {
     public GridBoxesPanel(PickupPoint pipo) {
         piPo = pipo;
 
+        setBorder(BorderFactory.createLineBorder(new Color(255, 0, 0)));
         initPanel();
     }
 
@@ -22,30 +23,34 @@ public class GridBoxesPanel extends JPanel {
         righe per tipologia.
          */
 
+        setLayout(new FlowLayout());
+
+        JPanel jp = new JPanel();
+        jp.setLayout(new GridLayout(3, 1));
+
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension screenSize = tk.getScreenSize();
+
+        jp.setPreferredSize(new Dimension((screenSize.width/3), (screenSize.height/3)));
+
+        add(jp);
+
+        jp.add(makeGrid(24));
+        jp.add(makeGrid(16));
+        jp.add(makeGrid(10));
+
+
+        /*
         setLayout(new GridLayout(3, 1));
         add(makeGrid(24));
         add(makeGrid(16));
         add(makeGrid(10));
+        */
 
         /*
         Cosi` funziona, ma serve un modo per
         trovare il numero di tipologie di box.
-        Altrimenti, questo funziona sempre, ma
-        e` meno elegante (bisogna prima eliminare
-        le quattro righe sopra):
-         */
-
-        /*int totalBoxes = 60;
-        int rows = 4;
-
-        setLayout(new GridLayout(rows, totalBoxes/rows));
-
-        for (int i = 0; i < totalBoxes; i++) {
-            JButton bu = new JButton("•");
-            bu.setFont(new Font(Font.SERIF, Font.PLAIN, 30));
-            bu.setForeground(Color.RED);
-            add(bu);
-        }*/
+        */
     }
 
     private JPanel makeGrid(int elements) {
