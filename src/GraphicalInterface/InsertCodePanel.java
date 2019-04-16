@@ -11,19 +11,20 @@ public class InsertCodePanel extends JPanel {
     public InsertCodePanel(PickupPoint pipo) {
         piPo = pipo;
 
-        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        setLayout(new GridLayout(3, 1));
         initPanel();
     }
 
     private void initPanel() {
-        /*
-        Per qualche motivo questi elementi vengono
-        sfasati, devo capire perché.
-         */
+        JPanel panLab = new JPanel();
 
-        add(new JLabel("Insert code:"));
+        JLabel insCod = new JLabel("Insert code:");
+        insCod.setFont(new Font("", Font.PLAIN, 24));
+        panLab.add(insCod);
+        add(panLab);
 
         JTextField textF = new JTextField();
+        textF.setFont(new Font("", Font.PLAIN, 24));
         textF.setMaximumSize(new Dimension(200, 200));
         add(textF);
 
