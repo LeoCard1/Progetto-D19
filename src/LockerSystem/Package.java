@@ -4,8 +4,8 @@ public class Package {
     private String id; // Codice identificativo di un pacco
     private Size size; // Dimensione del pacco
 
-    public Package(String id, Size size){
-        this.size = size;
+    public Package(String id, double height, double length, double width ){
+        this.size = new Size(height, length, width);
         this.id = id;
     }
 

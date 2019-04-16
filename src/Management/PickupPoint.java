@@ -3,6 +3,7 @@ package Management;
 import LockerSystem.BoxType.Box;
 import LockerSystem.Package;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -28,24 +29,17 @@ public class PickupPoint {
         listaBox.add(box);
     }
 
-    public boolean addPackage(Package pack){
+    public boolean addPackage(Package pack) throws IOException {
         Collections.sort(listaBox);
         for(Box box : listaBox){
-            if(box.isAvailability() && box.getSize().compareTo(pack.getSize())!= -1){
+            if(box.isAvailable() && box.getSize().compareTo(pack.getSize())!= -1){
                 box.addPackage(pack);
+                WriteFile writeDeliveryDate = new WriteFile("Archive/DeliveryDate", box.toString()) ;
                 return true;
             }
         }
         return false;
     }
 
-    // l'ho aggiunto solo per testare l'addPackage, potete cancellarlo se volete
-    public String toStringBox(){
-        String s="";
-        for(Box box : listaBox){
-            s+= box.toString()+"\n";
-        }
-        return s;
-    }
 
 }

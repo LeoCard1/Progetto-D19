@@ -3,9 +3,11 @@ package LockerSystem;
 import LockerSystem.BoxType.*;
 import Management.PickupPoint;
 
+import java.io.IOException;
+
 public class TestPiPo {
 
-    public static void main(String [] args){
+    public static void main(String [] args) throws IOException {
         PickupPoint piPo = new PickupPoint("piPo01");
 
         Box boxLarge1 = new LargeBox();
@@ -28,10 +30,15 @@ public class TestPiPo {
         piPo.addBox(boxSmall2);
         piPo.addBox(boxSmall3);
 
-        Package pack1 = new Package("pack1", new Size(1,1,1));
+        Package pack1 = new Package("pack1", 72,24,65);
+        Package pack2 = new Package("pack2", 20, 15, 29);
+        Package pack3 = new Package("pack3", 55,40,36);
+        Package pack4 = new Package("pack4", 37, 62, 46);
 
         piPo.addPackage(pack1);
-        System.out.println(piPo.toStringBox());
+        piPo.addPackage(pack2);
+        piPo.addPackage(pack3);
+        piPo.addPackage(pack4);
 
 
 

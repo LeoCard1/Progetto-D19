@@ -2,6 +2,8 @@ package LockerSystem.BoxType;
 
 import LockerSystem.Size;
 import LockerSystem.Package;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public abstract class Box  implements Comparable {
@@ -31,7 +33,7 @@ public abstract class Box  implements Comparable {
         date = null;
     }
 
-    public boolean isAvailability(){
+    public boolean isAvailable(){
         return availability;
     }
 
@@ -44,10 +46,16 @@ public abstract class Box  implements Comparable {
         return size.compareTo(boxObject.getSize());
     }
 
+    public String getDate(){
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        sdf.applyPattern("dd-MM-yyyy HH.mm.ss");
+        return sdf.format(date);
+    }
+
     public String toString(){
-        String s = "Codice: "+code;
-        if(!isAvailability()){
-            s+="  Pacco: " +pack.getId() +"  Data di consegna: " +date;
+        String s = "BoxCode: "+code;
+        if(!isAvailable()){
+            s+=" \tPack: " +pack.getId() +"\tDate: " +getDate();
         }
         return s;
     }

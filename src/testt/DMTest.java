@@ -5,7 +5,7 @@ import LockerSystem.Size;
 
 public class DMTest {
     DeliveryMan deliveryMan = new DeliveryMan("ciao");
-    Package aPackage = new Package("pacco1", new Size(5,5,5));
+    Package aPackage = new Package("pacco1", 5,5,5);
 
     //@Test
     public void addPackageTest() {
