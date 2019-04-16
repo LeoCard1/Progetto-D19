@@ -27,11 +27,12 @@ public class Size implements Comparable {
     @Override
     public int compareTo(Object o) {
         Size sizeObject = (Size)o;
-
-        if ((height == sizeObject.getHeight()) && (length == sizeObject.getLength()) && (width == sizeObject.getWidth())) return 0;
-
-        if ((height >= sizeObject.getHeight()) && (length >= sizeObject.getLength()) && (width >= sizeObject.getWidth())) return 1;
-
+        if ((height == sizeObject.getHeight()) && (length == sizeObject.getLength()) && (width == sizeObject.getWidth())) {
+            return 0;
+        }
+        if ((height >= sizeObject.getHeight()) && (length >= sizeObject.getLength()) && (width >= sizeObject.getWidth())){
+            return 1;
+        }
         return -1;
     }
 }

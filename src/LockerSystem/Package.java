@@ -2,10 +2,10 @@ package LockerSystem;
 
 public class Package {
     private String id; // Codice identificativo di un pacco
-    private Size dimension; // Dimensione del pacco
+    private Size size; // Dimensione del pacco
 
-    public Package(String id, Size dimension){
-        this.dimension = dimension;
+    public Package(String id, Size size){
+        this.size = size;
         this.id = id;
     }
 
@@ -13,7 +13,9 @@ public class Package {
         return id;
     }
 
-    public Size getDimension() {
-        return dimension;
+    public Size getSize() {
+        return size;
     }
+
+
 }
