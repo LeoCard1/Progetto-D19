@@ -29,16 +29,16 @@ public class PickupPoint {
         listaBox.add(box);
     }
 
-    public boolean addPackage(Package pack) throws IOException {
+    public int addPackage(Package pack) throws IOException {
         Collections.sort(listaBox);
         for(Box box : listaBox){
             if(box.isAvailable() && box.getSize().compareTo(pack.getSize())!= -1){
                 box.addPackage(pack);
                 WriteFile writeDeliveryDate = new WriteFile("Archive/DeliveryDate", box.toString()) ;
-                return true;
+                return box.getCode();
             }
         }
-        return false;
+        return 0;
     }
 
 

@@ -41,6 +41,8 @@ public abstract class Box  implements Comparable {
         return size;
     }
 
+    public int getCode(){ return code; }
+
     public int compareTo(Object o){
         Box boxObject = (Box)o;
         return size.compareTo(boxObject.getSize());
