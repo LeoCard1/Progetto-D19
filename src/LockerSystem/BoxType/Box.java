@@ -43,6 +43,8 @@ public abstract class Box  implements Comparable {
 
     public int getCode(){ return code; }
 
+    public Package getPack(){ return pack; }
+
     public int compareTo(Object o){
         Box boxObject = (Box)o;
         return size.compareTo(boxObject.getSize());
@@ -50,7 +52,7 @@ public abstract class Box  implements Comparable {
 
     public String getDate(){
         SimpleDateFormat sdf = new SimpleDateFormat();
-        sdf.applyPattern("dd-MM-yyyy HH.mm.ss");
+        sdf.applyPattern("dd-MM-yyyy");
         return sdf.format(date);
     }
 

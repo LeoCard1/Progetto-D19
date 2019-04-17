@@ -40,7 +40,7 @@ public class TestPiPo {
         piPo.addPackage(pack3);
         piPo.addPackage(pack4);
 
-
+        piPo.removePackage(pack4);
 
 
     }

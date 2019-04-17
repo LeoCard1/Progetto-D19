@@ -34,11 +34,24 @@ public class PickupPoint {
         for(Box box : listaBox){
             if(box.isAvailable() && box.getSize().compareTo(pack.getSize())!= -1){
                 box.addPackage(pack);
-                WriteFile writeDeliveryDate = new WriteFile("Archive/DeliveryDate", box.toString()) ;
+                ReadWriteFile rwf = new ReadWriteFile("Archive/DeliveryDate") ;
+                rwf.insertText(box.toString());
                 return box.getCode();
             }
         }
         return 0;
+    }
+
+    public boolean removePackage(Package pack) throws IOException {
+        for(Box box : listaBox){
+            if(box.getPack() == pack){
+                ReadWriteFile  rwf = new ReadWriteFile("Archive/DeliveryDate") ;
+                rwf.removeText(box.toString());
+                box.removePackage();
+                return true;
+            }
+        }
+        return false;
     }
 
 
