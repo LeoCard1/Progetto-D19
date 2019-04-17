@@ -10,31 +10,31 @@ import java.util.Collections;
 
 public class PickupPoint {
     private String id; //Codice identificativo punto di ritiro?
-    private ArrayList<Box>listaBox; // Box attualmente presenti nel Punto di ritiro
+    private ArrayList<Box> boxList; // Box attualmente presenti nel Punto di ritiro
     private int numeroBoxUsati; // Da utilizzare nelle statistiche
 
     public PickupPoint(String id){
         this.id = id;
-        listaBox = new ArrayList<>();
+        boxList = new ArrayList<>();
         numeroBoxUsati = 0;
     }
 
     public PickupPoint(int numeroBoxIniziali , String id){
         this.id = id;
-        listaBox = new ArrayList<>(numeroBoxIniziali);
+        boxList = new ArrayList<>(numeroBoxIniziali);
         numeroBoxUsati = 0;
     }
 
     public void addBox(Box box){
-        listaBox.add(box);
+        boxList.add(box);
     }
 
     public int addPackage(Package pack) throws IOException {
-        Collections.sort(listaBox);
-        for(Box box : listaBox){
+        Collections.sort(boxList);
+        for(Box box : boxList){
             if(box.isAvailable() && box.getSize().compareTo(pack.getSize())!= -1){
                 box.addPackage(pack);
-                ReadWriteFile rwf = new ReadWriteFile("Archive/DeliveryDate") ;
+                ReadWriteDeliveryDate rwf = new ReadWriteDeliveryDate() ;
                 rwf.insertText(box.toString());
                 return box.getCode();
             }
@@ -43,10 +43,10 @@ public class PickupPoint {
     }
 
     public boolean removePackage(Package pack) throws IOException {
-        for(Box box : listaBox){
+        for(Box box : boxList){
             if(box.getPack() == pack){
-                ReadWriteFile  rwf = new ReadWriteFile("Archive/DeliveryDate") ;
-                rwf.removeText(box.toString());
+                ReadWriteDeliveryDate rwf = new ReadWriteDeliveryDate() ;
+                rwf.removeText(box.getCode());
                 box.removePackage();
                 return true;
             }

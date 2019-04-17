@@ -21,18 +21,6 @@ public abstract class Box  implements Comparable {
         code = numBox;
     }
 
-    public void addPackage(Package pack){
-        availability = false;
-        this.pack = pack;
-        date = new Date();
-    }
-
-    public void removePackage(){
-        availability = true;
-        pack = null;
-        date = null;
-    }
-
     public boolean isAvailable(){
         return availability;
     }
@@ -45,21 +33,33 @@ public abstract class Box  implements Comparable {
 
     public Package getPack(){ return pack; }
 
-    public int compareTo(Object o){
-        Box boxObject = (Box)o;
-        return size.compareTo(boxObject.getSize());
-    }
-
     public String getDate(){
         SimpleDateFormat sdf = new SimpleDateFormat();
         sdf.applyPattern("dd-MM-yyyy");
         return sdf.format(date);
     }
 
+    public void addPackage(Package pack){
+        availability = false;
+        this.pack = pack;
+        date = new Date();
+    }
+
+    public void removePackage(){
+        availability = true;
+        pack = null;
+        date = null;
+    }
+
+    public int compareTo(Object o){
+        Box boxObject = (Box)o;
+        return size.compareTo(boxObject.getSize());
+    }
+
     public String toString(){
-        String s = "BoxCode: "+code;
+        String s = ""+code;
         if(!isAvailable()){
-            s+=" \tPack: " +pack.getId() +"\tDate: " +getDate();
+            s+=" \t" +pack.getId() +"\t" +getDate();
         }
         return s;
     }

@@ -1,29 +1,30 @@
 package Management;
 
 import java.io.*;
+import java.util.StringTokenizer;
 
-public class ReadWriteFile {
+public class ReadWriteDeliveryDate {
+    protected File file;
 
-    File file;
-
-    public ReadWriteFile(String path){
-         file = new File(path);
+    public ReadWriteDeliveryDate(){
+         file = new File("Archive/DeliveryDate");
     }
 
     public void insertText(String text) throws IOException {
-        String finalText = readText();
+        String finalText = getText();
         finalText += text;
         BufferedWriter out = new BufferedWriter(new FileWriter(file));
         out.write(finalText);
         out.close();
     }
 
-    public void removeText(String text) throws IOException{
+    public void removeText(int boxCode) throws IOException {
         String finalText = "";
         String line;
         BufferedReader in = new BufferedReader(new FileReader(file));
         while((line = in.readLine()) != null){
-            if(!line.equals(text)) {
+            StringTokenizer st = new StringTokenizer(line);
+            if(Integer.parseInt(st.nextToken())!=boxCode) {
                 finalText += line + "\n";
             }
         }
@@ -33,7 +34,7 @@ public class ReadWriteFile {
         out.close();
     }
 
-    public String readText() throws IOException {
+    public String getText() throws IOException {
         String text = "";
         String line;
         BufferedReader in = new BufferedReader(new FileReader(file));
