@@ -3,10 +3,10 @@ package Management;
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class ReadWriteDeliveryDate {
+public class DeliveryDateWriter {
     protected File file;
 
-    public ReadWriteDeliveryDate(){
+    public DeliveryDateWriter(){
          file = new File("Archive/DeliveryDate");
     }
 

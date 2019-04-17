@@ -34,7 +34,7 @@ public class PickupPoint {
         for(Box box : boxList){
             if(box.isAvailable() && box.getSize().compareTo(pack.getSize())!= -1){
                 box.addPackage(pack);
-                ReadWriteDeliveryDate rwf = new ReadWriteDeliveryDate() ;
+                DeliveryDateWriter rwf = new DeliveryDateWriter() ;
                 rwf.insertText(box.toString());
                 return box.getCode();
             }
@@ -45,7 +45,7 @@ public class PickupPoint {
     public boolean removePackage(Package pack) throws IOException {
         for(Box box : boxList){
             if(box.getPack() == pack){
-                ReadWriteDeliveryDate rwf = new ReadWriteDeliveryDate() ;
+                DeliveryDateWriter rwf = new DeliveryDateWriter() ;
                 rwf.removeText(box.getCode());
                 box.removePackage();
                 return true;
