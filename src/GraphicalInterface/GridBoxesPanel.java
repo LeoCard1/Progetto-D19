@@ -1,5 +1,6 @@
 package GraphicalInterface;
 
+import LockerSystem.BoxType.Box;
 import Management.PickupPoint;
 
 import javax.swing.*;
@@ -7,9 +8,10 @@ import java.awt.*;
 
 public class GridBoxesPanel extends JPanel {
     private PickupPoint piPo;
+    private static int boxCounter;
 
-    public GridBoxesPanel(PickupPoint pipo) {
-        piPo = pipo;
+    public GridBoxesPanel(PickupPoint piPo) {
+        this.piPo = piPo;
 
         setBorder(BorderFactory.createLineBorder(new Color(255, 0, 0)));
         initPanel();
@@ -35,9 +37,9 @@ public class GridBoxesPanel extends JPanel {
 
         add(jp);
 
-        jp.add(makeGrid(24));
-        jp.add(makeGrid(16));
-        jp.add(makeGrid(10));
+        jp.add(makeGrid(piPo.getNumSmallBox()));
+        jp.add(makeGrid(piPo.getNumMediumBox()));
+        jp.add(makeGrid(piPo.getNumLargeBox()));
 
 
         /*
@@ -63,11 +65,15 @@ public class GridBoxesPanel extends JPanel {
         grid.setLayout(new GridLayout(rows, elements/rows));
 
         for (int i = 0; i < elements; i++) {
-            JButton bu = new JButton("•");
-            bu.setFont(new Font(Font.SERIF, Font.PLAIN, 30));
-            bu.setForeground(Color.RED);
-            bu.setBackground(Color.ORANGE);
+            Box box = piPo.getBoxList().get(boxCounter);
+            JButton bu = new JButton(Integer.toString(box.getCode()));
+            bu.setFont(new Font(Font.SERIF, Font.PLAIN, 15));
+            if(box.isAvailable()){
+                bu.setForeground(Color.GREEN);
+            } else bu.setForeground(Color.RED);
+            bu.setBackground(Color.YELLOW);
             grid.add(bu);
+            boxCounter++;
         }
 
         return grid;
