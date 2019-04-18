@@ -6,8 +6,6 @@
       <change beforePath="$PROJECT_DIR$/Archive/DeliveryDate" beforeDir="false" afterPath="$PROJECT_DIR$/Archive/DeliveryDate" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GraphicalInterface/GUITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GraphicalInterface/GUITest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GraphicalInterface/GridBoxesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GraphicalInterface/GridBoxesPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LockerSystem/TestPiPo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Management/PickupPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Management/PickupPoint.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GraphicalInterface/GridBoxesPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="63" column="65" lean-forward="true" selection-start-line="63" selection-start-column="65" selection-end-line="63" selection-end-column="65" />
+            <state relative-caret-position="-201">
+              <caret line="39" column="48" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -55,7 +53,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Archive/DeliveryDate">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -63,8 +61,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GraphicalInterface/GUITest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="270">
+              <caret line="27" column="29" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -75,8 +73,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Management/DeliveryDateWriter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="255">
+              <caret line="25" column="61" lean-forward="true" selection-start-line="25" selection-start-column="61" selection-end-line="25" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -87,7 +85,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Management/PickupPoint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
+            <state relative-caret-position="-690">
               <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
               <folding>
                 <element signature="e#1159#1160#0" expanded="true" />
@@ -186,18 +184,18 @@
         <option value="$PROJECT_DIR$/src/Management/ReadWriteDeliveryDate.java" />
         <option value="$PROJECT_DIR$/src/Management/DeliveryDateWriter.java" />
         <option value="$PROJECT_DIR$/src/LockerSystem/TestPiPo.java" />
+        <option value="$PROJECT_DIR$/src/Management/PickupPoint.java" />
         <option value="$PROJECT_DIR$/src/GraphicalInterface/GridBoxesPanel.java" />
         <option value="$PROJECT_DIR$/src/GraphicalInterface/GUITest.java" />
-        <option value="$PROJECT_DIR$/src/Management/PickupPoint.java" />
         <option value="$PROJECT_DIR$/Archive/DeliveryDate" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="65" />
+    <option name="x" value="4" />
     <option name="y" value="28" />
-    <option name="width" value="1301" />
-    <option name="height" value="740" />
+    <option name="width" value="1281" />
+    <option name="height" value="557" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -247,7 +245,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555618615337" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555620276056" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
@@ -369,7 +367,7 @@
       <workItem from="1555460597409" duration="4107000" />
       <workItem from="1555493880493" duration="703000" />
       <workItem from="1555545739566" duration="512000" />
-      <workItem from="1555612850381" duration="5840000" />
+      <workItem from="1555612850381" duration="7136000" />
     </task>
     <task id="LOCAL-00001" summary="seconda versione classe box">
       <created>1554910029699</created>
@@ -427,16 +425,24 @@
       <option name="project" value="LOCAL" />
       <updated>1555464302938</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="aggiunto numero di tipologie per box per interfaccia box">
+      <created>1555618696249</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1555618696249</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43024000" />
+    <option name="totallyTimeSpent" value="44320000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="28" width="1301" height="740" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23505977" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23505977" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -445,7 +451,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32930845" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.21018063" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21018063" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -681,40 +687,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Management/DeliveryDateWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Management/PickupPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-          <folding>
-            <element signature="e#1159#1160#0" expanded="true" />
-            <element signature="e#1189#1190#0" expanded="true" />
-            <element signature="e#1152#1153#0" expanded="true" />
-            <element signature="e#1186#1187#0" expanded="true" />
-            <element signature="e#1222#1223#0" expanded="true" />
-            <element signature="e#1257#1258#0" expanded="true" />
-            <element signature="e#1292#1293#0" expanded="true" />
-            <element signature="e#1326#1327#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Archive/DeliveryDate">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphicalInterface/GUITest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="270">
+          <caret line="27" column="29" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -730,13 +706,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphicalInterface/GridBoxesPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="63" column="65" lean-forward="true" selection-start-line="63" selection-start-column="65" selection-end-line="63" selection-end-column="65" />
+        <state relative-caret-position="-201">
+          <caret line="39" column="48" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Management/PickupPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-690">
+          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+          <folding>
+            <element signature="e#1159#1160#0" expanded="true" />
+            <element signature="e#1189#1190#0" expanded="true" />
+            <element signature="e#1152#1153#0" expanded="true" />
+            <element signature="e#1186#1187#0" expanded="true" />
+            <element signature="e#1222#1223#0" expanded="true" />
+            <element signature="e#1257#1258#0" expanded="true" />
+            <element signature="e#1292#1293#0" expanded="true" />
+            <element signature="e#1326#1327#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Management/DeliveryDateWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="25" column="61" lean-forward="true" selection-start-line="25" selection-start-column="61" selection-end-line="25" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Archive/DeliveryDate">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">

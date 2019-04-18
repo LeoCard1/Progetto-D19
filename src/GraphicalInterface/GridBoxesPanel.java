@@ -42,6 +42,8 @@ public class GridBoxesPanel extends JPanel {
         jp.add(makeGrid(piPo.getNumLargeBox()));
 
 
+
+
         /*
         setLayout(new GridLayout(3, 1));
         add(makeGrid(24));
