@@ -25,4 +25,8 @@ public class DeliveryMan {
     public int getPackCounter() {
         return packCounter;
     }
+
+    public ArrayList<Package> getListaPacchi() {
+        return listaPacchi;
+    }
 }
