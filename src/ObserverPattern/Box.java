@@ -1,7 +1,7 @@
-package LockerSystem.BoxType;
+package ObserverPattern;
 
-import LockerSystem.Size;
 import LockerSystem.Package;
+import LockerSystem.Size;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,6 +45,7 @@ public abstract class Box  implements Comparable {
         availability = false;
         this.pack = pack;
         date = new Date();
+        notifyObservers(); //notifica agli observer del box (concrete subjects)che si e'aggiunto un pacco
     }
 
     public void removePackage(){
@@ -65,5 +66,26 @@ public abstract class Box  implements Comparable {
         }
         return s;
     }
+
+    private List<Observer> list = new ArrayList<Observer>();
+
+    public void addObserver(Observer observer)
+    {
+        list.add( observer );
+    }
+
+    public void removeObserver(Observer observer)
+    {
+        list.remove( observer );
+    }
+
+    public void notifyObservers()
+    {
+        for (Observer observer: list)
+        {
+            observer.update();  //aggiorna gli observer
+        }
+    }
+  
 
 }

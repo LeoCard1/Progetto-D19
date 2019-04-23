@@ -1,8 +1,8 @@
-package LockerSystem.BoxType;
+package ObserverPattern;
 
 import LockerSystem.Size;
 
-public class LargeBox extends Box  {
+public class LargeBox extends Box {
 
     public LargeBox(){
         super();

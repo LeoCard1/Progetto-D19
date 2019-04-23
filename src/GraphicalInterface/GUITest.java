@@ -4,6 +4,8 @@ import LockerSystem.Package;
 import Management.PickupPoint;
 
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
 public class GUITest {
     public static void main(String[] args) throws IOException {
@@ -18,6 +20,13 @@ public class GUITest {
         Package pack7 = new Package("pack3", 15,20,16);
         Package pack8 = new Package("pack4", 33, 40, 71);
 
+      /*  Observer observer1 = new Observer() {
+            @Override
+            public void update(Observable o, Object arg) {
+                System.out.println("Aggiunto\n");
+            }
+        };
+*/
         piPo.addPackage(pack1);
         piPo.addPackage(pack2);
         piPo.addPackage(pack3);
