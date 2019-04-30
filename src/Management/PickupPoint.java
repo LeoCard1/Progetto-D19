@@ -47,12 +47,15 @@ public class PickupPoint {
     public ArrayList<Box> getBoxList() {
         return boxList;
     }
+
     public int getNumSmallBox() {
         return numSmallBox;
     }
+
     public int getNumMediumBox() {
         return numMediumBox;
     }
+
     public int getNumLargeBox() {
         return numLargeBox;
     }
@@ -79,7 +82,7 @@ public class PickupPoint {
     public boolean removePackage(Package pack) throws IOException {
         for(Box box : boxList){
             if(box.getPack() == pack){
-                DeliveryDateWriter ddw = new DeliveryDateWriter() ;
+                DeliveryDateWriter ddw = new DeliveryDateWriter();
                 ddw.removeText(box.getCode());
                 box.removePackage();
                 return true;
@@ -163,4 +166,7 @@ public class PickupPoint {
         deliveryManID = password;
     }
 
+    public String getDeliveryManID() {
+        return deliveryManID;
+    }
 }
