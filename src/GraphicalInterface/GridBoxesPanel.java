@@ -1,11 +1,13 @@
 package GraphicalInterface;
 
 import LockerSystem.BoxType.Box;
+import LockerSystem.Size;
 import Management.PickupPoint;
 import ObserverPattern.Observer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GridBoxesPanel extends JPanel implements Observer {
     private PickupPoint piPo;
@@ -32,24 +34,25 @@ public class GridBoxesPanel extends JPanel implements Observer {
 
         add(jp);
 
-        jp.add(makeGrid(piPo.getNumSmallBox()));
+        /*jp.add(makeGrid(piPo.getNumSmallBox()));
         jp.add(makeGrid(piPo.getNumMediumBox()));
-        jp.add(makeGrid(piPo.getNumLargeBox()));
+        jp.add(makeGrid(piPo.getNumLargeBox()));*/
 
+        ArrayList<Box> boxList =  piPo.getBoxList();
+        Size boxSize = boxList.get(0).getSize();
+        int boxCounter = 0;
+        int different;
 
-
-
-        /*
-        setLayout(new GridLayout(3, 1));
-        add(makeGrid(24));
-        add(makeGrid(16));
-        add(makeGrid(10));
-        */
-
-        /*
-        Cosi` funziona, ma serve un modo per
-        trovare il numero di tipologie di box.
-        */
+        for (int i = 0; i < boxList.size(); i++) {
+            different = boxList.get(i).getSize().compareTo(boxSize);
+            if (different != 0) {
+                jp.add(makeGrid(boxCounter));
+                boxSize = boxList.get(i).getSize();
+                boxCounter = 0;
+            }
+            boxCounter++;
+        }
+        jp.add(makeGrid(boxCounter));
     }
 
     private JPanel makeGrid(int elements) {
