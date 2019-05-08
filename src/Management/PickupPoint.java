@@ -4,6 +4,7 @@ import LockerSystem.BoxType.*;
 import LockerSystem.DeliveryMan;
 import LockerSystem.Package;
 
+import LockerSystem.Size;
 import ObserverPattern.Observer;
 
 import java.io.IOException;
@@ -192,5 +193,13 @@ public class PickupPoint {
         for (Observer obsOfList : obsList) {
             obsOfList.update();
         }
+    }
+
+    public Box getBoxFromIndex(int index) {
+        return boxList.get(index);
+    }
+
+    public Size getBoxSizeGivenIndex(int index) {
+        return getBoxFromIndex(index).getSize();
     }
 }

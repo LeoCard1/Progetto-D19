@@ -39,15 +39,17 @@ public class GridBoxesPanel extends JPanel implements Observer {
         jp.add(makeGrid(piPo.getNumLargeBox()));*/
 
         ArrayList<Box> boxList =  piPo.getBoxList();
-        Size boxSize = boxList.get(0).getSize();
+        Size boxSize;
+        Size comparingSize = piPo.getBoxSizeGivenIndex(0);
         int boxCounter = 0;
         int different;
 
         for (int i = 0; i < boxList.size(); i++) {
-            different = boxList.get(i).getSize().compareTo(boxSize);
+            boxSize = piPo.getBoxSizeGivenIndex(i);
+            different = boxSize.compareTo(comparingSize);
             if (different != 0) {
                 jp.add(makeGrid(boxCounter));
-                boxSize = boxList.get(i).getSize();
+                comparingSize = piPo.getBoxSizeGivenIndex(i);
                 boxCounter = 0;
             }
             boxCounter++;
@@ -65,7 +67,7 @@ public class GridBoxesPanel extends JPanel implements Observer {
         grid.setLayout(new GridLayout(rows, elements/rows));
 
         for (int i = 0; i < elements; i++) {
-            Box box = piPo.getBoxList().get(i);
+            Box box = piPo.getBoxFromIndex(i);
             JButton bu = new JButton(Integer.toString(box.getCode()));
             bu.setFont(new Font(Font.SERIF, Font.PLAIN, 15));
             if(box.isAvailable()){

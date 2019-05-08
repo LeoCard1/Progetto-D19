@@ -39,11 +39,6 @@ public class GraIntMain extends JFrame implements Observer {
         tabP.addTab("Locker System", jp);
         viewBoxesPanel = new ViewBoxesPanel(piPo);
         tabP.addTab("View Boxes", viewBoxesPanel);
-
-        /*
-        tabP.addTab("Locker System", new BoxAccessPanel(piPo));
-        tabP.addTab("View Boxes", new ViewBoxesPanel(piPo));
-        */
     }
 
     @Override
