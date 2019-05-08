@@ -1,12 +1,14 @@
 package GraphicalInterface;
 
 import Management.PickupPoint;
+import ObserverPattern.Observer;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ViewBoxesPanel extends JPanel {
+public class ViewBoxesPanel extends JPanel implements Observer {
     private PickupPoint piPo;
+    private GridBoxesPanel gridBoxesPanel;
 
     public ViewBoxesPanel(PickupPoint pipo) {
         piPo = pipo;
@@ -16,7 +18,13 @@ public class ViewBoxesPanel extends JPanel {
     }
 
     private void initPanel() {
-        GridBoxesPanel grid = new GridBoxesPanel(piPo);
+        gridBoxesPanel = new GridBoxesPanel(piPo);
+        GridBoxesPanel grid = gridBoxesPanel;
         add(grid);
+    }
+
+    @Override
+    public void update() {
+        gridBoxesPanel.update();
     }
 }

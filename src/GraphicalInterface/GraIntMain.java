@@ -1,12 +1,14 @@
 package GraphicalInterface;
 
 import Management.PickupPoint;
+import ObserverPattern.Observer;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class GraIntMain extends JFrame {
+public class GraIntMain extends JFrame implements Observer {
     private PickupPoint piPo;
+    private ViewBoxesPanel viewBoxesPanel;
     private int height;
     private int width;
 
@@ -35,11 +37,17 @@ public class GraIntMain extends JFrame {
         jp.add(new BoxAccessPanel(piPo));
 
         tabP.addTab("Locker System", jp);
-        tabP.addTab("View Boxes", new ViewBoxesPanel(piPo));
+        viewBoxesPanel = new ViewBoxesPanel(piPo);
+        tabP.addTab("View Boxes", viewBoxesPanel);
 
         /*
         tabP.addTab("Locker System", new BoxAccessPanel(piPo));
         tabP.addTab("View Boxes", new ViewBoxesPanel(piPo));
         */
+    }
+
+    @Override
+    public void update() {
+        viewBoxesPanel.update();
     }
 }

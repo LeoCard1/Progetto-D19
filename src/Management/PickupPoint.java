@@ -4,6 +4,8 @@ import LockerSystem.BoxType.*;
 import LockerSystem.DeliveryMan;
 import LockerSystem.Package;
 
+import ObserverPattern.Observer;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -16,6 +18,7 @@ public class PickupPoint {
     private int numLargeBox;
     private String deliveryManID;
     private HashMap<String, Box> availableBox;
+    private ArrayList<Observer> obsList = new ArrayList<>();
 
     /* boxList è la lista che comprende tutte le box, sia quelle piene che quelle vuote:
      * Viene usato per inserire i pacchi al momento della consegna.
@@ -114,14 +117,21 @@ public class PickupPoint {
     public void sortPackages (DeliveryMan del, String cod) {
         // qui il cod da utilizzare è l'ID del fattorino -RG
         if (!Objects.equals(cod, deliveryManID)) {
-            System.out.println("Errore: the ID is incorrect.");
+            System.out.println("Error: the ID is incorrect.");
             return;
         }
+
         ArrayList<Package> delPacks = del.getListaPacchi();
+
         for (Package p : delPacks) {
-            try {addPackage(p);}
-            catch (IOException e) {System.out.println("Errore.");}
+            try {
+                addPackage(p);
+            } catch (IOException e) {
+                System.out.println("Errore.");
+            }
         }
+
+        notifyObservers();
     }
 
 
@@ -168,5 +178,19 @@ public class PickupPoint {
 
     public String getDeliveryManID() {
         return deliveryManID;
+    }
+
+    public void addObserver(Observer obs) {
+        for (Observer obsOfList : obsList) {
+            if (obs == obsOfList) return;
+        }
+
+        obsList.add(obs);
+    }
+
+    public void notifyObservers() {
+        for (Observer obsOfList : obsList) {
+            obsOfList.update();
+        }
     }
 }
