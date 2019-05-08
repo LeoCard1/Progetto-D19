@@ -59,9 +59,9 @@ public abstract class Box  implements Comparable {
     }
 
     public String toString(){
-        String s = ""+code;
+        String s = "" + code;
         if(!isAvailable()){
-            s+=" \t" +pack.getId() +"\t" +getDate();
+            s += " \t" + pack.getId() + "\t" + getDate();
         }
         return s;
     }
