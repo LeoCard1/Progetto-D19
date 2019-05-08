@@ -9,5 +9,4 @@ public class SmallBox extends Box {
         super.size = new Size(30,30,30);
     }
 
-
 }

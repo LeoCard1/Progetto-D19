@@ -1,25 +1,27 @@
 package LockerSystem;
 
+import ObserverPattern.Observer;
+
 import java.util.ArrayList;
 
-public class DeliveryMan {
+public class DeliveryMan implements Observer {
     private String id; // id univoco che identifica un fattorino
-    private ArrayList<Package> listaPacchi;
+    private ArrayList<Package> packageList;
     private int packCounter; // pacchi totali consegnati. Utilizzo nei dati statistici
 
     public DeliveryMan(String id){
         this.id = id;
-        listaPacchi = new ArrayList<>();
+        packageList = new ArrayList<>();
         packCounter = 0;
     }
 
     public void addPackage(Package pack){
-        listaPacchi.add(pack);
+        packageList.add(pack);
         packCounter++;
     }
 
     public void removePackage(Package pack){
-        listaPacchi.remove(pack);
+        packageList.remove(pack);
     }
 
     public int getPackCounter() {
@@ -27,6 +29,12 @@ public class DeliveryMan {
     }
 
     public ArrayList<Package> getListaPacchi() {
-        return listaPacchi;
+        return packageList;
+    }
+
+    @Override
+    public void update() {
+        packCounter += packageList.size();
+        packageList.clear();
     }
 }

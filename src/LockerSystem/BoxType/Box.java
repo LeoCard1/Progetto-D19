@@ -4,9 +4,7 @@ import LockerSystem.Size;
 import LockerSystem.Package;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public abstract class Box  implements Comparable {
 
@@ -31,9 +29,13 @@ public abstract class Box  implements Comparable {
         return size;
     }
 
-    public int getCode(){ return code; }
+    public int getCode(){
+        return code;
+    }
 
-    public Package getPack(){ return pack; }
+    public Package getPack(){
+        return pack;
+    }
 
     public String getDate(){
         SimpleDateFormat sdf = new SimpleDateFormat();

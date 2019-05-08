@@ -9,5 +9,4 @@ public class MediumBox extends Box {
         super.size = new Size(60,60,60);
     }
 
-
 }
