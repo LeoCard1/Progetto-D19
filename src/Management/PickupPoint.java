@@ -1,5 +1,6 @@
 package Management;
 
+import GraphicalInterface.GraIntMain;
 import LockerSystem.BoxType.*;
 import LockerSystem.DeliveryMan;
 import LockerSystem.Package;
@@ -181,7 +182,19 @@ public class PickupPoint {
         return deliveryManID;
     }
 
-    public void addObserver(Observer obs) {
+    public DeliveryMan createDeliveryMan(String id) {
+        DeliveryMan delman = new DeliveryMan(id);
+        addObserver(delman);
+
+        return delman;
+    }
+
+    public void createGUI() {
+        GraIntMain gui = new GraIntMain(this);
+        addObserver(gui);
+    }
+
+    private void addObserver(Observer obs) {
         for (Observer obsOfList : obsList) {
             if (obs == obsOfList) return;
         }
@@ -189,7 +202,7 @@ public class PickupPoint {
         obsList.add(obs);
     }
 
-    public void notifyObservers() {
+    private void notifyObservers() {
         for (Observer obsOfList : obsList) {
             obsOfList.update();
         }

@@ -27,9 +27,7 @@ public class Test {
             e.printStackTrace();
         }
 
-        GraIntMain gui = new GraIntMain(pp);
-
-        pp.addObserver(gui);
+        pp.createGUI();
 
         ArrayList<Box> listaBox = pp.getBoxList();
 
@@ -38,7 +36,7 @@ public class Test {
         }
 
 
-        DeliveryMan fattorino = new DeliveryMan("Michele");
+        DeliveryMan fattorino = pp.createDeliveryMan("Michele");
 
         Package PaccoMichele1 = new Package("Michele1", 20, 20, 20);
         Package PaccoMichele2 = new Package("Michele2", 40, 30, 35);
