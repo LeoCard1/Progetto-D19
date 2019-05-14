@@ -11,11 +11,12 @@ import java.util.ArrayList;
 
 public class GridBoxesPanel extends JPanel implements Observer {
     private PickupPoint piPo;
-    private JPanel pannelloPrincipale;
+    private JPanel mainPanel;
+    private int numBox;
+
 
     public GridBoxesPanel(PickupPoint piPo) {
         this.piPo = piPo;
-
         setBorder(BorderFactory.createLineBorder(new Color(255, 0, 0)));
         setLayout(new FlowLayout());
 
@@ -23,9 +24,10 @@ public class GridBoxesPanel extends JPanel implements Observer {
     }
 
     private void initPanel() {
+        numBox=0;
         JPanel jp = new JPanel();
         jp.setLayout(new GridLayout(3, 1));
-        pannelloPrincipale = jp;
+        mainPanel = jp;
 
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension screenSize = tk.getScreenSize();
@@ -33,10 +35,6 @@ public class GridBoxesPanel extends JPanel implements Observer {
         jp.setPreferredSize(new Dimension((screenSize.width/3), (screenSize.height/3)));
 
         add(jp);
-
-        /*jp.add(makeGrid(piPo.getNumSmallBox()));
-        jp.add(makeGrid(piPo.getNumMediumBox()));
-        jp.add(makeGrid(piPo.getNumLargeBox()));*/
 
         ArrayList<Box> boxList =  piPo.getBoxList();
         Size boxSize;
@@ -55,6 +53,7 @@ public class GridBoxesPanel extends JPanel implements Observer {
             boxCounter++;
         }
         jp.add(makeGrid(boxCounter));
+
     }
 
     private JPanel makeGrid(int elements) {
@@ -67,7 +66,7 @@ public class GridBoxesPanel extends JPanel implements Observer {
         grid.setLayout(new GridLayout(rows, elements/rows));
 
         for (int i = 0; i < elements; i++) {
-            Box box = piPo.getBoxFromIndex(i);
+            Box box = piPo.getBoxFromIndex(numBox);
             JButton bu = new JButton(Integer.toString(box.getCode()));
             bu.setFont(new Font(Font.SERIF, Font.PLAIN, 15));
             if(box.isAvailable()){
@@ -75,6 +74,7 @@ public class GridBoxesPanel extends JPanel implements Observer {
             } else bu.setForeground(Color.RED);
             bu.setBackground(Color.YELLOW);
             grid.add(bu);
+            numBox++;
         }
 
         return grid;
@@ -82,7 +82,7 @@ public class GridBoxesPanel extends JPanel implements Observer {
 
     @Override
     public void update() {
-        remove(pannelloPrincipale);
+        remove(mainPanel);
         initPanel();
     }
 }

@@ -1,5 +1,7 @@
 package LockerSystem;
 
+import java.util.StringTokenizer;
+
 public class Size implements Comparable {
 
     private double height;
@@ -34,5 +36,9 @@ public class Size implements Comparable {
             return 1;
         }
         return -1;
+    }
+
+    public String toString(){
+        return height + "   " + length  + " " + width;
     }
 }

@@ -12,16 +12,13 @@ import java.util.ArrayList;
 
 public class DeliveryMan implements Observer {
     private String id; // id univoco che identifica un fattorino
-    private ArrayList<Package> packageList;
+    private ArrayList<Package> packageList = new ArrayList<>();
     private int packCounter; // pacchi totali consegnati. Utilizzo nei dati statistici
-
 
     public DeliveryMan(String id){
         this.id = id;
-        packageList = new ArrayList<>();
         packCounter = 0;
     }
-
 
     public void addPackage(Package pack){
         packageList.add(pack);
@@ -36,8 +33,16 @@ public class DeliveryMan implements Observer {
         return packCounter;
     }
 
-    public ArrayList<Package> getListaPacchi() {
+    public ArrayList<Package> getPackageList() {
         return packageList;
+    }
+
+    public String  packageListToString(){
+        String text="";
+        for(Package pack : packageList){
+            text += pack.toString()+"\n";
+        }
+        return text;
     }
 
     @Override

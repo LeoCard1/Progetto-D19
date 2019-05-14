@@ -46,7 +46,7 @@ public class PickupPoint {
     }
 
 
-    public void addPackage(Package pack) throws IOException {
+    public int addPackage(Package pack) throws IOException {
         Collections.sort(boxList);
         for(Box box : boxList){
             if(box.isAvailable() && box.getSize().compareTo(pack.getSize()) > -1){
@@ -56,11 +56,11 @@ public class PickupPoint {
                 String password = generatePassword(box.toString());
                 availableBox.put(password, box);
                 notifyObservers();
-                System.out.println(password);
-                return;
+                return box.getCode();
     // la password generata è il codice "unico" che viene inviato per messaggio al cliente, lo conosce solo lui -RG
             }
         }
+        return 0;
     }
 
     // A seconda del codice immesso, svuota la rispettiva box e la elimina dall'Hash Map "availableBox" -RG

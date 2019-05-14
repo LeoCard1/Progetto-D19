@@ -17,5 +17,9 @@ public class Package {
         return size;
     }
 
+    public String toString(){
+        return getId()+"    "+size.toString();
+    }
+
 
 }
