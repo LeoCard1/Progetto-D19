@@ -1,7 +1,13 @@
-package LockerSystem;
+package ClientSystem;
 
+import LockerSystem.Package;
 import ObserverPattern.Observer;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.Socket;
 import java.util.ArrayList;
 
 public class DeliveryMan implements Observer {
@@ -9,11 +15,13 @@ public class DeliveryMan implements Observer {
     private ArrayList<Package> packageList;
     private int packCounter; // pacchi totali consegnati. Utilizzo nei dati statistici
 
+
     public DeliveryMan(String id){
         this.id = id;
         packageList = new ArrayList<>();
         packCounter = 0;
     }
+
 
     public void addPackage(Package pack){
         packageList.add(pack);

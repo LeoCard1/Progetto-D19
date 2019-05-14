@@ -36,8 +36,8 @@ public class GUITest {
         piPo.addPackage(pack7);
         piPo.addPackage(pack8);
 
-        piPo.removePackage(pack1);
 
-        GraIntMain gui = new GraIntMain(piPo);
+
+
     }
 }

@@ -1,5 +1,4 @@
-import GraphicalInterface.GraIntMain;
-import LockerSystem.DeliveryMan;
+
 import LockerSystem.Package;
 import Management.PickupPoint;
 import LockerSystem.BoxType.*;
@@ -27,8 +26,6 @@ public class Test {
             e.printStackTrace();
         }
 
-        pp.createGUI();
-
         ArrayList<Box> listaBox = pp.getBoxList();
 
         for (Box boxInLista : listaBox) {
@@ -36,20 +33,10 @@ public class Test {
         }
 
 
-        DeliveryMan fattorino = pp.createDeliveryMan("Michele");
 
         Package PaccoMichele1 = new Package("Michele1", 20, 20, 20);
         Package PaccoMichele2 = new Package("Michele2", 40, 30, 35);
 
-        fattorino.addPackage(PaccoMichele1);
-        fattorino.addPackage(PaccoMichele2);
-
-        pp.generateDeliveryManID();
-        String idFattorino = pp.getDeliveryManID();
-        System.out.println(idFattorino);
-
-        pp.sortPackages(fattorino, "AAAA");
-        pp.sortPackages(fattorino, idFattorino);
 
         listaBox = pp.getBoxList();
 

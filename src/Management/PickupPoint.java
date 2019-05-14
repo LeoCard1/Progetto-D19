@@ -2,7 +2,7 @@ package Management;
 
 import GraphicalInterface.GraIntMain;
 import LockerSystem.BoxType.*;
-import LockerSystem.DeliveryMan;
+import ClientSystem.DeliveryMan;
 import LockerSystem.Package;
 
 import LockerSystem.Size;
@@ -14,12 +14,9 @@ import java.util.*;
 
 public class PickupPoint {
     private String id;
-    private ArrayList<Box> boxList;
-    private int numSmallBox;
-    private int numMediumBox;
-    private int numLargeBox;
-    private String deliveryManID;
-    private HashMap<String, Box> availableBox;
+    private ArrayList<Box> boxList = new ArrayList<>();
+    private String deliveryManID = null;
+    private HashMap<String, Box> availableBox = new HashMap<>();
     private ArrayList<Observer> obsList = new ArrayList<>();
 
     /* boxList è la lista che comprende tutte le box, sia quelle piene che quelle vuote:
@@ -32,12 +29,6 @@ public class PickupPoint {
 
     public PickupPoint(String id, int numSmallBox, int numMediumBox, int numLargeBox){
         this.id = id;
-        boxList = new ArrayList<>();
-        this.numSmallBox = numSmallBox;
-        this.numMediumBox = numMediumBox;
-        this.numLargeBox = numLargeBox;
-        deliveryManID = null;
-        availableBox = new HashMap<>();
         for(int i = 0; i < numSmallBox; i++){
             boxList.add(new SmallBox());
         }
@@ -47,58 +38,33 @@ public class PickupPoint {
         for(int i = 0; i < numLargeBox; i++){
             boxList.add(new LargeBox());
         }
+        createGUI();
     }
 
     public ArrayList<Box> getBoxList() {
         return boxList;
     }
 
-    public int getNumSmallBox() {
-        return numSmallBox;
-    }
 
-    public int getNumMediumBox() {
-        return numMediumBox;
-    }
-
-    public int getNumLargeBox() {
-        return numLargeBox;
-    }
-
-
-    public int addPackage(Package pack) throws IOException {
+    public void addPackage(Package pack) throws IOException {
         Collections.sort(boxList);
         for(Box box : boxList){
             if(box.isAvailable() && box.getSize().compareTo(pack.getSize()) > -1){
                 box.addPackage(pack);
                 DeliveryDateWriter ddw = new DeliveryDateWriter() ;
                 ddw.insertText(box.toString());
-                availableBox.put(generatePassword(box.toString()), box);
+                String password = generatePassword(box.toString());
+                availableBox.put(password, box);
+                notifyObservers();
+                System.out.println(password);
+                return;
     // la password generata è il codice "unico" che viene inviato per messaggio al cliente, lo conosce solo lui -RG
-                return box.getCode();
             }
         }
-        return 0;
     }
-
-
-    // Ci serve davvero un modo per svuotare le box conoscendo il pacchetto contenuto?
-    // Secondo me basta pickupPackage che si basa sul codice (ossia il sistema che utilizzano i clienti) -RG
-    public boolean removePackage(Package pack) throws IOException {
-        for(Box box : boxList){
-            if(box.getPack() == pack){
-                DeliveryDateWriter ddw = new DeliveryDateWriter();
-                ddw.removeText(box.getCode());
-                box.removePackage();
-                return true;
-            }
-        }
-        return false;
-    }
-
 
     // A seconda del codice immesso, svuota la rispettiva box e la elimina dall'Hash Map "availableBox" -RG
-    private void emptyBox(String cod) throws IOException {
+    public void emptyBox(String cod) throws IOException {
         Box b = null;
         try {
             b = availableBox.get(cod);
@@ -106,16 +72,12 @@ public class PickupPoint {
             ddw.removeText(b.getCode());
             b.removePackage();
             availableBox.remove(cod);
+            notifyObservers();
         }
         catch (NullPointerException e) {System.out.println("ERROR: The code is not valid.");}
     }
 
-    public void pickupPackage(String cod) {
-        try {emptyBox(cod);}
-        catch (IOException e) {System.out.println("Errore.");}
-        }
-
-
+    /*
     public void sortPackages (DeliveryMan del, String cod) {
         // qui il cod da utilizzare è l'ID del fattorino -RG
         if (!Objects.equals(cod, deliveryManID)) {
@@ -135,7 +97,7 @@ public class PickupPoint {
 
         notifyObservers();
     }
-
+*/
 
     /* La password per i clienti è generata in questo modo:
      * primi 5 caratteri: lettere casuali dalla A alla Z
@@ -161,11 +123,12 @@ public class PickupPoint {
             char c = letters.charAt(n);
             password = password + c;
         }
-        password = password + division[0] + division[2] + division[1].charAt(0);
+        password = password + division[0] + division[2];
         return password.replaceAll("\\s+","");
     }
 
     // La password per il fattorino è formata da 10 caratteri alfanumerici maiuscoli (ES: A30FLEB5W3) -RG
+    /*
     public void generateDeliveryManID() {
         String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         String password = new String();
@@ -177,19 +140,22 @@ public class PickupPoint {
         }
         deliveryManID = password;
     }
+    */
 
     public String getDeliveryManID() {
         return deliveryManID;
     }
 
+    /*
     public DeliveryMan createDeliveryMan(String id) {
         DeliveryMan delman = new DeliveryMan(id);
         addObserver(delman);
 
         return delman;
     }
+    */
 
-    public void createGUI() {
+    private void createGUI() {
         GraIntMain gui = new GraIntMain(this);
         addObserver(gui);
     }
