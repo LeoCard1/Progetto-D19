@@ -1,4 +1,4 @@
-package Management;
+package Management.FileManager;
 
 import java.io.*;
 import java.util.StringTokenizer;
@@ -7,7 +7,7 @@ public class DeliveryDateWriter {
     private File file;
 
     public DeliveryDateWriter(){
-         file = new File("Archive/DeliveryDate");
+         file = new File("src/Archive/DeliveryDate");
     }
 
     public void insertText(String text) throws IOException {

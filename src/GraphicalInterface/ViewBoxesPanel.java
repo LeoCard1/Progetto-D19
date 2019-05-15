@@ -1,6 +1,6 @@
 package GraphicalInterface;
 
-import Management.PickupPoint;
+import PickupPointSystem.PickupPoint;
 import ObserverPattern.Observer;
 
 import javax.swing.*;

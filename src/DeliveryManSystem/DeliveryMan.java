@@ -1,13 +1,8 @@
-package ClientSystem;
+package DeliveryManSystem;
 
 import LockerSystem.Package;
 import ObserverPattern.Observer;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.net.Socket;
 import java.util.ArrayList;
 
 public class DeliveryMan implements Observer {
@@ -18,6 +13,10 @@ public class DeliveryMan implements Observer {
     public DeliveryMan(String id){
         this.id = id;
         packCounter = 0;
+    }
+
+    public String getId(){
+        return id;
     }
 
     public void addPackage(Package pack){

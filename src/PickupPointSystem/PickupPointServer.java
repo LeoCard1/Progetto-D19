@@ -1,4 +1,5 @@
-package Management;
+package PickupPointSystem;
+
 
 import LockerSystem.Package;
 
@@ -10,14 +11,14 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.StringTokenizer;
 
-public class Server extends Thread{
+public class PickupPointServer extends Thread{
     private ServerSocket server;
     private PickupPoint pickupPoint;
 
-    public Server(PickupPoint pickupPoint) throws IOException {
+    public PickupPointServer(PickupPoint pickupPoint) throws IOException {
         this.pickupPoint = pickupPoint;
         server = new ServerSocket(8000);
-        System.out.println("[0] Server waiting on port 8000...");
+        System.out.println("[0] PickupPointServer waiting on port 8000...");
     }
 
     public void run() {
@@ -31,7 +32,6 @@ public class Server extends Thread{
             e.printStackTrace();
         }
     }
-
 
     private void connect(Socket client) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
@@ -54,5 +54,6 @@ public class Server extends Thread{
         client.close();
         System.out.println("[3] Disconnected from the client: " + client.getInetAddress());
     }
+
 
 }

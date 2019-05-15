@@ -1,4 +1,4 @@
-package ClientSystem;
+package DeliveryManSystem;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,13 +6,13 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 
-public class Client {
+public class DeliveryManClient {
     BufferedReader in = null;
     PrintStream out = null;
     Socket socket = null;
     DeliveryMan deliveryMan;
 
-    public Client(DeliveryMan deliveryMan){
+    public DeliveryManClient(DeliveryMan deliveryMan){
         this.deliveryMan = deliveryMan;
     }
 
@@ -22,9 +22,11 @@ public class Client {
         out = new PrintStream(socket.getOutputStream(), true);
         send(deliveryMan.packageListToString());
         read();
+        /*
         in.close();
         out.close();
         socket.close();
+        */
     }
 
 

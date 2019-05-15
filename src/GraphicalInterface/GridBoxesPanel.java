@@ -2,7 +2,7 @@ package GraphicalInterface;
 
 import LockerSystem.BoxType.Box;
 import LockerSystem.Size;
-import Management.PickupPoint;
+import PickupPointSystem.PickupPoint;
 import ObserverPattern.Observer;
 
 import javax.swing.*;
