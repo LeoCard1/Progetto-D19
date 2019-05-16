@@ -14,7 +14,7 @@ public class PackagesListReader {
         file = new File("src/Archive/PackagesList");
     }
 
-    public String getLineFromID(String id) throws IOException {
+    private String getLineFromID(String id) throws IOException {
         String text = getText();
         StringTokenizer st1 = new StringTokenizer(text, "\n");
         while(st1.hasMoreTokens()){
@@ -28,14 +28,14 @@ public class PackagesListReader {
     }
 
     public String getText() throws IOException {
-        String text = "";
+        StringBuilder text = new StringBuilder();
         String line;
         BufferedReader in = new BufferedReader(new FileReader(file));
         while((line = in.readLine()) != null){
-            text+= line + "\n";
+            text.append(line).append("\n");
         }
         in.close();
-        return text;
+        return text.toString();
     }
 
     public void insertText(String text) throws IOException {
@@ -48,17 +48,17 @@ public class PackagesListReader {
     }
 
     public void removeText(String id) throws IOException {
-        String finalText = "";
+        StringBuilder finalText = new StringBuilder();
         String line;
         String lineToRemove = getLineFromID(id);
         BufferedReader in = new BufferedReader(new FileReader(file));
         while((line = in.readLine()) != null){
             if(!line.equals(lineToRemove)){
-                finalText+=line+"\n";
+                finalText.append(line).append("\n");
             }
         }
         BufferedWriter out = new BufferedWriter(new FileWriter(file));
-        out.write(finalText);
+        out.write(finalText.toString());
         in.close();
         out.close();
         notifyObservers();
@@ -68,7 +68,7 @@ public class PackagesListReader {
         observers.add(ob);
     }
 
-    public void notifyObservers(){
+    private void notifyObservers(){
         for(Observer ob : observers){
             ob.update();
         }

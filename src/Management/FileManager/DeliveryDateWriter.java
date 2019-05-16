@@ -19,30 +19,30 @@ public class DeliveryDateWriter {
     }
 
     public void removeText(int boxCode) throws IOException {
-        String finalText = "";
+        StringBuilder finalText = new StringBuilder();
         String line;
         BufferedReader in = new BufferedReader(new FileReader(file));
         while((line = in.readLine()) != null){
             StringTokenizer st = new StringTokenizer(line);
             if(Integer.parseInt(st.nextToken())!=boxCode) {
-                finalText += line + "\n";
+                finalText.append(line).append("\n");
             }
         }
         BufferedWriter out = new BufferedWriter(new FileWriter(file));
-        out.write(finalText);
+        out.write(finalText.toString());
         in.close();
         out.close();
     }
 
     public String getText() throws IOException {
-        String text = "";
+        StringBuilder text = new StringBuilder();
         String line;
         BufferedReader in = new BufferedReader(new FileReader(file));
         while((line = in.readLine()) != null){
-            text+= line + "\n";
+            text.append(line).append("\n");
         }
         in.close();
-        return text;
+        return text.toString();
     }
 }
 
