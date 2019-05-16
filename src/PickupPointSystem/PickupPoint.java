@@ -1,5 +1,6 @@
 package PickupPointSystem;
 
+import GraphicalInterface.ErrorGUI.ErrorGUIMain;
 import GraphicalInterface.GraIntMain;
 import LockerSystem.BoxType.*;
 import LockerSystem.Package;
@@ -57,7 +58,7 @@ public class PickupPoint {
         return 0;
     }
 
-    public void emptyBox(String cod) throws IOException {
+    public void emptyBox(String cod){
         Box box = null;
         Package pack = null;
         try {
@@ -71,7 +72,13 @@ public class PickupPoint {
             availableBox.remove(cod);
             notifyObservers();
         }
-        catch (NullPointerException e) {System.out.println("ERROR: The code is not valid.");}
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            new ErrorGUIMain("the code is invalid", false);
+        } catch (IOException e) {
+            e.printStackTrace();
+            new ErrorGUIMain(e.getMessage(), true);
+        }
     }
 
 

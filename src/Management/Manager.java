@@ -49,7 +49,7 @@ public class Manager implements Observer {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            ErrorGUIMain guiError = new ErrorGUIMain(e.getMessage());
+            ErrorGUIMain guiError = new ErrorGUIMain(e.getMessage(), true);
         }
     }
 

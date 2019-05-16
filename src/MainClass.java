@@ -1,7 +1,7 @@
-import Management.Manager;
+import PickupPointSystem.PickupPoint;
 
 public class MainClass {
     public static void main(String[] args) {
-        Manager gestore = new Manager();
+        PickupPoint piPo = new PickupPoint("Punto di Ritiro", 10, 5, 5);
     }
 }

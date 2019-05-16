@@ -4,6 +4,8 @@ import PickupPointSystem.PickupPoint;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class InsertCodePanel extends JPanel {
     private PickupPoint piPo;
@@ -28,6 +30,17 @@ public class InsertCodePanel extends JPanel {
         textF.setMaximumSize(new Dimension(200, 200));
         add(textF);
 
-        add(new JButton("Confirm"));
+        JButton confBut = new JButton("Confirm");
+        add(confBut);
+
+        ActionListener checkCode = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String code = textF.getText();
+                piPo.emptyBox(code);
+            }
+        };
+
+        confBut.addActionListener(checkCode);
     }
 }

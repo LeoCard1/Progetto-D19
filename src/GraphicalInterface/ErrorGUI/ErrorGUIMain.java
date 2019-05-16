@@ -17,8 +17,11 @@ import java.awt.event.ActionListener;
 public class ErrorGUIMain extends JFrame {
     private int width;
     private int height;
+    private boolean closeProgram;
 
-    public ErrorGUIMain(String message) throws HeadlessException {
+    public ErrorGUIMain(String message, boolean closeProgram) throws HeadlessException {
+        this.closeProgram = closeProgram;
+
         Toolkit tk = Toolkit.getDefaultToolkit();
         height = tk.getScreenSize().height/4;
         width = tk.getScreenSize().width/2;
@@ -57,7 +60,8 @@ public class ErrorGUIMain extends JFrame {
         ActionListener closeWindowListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                dispose();
+                setVisible(false);
+                if (closeProgram) dispose();
             }
         };
 
