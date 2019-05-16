@@ -1,6 +1,7 @@
 package Management;
 
 import DeliveryManSystem.DeliveryMan;
+import GraphicalInterface.ErrorGUI.ErrorGUIMain;
 import LockerSystem.Package;
 import Management.FileManager.PackagesListReader;
 import ObserverPattern.Observer;
@@ -17,7 +18,7 @@ public class Manager implements Observer {
     private PackagesListReader reader = new PackagesListReader();
 
 
-    public Manager() throws IOException {
+    public Manager() {
         CodeGenerator generator = new CodeGenerator();
         deliveryManCode =  generator.generateDeliveryManCode();
         reader.addObserver(this);
@@ -29,21 +30,26 @@ public class Manager implements Observer {
         deliveryMen.add(del);
     }
 
-    public void createPackage(String id, double height, double length, double width){
+    public void createPackage(String id, double height, double length, double width) {
         Package pack = new Package(id, height, length, width);
         packages.add(pack);
     }
 
-    public void addPackages() throws IOException {
-        String text = reader.getText();
-        StringTokenizer st1 = new StringTokenizer(text, "\n");
-        while(st1.hasMoreTokens()) {
-            String riga = st1.nextToken();
-            StringTokenizer st2 = new StringTokenizer(riga, "   ");
-            String id = st2.nextToken();
-            if(getPackage(id)==null) {
-                createPackage(id, Double.parseDouble(st2.nextToken()), Double.parseDouble(st2.nextToken()), Double.parseDouble(st2.nextToken()));
+    public void addPackages() {
+        try {
+            String text = reader.getText();
+            StringTokenizer st1 = new StringTokenizer(text, "\n");
+            while(st1.hasMoreTokens()) {
+                String riga = st1.nextToken();
+                StringTokenizer st2 = new StringTokenizer(riga, "   ");
+                String id = st2.nextToken();
+                if(getPackage(id)==null) {
+                    createPackage(id, Double.parseDouble(st2.nextToken()), Double.parseDouble(st2.nextToken()), Double.parseDouble(st2.nextToken()));
+                }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+            ErrorGUIMain guiError = new ErrorGUIMain(e.getMessage());
         }
     }
 
@@ -75,12 +81,8 @@ public class Manager implements Observer {
 
     @Override
     public void update(){
-        try {
-            packages.clear();
-            addPackages();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        packages.clear();
+        addPackages();
     }
 
 }
