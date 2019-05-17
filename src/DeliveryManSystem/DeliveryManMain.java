@@ -7,9 +7,9 @@ import java.io.IOException;
 
 public class DeliveryManMain {
     public static void main(String[] args) throws IOException {
-        DeliveryMan andrea = new DeliveryMan("Andrea");
-        andrea.updatePackageList();
-        andrea.sendPackageList();
+        DeliveryManClient andrea = new DeliveryManClient("Andrea");
+        andrea.updateList();
+        andrea.sendList();
         Gui gui = new Gui();
         gui.ClientGUI();
     }

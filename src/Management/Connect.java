@@ -49,7 +49,6 @@ public class Connect extends Thread {
                     DeliveryMan del = manager.getDeliveryMan(in.readLine());
                     out.print(del.packageListToString()+"\n");
                     del.update();
-                    System.out.println("lista: "+del.packageListToString());
                 } else if(clientMessage.equals("PickupPoint")){
                     clientMessage = in.readLine();
                     if(clientMessage.equals("packpickedup")){

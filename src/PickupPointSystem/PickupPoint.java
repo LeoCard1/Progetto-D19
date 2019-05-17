@@ -79,7 +79,6 @@ public class PickupPoint {
                 String password = generator.generateBoxPassword(box.toString());
                 availableBox.put(password, box);
                 notifyOfPackageAdded(box.toString(),password);
-                System.out.println(password);
                 notifyObservers();
                 return box.getCode();
             }
