@@ -58,8 +58,12 @@ public class Manager implements Observer {
      */
 
     public void createDeliveryMan(String id) {
-        DeliveryMan del = new DeliveryMan(id);
-        deliveryMen.add(del);
+        if(getDeliveryMan(id)==null) {
+            DeliveryMan del = new DeliveryMan(id);
+            deliveryMen.add(del);
+        } else {
+            System.err.println("Existing ID!");
+        }
     }
 
     public void createPackage(String id, double height, double length, double width) {
@@ -116,11 +120,11 @@ public class Manager implements Observer {
     }
 
     public void addPackageToDeliveryMan(String delID, String packID) {
-        try{
-            getDeliveryMan(delID).addPackage(getPackage(packID));
-        }  catch(Exception e){
-            System.err.println("Invalid ID");
-        }
+       if(getDeliveryMan(delID)!=null && getPackage(packID)!=null){
+           getDeliveryMan(delID).addPackage(getPackage(packID));
+       } else {
+           System.err.println("Invalid ID!");
+       }
     }
 
     public void setDeliveryManCode(String code){

@@ -16,6 +16,7 @@ public class PickupPointClient {
     public PickupPointClient(PickupPoint pickupPoint){
         this.pickupPoint = pickupPoint;
     }
+
     public void connect() throws IOException {
         socket = new Socket("localhost", 5000);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));

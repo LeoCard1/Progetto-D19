@@ -19,8 +19,8 @@ public class DeliveryManClient {
     DeliveryMan deliveryMan;
     private ArrayList<Observer> observers = new ArrayList<>();
 
-    public DeliveryManClient(DeliveryMan deliveryMan){
-        this.deliveryMan = deliveryMan;
+    public DeliveryManClient(String id){
+        deliveryMan= new DeliveryMan(id);
         addObserver(deliveryMan);
     }
 

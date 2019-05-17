@@ -10,20 +10,10 @@ public class DeliveryMan implements Observer {
     private String id;
     private ArrayList<Package> packageList = new ArrayList<>();
     private int packCounter;
-    private DeliveryManClient client = new DeliveryManClient(this);
 
     public DeliveryMan(String id){
-        client.addObserver(this);
         this.id = id;
         packCounter = 0;
-    }
-
-    public void sendPackageList() throws IOException {
-        client.sendList();
-    }
-
-    public void updatePackageList() throws IOException {
-        client.updateList();
     }
 
     public String getId(){
