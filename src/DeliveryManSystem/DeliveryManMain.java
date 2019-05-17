@@ -1,5 +1,8 @@
 package DeliveryManSystem;
 
+import DeliveryManSystem.GraphicalInterfaceClientSystem.Gui;
+
+
 import java.io.IOException;
 
 public class DeliveryManMain {
@@ -7,5 +10,7 @@ public class DeliveryManMain {
         DeliveryMan andrea = new DeliveryMan("Andrea");
         andrea.updatePackageList();
         andrea.sendPackageList();
+        Gui gui = new Gui();
+        gui.ClientGUI();
     }
 }
