@@ -1,8 +1,8 @@
 package LockerSystem;
 
 public class Package {
-    private String id; // Codice identificativo di un pacco
-    private Size size; // Dimensione del pacco
+    private String id;
+    private Size size;
 
     public Package(String id, double height, double length, double width ){
         this.size = new Size(height, length, width);
@@ -18,7 +18,7 @@ public class Package {
     }
 
     public String toString(){
-        return getId()+"    "+size.toString();
+        return getId()+"\t"+size.toString();
     }
 
 

@@ -1,29 +1,61 @@
 package Management;
 
 import DeliveryManSystem.DeliveryMan;
-import GraphicalInterface.ErrorGUI.ErrorGUIMain;
+import Management.FileManager.ReadWritePackagesList;
+import PickupPointSystem.GraphicalInterface.ErrorGUI.ErrorGUIMain;
 import LockerSystem.Package;
-import Management.FileManager.PackagesListReader;
+import Management.FileManager.ReadWriteDeliveryDate;
 import ObserverPattern.Observer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class Manager implements Observer {
 
+    /*
+     *  -deliveryManCode: password che deve inserire il DeliveryMan per accedere al PickupPoint.
+     *  -deliveryMen: lista di DeliveryMan.
+     *  -packages: lista di tutti i Package.
+     *  -password: HashMap di packID associati a password per sbloccare la box in cui sono stati
+     *  inseriti.
+     *  -readWritePackagesList: reader e writer per il file PackageList.
+     *  -readWriteDeliveryDate: reader e writer per il file DeliveryDate.
+     *  -server: server del Manager per ricevere richiete da DeliveryManClient e PickupPointClient.
+     */
+
     private String deliveryManCode;
     private ArrayList<DeliveryMan> deliveryMen = new ArrayList<>();
     private ArrayList<Package> packages = new ArrayList<>();
-    private PackagesListReader reader = new PackagesListReader();
+    private HashMap<String,String> password = new HashMap<>();
+    private ReadWritePackagesList readWritePackagesList = new ReadWritePackagesList();
+    private ReadWriteDeliveryDate readWriteDeliveryDate = new ReadWriteDeliveryDate();
+    private ManagerServer server = new ManagerServer(this);
 
 
-    public Manager() {
-        CodeGenerator generator = new CodeGenerator();
-        deliveryManCode =  generator.generateDeliveryManCode();
-        reader.addObserver(this);
+    public Manager() throws IOException {
+        readWritePackagesList.addObserver(this);
         addPackages();
     }
+
+    /*  -addPackages: consente di aggiungere pacchi alla lista prendendo le
+     *  informazioni dal file di testo ReadWritePackagesList, se il pacco è gia
+     *  presente non viene aggiunto.
+     *  -removePackage: rimuove dal file PackagesList il pacco passato come argomento,
+     *  quindi ReadWritePackagesList notifichera il manager del cambiamento che quindi
+     *  effettuerà un update aggiornando l'arraylist packages.
+     *  -addPassword: aggiunge all'HashMap ID del pacco e relativa password per sbloccare
+     *  la box.
+     *  -removePassword: rimuove dall'HashMap ID del pacco e relativa password dato l'ID
+     *  in input.
+     *  -addPackageToDeliveryMan: permette di aggiungere pacchi ad un determinato DeliveryMan
+     *  dati ID del DeliveryMan e ID del pacco.
+     *  -addDeliveryDate: permette di aggiungere date di consegna al file DeliveryDate.
+     *  -removeDeliveryDate: permette di rimuovere date di consegna al file DeliveryDate
+     *  dato l'ID del pacco.
+     *  -update: aggiorna la lista di Packages dopo un cambiamento nel file PackagesList.
+     */
 
     public void createDeliveryMan(String id) {
         DeliveryMan del = new DeliveryMan(id);
@@ -37,7 +69,7 @@ public class Manager implements Observer {
 
     public void addPackages() {
         try {
-            String text = reader.getText();
+            String text = readWritePackagesList.getText();
             StringTokenizer st1 = new StringTokenizer(text, "\n");
             while(st1.hasMoreTokens()) {
                 String riga = st1.nextToken();
@@ -51,6 +83,18 @@ public class Manager implements Observer {
             e.printStackTrace();
             ErrorGUIMain guiError = new ErrorGUIMain(e.getMessage(), true);
         }
+    }
+
+    public void removePackage(Package pack) throws IOException {
+        readWritePackagesList.removeText(pack.getId());
+    }
+
+    public void addPassword(String packID, String password){
+        this.password.put(packID,password);
+    }
+
+    public void removePassword(String packID){
+        password.remove(packID);
     }
 
     public DeliveryMan getDeliveryMan(String id){
@@ -77,6 +121,18 @@ public class Manager implements Observer {
         }  catch(Exception e){
             System.err.println("Invalid ID");
         }
+    }
+
+    public void setDeliveryManCode(String code){
+        deliveryManCode = code;
+    }
+
+    public void addDeliveryDate(String text) throws IOException {
+        readWriteDeliveryDate.insertText(text);
+    }
+
+    public void removeDeliveryDate(String packID) throws IOException {
+        readWriteDeliveryDate.removeText(packID);
     }
 
     @Override

@@ -1,14 +1,11 @@
 package PickupPointSystem;
 
-import GraphicalInterface.ErrorGUI.ErrorGUIMain;
-import GraphicalInterface.GraIntMain;
+import PickupPointSystem.GraphicalInterface.ErrorGUI.ErrorGUIMain;
+import PickupPointSystem.GraphicalInterface.GraIntMain;
 import LockerSystem.BoxType.*;
 import LockerSystem.Package;
 
 import LockerSystem.Size;
-import Management.CodeGenerator;
-import Management.FileManager.DeliveryDateWriter;
-import Management.FileManager.PackagesListReader;
 import ObserverPattern.Observer;
 
 import java.io.IOException;
@@ -16,13 +13,26 @@ import java.util.*;
 
 
 public class PickupPoint {
+
+    /*
+     *  -id: codice identificativo PickupPoint.
+     *  -boxList: lista contenente tutte le Box.
+     *  -availableBox: HashMap contenente le Box piene associate alla password per aprirle.
+     *  -obsList: lista di observer.
+     *  -server: server del PickupPoint per comunicare con il DeliveryManClient.
+     *  -client: client del PickupPoint per comunicare con il ManagerServer.
+     *  -deliveryManCode: password che deve inserire il deliveryMan per accedere al sistema.
+     */
+
     private String id;
     private ArrayList<Box> boxList = new ArrayList<>();
     private HashMap<String, Box> availableBox = new HashMap<>();
     private ArrayList<Observer> obsList = new ArrayList<>();
+    private PickupPointServer server = new PickupPointServer(this);
+    private PickupPointClient client = new PickupPointClient(this);
+    private String deliveryManCode;
 
-
-    public PickupPoint(String id, int numSmallBox, int numMediumBox, int numLargeBox) {
+    public PickupPoint(String id, int numSmallBox, int numMediumBox, int numLargeBox) throws IOException {
         this.id = id;
         for(int i = 0; i < numSmallBox; i++){
             boxList.add(new SmallBox());
@@ -34,23 +44,42 @@ public class PickupPoint {
             boxList.add(new LargeBox());
         }
         createGUI();
+        CodeGenerator generator = new CodeGenerator();
+        deliveryManCode = generator.generateDeliveryManCode();
+    }
+
+    /*
+     *  -addPackage: consente di aggiungere pacchi alla lista, inoltre viene generata una password
+     *  per sbloccare la box, quindi viene associata alla box aggiungendo password e box all'HashMap
+     *  availableBox, viene inoltre notificato il ManagerServer dell'aggiunta del pacco. Restituisce
+     *  il codice della box in cui è stato inserito il pacco.
+     *  -emptyBox: viene svuotata la box associata al codice passato come argomento, viene inoltre
+     *  notificato il ManagerServer del ritiro del pacco.
+     */
+
+    public void setDeliveryManCode(){
+        CodeGenerator generator = new CodeGenerator();
+        deliveryManCode = generator.generateDeliveryManCode();
+    }
+
+    public String getDeliveryManCode(){
+        return deliveryManCode;
     }
 
     public ArrayList<Box> getBoxList() {
         return boxList;
     }
 
-
     public int addPackage(Package pack) throws IOException {
         Collections.sort(boxList);
         for(Box box : boxList){
             if(box.isAvailable() && box.getSize().compareTo(pack.getSize()) > -1){
                 box.addPackage(pack);
-                DeliveryDateWriter ddw = new DeliveryDateWriter() ;
-                ddw.insertText(box.toString());
                 CodeGenerator generator = new CodeGenerator();
                 String password = generator.generateBoxPassword(box.toString());
                 availableBox.put(password, box);
+                notifyOfPackageAdded(box.toString(),password);
+                System.out.println(password);
                 notifyObservers();
                 return box.getCode();
             }
@@ -64,12 +93,9 @@ public class PickupPoint {
         try {
             box = availableBox.get(cod);
             pack = box.getPack();
-            PackagesListReader plr = new PackagesListReader();
-            plr.removeText(pack.getId());
-            DeliveryDateWriter ddw = new DeliveryDateWriter() ;
-            ddw.removeText(box.getCode());
             box.removePackage();
             availableBox.remove(cod);
+            notifyOfPackagePickedUp(pack.getId());
             notifyObservers();
         }
         catch (NullPointerException e) {
@@ -77,10 +103,8 @@ public class PickupPoint {
             new ErrorGUIMain("the code is invalid", false);
         } catch (IOException e) {
             e.printStackTrace();
-            new ErrorGUIMain(e.getMessage(), true);
         }
     }
-
 
     private void createGUI() {
         GraIntMain gui = new GraIntMain(this);
@@ -107,5 +131,17 @@ public class PickupPoint {
 
     public Size getBoxSizeGivenIndex(int index) {
         return getBoxFromIndex(index).getSize();
+    }
+
+    public void notifyOfPackageAdded(String boxToString, String password) throws IOException {
+        client.notifyOfPackageAdded(boxToString,password);
+    }
+
+    public void notifyOfPackagePickedUp(String packID) throws IOException {
+        client.notifyOfPackagePickedUp(packID);
+    }
+
+    public void sendDeliveryManCode() throws IOException{
+        client.sendDeliveryManCode();
     }
 }

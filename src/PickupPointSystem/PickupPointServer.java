@@ -12,6 +12,7 @@ import java.net.Socket;
 import java.util.StringTokenizer;
 
 public class PickupPointServer extends Thread{
+
     private ServerSocket server;
     private PickupPoint pickupPoint;
 
@@ -19,17 +20,25 @@ public class PickupPointServer extends Thread{
         this.pickupPoint = pickupPoint;
         server = new ServerSocket(8000);
         System.out.println("[0] PickupPointServer waiting on port 8000...");
+        this.start();
     }
 
+    /*
+     *  -connect: legge la lista di package inviatagli dal DeliveryManClient richiamando quindi
+     *  l'addPackage del PickupPoint, restituisce al DeliveryManClient l'id del pacco e il
+     *  codice della box in cui inserirlo. Dopodichè si disconnette dal client.
+     */
+
     public void run() {
-        try {
-            System.out.println("[1] Waiting for connection...");
-            Socket client = server.accept();
-            System.out.println("[2] Connection accepted by: " + client.getInetAddress());
-            connect(client);
-            System.out.println("[4] Disconnected server");
-        } catch (IOException e) {
-            e.printStackTrace();
+        while(true) {
+            try {
+                System.out.println("[1] Waiting for connection...");
+                Socket client = server.accept();
+                System.out.println("[2] Connection accepted by: " + client.getInetAddress());
+                connect(client);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -41,11 +50,11 @@ public class PickupPointServer extends Thread{
 
         }
         while(in.ready()){
-            StringTokenizer st = new StringTokenizer(in.readLine(),"    ");
+            StringTokenizer st = new StringTokenizer(in.readLine());
             while(st.hasMoreTokens()) {
                 String id = st.nextToken();
                 int boxCode = pickupPoint.addPackage(new Package(id, Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken())));
-                message += "Pack " + id + " Box number " + boxCode + "  ";
+                message += "Pack: " + id + " Box number: " + boxCode + "\t";
             }
         }
         out.print(message +"\n");

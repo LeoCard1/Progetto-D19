@@ -1,13 +1,11 @@
-package GraphicalInterface.ErrorGUI;
+package PickupPointSystem.GraphicalInterface.ErrorGUI;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;

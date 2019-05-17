@@ -39,6 +39,6 @@ public class Size implements Comparable {
     }
 
     public String toString(){
-        return height + "   " + length  + " " + width;
+        return height + "\t" + length  + "\t" + width;
     }
 }

@@ -3,16 +3,27 @@ package DeliveryManSystem;
 import LockerSystem.Package;
 import ObserverPattern.Observer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class DeliveryMan implements Observer {
-    private String id; // id univoco che identifica un fattorino
+    private String id;
     private ArrayList<Package> packageList = new ArrayList<>();
-    private int packCounter; // pacchi totali consegnati. Utilizzo nei dati statistici
+    private int packCounter;
+    private DeliveryManClient client = new DeliveryManClient(this);
 
     public DeliveryMan(String id){
+        client.addObserver(this);
         this.id = id;
         packCounter = 0;
+    }
+
+    public void sendPackageList() throws IOException {
+        client.sendList();
+    }
+
+    public void updatePackageList() throws IOException {
+        client.updateList();
     }
 
     public String getId(){

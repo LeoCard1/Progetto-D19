@@ -1,4 +1,4 @@
-package GraphicalInterface;
+package PickupPointSystem.GraphicalInterface;
 
 import PickupPointSystem.PickupPoint;
 

@@ -1,8 +1,13 @@
-package Management;
+package PickupPointSystem;
 
 import java.util.Random;
 
 public class CodeGenerator {
+
+    /*
+     *  -generateBoxPassword: genera password per sbloccare box in base al toString della box.
+     *  -generateDeliveryManCode: genera password per DeliveryMan.
+     */
 
 
     public String generateBoxPassword(String boxToString) {

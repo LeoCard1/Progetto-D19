@@ -3,12 +3,19 @@ package Management.FileManager;
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class DeliveryDateWriter {
+public class ReadWriteDeliveryDate {
     private File file;
 
-    public DeliveryDateWriter(){
-         file = new File("src/Archive/DeliveryDate");
+    public ReadWriteDeliveryDate(){
+         file = new File("src/Management/Archive/DeliveryDate");
     }
+
+    /*
+     *  insertText: aggiunge al file DeliveryDate la stringa passata come argomento.
+     *  removeText: rimuove dal file DeliveryDate la riga contenente il packID passato
+     *  come argomento.
+     *  getText: restituisce il testo del file DeliveryDate.
+     */
 
     public void insertText(String text) throws IOException {
         String finalText = getText();
@@ -18,13 +25,14 @@ public class DeliveryDateWriter {
         out.close();
     }
 
-    public void removeText(int boxCode) throws IOException {
+    public void removeText(String packID) throws IOException {
         StringBuilder finalText = new StringBuilder();
         String line;
         BufferedReader in = new BufferedReader(new FileReader(file));
         while((line = in.readLine()) != null){
             StringTokenizer st = new StringTokenizer(line);
-            if(Integer.parseInt(st.nextToken())!=boxCode) {
+            st.nextToken();
+            if(!st.nextToken().equals(packID)) {
                 finalText.append(line).append("\n");
             }
         }
