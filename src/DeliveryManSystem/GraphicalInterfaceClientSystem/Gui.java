@@ -4,47 +4,47 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Gui extends JFrame {
-    private JFrame j;
+
     private Dimension screenSize;
-    private JPanel pannelloBottoni;
     private int width,height;
+    private String StringaDiConnessione = "Disconnesso";
 
 
 
 
     public void ClientGUI() {
-        j = new JFrame();
+
+        Container contentClientGui = Frame();
+        ButtonPanel panel = new ButtonPanel(width,height);
+        contentClientGui.add(testo());
+        contentClientGui.add(panel);
+
+    }
+
+    //impostazioni frame
+
+    public Container Frame(){
+
+        Container frame = getContentPane();
         screenSize = getToolkit().getScreenSize();
-        j.setLayout(new GridLayout());
-        j.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLayout(new GridLayout(2,0));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         width = screenSize.width/4;
         height = screenSize.height/2;
-        j.setSize(new java.awt.Dimension(width,height));
-        j.setResizable(true);
-        j.setTitle("Versione Beta");
-        j.setVisible(true);
+        setSize(new java.awt.Dimension(width,height));
+        setResizable(true);
+        setTitle("Versione Beta");
+        setVisible(true);
+        return frame;
 
-        //impostazioni pannello bottoni
+    }
 
-        pannelloBottoni = new JPanel();
-        pannelloBottoni.setLayout(new GridLayout(2,2 , width/18,height/18));
+    //area di testo
 
+    public TextArea testo(){
 
-        //impostazione bottoni
-
-        JButton impostazioni = new JButton("impostazioni");
-        JButton connetti = new JButton("connetti");
-        JButton ritiro = new JButton("ritiro");
-
-
-        //aggiunta bottoni
-
-        pannelloBottoni.add(impostazioni);
-        pannelloBottoni.add(connetti);
-        pannelloBottoni.add(ritiro);
-
-        j.add(pannelloBottoni);
-
+        TextArea testo = new TextArea(StringaDiConnessione);
+       return testo;
 
     }
 }

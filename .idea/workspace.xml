@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7327fb20-745a-4f73-8dc1-63ad1c368972" name="Default" comment="ordinate classi e package, aggiunta classe CodeGenerator e Manager">
-      <change afterPath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/Gui.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/GuiBotton.java" afterDir="false" />
+    <list default="true" id="7327fb20-745a-4f73-8dc1-63ad1c368972" name="Default" comment="prima versione grafica deliveryman">
+      <change afterPath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/Gui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/GuiBotton.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,8 +37,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="187">
+              <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -45,8 +49,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/Gui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+            <state relative-caret-position="442">
+              <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -55,31 +59,17 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/GuiBotton.java">
+        <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+            <state relative-caret-position="102">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#194#195#0" expanded="true" />
+                <element signature="e#221#222#0" expanded="true" />
+              </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://D:/Desktop/calcolatrice/CalcolatriceButton.java">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://D:/Desktop/calcolatrice/CalcolatriceGUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://D:/Desktop/calcolatrice/CalcolatriceGUITester.java">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -93,6 +83,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="RobertoZappa &lt;roberto.zappa01@universitadipavia.it&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -142,8 +137,10 @@
         <option value="$PROJECT_DIR$/src/Management/Archive/PackagesList" />
         <option value="$PROJECT_DIR$/src/Management/ManagerMain.java" />
         <option value="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/GuiTest.java" />
-        <option value="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java" />
         <option value="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/Botton.java" />
+        <option value="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java" />
+        <option value="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/GuiBotton.java" />
+        <option value="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonPanel.java" />
         <option value="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/Gui.java" />
       </list>
     </option>
@@ -210,7 +207,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558102001662" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558108284083" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Impiccato" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -366,7 +363,7 @@
       <workItem from="1557871480328" duration="7340000" />
       <workItem from="1557922927003" duration="14198000" />
       <workItem from="1558026352356" duration="31454000" />
-      <workItem from="1558095203688" duration="6763000" />
+      <workItem from="1558095203688" duration="10760000" />
     </task>
     <task id="LOCAL-00001" summary="aggiunto client e server per invio informazioni pacchi">
       <created>1557870101605</created>
@@ -382,11 +379,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557942041917</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="prima versione grafica deliveryman">
+      <created>1558102078434</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1558102078434</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75931000" />
+    <option name="totallyTimeSpent" value="79928000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -464,7 +468,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="aggiunto client e server per invio informazioni pacchi" />
     <MESSAGE value="ordinate classi e package, aggiunta classe CodeGenerator e Manager" />
-    <option name="LAST_COMMIT_MESSAGE" value="ordinate classi e package, aggiunta classe CodeGenerator e Manager" />
+    <MESSAGE value="prima versione grafica deliveryman" />
+    <option name="LAST_COMMIT_MESSAGE" value="prima versione grafica deliveryman" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/testt/DMTest.java" />
@@ -698,13 +703,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Desktop/calcolatrice/CalcolatriceButton.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -725,17 +723,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/GuiBotton.java">
+    <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        <state relative-caret-position="187">
+          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#194#195#0" expanded="true" />
+            <element signature="e#221#222#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/Gui.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+        <state relative-caret-position="442">
+          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
