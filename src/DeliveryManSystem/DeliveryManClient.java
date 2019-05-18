@@ -17,14 +17,12 @@ public class DeliveryManClient {
     PrintStream out = null;
     Socket socket = null;
     DeliveryMan deliveryMan;
+    private boolean loggedIn=false;
     private ArrayList<Observer> observers = new ArrayList<>();
 
-    public DeliveryManClient(String id){
-        deliveryMan= new DeliveryMan(id);
-        addObserver(deliveryMan);
-    }
-
     /*
+     *  -logIn: si connette al ManagerServer e invia id e password per autenticarsi, in
+     *  caso positivo viene creato un deliveryman con quell'id e password.
      *  -sendList: invia al PickupPointServer la lista di pacchi in possesso dal corriere,
      *  riceve dal PickupPointServer l'id dei pacchi e i relativi codici delle box in cui
      *  inserirli, dopodichè notifica il DeliveryMan in modo da svuotare la lista dei pacchi.
@@ -33,28 +31,74 @@ public class DeliveryManClient {
      *  testo con packID e dimensioni.
      */
 
-    public void sendList() throws IOException {
+    public void logIn(String id, String password) throws IOException {
+        if(authentication(id,password)){
+            deliveryMan = new DeliveryMan(id,password);
+            addObserver(deliveryMan);
+            loggedIn=true;
+            System.out.println("Successful login");
+        }  else {
+            System.err.println("Incorrect ID and password!");
+        }
+    }
+
+    public void connectPickupPoint() throws IOException {
         socket = new Socket("localhost", 8000);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintStream(socket.getOutputStream(), true);
-        send(deliveryMan.packageListToString());
-        readMessage();
-        in.close();
-        out.close();
-        socket.close();
-        notifyObservers();
     }
 
-    public void updateList() throws IOException {
+    public void connectManager() throws IOException {
         socket = new Socket("localhost", 5000);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintStream(socket.getOutputStream(), true);
         send("DeliveryMan");
-        send(deliveryMan.getId());
-        addPackagesFromList();
-        in.close();
-        out.close();
-        socket.close();
+    }
+
+    public void sendList() throws IOException {
+        if(loggedIn) {
+            connectPickupPoint();
+            send(deliveryMan.getId()+"\t"+deliveryMan.getPassword());
+            String response = readMessage();
+            if(response.equals("authenticated")) {
+                send(deliveryMan.packageListToString());
+                System.out.println(readMessage());
+            } else {
+                System.err.println("Not authenticated!");
+            }
+                in.close();
+                out.close();
+                socket.close();
+                notifyObservers();
+        } else {
+            System.err.println("You have to login!");
+        }
+    }
+
+    public void updateList() throws IOException {
+        if(loggedIn) {
+            connectManager();
+            send("updatelist");
+            send(deliveryMan.getId());
+            addPackagesFromList();
+            in.close();
+            out.close();
+            socket.close();
+        } else {
+            System.err.println("You have to login!");
+        }
+    }
+
+    public boolean authentication(String id, String password) throws IOException {
+        connectManager();
+        send("authentication");
+        send(id+"\t"+password);
+        String response =  readMessage();
+        if(response.equals("authenticated")){
+            return  true;
+        }  else {
+            return false;
+        }
     }
 
     public void addPackagesFromList() throws IOException {
@@ -74,7 +118,7 @@ public class DeliveryManClient {
         out.print(text +"\n");
     }
 
-    public void readMessage() throws IOException {
+    public String readMessage() throws IOException {
         String message = "";
         while(!in.ready()){
             
@@ -82,7 +126,7 @@ public class DeliveryManClient {
         while(in.ready()){
             message+= in.readLine();
         }
-        System.out.println(message);
+        return message;
     }
 
     public void addObserver(Observer ob){

@@ -52,13 +52,19 @@ public class PickupPointClient {
         socket.close();
     }
 
-    public void sendDeliveryManCode() throws IOException {
+    public boolean checkDeliveryManCredentials(String credentials) throws IOException {
+        boolean authenticated = false;
         connect();
-        send("deliverymancode");
-        send(pickupPoint.getDeliveryManCode());
+        send("deliverymancredentials");
+        send(credentials);
+        String response = in.readLine();
+        if(response.equals("authenticated")){
+            authenticated = true;
+        }
         in.close();
         out.close();
         socket.close();
+        return authenticated;
     }
 
     public void send(String text) throws IOException {

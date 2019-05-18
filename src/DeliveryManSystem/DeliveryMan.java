@@ -8,16 +8,22 @@ import java.util.ArrayList;
 
 public class DeliveryMan implements Observer {
     private String id;
+    private String password;
     private ArrayList<Package> packageList = new ArrayList<>();
     private int packCounter;
 
-    public DeliveryMan(String id){
+    public DeliveryMan(String id, String password){
+        this.password=password;
         this.id = id;
         packCounter = 0;
     }
 
     public String getId(){
         return id;
+    }
+
+    public String getPassword(){
+        return password;
     }
 
     public void addPackage(Package pack){

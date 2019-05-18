@@ -49,14 +49,25 @@ public class PickupPointServer extends Thread{
         while(!in.ready()){
 
         }
-        while(in.ready()){
-            StringTokenizer st = new StringTokenizer(in.readLine());
-            while(st.hasMoreTokens()) {
-                String id = st.nextToken();
-                int boxCode = pickupPoint.addPackage(new Package(id, Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken())));
-                message += "Pack: " + id + " Box number: " + boxCode + "\t";
+            String credentials = in.readLine();
+            if(pickupPoint.checkDeliveryManCredentials(credentials)) {
+                out.print("authenticated\n");
+                while(!in.ready()){
+
+                }
+                while(in.ready()) {
+                    StringTokenizer st = new StringTokenizer(in.readLine());
+                    while (st.hasMoreTokens()) {
+                        String id = st.nextToken();
+                        int boxCode = pickupPoint.addPackage(new Package(id, Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken())));
+                        message += "Pack: " + id + " Box number: " + boxCode + "\t";
+                    }
+                }
+            } else {
+                out.print("notauthenticated\n");
+                System.err.println("Not authenticated") ;
             }
-        }
+
         out.print(message +"\n");
         in.close();
         out.close();
