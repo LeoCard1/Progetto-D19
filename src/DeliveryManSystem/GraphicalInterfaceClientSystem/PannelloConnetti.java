@@ -3,19 +3,18 @@ package DeliveryManSystem.GraphicalInterfaceClientSystem;
 import javax.swing.*;
 import java.awt.*;
 
+public class PannelloConnetti extends JPanel {
 
-public class PannelloImpostazioni extends JPanel {
+    PannelloConnetti(Frame frame ){
 
-    PannelloImpostazioni(Frame frame ){
-
-        GuiImpostazioni(frame);
+        GuiConnetti(frame);
     }
 
 
 
-    public void GuiImpostazioni(Frame frame ){
+    public void GuiConnetti(Frame frame ){
 
-        setBackground(Color.red);
+        setBackground(Color.blue);
         JButton indietro = new JButton("indietro");
         add(indietro);
         ButtonAction indietroAction = new ButtonAction(frame , this);
@@ -25,6 +24,4 @@ public class PannelloImpostazioni extends JPanel {
 
 
     }
-
-
 }
