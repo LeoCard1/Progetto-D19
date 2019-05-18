@@ -54,6 +54,7 @@ public class Manager implements Observer {
      *  -addDeliveryDate: permette di aggiungere date di consegna al file DeliveryDate.
      *  -removeDeliveryDate: permette di rimuovere date di consegna al file DeliveryDate
      *  dato l'ID del pacco.
+     *  -generateDeliveryManCode: genera password per DeliveryMan.
      *  -update: aggiorna la lista di Packages dopo un cambiamento nel file PackagesList.
      */
 

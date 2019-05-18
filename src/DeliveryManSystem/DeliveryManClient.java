@@ -23,16 +23,18 @@ public class DeliveryManClient {
     /*
      *  -logIn: si connette al ManagerServer e invia id e password per autenticarsi, in
      *  caso positivo viene creato un deliveryman con quell'id e password.
-     *  -sendList: invia al PickupPointServer la lista di pacchi in possesso dal corriere,
-     *  riceve dal PickupPointServer l'id dei pacchi e i relativi codici delle box in cui
-     *  inserirli, dopodichè notifica il DeliveryMan in modo da svuotare la lista dei pacchi.
+     *  -sendList: invia id e password del DeliveryMan al PickupPointServer, in caso di
+     *  autenticazione riuscita, invia al PickupPointServer la lista di pacchi in possesso
+     *  dal corriere,  riceve dal PickupPointServer l'id dei pacchi e i relativi codici
+     *  delle box in cui inserirli, dopodichè notifica il DeliveryMan in modo da svuotare
+     *  la lista dei pacchi.
      *  -updateList: si connette al ManagerServer per ricevere la lista dei pacchi.
      *  -addPackagesFromList: aggiunge i pacchi alla lista del DeliveryMan avendo in input un
      *  testo con packID e dimensioni.
      */
 
     public void logIn(String id, String password) throws IOException {
-        if(authentication(id,password)){
+        if(authenticationManager(id,password)){
             deliveryMan = new DeliveryMan(id,password);
             addObserver(deliveryMan);
             loggedIn=true;
@@ -57,18 +59,14 @@ public class DeliveryManClient {
 
     public void sendList() throws IOException {
         if(loggedIn) {
-            connectPickupPoint();
-            send(deliveryMan.getId()+"\t"+deliveryMan.getPassword());
-            String response = readMessage();
-            if(response.equals("authenticated")) {
+            if(authenticationPickupPoint()){
+                System.out.println("Authenticated");
                 send(deliveryMan.packageListToString());
                 System.out.println(readMessage());
             } else {
                 System.err.println("Not authenticated!");
             }
-                in.close();
-                out.close();
-                socket.close();
+                disconnect();
                 notifyObservers();
         } else {
             System.err.println("You have to login!");
@@ -81,24 +79,56 @@ public class DeliveryManClient {
             send("updatelist");
             send(deliveryMan.getId());
             addPackagesFromList();
-            in.close();
-            out.close();
-            socket.close();
+            System.out.println("Package list updated");
+            disconnect();
         } else {
             System.err.println("You have to login!");
         }
     }
 
-    public boolean authentication(String id, String password) throws IOException {
+    public boolean authenticationManager(String id, String password) throws IOException {
         connectManager();
         send("authentication");
         send(id+"\t"+password);
-        String response =  readMessage();
+        String response =  readLine();
         if(response.equals("authenticated")){
             return  true;
         }  else {
             return false;
         }
+    }
+
+    public boolean authenticationPickupPoint() throws IOException {
+        connectPickupPoint();
+        send(deliveryMan.getId()+"\t"+deliveryMan.getPassword());
+        String response =  readLine();
+        if(response.equals("authenticated")){
+            return  true;
+        }  else {
+            return false;
+        }
+    }
+
+    public void send(String text){
+        out.print(text +"\n");
+    }
+
+    public String readMessage() throws IOException {
+        String message = "";
+        while(!in.ready()){
+
+        }
+        while(in.ready()){
+            message+= in.readLine() +"\n";
+        }
+        return message;
+    }
+
+    public String readLine() throws IOException {
+        while(!in.ready()){
+
+        }
+        return in.readLine();
     }
 
     public void addPackagesFromList() throws IOException {
@@ -113,20 +143,11 @@ public class DeliveryManClient {
             }
         }
     }
-    
-    public void send(String text){
-        out.print(text +"\n");
-    }
 
-    public String readMessage() throws IOException {
-        String message = "";
-        while(!in.ready()){
-            
-        }
-        while(in.ready()){
-            message+= in.readLine();
-        }
-        return message;
+    public void disconnect() throws IOException {
+        in.close();
+        out.close();
+        socket.close();
     }
 
     public void addObserver(Observer ob){

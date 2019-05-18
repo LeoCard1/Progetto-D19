@@ -21,7 +21,6 @@ public class PickupPoint {
      *  -obsList: lista di observer.
      *  -server: server del PickupPoint per comunicare con il DeliveryManClient.
      *  -client: client del PickupPoint per comunicare con il ManagerServer.
-     *  -deliveryManCode: password che deve inserire il deliveryMan per accedere al sistema.
      */
 
     private String id;
@@ -52,6 +51,7 @@ public class PickupPoint {
      *  il codice della box in cui è stato inserito il pacco.
      *  -emptyBox: viene svuotata la box associata al codice passato come argomento, viene inoltre
      *  notificato il ManagerServer del ritiro del pacco.
+     *  -generateBoxPassword: genera password per sbloccare box in base al toString della box.
      */
 
     public ArrayList<Box> getBoxList() {
@@ -63,8 +63,7 @@ public class PickupPoint {
         for(Box box : boxList){
             if(box.isAvailable() && box.getSize().compareTo(pack.getSize()) > -1){
                 box.addPackage(pack);
-                CodeGenerator generator = new CodeGenerator();
-                String password = generator.generateBoxPassword(box.toString());
+                String password = generateBoxPassword(box.toString());
                 availableBox.put(password, box);
                 notifyOfPackageAdded(box.toString(),password);
                 notifyObservers();
@@ -91,6 +90,22 @@ public class PickupPoint {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String generateBoxPassword(String boxToString) {
+        String[] division = boxToString.split("\t");
+        division[2] = division[2].replaceAll("\\D","");
+
+        String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String password = new String();
+        Random rand = new Random();
+        for (int i = 0; i < 5; i++) {
+            int n = rand.nextInt(25);
+            char c = letters.charAt(n);
+            password = password + c;
+        }
+        password = password + division[0] + division[2];
+        return password.replaceAll("\\s+","");
     }
 
     private void createGUI() {

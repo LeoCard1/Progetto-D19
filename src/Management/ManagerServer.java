@@ -5,6 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ManagerServer extends Thread{
+
     private Manager manager;
     private ServerSocket server;
 
@@ -16,8 +17,8 @@ public class ManagerServer extends Thread{
     }
 
     /*
-     *  -run: il server una volta accettata una connessione da un client crea la classe Connect
-     *  con quel determinato client, la classe Connect risponderà alle richieste di quel client
+     *  -run: il server una volta accettata una connessione da un client crea la classe ManagerConnect
+     *  con quel determinato client, la classe ManagerConnect risponderà alle richieste di quel client
      *  nel frattempo il server resta in attesa di ulteriori connessioni da parte di altri client.
      */
 
@@ -27,7 +28,7 @@ public class ManagerServer extends Thread{
                 System.out.println("[1] Waiting for connection...");
                 Socket client = server.accept();
                 System.out.println("[2] Connection accepted by: " + client.getInetAddress());
-                Connect c = new Connect(client, manager);
+                ManagerConnect c = new ManagerConnect(client, manager);
             } catch (IOException e) {
                 e.printStackTrace();
             }
