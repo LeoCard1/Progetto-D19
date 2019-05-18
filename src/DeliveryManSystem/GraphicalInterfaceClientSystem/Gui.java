@@ -7,30 +7,18 @@ public class Gui extends JFrame {
 
     private Dimension screenSize;
     private int width,height;
-    private String StringaDiConnessione = "Disconnesso";
-    private Container frame;
-    private ButtonPanel panel;
+    private PannelloIniziale iniziale;
+    private PannelloImpostazioni impostazioni;
 
 
 
 
     public void ClientGUI() {
 
-        frame = Frame();
-        panel = new ButtonPanel(width,height,this);
-        frame.add(testo());
-        frame.add(panel);
+        //impostazioni frame
 
-
-    }
-
-    //impostazioni frame
-
-    public Container Frame(){
-
-        frame = getContentPane();
         screenSize = getToolkit().getScreenSize();
-        setLayout(new GridLayout(2,0));
+        setLayout(new BorderLayout());
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         width = screenSize.width/4;
         height = screenSize.height/2;
@@ -38,31 +26,23 @@ public class Gui extends JFrame {
         setResizable(true);
         setTitle("Versione Beta");
         setVisible(true);
-        return frame;
+
+        //creazione pannelli
+
+        impostazioni = new PannelloImpostazioni(this);
+        iniziale = new PannelloIniziale(this , impostazioni);
+
+
+        //aggiunta pannelli
+
+        add(impostazioni).setVisible(false);
+        add(iniziale);
+
+
+
+
 
     }
 
-    //area di testo
-
-    public TextArea testo(){
-
-        TextArea testo = new TextArea(StringaDiConnessione);
-       return testo;
-
-    }
-
-    public void reloadClienGui(Container f){
-
-        panel.setVisible(false);
-
-    }
-
-    public Container getFrame() {
-        return frame;
-    }
-
-    public ButtonPanel getPanel() {
-        return panel;
-    }
 }
 

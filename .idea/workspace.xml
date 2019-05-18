@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7327fb20-745a-4f73-8dc1-63ad1c368972" name="Default" comment="ordinate classi e package, aggiunta classe CodeGenerator e Manager">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ImpostazioniPanel.java" afterDir="false" />
+    <list default="true" id="7327fb20-745a-4f73-8dc1-63ad1c368972" name="Default" comment="versione buggutina dell interfaccia grafica">
+      <change afterPath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/PannelloIniziale.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonPanel.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/Gui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ImpostazioniPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/PannelloImpostazioni.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,25 +38,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/Gui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="63" column="35" selection-start-line="63" selection-start-column="35" selection-end-line="63" selection-end-column="35" />
+            <state relative-caret-position="519">
+              <caret line="37" column="44" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#Frame#0;class#Gui#0" />
-                <element signature="method#testo#0;class#Gui#0" />
-                <element signature="e#1243#1244#0" expanded="true" />
-                <element signature="e#1271#1272#0" expanded="true" />
-                <element signature="e#1352#1353#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonPanel.java">
+        <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/PannelloIniziale.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="14" column="55" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
+            <state relative-caret-position="391">
+              <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -66,38 +60,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ImpostazioniPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#178#179#0" expanded="true" />
-                <element signature="e#211#212#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonAction.java">
+        <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/PannelloImpostazioni.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
-              <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#285#286#0" expanded="true" />
-                <element signature="e#311#312#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+              <caret line="19" column="61" selection-start-line="19" selection-start-column="61" selection-end-line="19" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -106,10 +72,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/PickupPointSystem/PickupPointMain.java">
+        <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
+            <state relative-caret-position="510">
+              <caret line="39" column="42" lean-forward="true" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -125,13 +94,16 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="RobertoZappa &lt;roberto.zappa01@universitadipavia.it&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/LockerSystem/DeliveryMan.java" />
-        <option value="$PROJECT_DIR$/src/Test.java" />
         <option value="$PROJECT_DIR$/src/GraphicalInterface/GUITest.java" />
         <option value="$PROJECT_DIR$/src/ClientSystem/DeliveryMan.java" />
         <option value="$PROJECT_DIR$/src/Management/Client.java" />
@@ -177,10 +149,12 @@
         <option value="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/Botton.java" />
         <option value="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java" />
         <option value="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/Impostazioni.java" />
-        <option value="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ImpostazioniPanel.java" />
-        <option value="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/Gui.java" />
         <option value="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonPanel.java" />
+        <option value="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ImpostazioniPanel.java" />
+        <option value="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/PannelloIniziale.java" />
+        <option value="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/PannelloImpostazioni.java" />
         <option value="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonAction.java" />
+        <option value="$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/Gui.java" />
       </list>
     </option>
   </component>
@@ -198,6 +172,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -239,18 +215,17 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558137510941" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558200299509" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Impiccato" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
@@ -270,7 +245,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.PickupPointMain">
+  <component name="RunManager" selected="Application.DeliveryManMain">
     <configuration name="DeliveryMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DeliveryManSystem.DeliveryMain" />
       <module name="Progetto-D19" />
@@ -379,8 +354,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PickupPointMain" />
         <item itemvalue="Application.DeliveryManMain" />
+        <item itemvalue="Application.PickupPointMain" />
         <item itemvalue="Application.ManagerMain" />
         <item itemvalue="Application.DeliveryMain" />
         <item itemvalue="Application.Test" />
@@ -403,6 +378,7 @@
       <workItem from="1557922927003" duration="14198000" />
       <workItem from="1558026352356" duration="31454000" />
       <workItem from="1558095203688" duration="6763000" />
+      <workItem from="1558184737950" duration="15827000" />
     </task>
     <task id="LOCAL-00001" summary="aggiunto client e server per invio informazioni pacchi">
       <created>1557870101605</created>
@@ -418,27 +394,33 @@
       <option name="project" value="LOCAL" />
       <updated>1557942041917</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="versione buggutina dell interfaccia grafica">
+      <created>1558137644101</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1558137644101</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85709000" />
+    <option name="totallyTimeSpent" value="101679000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49731183" visible="true" weight="0.23187633" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49731183" visible="true" weight="0.23454158" />
       <window_info id="Structure" order="1" sideWeight="0.50268817" side_tool="true" weight="0.1992032" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Duplicate detector" weight="0.32936078" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32676518" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.20151679" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.20151679" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -449,6 +431,7 @@
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32827735" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="bottom" id="Duplicate detector" order="13" weight="0.32936078" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -501,10 +484,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="aggiunto client e server per invio informazioni pacchi" />
     <MESSAGE value="ordinate classi e package, aggiunta classe CodeGenerator e Manager" />
-    <option name="LAST_COMMIT_MESSAGE" value="ordinate classi e package, aggiunta classe CodeGenerator e Manager" />
+    <MESSAGE value="versione buggutina dell interfaccia grafica" />
+    <option name="LAST_COMMIT_MESSAGE" value="versione buggutina dell interfaccia grafica" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/testt/DMTest.java" />
     <entry file="jar:///usr/lib/jvm/jdk-11/lib/src.zip!/java.base/java/util/StringTokenizer.java" />
     <entry file="file://$PROJECT_DIR$/src/Test.java" />
     <entry file="jar:///usr/lib/jvm/jdk-11/lib/src.zip!/java.base/java/io/FileReader.java" />
@@ -745,6 +728,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/PickupPointSystem/PickupPointMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="42" lean-forward="true" selection-start-line="33" selection-start-column="8" selection-end-line="40" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -755,37 +755,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ImpostazioniPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/PannelloIniziale.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+        <state relative-caret-position="391">
+          <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#178#179#0" expanded="true" />
-            <element signature="e#211#212#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/PannelloImpostazioni.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="19" column="61" selection-start-line="19" selection-start-column="61" selection-end-line="19" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/Gui.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="63" column="35" selection-start-line="63" selection-start-column="35" selection-end-line="63" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Frame#0;class#Gui#0" />
-            <element signature="method#testo#0;class#Gui#0" />
-            <element signature="e#1243#1244#0" expanded="true" />
-            <element signature="e#1271#1272#0" expanded="true" />
-            <element signature="e#1352#1353#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="55" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
+        <state relative-caret-position="519">
+          <caret line="37" column="44" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -794,20 +787,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/GraphicalInterfaceClientSystem/ButtonAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+        <state relative-caret-position="510">
+          <caret line="39" column="42" lean-forward="true" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#285#286#0" expanded="true" />
-            <element signature="e#311#312#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PickupPointSystem/PickupPointMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
         </state>
       </provider>
     </entry>
