@@ -48,7 +48,7 @@ public class ManagerConnect extends Thread {
 
     public void run() {
         try {
-            String clientType = readMessage();
+            String clientType = readLine();
             if (clientType.equals("DeliveryMan")) {
                 isDeliveryMan();
             } else if (clientType.equals("PickupPoint")) {
@@ -63,7 +63,7 @@ public class ManagerConnect extends Thread {
     }
 
     public void isDeliveryMan() throws IOException {
-        String request = readMessage();
+        String request = readLine();
         if(request.equals("authentication")){
             authentication();
         } else if(request.equals("updatelist")) {
@@ -72,7 +72,7 @@ public class ManagerConnect extends Thread {
     }
 
     public void authentication() throws IOException {
-        String[] division = readMessage().split("\t");
+        String[] division = readLine().split("\t");
         if(manager.getDeliveryMan(division[0])!=null && manager.getDeliveryMan(division[0]).getPassword().equals(division[1])){
             send("authenticated");
         } else {
@@ -81,13 +81,13 @@ public class ManagerConnect extends Thread {
     }
 
     public void sendList() throws IOException {
-        DeliveryMan del = manager.getDeliveryMan(readMessage());
+        DeliveryMan del = manager.getDeliveryMan(readLine());
         send(del.packageListToString());
         del.update();
     }
 
     public void isPickupPoint() throws IOException {
-        String request = readMessage();
+        String request = readLine();
         if(request.equals("packpickedup")){
             packPickedUp();
         } else if(request.equals("packadded")){
@@ -98,16 +98,16 @@ public class ManagerConnect extends Thread {
     }
 
     public void packPickedUp() throws IOException {
-        String packID = readMessage();
+        String packID = readLine();
         manager.removePackage(manager.getPackage(packID));
         manager.removeDeliveryDate(packID);
         manager.removePassword(packID);
     }
     public void packAdded() throws IOException {
-        String boxToString = readMessage();
+        String boxToString = readLine();
         String[] division = boxToString.split("\t");
         manager.addDeliveryDate(boxToString);
-        String password = readMessage();
+        String password = readLine();
         manager.addPassword(division[1],password);
         //bisogna inviare la notifica all utente
     }
@@ -116,7 +116,7 @@ public class ManagerConnect extends Thread {
         out.print(text +"\n");
     }
 
-    public String readMessage() throws IOException {
+    public String readLine() throws IOException {
         while(!in.ready()){
 
         }

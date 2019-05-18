@@ -63,8 +63,8 @@ public class Manager implements Observer {
             String password = generateDeliveryManCode();
             DeliveryMan del = new DeliveryMan(id,password);
             deliveryMen.add(del);
-            System.out.println(password);
-        } else {
+            System.out.println(password);         //bisogna trovare un modo per farla avere al deliveryman quando viene
+        } else {                                  //creato nel manager, oppure possiamo sottintendere che ce l abbia gia.
             System.err.println("Existing ID!");
         }
     }
