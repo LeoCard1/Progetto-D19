@@ -30,7 +30,6 @@ public class PickupPoint {
     private ArrayList<Observer> obsList = new ArrayList<>();
     private PickupPointServer server = new PickupPointServer(this);
     private PickupPointClient client = new PickupPointClient(this);
-    private String deliveryManCode;
 
     public PickupPoint(String id, int numSmallBox, int numMediumBox, int numLargeBox) throws IOException {
         this.id = id;
@@ -44,8 +43,6 @@ public class PickupPoint {
             boxList.add(new LargeBox());
         }
         createGUI();
-        CodeGenerator generator = new CodeGenerator();
-        deliveryManCode = generator.generateDeliveryManCode();
     }
 
     /*
@@ -56,15 +53,6 @@ public class PickupPoint {
      *  -emptyBox: viene svuotata la box associata al codice passato come argomento, viene inoltre
      *  notificato il ManagerServer del ritiro del pacco.
      */
-
-    public void setDeliveryManCode(){
-        CodeGenerator generator = new CodeGenerator();
-        deliveryManCode = generator.generateDeliveryManCode();
-    }
-
-    public String getDeliveryManCode(){
-        return deliveryManCode;
-    }
 
     public ArrayList<Box> getBoxList() {
         return boxList;
@@ -140,7 +128,7 @@ public class PickupPoint {
         client.notifyOfPackagePickedUp(packID);
     }
 
-    public void sendDeliveryManCode() throws IOException{
-        client.sendDeliveryManCode();
+    public boolean checkDeliveryManCredentials(String credentials) throws IOException{
+        return client.checkDeliveryManCredentials(credentials);
     }
 }

@@ -10,6 +10,7 @@ import ObserverPattern.Observer;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.StringTokenizer;
 
 public class Manager implements Observer {
@@ -25,7 +26,6 @@ public class Manager implements Observer {
      *  -server: server del Manager per ricevere richiete da DeliveryManClient e PickupPointClient.
      */
 
-    private String deliveryManCode;
     private ArrayList<DeliveryMan> deliveryMen = new ArrayList<>();
     private ArrayList<Package> packages = new ArrayList<>();
     private HashMap<String,String> password = new HashMap<>();
@@ -59,8 +59,10 @@ public class Manager implements Observer {
 
     public void createDeliveryMan(String id) {
         if(getDeliveryMan(id)==null) {
-            DeliveryMan del = new DeliveryMan(id);
+            String password = generateDeliveryManCode();
+            DeliveryMan del = new DeliveryMan(id,password);
             deliveryMen.add(del);
+            System.out.println(password);
         } else {
             System.err.println("Existing ID!");
         }
@@ -127,9 +129,6 @@ public class Manager implements Observer {
        }
     }
 
-    public void setDeliveryManCode(String code){
-        deliveryManCode = code;
-    }
 
     public void addDeliveryDate(String text) throws IOException {
         readWriteDeliveryDate.insertText(text);
@@ -137,6 +136,18 @@ public class Manager implements Observer {
 
     public void removeDeliveryDate(String packID) throws IOException {
         readWriteDeliveryDate.removeText(packID);
+    }
+
+    public String generateDeliveryManCode() {
+        String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        String password = new String();
+        Random rand = new Random();
+        for (int i = 0; i < 10; i++) {
+            int n = rand.nextInt(35);
+            char c = letters.charAt(n);
+            password = password + c;
+        }
+        return password;
     }
 
     @Override
