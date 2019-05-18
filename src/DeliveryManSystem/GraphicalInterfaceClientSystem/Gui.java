@@ -8,16 +8,19 @@ public class Gui extends JFrame {
     private Dimension screenSize;
     private int width,height;
     private String StringaDiConnessione = "Disconnesso";
+    private Container frame;
+    private ButtonPanel panel;
 
 
 
 
     public void ClientGUI() {
 
-        Container contentClientGui = Frame();
-        ButtonPanel panel = new ButtonPanel(width,height);
-        contentClientGui.add(testo());
-        contentClientGui.add(panel);
+        frame = Frame();
+        panel = new ButtonPanel(width,height,this);
+        frame.add(testo());
+        frame.add(panel);
+
 
     }
 
@@ -25,7 +28,7 @@ public class Gui extends JFrame {
 
     public Container Frame(){
 
-        Container frame = getContentPane();
+        frame = getContentPane();
         screenSize = getToolkit().getScreenSize();
         setLayout(new GridLayout(2,0));
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -46,6 +49,20 @@ public class Gui extends JFrame {
         TextArea testo = new TextArea(StringaDiConnessione);
        return testo;
 
+    }
+
+    public void reloadClienGui(Container f){
+
+        panel.setVisible(false);
+
+    }
+
+    public Container getFrame() {
+        return frame;
+    }
+
+    public ButtonPanel getPanel() {
+        return panel;
     }
 }
 
