@@ -20,7 +20,6 @@ public class ViewDMPanel extends JPanel implements Observer {
         this.manager= manager;
         manager.addObserver(this);
         initPanel();
-
     }
 
     public void initPanel(){
@@ -56,15 +55,16 @@ public class ViewDMPanel extends JPanel implements Observer {
         p4.setLayout(new BorderLayout());
         p4.add(p3,BorderLayout.NORTH);
 
+        JPanel p41 = new JPanel();
+        p41.setLayout(new BorderLayout());
+        p41.add(p4, BorderLayout.WEST);  p41.add(new JPanel(), BorderLayout.CENTER);
+
         JPanel p5 = new JPanel();
         p5.setLayout(new BorderLayout());
         p5.add(descriptionPack,BorderLayout.NORTH); p5.add(infoPack,BorderLayout.CENTER);
 
         setLayout(new BorderLayout());
-        add(p4, BorderLayout.WEST);  add(p5, BorderLayout.CENTER);
-
-
-
+        add(p41, BorderLayout.WEST);  add(p5, BorderLayout.CENTER);
     }
 
     @Override

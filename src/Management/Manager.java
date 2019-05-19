@@ -42,15 +42,16 @@ public class Manager implements Observer {
         createGUI();
         readWritePackagesList.addObserver(this);
         updatePackages();
-        for(Package pack:packages){
-            unassignedPackages.add(pack);
-        }
         notifyObserver();
     }
 
-    /*  -updatePackages: consente di aggiungere pacchi alla lista prendendo le
+    /*
+     *  -updatePackages: consente di aggiungere pacchi alla lista prendendo le
      *  informazioni dal file di testo ReadWritePackagesList, se il pacco è gia
      *  presente non viene aggiunto.
+     *  -updateUnassignedPackages: aggiorna i pacchi che non sono stati assegnati ad
+     *  un corriere, viene aggiornata la lista dopo un updatePackages o dopo un
+     *  addPackToDeliveryMan.
      *  -removePackage: rimuove dal file PackagesList il pacco passato come argomento,
      *  quindi ReadWritePackagesList notifichera il manager del cambiamento che quindi
      *  effettuerà un update aggiornando l'arraylist packages.
@@ -98,23 +99,41 @@ public class Manager implements Observer {
                 if(getPackage(id)==null) {
                     Package pack = new Package(id, Double.parseDouble(st2.nextToken()), Double.parseDouble(st2.nextToken()), Double.parseDouble(st2.nextToken()));
                     packages.add(pack);
-                    notifyObserver();
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
             ErrorGUIMain guiError = new ErrorGUIMain(e.getMessage(), true);
         }
+        updateUnassignedPackages();
+        notifyObserver();
+    }
 
+    public void updateUnassignedPackages(){
+        unassignedPackages.clear();
+        if(deliveryMen.size()==0){
+            for(Package pack : packages){
+                unassignedPackages.add(pack);
+            }
+            notifyObserver();
+            return;
+        }
+        for(Package pack : packages){
+            boolean has = false;
+            for(DeliveryMan del: deliveryMen){
+                if(del.hasPackage(pack.getId()) || password.get(pack.getId())!=null){
+                    has=true;
+                }
+            }
+            if(!has){
+                unassignedPackages.add(pack);
+            }
+        }
+        notifyObserver();
     }
 
     public void removePackage(Package pack) throws IOException {
         readWritePackagesList.removeText(pack.getId());
-        notifyObserver();
-    }
-
-    public void removeUnassignedPackage(Package pack){
-        unassignedPackages.remove(pack);
         notifyObserver();
     }
 
@@ -195,7 +214,7 @@ public class Manager implements Observer {
         Package unasspack;
        if((del=getDeliveryMan(delID))!=null && (unasspack=getUnassignedPackage(packID))!=null){
            del.addPackage(unasspack);
-           removeUnassignedPackage(unasspack);
+           updateUnassignedPackages();
        } else {
            ErrorGUIMain guiError = new ErrorGUIMain("Invalid ID!", true);
        }

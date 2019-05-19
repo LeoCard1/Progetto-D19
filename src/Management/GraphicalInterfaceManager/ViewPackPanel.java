@@ -3,6 +3,7 @@ package Management.GraphicalInterfaceManager;
 import Management.Manager;
 import ObserverPattern.Observer;
 import LockerSystem.Package;
+import PickupPointSystem.GraphicalInterface.ErrorGUI.ErrorGUIMain;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,16 +47,23 @@ public class ViewPackPanel extends JPanel implements Observer {
         p1.setLayout(new GridLayout(2,1));
         p1.add(filterBox);  p1.add(buttonConfirm);
 
+
         JPanel p2 = new JPanel();
         p2.setLayout(new BorderLayout());
         p2.add(p1,BorderLayout.NORTH);
+
+
+        JPanel p21 = new JPanel();
+        p21.setLayout(new BorderLayout());
+        p21.add(p2, BorderLayout.WEST); p21.add(new JPanel(), BorderLayout.CENTER);
 
         JPanel p3 = new JPanel();
         p3.setLayout(new BorderLayout());
         p3.add(packDetails, BorderLayout.NORTH);   p3.add(packArea, BorderLayout.CENTER);
 
         setLayout(new BorderLayout());
-        add(p2, BorderLayout.WEST);  add(p3, BorderLayout.CENTER);
+        add(p21, BorderLayout.WEST);  add(p3, BorderLayout.CENTER);
+
 
     }
 
@@ -65,7 +73,7 @@ public class ViewPackPanel extends JPanel implements Observer {
         switch (filterBox.getSelectedItem().toString()){
             case "All":
                 for(Package pack : manager.getPackagesList()){
-                    text += pack.toString()+"\n";
+                    text +=pack.toString()+"\n";
                     packArea.setText(text);
                 }
                 break;
@@ -90,6 +98,8 @@ public class ViewPackPanel extends JPanel implements Observer {
                     packArea.setText(text);
                 }
                 break;
+            default:
+                ErrorGUIMain guiError = new ErrorGUIMain("Unable to update pack text!", true);
         }
     }
 
