@@ -12,6 +12,6 @@ public class DeliveryManMain {
       //  andrea.updateList();
       //  andrea.sendList();
         Gui gui = new Gui();
-        gui.ClientGUI();
+
     }
 }

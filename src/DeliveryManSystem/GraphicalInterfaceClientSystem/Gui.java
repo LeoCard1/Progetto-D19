@@ -18,16 +18,17 @@ public class Gui extends JFrame {
         screenSize = getToolkit().getScreenSize();
         setLayout(new BorderLayout());
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        width = screenSize.width/4;
+        width = screenSize.width/6;
         height = screenSize.height/2;
         setSize(new java.awt.Dimension(width,height));
-        setResizable(true);
+        setResizable(false);
         setTitle("Versione Beta");
         setVisible(true);
 
         //creazione e aggiunta pannello iniziale
 
         add(new PannelloIniziale(this));
+
 
 
     }
