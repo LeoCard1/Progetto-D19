@@ -7,12 +7,10 @@ public class Gui extends JFrame {
 
     private Dimension screenSize;
     private int width,height;
-    private PannelloIniziale iniziale;
-    private PannelloImpostazioni impostazioni;
 
-
-
-
+    public Gui(){
+        ClientGUI();
+    }
     public void ClientGUI() {
 
         //impostazioni frame
@@ -27,22 +25,13 @@ public class Gui extends JFrame {
         setTitle("Versione Beta");
         setVisible(true);
 
-        //creazione pannelli
+        //creazione e aggiunta pannello iniziale
 
-        impostazioni = new PannelloImpostazioni(this);
-        iniziale = new PannelloIniziale(this , impostazioni);
-
-
-        //aggiunta pannelli
-
-        add(impostazioni).setVisible(false);
-        add(iniziale);
-
-
-
+        add(new PannelloIniziale(this));
 
 
     }
+
 
 }
 
