@@ -20,7 +20,6 @@ public class Manager implements Observer {
      *  -deliveryManCode: password che deve inserire il DeliveryMan per accedere al PickupPoint.
      *  -deliveryMen: lista di DeliveryMan.
      *  -packages: lista di tutti i Package.
-     *  -unassignedPackages: lista dei pacchi non ancora affidati ad un corriere.
      *  -password: HashMap di packID associati a password per sbloccare la box in cui sono stati
      *  inseriti.
      *  -readWritePackagesList: reader e writer per il file PackageList.
@@ -30,7 +29,6 @@ public class Manager implements Observer {
 
     private ArrayList<DeliveryMan> deliveryMen = new ArrayList<>();
     private ArrayList<Package> packages = new ArrayList<>();
-    private ArrayList<Package> unassignedPackages = new ArrayList<>();
     private HashMap<String,String> password = new HashMap<>();
     private ReadWritePackagesList readWritePackagesList = new ReadWritePackagesList();
     private ReadWriteDeliveryDate readWriteDeliveryDate = new ReadWriteDeliveryDate();
@@ -49,10 +47,6 @@ public class Manager implements Observer {
      *  -updatePackages: consente di aggiungere pacchi alla lista prendendo le
      *  informazioni dal file di testo ReadWritePackagesList, se il pacco è gia
      *  presente non viene aggiunto.
-     *  -updateUnassignedPackages: aggiorna i pacchi che non sono stati assegnati ad
-     *  un corriere controllando se il pacco è assegnato ad un deliveryman oppure
-     *  è presente nell'HashMap password in cui sono presenti i pacchi consegnati,
-     *  viene aggiornata la lista dopo un updatePackages o dopo un addPackToDeliveryMan.
      *  -removePackage: rimuove dal file PackagesList il pacco passato come argomento,
      *  quindi ReadWritePackagesList notifichera il manager del cambiamento che quindi
      *  effettuerà un update aggiornando l'arraylist packages.
@@ -64,6 +58,10 @@ public class Manager implements Observer {
      *  dati ID del DeliveryMan e ID del pacco, è consentito solo se il pacco non è stato
      *  assegnato a nessun altro deliveryman, una volta aggiunto il pacco viene rimosso
      *  dagli unassignedPackage.
+     *  -getUnassignedPackagesList: ritorna i pacchi non ancora affidati ad un corriere,
+     *  controlla se il pacco non è assegnato ad un corriere e se non è presente nell'
+     *  HashMap password dei pacchi consegnati.
+     *  -getInTransitPackagesList: ritorna i pacchi affidati ai corrieri non ancora consegnati.
      *  -addDeliveryDate: permette di aggiungere date di consegna al file DeliveryDate.
      *  -removeDeliveryDate: permette di rimuovere date di consegna al file DeliveryDate
      *  dato l'ID del pacco.
@@ -106,24 +104,6 @@ public class Manager implements Observer {
             e.printStackTrace();
             ErrorGUIMain guiError = new ErrorGUIMain(e.getMessage(), true);
         }
-        updateUnassignedPackages();
-        notifyObserver();
-    }
-
-    public void updateUnassignedPackages(){
-        unassignedPackages.clear();
-        if(deliveryMen.size()==0){
-            for(Package pack : packages){
-                unassignedPackages.add(pack);
-            }
-            notifyObserver();
-            return;
-        }
-        for(Package pack : packages){
-            if(getDeliveryManFromPackID(pack.getId())==null && password.get(pack.getId())==null){
-                unassignedPackages.add(pack);
-            }
-        }
         notifyObserver();
     }
 
@@ -140,6 +120,26 @@ public class Manager implements Observer {
     public void removePassword(String packID){
         password.remove(packID);
         notifyObserver();
+    }
+
+    public void addPackageToDeliveryMan(String delID, String packID) {
+        DeliveryMan del;
+        Package unasspack;
+        if((del=getDeliveryMan(delID))!=null && (unasspack=getUnassignedPackage(packID))!=null){
+            del.addPackage(unasspack);
+            notifyObserver();
+        } else {
+            ErrorGUIMain guiError = new ErrorGUIMain("Invalid ID!", true);
+        }
+    }
+
+    public Package getPackage(String id){
+        for(Package pack : packages){
+            if(pack.getId().equals(id)){
+                return pack;
+            }
+        }
+        return null;
     }
 
     public DeliveryMan getDeliveryMan(String id){
@@ -173,46 +173,32 @@ public class Manager implements Observer {
     }
 
     public ArrayList<Package> getUnassignedPackagesList(){
+        ArrayList<Package> unassignedPackages = new ArrayList<>();
+        for(Package pack : packages){
+            if(getDeliveryManFromPackID(pack.getId())==null && password.get(pack.getId())==null){
+                unassignedPackages.add(pack);
+            }
+        }
         return unassignedPackages;
     }
 
     public ArrayList<Package> getInTransitPackagesList(){
         ArrayList<Package> assignedPackages = new ArrayList<>();
         for(Package pack:packages){
-            if(getUnassignedPackage(pack.getId())==null && password.get(pack.getId())==null) {
+            if(getDeliveryManFromPackID(pack.getId())!=null) {
                 assignedPackages.add(pack);
             }
         }
         return assignedPackages;
     }
 
-    public Package getPackage(String id){
-        for(Package pack : packages){
-            if(pack.getId().equals(id)){
-                return pack;
-            }
-        }
-        return null;
-    }
-
     public Package getUnassignedPackage(String id){
-        for(Package pack : unassignedPackages){
+        for(Package pack : getUnassignedPackagesList()){
             if(pack.getId().equals(id)){
                 return pack;
             }
         }
         return null;
-    }
-
-    public void addPackageToDeliveryMan(String delID, String packID) {
-        DeliveryMan del;
-        Package unasspack;
-       if((del=getDeliveryMan(delID))!=null && (unasspack=getUnassignedPackage(packID))!=null){
-           del.addPackage(unasspack);
-           updateUnassignedPackages();
-       } else {
-           ErrorGUIMain guiError = new ErrorGUIMain("Invalid ID!", true);
-       }
     }
 
     public void addDeliveryDate(String text) throws IOException {
