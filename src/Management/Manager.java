@@ -50,8 +50,9 @@ public class Manager implements Observer {
      *  informazioni dal file di testo ReadWritePackagesList, se il pacco è gia
      *  presente non viene aggiunto.
      *  -updateUnassignedPackages: aggiorna i pacchi che non sono stati assegnati ad
-     *  un corriere, viene aggiornata la lista dopo un updatePackages o dopo un
-     *  addPackToDeliveryMan.
+     *  un corriere controllando se il pacco è assegnato ad un deliveryman oppure
+     *  è presente nell'HashMap password in cui sono presenti i pacchi consegnati,
+     *  viene aggiornata la lista dopo un updatePackages o dopo un addPackToDeliveryMan.
      *  -removePackage: rimuove dal file PackagesList il pacco passato come argomento,
      *  quindi ReadWritePackagesList notifichera il manager del cambiamento che quindi
      *  effettuerà un update aggiornando l'arraylist packages.
@@ -119,13 +120,7 @@ public class Manager implements Observer {
             return;
         }
         for(Package pack : packages){
-            boolean has = false;
-            for(DeliveryMan del: deliveryMen){
-                if(del.hasPackage(pack.getId()) || password.get(pack.getId())!=null){
-                    has=true;
-                }
-            }
-            if(!has){
+            if(getDeliveryManFromPackID(pack.getId())==null && password.get(pack.getId())==null){
                 unassignedPackages.add(pack);
             }
         }

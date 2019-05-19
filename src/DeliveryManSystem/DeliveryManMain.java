@@ -9,7 +9,7 @@ public class DeliveryManMain {
     public static void main(String[] args) throws IOException {
         Gui gui = new Gui();
         DeliveryManClient andrea = new DeliveryManClient();
-        andrea.logIn("Andrea","OQ6LPKZ7MT");
+        andrea.logIn("Andrea","G63RGILO07");
         andrea.updateList();
         andrea.sendList();
 
