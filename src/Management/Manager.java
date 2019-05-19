@@ -47,9 +47,9 @@ public class Manager implements Observer {
      *  -updatePackages: consente di aggiungere pacchi alla lista prendendo le
      *  informazioni dal file di testo ReadWritePackagesList, se il pacco è gia
      *  presente non viene aggiunto.
-     *  -removePackage: rimuove dal file PackagesList il pacco passato come argomento,
-     *  quindi ReadWritePackagesList notifichera il manager del cambiamento che quindi
-     *  effettuerà un update aggiornando l'arraylist packages.
+     *  -removePackage: rimuove dal file PackagesList il pacco corrispondente all'id
+     *  passato come argomento, quindi ReadWritePackagesList notifichera il manager del
+     *  cambiamento che quindi effettuerà un update aggiornando l'arraylist packages.
      *  -addPassword: aggiunge all'HashMap ID del pacco e relativa password per sbloccare
      *  la box.
      *  -removePassword: rimuove dall'HashMap ID del pacco e relativa password dato l'ID
@@ -107,9 +107,8 @@ public class Manager implements Observer {
         notifyObserver();
     }
 
-    public void removePackage(Package pack) throws IOException {
-        readWritePackagesList.removeText(pack.getId());
-        notifyObserver();
+    public void removePackage(String packID) throws IOException {
+        readWritePackagesList.removeText(packID);
     }
 
     public void addPassword(String packID, String password){

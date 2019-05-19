@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7327fb20-745a-4f73-8dc1-63ad1c368972" name="Default" comment=".">
+    <list default="true" id="7327fb20-745a-4f73-8dc1-63ad1c368972" name="Default" comment="aggiornati metodi manager">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Management/Archive/DeliveryDate" beforeDir="false" afterPath="$PROJECT_DIR$/src/Management/Archive/DeliveryDate" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Management/Archive/PackagesList" beforeDir="false" afterPath="$PROJECT_DIR$/src/Management/Archive/PackagesList" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Management/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Management/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Management/ManagerConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Management/ManagerConnect.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/src/Management/Archive/PackagesList">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="36" selection-start-column="36" selection-end-column="36" />
+              <caret column="41" selection-start-column="41" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -91,14 +92,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Management/Manager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="21" column="44" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
+            <state relative-caret-position="585">
+              <caret line="51" column="85" selection-start-line="51" selection-start-column="85" selection-end-line="51" selection-end-column="85" />
               <folding>
                 <element signature="e#6478#6479#0" expanded="true" />
                 <element signature="e#6512#6513#0" expanded="true" />
                 <element signature="e#6562#6563#0" expanded="true" />
                 <element signature="e#6593#6594#0" expanded="true" />
-                <element signature="e#6593#6594#0" expanded="true" />
+                <element signature="e#6576#6577#0" expanded="true" />
                 <element signature="e#8644#8645#0" expanded="true" />
                 <element signature="e#8677#8678#0" expanded="true" />
                 <element signature="e#8821#8822#0" expanded="true" />
@@ -123,8 +124,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Management/ManagerConnect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="100" column="56" selection-start-line="100" selection-start-column="56" selection-end-line="100" selection-end-column="56" />
+            <state relative-caret-position="92">
+              <caret line="100" column="37" selection-start-line="100" selection-start-column="37" selection-end-line="100" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -200,7 +201,6 @@
         <option value="$PROJECT_DIR$/src/PickupPointSystem/PickupPointClient.java" />
         <option value="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManClient.java" />
         <option value="$PROJECT_DIR$/src/PickupPointSystem/PickupPointConnect.java" />
-        <option value="$PROJECT_DIR$/src/Management/ManagerConnect.java" />
         <option value="$PROJECT_DIR$/src/Management/Archive/DeliveryDate" />
         <option value="$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/Frame.java" />
         <option value="$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/ChoicePanel.java" />
@@ -214,14 +214,15 @@
         <option value="$PROJECT_DIR$/src/Management/FileManager/ReadWritePackagesList.java" />
         <option value="$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/NewDMPanel.java" />
         <option value="$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/ViewPackPanel.java" />
-        <option value="$PROJECT_DIR$/src/Management/Archive/PackagesList" />
-        <option value="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java" />
+        <option value="$PROJECT_DIR$/src/Management/ManagerConnect.java" />
         <option value="$PROJECT_DIR$/src/Management/Manager.java" />
+        <option value="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java" />
+        <option value="$PROJECT_DIR$/src/Management/Archive/PackagesList" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="141" />
+    <option name="x" value="429" />
     <option name="y" value="28" />
     <option name="width" value="1163" />
     <option name="height" value="537" />
@@ -311,7 +312,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558309088943" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558309845150" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Impiccato" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -335,7 +336,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ManagerMain">
+  <component name="RunManager" selected="Application.DeliveryManMain">
     <configuration name="DeliveryMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DeliveryManSystem.DeliveryMain" />
       <module name="Progetto-D19" />
@@ -445,9 +446,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ManagerMain" />
         <item itemvalue="Application.DeliveryManMain" />
         <item itemvalue="Application.PickupPointMain" />
+        <item itemvalue="Application.ManagerMain" />
         <item itemvalue="Application.DeliveryMain" />
         <item itemvalue="Application.Test" />
       </list>
@@ -471,7 +472,7 @@
       <workItem from="1558095203688" duration="6763000" />
       <workItem from="1558136450016" duration="961000" />
       <workItem from="1558184755203" duration="48636000" />
-      <workItem from="1558294152105" duration="12973000" />
+      <workItem from="1558294152105" duration="13876000" />
     </task>
     <task id="LOCAL-00001" summary="aggiunto client e server per invio informazioni pacchi">
       <created>1557870101605</created>
@@ -522,17 +523,24 @@
       <option name="project" value="LOCAL" />
       <updated>1558307708747</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="aggiornati metodi manager">
+      <created>1558309312217</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1558309312217</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138507000" />
+    <option name="totallyTimeSpent" value="139410000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="28" width="1301" height="740" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49731183" visible="true" weight="0.20398407" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49731183" visible="true" weight="0.20398407" />
       <window_info id="Structure" order="1" sideWeight="0.50268817" side_tool="true" weight="0.1992032" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -541,7 +549,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.18555008" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27093595" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27093595" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -575,7 +583,8 @@
     <MESSAGE value="rifinito sistema di autenticazione deliveryman" />
     <MESSAGE value="corretto metodo per aggiornare pacchi non affidati al corriere" />
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="aggiornati metodi manager" />
+    <option name="LAST_COMMIT_MESSAGE" value="aggiornati metodi manager" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -807,13 +816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Management/ManagerConnect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="100" column="56" selection-start-line="100" selection-start-column="56" selection-end-line="100" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/NewDMPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="656">
@@ -858,13 +860,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Management/Archive/PackagesList">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="36" selection-start-column="36" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/AddPackDMPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-165">
@@ -882,16 +877,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Management/Archive/PackagesList">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="41" selection-start-column="41" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Management/ManagerConnect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="100" column="37" selection-start-line="100" selection-start-column="37" selection-end-line="100" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Management/Manager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="21" column="44" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
+        <state relative-caret-position="585">
+          <caret line="51" column="85" selection-start-line="51" selection-start-column="85" selection-end-line="51" selection-end-column="85" />
           <folding>
             <element signature="e#6478#6479#0" expanded="true" />
             <element signature="e#6512#6513#0" expanded="true" />
             <element signature="e#6562#6563#0" expanded="true" />
             <element signature="e#6593#6594#0" expanded="true" />
-            <element signature="e#6593#6594#0" expanded="true" />
+            <element signature="e#6576#6577#0" expanded="true" />
             <element signature="e#8644#8645#0" expanded="true" />
             <element signature="e#8677#8678#0" expanded="true" />
             <element signature="e#8821#8822#0" expanded="true" />
