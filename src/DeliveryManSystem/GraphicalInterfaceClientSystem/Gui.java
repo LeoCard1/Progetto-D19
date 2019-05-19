@@ -11,6 +11,7 @@ public class Gui extends JFrame {
     public Gui(){
         ClientGUI();
     }
+
     public void ClientGUI() {
 
         //impostazioni frame

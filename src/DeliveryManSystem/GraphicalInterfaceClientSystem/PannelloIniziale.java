@@ -18,13 +18,15 @@ public class PannelloIniziale extends JPanel {
 
     public void schermataDiInizio(Frame f ){
 
+        //impostazioni pannello
+
         setLayout(new GridLayout(4 ,1));
         setBorder(BorderFactory.createLineBorder(Color.BLACK,0));
 
-        JPanel prova = new JPanel();
-        prova.setBorder(BorderFactory.createTitledBorder(("STATO CONNESSIONE" + " : " + StringaDiConnessione)));
-        prova.setBackground(Color.red);
-        add(prova);
+        JPanel statoDiConnessione = new JPanel();
+        statoDiConnessione.setBorder(BorderFactory.createTitledBorder(("STATO CONNESSIONE" + " : " + StringaDiConnessione)));
+        statoDiConnessione.setBackground(Color.red);
+        add(statoDiConnessione);
 
         //creazione bottoni
 
