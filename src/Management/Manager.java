@@ -137,6 +137,15 @@ public class Manager implements Observer {
         return null;
     }
 
+    public DeliveryMan getDeliveryManFromPackID(String packID){
+        for(DeliveryMan del: deliveryMen){
+            if(del.hasPackage(packID)){
+                return del;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<DeliveryMan> getDeliveryMenList(){
         return deliveryMen;
     }

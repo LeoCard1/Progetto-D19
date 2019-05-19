@@ -31,6 +31,7 @@ public class ManagerFrame extends JFrame {
         tabPan.addTab("New DeliveryMan",new NewDMPanel(manager));
         tabPan.addTab("Add Pack To DeliveryMan",new AddPackDMPanel(manager));
         tabPan.addTab("View Packages", new ViewPackPanel(manager));
+        tabPan.addTab("View Delivery Man", new ViewDMPanel(manager));
 
 
     }

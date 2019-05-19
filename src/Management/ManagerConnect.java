@@ -83,7 +83,6 @@ public class ManagerConnect extends Thread {
     public void sendList() throws IOException {
         DeliveryMan del = manager.getDeliveryMan(readMessage());
         send(del.packageListToString());
-        del.update();
     }
 
     public void isPickupPoint() throws IOException {
@@ -106,9 +105,13 @@ public class ManagerConnect extends Thread {
     public void packAdded() throws IOException {
         String boxToString = readMessage();
         String[] division = boxToString.split("\t");
+        String packID = division[1];
+        if(manager.getDeliveryManFromPackID(packID)!=null){
+            manager.getDeliveryManFromPackID(packID).update();
+        }
         manager.addDeliveryDate(boxToString);
         String password = readMessage();
-        manager.addPassword(division[1],password);
+        manager.addPassword(packID,password);
         //bisogna inviare la notifica all utente
     }
 
