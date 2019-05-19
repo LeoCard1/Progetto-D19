@@ -2,6 +2,7 @@ package Management;
 
 import DeliveryManSystem.DeliveryMan;
 import Management.FileManager.ReadWritePackagesList;
+import Management.GraphicalInterfaceManager.ManagerFrame;
 import PickupPointSystem.GraphicalInterface.ErrorGUI.ErrorGUIMain;
 import LockerSystem.Package;
 import Management.FileManager.ReadWriteDeliveryDate;
@@ -19,6 +20,7 @@ public class Manager implements Observer {
      *  -deliveryManCode: password che deve inserire il DeliveryMan per accedere al PickupPoint.
      *  -deliveryMen: lista di DeliveryMan.
      *  -packages: lista di tutti i Package.
+     *  -unassignedPackages: lista dei pacchi non ancora affidati ad un corriere.
      *  -password: HashMap di packID associati a password per sbloccare la box in cui sono stati
      *  inseriti.
      *  -readWritePackagesList: reader e writer per il file PackageList.
@@ -28,18 +30,25 @@ public class Manager implements Observer {
 
     private ArrayList<DeliveryMan> deliveryMen = new ArrayList<>();
     private ArrayList<Package> packages = new ArrayList<>();
+    private ArrayList<Package> unassignedPackages = new ArrayList<>();
     private HashMap<String,String> password = new HashMap<>();
     private ReadWritePackagesList readWritePackagesList = new ReadWritePackagesList();
     private ReadWriteDeliveryDate readWriteDeliveryDate = new ReadWriteDeliveryDate();
     private ManagerServer server = new ManagerServer(this);
+    private ArrayList<Observer> observers = new ArrayList<>();
 
 
     public Manager() throws IOException {
+        createGUI();
         readWritePackagesList.addObserver(this);
-        addPackages();
+        updatePackages();
+        for(Package pack:packages){
+            unassignedPackages.add(pack);
+        }
+        notifyObserver();
     }
 
-    /*  -addPackages: consente di aggiungere pacchi alla lista prendendo le
+    /*  -updatePackages: consente di aggiungere pacchi alla lista prendendo le
      *  informazioni dal file di testo ReadWritePackagesList, se il pacco è gia
      *  presente non viene aggiunto.
      *  -removePackage: rimuove dal file PackagesList il pacco passato come argomento,
@@ -50,7 +59,9 @@ public class Manager implements Observer {
      *  -removePassword: rimuove dall'HashMap ID del pacco e relativa password dato l'ID
      *  in input.
      *  -addPackageToDeliveryMan: permette di aggiungere pacchi ad un determinato DeliveryMan
-     *  dati ID del DeliveryMan e ID del pacco.
+     *  dati ID del DeliveryMan e ID del pacco, è consentito solo se il pacco non è stato
+     *  assegnato a nessun altro deliveryman, una volta aggiunto il pacco viene rimosso
+     *  dagli unassignedPackage.
      *  -addDeliveryDate: permette di aggiungere date di consegna al file DeliveryDate.
      *  -removeDeliveryDate: permette di rimuovere date di consegna al file DeliveryDate
      *  dato l'ID del pacco.
@@ -58,50 +69,63 @@ public class Manager implements Observer {
      *  -update: aggiorna la lista di Packages dopo un cambiamento nel file PackagesList.
      */
 
-    public void createDeliveryMan(String id) {
-        if(getDeliveryMan(id)==null) {
-            String password = generateDeliveryManCode();
-            DeliveryMan del = new DeliveryMan(id,password);
-            deliveryMen.add(del);
-            System.out.println(password);         //bisogna trovare un modo per farla avere al deliveryman quando viene
-        } else {                                  //creato nel manager, oppure possiamo sottintendere che ce l abbia gia.
-            System.err.println("Existing ID!");
+    public boolean createDeliveryMan(String id) {
+        if(id.length()>=5) {
+            if (getDeliveryMan(id) == null) {
+                String password = generateDeliveryManCode();
+                DeliveryMan del = new DeliveryMan(id, password);
+                deliveryMen.add(del);
+                notifyObserver();
+                return true;
+            } else {
+                ErrorGUIMain guiError = new ErrorGUIMain("Existing ID", true);
+                return false;
+            }
+        } else {
+            ErrorGUIMain guiError = new ErrorGUIMain("ID too short!", true);
+            return false;
         }
     }
 
-    public void createPackage(String id, double height, double length, double width) {
-        Package pack = new Package(id, height, length, width);
-        packages.add(pack);
-    }
-
-    public void addPackages() {
+    public void updatePackages() {
         try {
             String text = readWritePackagesList.getText();
             StringTokenizer st1 = new StringTokenizer(text, "\n");
             while(st1.hasMoreTokens()) {
                 String riga = st1.nextToken();
-                StringTokenizer st2 = new StringTokenizer(riga, "   ");
+                StringTokenizer st2 = new StringTokenizer(riga);
                 String id = st2.nextToken();
                 if(getPackage(id)==null) {
-                    createPackage(id, Double.parseDouble(st2.nextToken()), Double.parseDouble(st2.nextToken()), Double.parseDouble(st2.nextToken()));
+                    Package pack = new Package(id, Double.parseDouble(st2.nextToken()), Double.parseDouble(st2.nextToken()), Double.parseDouble(st2.nextToken()));
+                    packages.add(pack);
+                    notifyObserver();
                 }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             ErrorGUIMain guiError = new ErrorGUIMain(e.getMessage(), true);
         }
+
     }
 
     public void removePackage(Package pack) throws IOException {
         readWritePackagesList.removeText(pack.getId());
+        notifyObserver();
+    }
+
+    public void removeUnassignedPackage(Package pack){
+        unassignedPackages.remove(pack);
+        notifyObserver();
     }
 
     public void addPassword(String packID, String password){
         this.password.put(packID,password);
+        notifyObserver();
     }
 
     public void removePassword(String packID){
         password.remove(packID);
+        notifyObserver();
     }
 
     public DeliveryMan getDeliveryMan(String id){
@@ -113,6 +137,32 @@ public class Manager implements Observer {
         return null;
     }
 
+    public ArrayList<DeliveryMan> getDeliveryMenList(){
+        return deliveryMen;
+    }
+
+    public ArrayList<Package> getPackagesList(){
+        return packages;
+    }
+
+    public HashMap<String, String> getPasswordList() {
+        return password;
+    }
+
+    public ArrayList<Package> getUnassignedPackagesList(){
+        return unassignedPackages;
+    }
+
+    public ArrayList<Package> getInTransitPackagesList(){
+        ArrayList<Package> assignedPackages = new ArrayList<>();
+        for(Package pack:packages){
+            if(getUnassignedPackage(pack.getId())==null && password.get(pack.getId())==null) {
+                assignedPackages.add(pack);
+            }
+        }
+        return assignedPackages;
+    }
+
     public Package getPackage(String id){
         for(Package pack : packages){
             if(pack.getId().equals(id)){
@@ -122,14 +172,25 @@ public class Manager implements Observer {
         return null;
     }
 
-    public void addPackageToDeliveryMan(String delID, String packID) {
-       if(getDeliveryMan(delID)!=null && getPackage(packID)!=null){
-           getDeliveryMan(delID).addPackage(getPackage(packID));
-       } else {
-           System.err.println("Invalid ID!");
-       }
+    public Package getUnassignedPackage(String id){
+        for(Package pack : unassignedPackages){
+            if(pack.getId().equals(id)){
+                return pack;
+            }
+        }
+        return null;
     }
 
+    public void addPackageToDeliveryMan(String delID, String packID) {
+        DeliveryMan del;
+        Package unasspack;
+       if((del=getDeliveryMan(delID))!=null && (unasspack=getUnassignedPackage(packID))!=null){
+           del.addPackage(unasspack);
+           removeUnassignedPackage(unasspack);
+       } else {
+           ErrorGUIMain guiError = new ErrorGUIMain("Invalid ID!", true);
+       }
+    }
 
     public void addDeliveryDate(String text) throws IOException {
         readWriteDeliveryDate.insertText(text);
@@ -151,10 +212,24 @@ public class Manager implements Observer {
         return password;
     }
 
+    public void addObserver(Observer ob){
+        observers.add(ob);
+    }
+
+    public void notifyObserver(){
+        for(Observer ob : observers){
+            ob.update();
+        }
+    }
+
+    public void createGUI(){
+        ManagerFrame mf = new ManagerFrame(this);
+    }
+
     @Override
     public void update(){
         packages.clear();
-        addPackages();
+        updatePackages();
     }
 
 }

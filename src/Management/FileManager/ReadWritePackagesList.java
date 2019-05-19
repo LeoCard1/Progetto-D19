@@ -28,7 +28,6 @@ public class ReadWritePackagesList {
         BufferedWriter out = new BufferedWriter(new FileWriter(file));
         out.write(finalText);
         out.close();
-        notifyObservers();
     }
 
     public void removeText(String packID) throws IOException {

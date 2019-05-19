@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DeliveryMan implements Observer {
+
     private String id;
     private String password;
     private ArrayList<Package> packageList = new ArrayList<>();
