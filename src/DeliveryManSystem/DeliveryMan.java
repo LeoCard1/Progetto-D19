@@ -44,6 +44,16 @@ public class DeliveryMan implements Observer {
         return packageList;
     }
 
+    public boolean hasPackage(String packID){
+        for(Package pack : packageList){
+            if(pack.getId().equals(packID)){
+                return true;
+            }
+        }
+        return false;
+
+    }
+
     public String  packageListToString(){
         String text="";
         for(Package pack : packageList){
