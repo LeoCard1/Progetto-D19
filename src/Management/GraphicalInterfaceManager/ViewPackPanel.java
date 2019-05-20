@@ -73,8 +73,12 @@ public class ViewPackPanel extends JPanel implements Observer {
         switch (filterBox.getSelectedItem().toString()){
             case "All":
                 for(Package pack : manager.getPackagesList()){
-                    text +=pack.toString()+"\n";
-                    packArea.setText(text);
+                    text +=pack.toString();
+                    String password = manager.getPasswordList().get(pack.getId());
+                    if(password!=null){
+                        text+="\t"+password;
+                    }
+                    packArea.setText(text+="\n");
                 }
                 break;
             case "Delivered":

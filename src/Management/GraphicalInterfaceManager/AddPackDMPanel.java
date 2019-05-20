@@ -55,13 +55,9 @@ public class AddPackDMPanel extends JPanel implements Observer {
 
         setLayout(new BorderLayout());
         add(p3,BorderLayout.NORTH); add(areaInfo, BorderLayout.CENTER);
-
-
-
     }
 
-    @Override
-    public void update() {
+    public void updateBox(){
         boxDM.removeAllItems();
         for(DeliveryMan del : manager.getDeliveryMenList()) {
             boxDM.addItem(del.getId());
@@ -70,6 +66,10 @@ public class AddPackDMPanel extends JPanel implements Observer {
         for(Package pack : manager.getUnassignedPackagesList()) {
             boxPack.addItem(pack.getId());
         }
+    }
 
+    @Override
+    public void update() {
+        updateBox();
     }
 }

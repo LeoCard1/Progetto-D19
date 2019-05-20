@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7327fb20-745a-4f73-8dc1-63ad1c368972" name="Default" comment="aggiornati metodi manager">
+    <list default="true" id="7327fb20-745a-4f73-8dc1-63ad1c368972" name="Default" comment="aggiornato removePackage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Management/Archive/DeliveryDate" beforeDir="false" afterPath="$PROJECT_DIR$/src/Management/Archive/DeliveryDate" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Management/Archive/PackagesList" beforeDir="false" afterPath="$PROJECT_DIR$/src/Management/Archive/PackagesList" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Management/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Management/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Management/ManagerConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Management/ManagerConnect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/AddPackDMPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/AddPackDMPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/ViewPackPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/ViewPackPanel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,10 +38,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/ViewPackPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1485">
-              <caret line="101" column="85" selection-start-line="101" selection-start-column="85" selection-end-line="101" selection-end-column="85" />
+            <state relative-caret-position="195">
+              <caret line="80" column="43" selection-start-line="80" selection-start-column="43" selection-end-line="80" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3709#3710#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -74,8 +75,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Management/Archive/PackagesList">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="41" selection-start-column="41" selection-end-column="41" />
+            <state relative-caret-position="105">
+              <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -89,33 +90,21 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Management/Manager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="51" column="85" selection-start-line="51" selection-start-column="85" selection-end-line="51" selection-end-column="85" />
+            <state relative-caret-position="1255">
+              <caret line="228" selection-start-line="228" selection-end-line="228" />
               <folding>
                 <element signature="e#6478#6479#0" expanded="true" />
                 <element signature="e#6512#6513#0" expanded="true" />
                 <element signature="e#6562#6563#0" expanded="true" />
                 <element signature="e#6593#6594#0" expanded="true" />
                 <element signature="e#6576#6577#0" expanded="true" />
-                <element signature="e#8644#8645#0" expanded="true" />
-                <element signature="e#8677#8678#0" expanded="true" />
-                <element signature="e#8821#8822#0" expanded="true" />
-                <element signature="e#8877#8878#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/NewDMPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="656">
-              <caret line="54" selection-start-line="54" selection-end-line="54" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#8376#8377#0" expanded="true" />
+                <element signature="e#8409#8410#0" expanded="true" />
+                <element signature="e#8553#8554#0" expanded="true" />
+                <element signature="e#8609#8610#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -124,17 +113,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Management/ManagerConnect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="100" column="37" selection-start-line="100" selection-start-column="37" selection-end-line="100" selection-end-column="37" />
+            <state relative-caret-position="130">
+              <caret line="113" selection-start-line="113" selection-end-line="113" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/AddPackDMPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-165">
-              <caret line="18" column="45" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
+            <state relative-caret-position="152">
+              <caret line="59" column="28" selection-start-line="59" selection-start-column="28" selection-end-line="59" selection-end-column="28" />
+              <folding>
+                <element signature="e#2374#2375#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -142,8 +134,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/ViewDMPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-605">
-              <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+            <state relative-caret-position="242">
+              <caret line="80" selection-start-line="80" selection-end-line="80" />
             </state>
           </provider>
         </entry>
@@ -207,22 +199,22 @@
         <option value="$PROJECT_DIR$/src/LockerSystem/BoxType/Box.java" />
         <option value="$PROJECT_DIR$/src/LockerSystem/Package.java" />
         <option value="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryMan.java" />
-        <option value="$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/AddPackDMPanel.java" />
         <option value="$PROJECT_DIR$/src/Management/ManagerMain.java" />
         <option value="$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/ManagerFrame.java" />
         <option value="$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/ViewDMPanel.java" />
         <option value="$PROJECT_DIR$/src/Management/FileManager/ReadWritePackagesList.java" />
         <option value="$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/NewDMPanel.java" />
-        <option value="$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/ViewPackPanel.java" />
         <option value="$PROJECT_DIR$/src/Management/ManagerConnect.java" />
-        <option value="$PROJECT_DIR$/src/Management/Manager.java" />
-        <option value="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java" />
         <option value="$PROJECT_DIR$/src/Management/Archive/PackagesList" />
+        <option value="$PROJECT_DIR$/src/Management/Manager.java" />
+        <option value="$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/ViewPackPanel.java" />
+        <option value="$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java" />
+        <option value="$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/AddPackDMPanel.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="429" />
+    <option name="x" value="203" />
     <option name="y" value="28" />
     <option name="width" value="1163" />
     <option name="height" value="537" />
@@ -291,18 +283,6 @@
               <item name="Management" type="462c0819:PsiDirectoryNode" />
               <item name="GraphicalInterfaceManager" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Progetto-D19" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-D19" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ObserverPattern" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Progetto-D19" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Progetto-D19" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="PickupPointSystem" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -312,7 +292,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558309845150" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558313412054" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Impiccato" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -336,7 +316,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.DeliveryManMain">
+  <component name="RunManager" selected="Application.ManagerMain">
     <configuration name="DeliveryMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DeliveryManSystem.DeliveryMain" />
       <module name="Progetto-D19" />
@@ -446,9 +426,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ManagerMain" />
         <item itemvalue="Application.DeliveryManMain" />
         <item itemvalue="Application.PickupPointMain" />
-        <item itemvalue="Application.ManagerMain" />
         <item itemvalue="Application.DeliveryMain" />
         <item itemvalue="Application.Test" />
       </list>
@@ -472,7 +452,7 @@
       <workItem from="1558095203688" duration="6763000" />
       <workItem from="1558136450016" duration="961000" />
       <workItem from="1558184755203" duration="48636000" />
-      <workItem from="1558294152105" duration="13876000" />
+      <workItem from="1558294152105" duration="17295000" />
     </task>
     <task id="LOCAL-00001" summary="aggiunto client e server per invio informazioni pacchi">
       <created>1557870101605</created>
@@ -530,17 +510,24 @@
       <option name="project" value="LOCAL" />
       <updated>1558309312217</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="aggiornato removePackage">
+      <created>1558310015204</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1558310015204</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139410000" />
+    <option name="totallyTimeSpent" value="142829000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="28" width="1301" height="740" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49731183" visible="true" weight="0.20398407" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49731183" visible="true" weight="0.20398407" />
       <window_info id="Structure" order="1" sideWeight="0.50268817" side_tool="true" weight="0.1992032" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -549,7 +536,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.18555008" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27093595" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27093595" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -584,7 +571,8 @@
     <MESSAGE value="corretto metodo per aggiornare pacchi non affidati al corriere" />
     <MESSAGE value="." />
     <MESSAGE value="aggiornati metodi manager" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiornati metodi manager" />
+    <MESSAGE value="aggiornato removePackage" />
+    <option name="LAST_COMMIT_MESSAGE" value="aggiornato removePackage" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -723,13 +711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PickupPointSystem/PickupPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="22" column="76" selection-start-line="22" selection-start-column="76" selection-end-line="22" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/LockerSystem/Package.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -826,19 +807,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/ViewDMPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/ViewPackPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-605">
-          <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+        <state relative-caret-position="195">
+          <caret line="80" column="43" selection-start-line="80" selection-start-column="43" selection-end-line="80" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3709#3710#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/ViewPackPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/Management/ManagerConnect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1485">
-          <caret line="101" column="85" selection-start-line="101" selection-start-column="85" selection-end-line="101" selection-end-column="85" />
+        <state relative-caret-position="130">
+          <caret line="113" selection-start-line="113" selection-end-line="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/ViewDMPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Management/ManagerMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PickupPointSystem/PickupPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Management/Archive/PackagesList">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Management/Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1255">
+          <caret line="228" selection-start-line="228" selection-end-line="228" />
+          <folding>
+            <element signature="e#6478#6479#0" expanded="true" />
+            <element signature="e#6512#6513#0" expanded="true" />
+            <element signature="e#6562#6563#0" expanded="true" />
+            <element signature="e#6593#6594#0" expanded="true" />
+            <element signature="e#6576#6577#0" expanded="true" />
+            <element signature="e#8376#8377#0" expanded="true" />
+            <element signature="e#8409#8410#0" expanded="true" />
+            <element signature="e#8553#8554#0" expanded="true" />
+            <element signature="e#8609#8610#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -853,58 +891,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Management/ManagerMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Management/GraphicalInterfaceManager/AddPackDMPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-165">
-          <caret line="18" column="45" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DeliveryManSystem/DeliveryManMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+        <state relative-caret-position="152">
+          <caret line="59" column="28" selection-start-line="59" selection-start-column="28" selection-end-line="59" selection-end-column="28" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Management/Archive/PackagesList">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="41" selection-start-column="41" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Management/ManagerConnect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="100" column="37" selection-start-line="100" selection-start-column="37" selection-end-line="100" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Management/Manager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="51" column="85" selection-start-line="51" selection-start-column="85" selection-end-line="51" selection-end-column="85" />
-          <folding>
-            <element signature="e#6478#6479#0" expanded="true" />
-            <element signature="e#6512#6513#0" expanded="true" />
-            <element signature="e#6562#6563#0" expanded="true" />
-            <element signature="e#6593#6594#0" expanded="true" />
-            <element signature="e#6576#6577#0" expanded="true" />
-            <element signature="e#8644#8645#0" expanded="true" />
-            <element signature="e#8677#8678#0" expanded="true" />
-            <element signature="e#8821#8822#0" expanded="true" />
-            <element signature="e#8877#8878#0" expanded="true" />
+            <element signature="e#2374#2375#0" expanded="true" />
           </folding>
         </state>
       </provider>
