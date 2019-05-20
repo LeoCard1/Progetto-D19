@@ -42,16 +42,16 @@ public class NewDMPanel extends JPanel {
         p2.setLayout(new GridLayout(2,1));
         p2.add(p1);  p2.add(buttonConfirm);
 
-
         JPanel p3 = new JPanel();
         p3.setLayout(new BorderLayout());
         p3.add(p2, BorderLayout.NORTH);
 
+        JPanel p31 = new JPanel();
+        p31.setLayout(new BorderLayout());
+        p31.add(p3,BorderLayout.WEST);  p31.add(new JPanel(),BorderLayout.CENTER);
+
         setLayout(new BorderLayout());
-        add(p3,BorderLayout.WEST);  add(infoArea, BorderLayout.CENTER);
-
-
-
+        add(p31,BorderLayout.WEST);  add(infoArea, BorderLayout.CENTER);
 
     }
 

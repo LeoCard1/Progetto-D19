@@ -98,7 +98,7 @@ public class ManagerConnect extends Thread {
 
     public void packPickedUp() throws IOException {
         String packID = readMessage();
-        manager.removePackage(manager.getPackage(packID));
+        manager.removePackage(packID);
         manager.removeDeliveryDate(packID);
         manager.removePassword(packID);
     }
