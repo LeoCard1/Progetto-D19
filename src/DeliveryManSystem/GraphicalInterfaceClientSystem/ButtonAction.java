@@ -29,13 +29,13 @@ public class ButtonAction  implements ActionListener {
                 frame.validate();
                 break;
 
-            case "connetti" :
+            /*case "connetti" :
                 frame.remove(iniziale);
                 finale = new PannelloConnetti(frame);
                 frame.add(finale);
                 frame.repaint();
                 frame.validate();
-                break;
+                break;*/
 
             case "ritiro" :
                 frame.remove(iniziale);
@@ -50,6 +50,7 @@ public class ButtonAction  implements ActionListener {
                 frame.add(finale);
                 frame.repaint();
                 frame.validate();
+
                 break;
 
         }
