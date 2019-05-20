@@ -1,6 +1,7 @@
 package DeliveryManSystem.GraphicalInterfaceClientSystem;
 
 import javax.swing.*;
+import javax.swing.plaf.IconUIResource;
 import java.awt.*;
 import java.lang.reflect.Field;
 
@@ -30,7 +31,7 @@ public class PannelloIniziale extends JPanel {
 
         //creazione bottoni
 
-        JButton impostazioni = new JButton("impostazioni");
+        JButton impostazioni = new JButton("impostazioni" );
         JButton connetti = new JButton("connetti");
         JButton ritiro = new JButton("ritiro");
 

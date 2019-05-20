@@ -1,5 +1,8 @@
 package DeliveryManSystem.GraphicalInterfaceClientSystem;
 
+import DeliveryManSystem.DeliveryMan;
+import DeliveryManSystem.DeliveryManClient;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,8 +10,11 @@ public class Gui extends JFrame {
 
     private Dimension screenSize;
     private int width,height;
+    private DeliveryManClient fattorino;
 
-    public Gui(){
+    public Gui(DeliveryManClient fattorino){
+
+        this.fattorino = fattorino;
         ClientGUI();
     }
 
@@ -24,13 +30,12 @@ public class Gui extends JFrame {
         setSize(new java.awt.Dimension(width,height));
         setResizable(false);
         setTitle("Versione Beta");
-        setVisible(true);
 
         //creazione e aggiunta pannello iniziale
 
-        add(new PannelloIniziale(this));
+        add(new PannelloConnetti(this , fattorino));
 
-
+        setVisible(true);
 
     }
 

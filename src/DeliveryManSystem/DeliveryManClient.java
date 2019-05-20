@@ -33,14 +33,16 @@ public class DeliveryManClient {
      *  testo con packID e dimensioni.
      */
 
-    public void logIn(String id, String password) throws IOException {
+    public boolean logIn(String id, String password) throws IOException {
         if(authenticationManager(id,password)){
             deliveryMan = new DeliveryMan(id,password);
             addObserver(deliveryMan);
             loggedIn=true;
-            System.out.println("Successful login");
+            return loggedIn;
+
         }  else {
-            System.err.println("Incorrect ID and password!");
+            return loggedIn;
+
         }
     }
 
