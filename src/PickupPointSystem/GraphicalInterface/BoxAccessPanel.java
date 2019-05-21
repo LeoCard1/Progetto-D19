@@ -3,6 +3,8 @@ package PickupPointSystem.GraphicalInterface;
 import PickupPointSystem.PickupPoint;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BoxAccessPanel extends JPanel {
     private PickupPoint piPo;
@@ -35,6 +37,7 @@ public class BoxAccessPanel extends JPanel {
         con la classe menzionata sopra.
          */
 
+
         JPanel panBox = new JPanel();
 
         JComboBox langBox = new JComboBox();
@@ -44,6 +47,20 @@ public class BoxAccessPanel extends JPanel {
         panBox.add(new JLabel("Language:"));
         panBox.add(langBox);
         langPan.add(panBox);
+
+        // qui bisogna inserire i comandi quando scegli la lingua dal menù
+        ActionListener languageListenner = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(langBox.getSelectedIndex() == 0){
+                    SetLanguage.getInstance().changeLanguage("english");
+                }else{
+                    SetLanguage.getInstance().changeLanguage("italiano");
+                }
+            }
+        };
+
+        langBox.addActionListener(languageListenner);
 
         return langPan;
     }

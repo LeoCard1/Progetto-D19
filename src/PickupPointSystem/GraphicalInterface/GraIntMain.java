@@ -21,7 +21,7 @@ public class GraIntMain extends JFrame implements Observer {
         setSize(width/2, height/2);
         setLocation(width/4, height/4);
 
-        setTitle("Pickup Point System");
+        setTitle(SetLanguage.getInstance().setTitle()); //qua devo creare metodo per titolo con if.. ecc
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
