@@ -33,27 +33,25 @@ public class PickupPointConnect {
     }
 
     public void connect() throws IOException {
-        String message = "";
+        StringBuilder message = new StringBuilder();
         String credentials = readLine();
-        if(pickupPoint.checkDeliveryManCredentials(credentials)) {
+        if (pickupPoint.checkDeliveryManCredentials(credentials)) {
             send("authenticated");
             System.out.println("Authenticated");
-            while(!in.ready()){
-
-            }
-            while(in.ready()) {
+            while (!in.ready()) ;
+            while (in.ready()) {
                 StringTokenizer st = new StringTokenizer(in.readLine());
                 while (st.hasMoreTokens()) {
                     String id = st.nextToken();
                     int boxCode = pickupPoint.addPackage(new Package(id, Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken())));
-                    message += "Pack: " + id + " Box number: " + boxCode +"\n" ;
+                    message.append("Pack: ").append(id).append(" Box number: ").append(boxCode).append("\n");
                 }
             }
         } else {
             send("notauthenticated");
             System.err.println("Not authenticated") ;
         }
-        send(message);
+        send(message.toString());
         disconnect();
         System.out.println("[3] Disconnected from the client: " + client.getInetAddress());
     }
@@ -63,9 +61,7 @@ public class PickupPointConnect {
     }
 
     public String readLine() throws IOException {
-        while(!in.ready()){
-
-        }
+        while (!in.ready()) ;
         return in.readLine();
     }
 

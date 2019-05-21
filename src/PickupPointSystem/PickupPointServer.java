@@ -1,6 +1,8 @@
 package PickupPointSystem;
 
 
+import PickupPointSystem.GraphicalInterface.ErrorGUI.ErrorGUIMain;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -14,7 +16,6 @@ public class PickupPointServer extends Thread{
         this.pickupPoint = pickupPoint;
         server = new ServerSocket(8000);
         System.out.println("[0] PickupPointServer waiting on port 8000...");
-        this.start();
     }
 
     /*
@@ -24,7 +25,7 @@ public class PickupPointServer extends Thread{
      */
 
     public void run() {
-        while(true) {
+        while (true) {
             try {
                 System.out.println("[1] Waiting for connection...");
                 Socket client = server.accept();

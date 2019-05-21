@@ -3,7 +3,6 @@ package DeliveryManSystem;
 import LockerSystem.Package;
 import ObserverPattern.Observer;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class DeliveryMan implements Observer {

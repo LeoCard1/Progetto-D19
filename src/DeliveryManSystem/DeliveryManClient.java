@@ -1,5 +1,6 @@
 package DeliveryManSystem;
 
+import DeliveryManSystem.GraphicalInterfaceClientSystem.Gui;
 import LockerSystem.Package;
 import ObserverPattern.Observer;
 
@@ -13,10 +14,10 @@ import java.util.StringTokenizer;
 
 public class DeliveryManClient {
 
-    BufferedReader in = null;
-    PrintStream out = null;
-    Socket socket = null;
-    DeliveryMan deliveryMan;
+    private BufferedReader in = null;
+    private PrintStream out = null;
+    private Socket socket = null;
+    private DeliveryMan deliveryMan;
     private boolean loggedIn=false;
     private ArrayList<Observer> observers = new ArrayList<>();
 
@@ -33,26 +34,36 @@ public class DeliveryManClient {
      *  testo con packID e dimensioni.
      */
 
+    public DeliveryManClient() {
+        Gui gui = new Gui(this);
+    }
+
     public boolean logIn(String id, String password) throws IOException {
-        if(authenticationManager(id,password)){
+        /*if (authenticationManager(id, password)) {
             deliveryMan = new DeliveryMan(id,password);
             addObserver(deliveryMan);
-            loggedIn=true;
+            loggedIn = true;
             return loggedIn;
 
         }  else {
             return loggedIn;
 
+        }*/
+        if (authenticationManager(id, password)) {
+            deliveryMan = new DeliveryMan(id,password);
+            addObserver(deliveryMan);
+            loggedIn = true;
         }
+        return loggedIn;
     }
 
-    public void connectPickupPoint() throws IOException {
+    private void connectPickupPoint() throws IOException {
         socket = new Socket("localhost", 8000);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintStream(socket.getOutputStream(), true);
     }
 
-    public void connectManager() throws IOException {
+    private void connectManager() throws IOException {
         socket = new Socket("localhost", 5000);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintStream(socket.getOutputStream(), true);
@@ -91,20 +102,20 @@ public class DeliveryManClient {
     public boolean authenticationManager(String id, String password) throws IOException {
         connectManager();
         send("authentication");
-        send(id+"\t"+password);
+        send(id + "\t" + password);
         String response =  readLine();
-        if(response.equals("authenticated")){
-            return  true;
-        }  else {
+        if (response.equals("authenticated")){
+            return true;
+        } else {
             return false;
         }
     }
 
     public boolean authenticationPickupPoint() throws IOException {
         connectPickupPoint();
-        send(deliveryMan.getId()+"\t"+deliveryMan.getPassword());
+        send(deliveryMan.getId() + "\t" + deliveryMan.getPassword());
         String response =  readLine();
-        if(response.equals("authenticated")){
+        if (response.equals("authenticated")){
             return  true;
         }  else {
             return false;
@@ -152,11 +163,11 @@ public class DeliveryManClient {
         socket.close();
     }
 
-    public void addObserver(Observer ob){
+    private void addObserver(Observer ob){
         observers.add(ob);
     }
 
-    public void notifyObservers(){
+    private void notifyObservers(){
         for(Observer ob : observers){
             ob.update();
         }
