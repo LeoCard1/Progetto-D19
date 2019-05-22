@@ -5,16 +5,28 @@ import ObserverPattern.Observer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
-public class PannelloConnetti extends JPanel implements Observer {
+public class PannelloConnetti extends JPanel implements ActionListener {
+    private Frame frame;
+    private String[] languageSelector = {"English" , "Italian"};
+    private JButton accedi;
+    private DeliveryManClient fattorino;
+    private JPasswordField jpf;
+    private JTextField jtf;
+    private JLabel indicazioni;
 
 
     PannelloConnetti(Frame frame , DeliveryManClient fattorino){
 
-        GuiConnetti(frame , fattorino);
+        this.fattorino = fattorino;
+        this.frame = frame;
+        GuiConnetti();
     }
 
-    public void GuiConnetti(Frame frame , DeliveryManClient fattorino ){
+    public void GuiConnetti(){
 
         //impostazioni pannelloBackground
 
@@ -30,15 +42,50 @@ public class PannelloConnetti extends JPanel implements Observer {
         //impostazioni pannelloDatiDiAccesso
 
         JPanel pannelloPasswordId = new JPanel();
-        pannelloPasswordId.setBorder(BorderFactory.createEmptyBorder(40 , 10 ,10 ,10));
-        JLabel labelPassword = new JLabel("Password  :  ");
-        JLabel labelId = new JLabel("                Id  :  ");
-        JPasswordField passwordField = new JPasswordField(15);
-        JTextField idField = new JTextField(15) ;
-        pannelloPasswordId.add(labelPassword);
-        pannelloPasswordId.add(passwordField);
-        pannelloPasswordId.add(labelId);
-        pannelloPasswordId.add(idField);
+        pannelloPasswordId.setLayout(new GridLayout(3,2));
+
+
+
+
+        JLabel labelLanguage = new JLabel("Language   :");
+        JLabel labelPassword = new JLabel("Password   :");
+        JLabel labelId = new JLabel("Id   :");
+        jpf = new JPasswordField(12);
+        jtf = new JTextField(12) ;
+
+        JPanel pannelloLanguage = new JPanel();
+        pannelloLanguage.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
+        pannelloLanguage.add(labelLanguage);
+
+        JPanel pannelloSelectLanguage = new JPanel();
+        pannelloSelectLanguage.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
+        JComboBox language = new JComboBox(languageSelector);
+        pannelloSelectLanguage.add(language);
+
+
+
+        JPanel pannelloPassword = new JPanel();
+        pannelloPassword.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
+        pannelloPassword.add(labelPassword );
+
+        JPanel pannelloPasswordField = new JPanel();
+        pannelloPasswordField.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
+        pannelloPasswordField.add(jpf);
+
+        JPanel pannelloText = new JPanel();
+        pannelloText.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+        pannelloText.add(labelId);
+
+        JPanel pannelloTextField = new JPanel();
+        pannelloTextField.add(jtf);
+
+
+        pannelloPasswordId.add(pannelloLanguage);
+        pannelloPasswordId.add(pannelloSelectLanguage);
+        pannelloPasswordId.add(pannelloPassword);
+        pannelloPasswordId.add(pannelloPasswordField);
+        pannelloPasswordId.add(pannelloText);
+        pannelloPasswordId.add(pannelloTextField);
 
         //impostazione pannelloBottoni
 
@@ -50,7 +97,7 @@ public class PannelloConnetti extends JPanel implements Observer {
         //creazione bottoni
 
         JButton indietro = new JButton("indietro");
-        JButton accedi = new JButton("Accedi");
+        accedi = new JButton("Login");
 
         //impostazione bottoni
 
@@ -61,14 +108,9 @@ public class PannelloConnetti extends JPanel implements Observer {
 
         //aggiunta bottoni
 
-        pannelloBottoni.add(accedi);
         pannelloBottoni.add(indicazioni);
+        pannelloBottoni.add(accedi);
         pannelloBottoni.add(indietro);
-
-
-        passwordField.setActionCommand("Accedi");
-
-        idField.setActionCommand("Accedi");
 
         //aggiunta al pannello principale
 
@@ -79,13 +121,43 @@ public class PannelloConnetti extends JPanel implements Observer {
         //azione bottoni
 
         ButtonAction indietroAction = new ButtonAction(frame , this);
-        ConnettiAction accediAction = new ConnettiAction(passwordField.getPassword() , idField.getText() , fattorino , frame , this);
         indietro.addActionListener(indietroAction);
-        accedi.addActionListener(accediAction);
+        setAction();
 
     }
 
-    public void update() {
+    private void setAction(){
+        accedi.addActionListener(this);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+
+
+
+        try {
+
+            if (fattorino.logIn(jtf,jpf)) {
+
+                jpf = null;
+                frame.remove(this);
+                frame.add(new PannelloImpostazioni(frame));
+                frame.repaint();
+                frame.validate();
+
+            } else {
+
+                JOptionPane.showMessageDialog(this,"errore");
+            }
+
+        } catch (IOException eccezione) {
+
+            System.out.println("prova tasto");
+
+        }
 
     }
+
+
+
+
 }

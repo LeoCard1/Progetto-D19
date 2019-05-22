@@ -30,24 +30,6 @@ public class ConnettiAction implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
 
-        try {
 
-                if (fattorino.logIn(id, password)) {
-                    password = "";
-                    frame.remove(iniziale);
-                    finale = new PannelloImpostazioni(frame);
-                    frame.add(finale);
-                    frame.repaint();
-                    frame.validate();
-
-                } else {
-                    JFrame prova = new JFrame();
-                    prova.setVisible(true);
-                    JOptionPane.showMessageDialog(prova, "errore");
-                }
-
-            } catch (IOException eccezione) {
-
-            }
     }
 }

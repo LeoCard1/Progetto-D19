@@ -4,6 +4,7 @@ import DeliveryManSystem.GraphicalInterfaceClientSystem.Gui;
 import LockerSystem.Package;
 import ObserverPattern.Observer;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -38,7 +39,7 @@ public class DeliveryManClient {
         Gui gui = new Gui(this);
     }
 
-    public boolean logIn(String id, String password) throws IOException {
+    public boolean logIn(JTextField id, JPasswordField password) throws IOException {
         /*if (authenticationManager(id, password)) {
             deliveryMan = new DeliveryMan(id,password);
             addObserver(deliveryMan);
@@ -49,8 +50,8 @@ public class DeliveryManClient {
             return loggedIn;
 
         }*/
-        if (authenticationManager(id, password)) {
-            deliveryMan = new DeliveryMan(id,password);
+        if (authenticationManager(id.getText(), password.getPassword().toString())) {
+            deliveryMan = new DeliveryMan(id.getText(), password.getPassword().toString());
             addObserver(deliveryMan);
             loggedIn = true;
         }
