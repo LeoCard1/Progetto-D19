@@ -8,9 +8,16 @@ import java.awt.event.ActionListener;
 
 public class BoxAccessPanel extends JPanel {
     private PickupPoint piPo;
+    private GraIntMain gra;
+    private InsertCodePanel ins;
+    // c, l ed n sono variabili necessarie per cambiare la lingua delle tab (più informazioni nella classe SetLanguage)
+    private JComboBox c;
+    private JLabel l;
+    private int n;
 
-    public BoxAccessPanel(PickupPoint pipo) {
+    public BoxAccessPanel(PickupPoint pipo, GraIntMain gra) {
         piPo = pipo;
+        this.gra = gra;
 
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         initPanel();
@@ -18,45 +25,39 @@ public class BoxAccessPanel extends JPanel {
 
     private void initPanel() {
         add(languagePanel());
-        add(new InsertCodePanel(piPo));
+        ins = new InsertCodePanel(piPo);
+        add(ins);
     }
 
     private JPanel languagePanel() {
         JPanel langPan = new JPanel();
         langPan.setLayout(new BoxLayout(langPan, BoxLayout.PAGE_AXIS));
 
-        /*
-        Si potrebbe creare una classe Language in cui
-        inserire per ogni linguaggio le varie scritte
-        da mettere nel pannello e altre funzioni.
-        Sarebbe anche comodo da gestire con un for-each.
-         */
-
-        /*
-        La parte seguente è da fare meglio, possibilmente
-        con la classe menzionata sopra.
-         */
-
-
         JPanel panBox = new JPanel();
 
         JComboBox langBox = new JComboBox();
-        langBox.addItem("English");
-        langBox.addItem("Italian");
+        langBox.addItem(SetLanguage.getInstance().setBoxAccessPanel()[2]);
+        langBox.addItem(SetLanguage.getInstance().setBoxAccessPanel()[3]);
+        c = langBox;
 
-        panBox.add(new JLabel("Language:"));
+        JLabel labelBox = new JLabel(SetLanguage.getInstance().setBoxAccessPanel()[1]);
+        panBox.add(labelBox);
         panBox.add(langBox);
         langPan.add(panBox);
+        l = labelBox;
 
         // qui bisogna inserire i comandi quando scegli la lingua dal menù
         ActionListener languageListenner = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(langBox.getSelectedIndex() == 0){
+                if(langBox.getSelectedIndex() == n){
                     SetLanguage.getInstance().changeLanguage("english");
                 }else{
                     SetLanguage.getInstance().changeLanguage("italiano");
                 }
+                refresh();
+                gra.refresh();
+                ins.refresh();
             }
         };
 
@@ -64,4 +65,13 @@ public class BoxAccessPanel extends JPanel {
 
         return langPan;
     }
+
+    private void refresh() {
+        n = Integer.parseInt(SetLanguage.getInstance().setBoxAccessPanel()[0]);
+        l.setText(SetLanguage.getInstance().setBoxAccessPanel()[1]);
+        c.removeAllItems();
+        c.addItem(SetLanguage.getInstance().setBoxAccessPanel()[2]);
+        c.addItem(SetLanguage.getInstance().setBoxAccessPanel()[3]);
+    }
+
 }
