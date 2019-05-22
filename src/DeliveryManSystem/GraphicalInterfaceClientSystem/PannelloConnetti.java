@@ -136,7 +136,7 @@ public class PannelloConnetti extends JPanel implements ActionListener {
 
         try {
 
-            if (fattorino.logIn(jtf,jpf)) {
+            if (fattorino.logIn(jtf.getText(),jpf.getPassword().toString())) {
 
                 jpf = null;
                 frame.remove(this);

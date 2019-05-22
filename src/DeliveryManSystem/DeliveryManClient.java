@@ -4,7 +4,6 @@ import DeliveryManSystem.GraphicalInterfaceClientSystem.Gui;
 import LockerSystem.Package;
 import ObserverPattern.Observer;
 
-import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,7 +18,6 @@ public class DeliveryManClient {
     private PrintStream out = null;
     private Socket socket = null;
     private DeliveryMan deliveryMan;
-    private boolean loggedIn=false;
     private ArrayList<Observer> observers = new ArrayList<>();
 
     /*
@@ -39,23 +37,14 @@ public class DeliveryManClient {
         Gui gui = new Gui(this);
     }
 
-    public boolean logIn(JTextField id, JPasswordField password) throws IOException {
-        /*if (authenticationManager(id, password)) {
+    public boolean logIn(String id, String password) throws IOException {
+         if (authenticationManager(id, password)) {
             deliveryMan = new DeliveryMan(id,password);
             addObserver(deliveryMan);
-            loggedIn = true;
-            return loggedIn;
-
-        }  else {
-            return loggedIn;
-
-        }*/
-        if (authenticationManager(id.getText(), password.getPassword().toString())) {
-            deliveryMan = new DeliveryMan(id.getText(), password.getPassword().toString());
-            addObserver(deliveryMan);
-            loggedIn = true;
-        }
-        return loggedIn;
+            return true;
+         }  else {
+            return false;
+         }
     }
 
     private void connectPickupPoint() throws IOException {
@@ -72,32 +61,24 @@ public class DeliveryManClient {
     }
 
     public void sendList() throws IOException {
-        if(loggedIn) {
-            if(authenticationPickupPoint()){
-                System.out.println("Authenticated");
-                send(deliveryMan.packageListToString());
-                System.out.println(readMessage());
-            } else {
-                System.err.println("Not authenticated!");
-            }
-                disconnect();
-                notifyObservers();
+        if(authenticationPickupPoint()){
+            System.out.println("Authenticated");
+            send(deliveryMan.packageListToString());
+            System.out.println(readMessage());
         } else {
-            System.err.println("You have to login!");
+            System.err.println("Not authenticated!");
         }
+        disconnect();
+        notifyObservers();
     }
 
     public void updateList() throws IOException {
-        if(loggedIn) {
-            connectManager();
-            send("updatelist");
-            send(deliveryMan.getId());
-            addPackagesFromList();
-            System.out.println("Package list updated");
-            disconnect();
-        } else {
-            System.err.println("You have to login!");
-        }
+        connectManager();
+        send("updatelist");
+        send(deliveryMan.getId());
+        addPackagesFromList();
+        System.out.println("Package list updated");
+        disconnect();
     }
 
     public boolean authenticationManager(String id, String password) throws IOException {

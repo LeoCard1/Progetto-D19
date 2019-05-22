@@ -24,8 +24,10 @@ public class ViewDMPanel extends JPanel implements Observer {
 
     public void initPanel(){
         update();
+        infoPack.setEditable(false);
+        infoDM.setEditable(false);
         JLabel descriptionPack = new JLabel("packID          height             length              width");
-        JLabel password = new JLabel("password");
+        JLabel password = new JLabel("Password");
         JLabel select = new JLabel("Select DM:");
         JButton buttonConfirm = new JButton("Confirm");
         buttonConfirm.addActionListener(new ActionListener() {

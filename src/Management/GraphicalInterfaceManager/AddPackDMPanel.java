@@ -27,6 +27,7 @@ public class AddPackDMPanel extends JPanel implements Observer {
 
     public void initPanel(){
         update();
+        areaInfo.setEditable(false);
         JLabel delID = new JLabel("Delivery Man ID: ");
         JLabel packID = new JLabel("Pack ID: ");
         JButton buttonConfirm = new JButton("Confirm");

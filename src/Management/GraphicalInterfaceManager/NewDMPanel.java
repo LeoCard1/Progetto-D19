@@ -20,6 +20,7 @@ public class NewDMPanel extends JPanel {
     }
 
     public void initPanel(){
+        infoArea.setEditable(false);
         JLabel insertIDLabel = new JLabel("Insert ID: ");
         JButton buttonConfirm = new JButton("Confirm");
         buttonConfirm.addActionListener(new ActionListener() {
