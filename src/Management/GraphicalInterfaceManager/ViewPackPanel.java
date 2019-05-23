@@ -34,6 +34,7 @@ public class ViewPackPanel extends JPanel implements Observer {
             filterBox.addItem(filter);
         }
 
+        packArea.setEditable(false);
         JLabel packDetails = new JLabel("packID          height             length              width               password");
         JButton buttonConfirm = new JButton("Confirm");
         buttonConfirm.addActionListener(new ActionListener() {
