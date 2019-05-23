@@ -16,7 +16,7 @@ public class PickupPointConnect {
     private BufferedReader in = null;
     private PrintStream out = null;
 
-    /*
+    /**
      *  -connect: riceve id e password del DeliveryMan, quindi richiama il
      *  checkDeliveryManCredentials del PickupPoint, in caso di autenticazione, legge la lista
      *  di package inviatagli dal DeliveryManClient richiamando quindi l'addPackage del PickupPoint,

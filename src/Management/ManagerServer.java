@@ -16,7 +16,7 @@ public class ManagerServer extends Thread{
         this.start();
     }
 
-    /*
+    /**
      *  -run: il server una volta accettata una connessione da un client crea la classe ManagerConnect
      *  con quel determinato client, la classe ManagerConnect risponderà alle richieste di quel client
      *  nel frattempo il server resta in attesa di ulteriori connessioni da parte di altri client.

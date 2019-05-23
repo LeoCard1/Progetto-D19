@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
 
 public class Manager implements Observer {
 
-    /*
+    /**
      *  -deliveryManCode: password che deve inserire il DeliveryMan per accedere al PickupPoint.
      *  -deliveryMen: lista di DeliveryMan.
      *  -packages: lista di tutti i Package.
@@ -43,7 +43,7 @@ public class Manager implements Observer {
         notifyObserver();
     }
 
-    /*
+    /**
      *  -updatePackages: consente di aggiungere pacchi alla lista prendendo le
      *  informazioni dal file di testo ReadWritePackagesList, se il pacco è gia
      *  presente non viene aggiunto.

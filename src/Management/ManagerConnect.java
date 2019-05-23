@@ -24,7 +24,7 @@ public class ManagerConnect extends Thread {
         this.start();
     }
 
-    /*
+    /**
      *  run:
      *  - se il messaggio del client è "DeliveryMan" il server resta in attesa di ricevere il messaggio che
      *  indica la richiesta di quel client, 2 casi possibili:

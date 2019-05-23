@@ -18,7 +18,7 @@ public class PickupPointServer extends Thread{
         System.out.println("[0] PickupPointServer waiting on port 8000...");
     }
 
-    /*
+    /**
      *  -run: il server una volta accettata una connessione da un client crea la classe PickupPointConnect
      *  con quel determinato client, la classe PickupPointConnect risponderà alle richieste di quel client
      *  il server non puo ricevere connessioni da parte di piu client contemporaneamente.
