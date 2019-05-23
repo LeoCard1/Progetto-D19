@@ -39,7 +39,7 @@ public class DeliveryManClient {
         Gui gui = new Gui(this);
     }
 
-    public boolean logIn(JTextField id, JPasswordField password) throws IOException {
+    public boolean logIn(String id, String password) throws IOException {
         /*if (authenticationManager(id, password)) {
             deliveryMan = new DeliveryMan(id,password);
             addObserver(deliveryMan);
@@ -50,8 +50,8 @@ public class DeliveryManClient {
             return loggedIn;
 
         }*/
-        if (authenticationManager(id.getText(), password.getPassword().toString())) {
-            deliveryMan = new DeliveryMan(id.getText(), password.getPassword().toString());
+        if (authenticationManager(id, password)) {
+            deliveryMan = new DeliveryMan(id, password);
             addObserver(deliveryMan);
             loggedIn = true;
         }

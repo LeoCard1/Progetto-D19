@@ -31,7 +31,7 @@ public class ButtonAction  implements ActionListener {
 
             /*case "connetti" :
                 frame.remove(iniziale);
-                finale = new PannelloConnetti(frame);
+                finale = new LoginPanel(frame);
                 frame.add(finale);
                 frame.repaint();
                 frame.validate();

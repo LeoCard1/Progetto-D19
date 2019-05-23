@@ -1,6 +1,5 @@
 package DeliveryManSystem.GraphicalInterfaceClientSystem;
 
-import DeliveryManSystem.DeliveryMan;
 import DeliveryManSystem.DeliveryManClient;
 
 import javax.swing.*;
@@ -30,11 +29,13 @@ public class Gui extends JFrame {
         setSize(new java.awt.Dimension(width,height));
         setResizable(false);
         setTitle("Versione Beta");
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Icons/amazonFakeIcon.png"));
+        setIconImage(image);
+
 
         //creazione e aggiunta pannello iniziale
 
-        add(new PannelloConnetti(this , fattorino));
-
+        add(new LoginPanel(this , fattorino , width , height));
         setVisible(true);
 
     }
