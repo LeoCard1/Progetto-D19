@@ -11,6 +11,12 @@ import java.io.IOException;
 
 import static java.awt.Font.ITALIC;
 
+/**
+ * This Class create the Login Panel and everything inside it
+ * @author Roberto Zappa
+ * @version 1.0
+ */
+
 public class LoginPanel extends JPanel implements ActionListener , Observer {
 
     private Frame frame;
@@ -31,6 +37,10 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
         this.frame = frame;
         SetLoginPanel();
     }
+
+    /**
+     * This method build the Login Panel
+     */
 
     private void SetLoginPanel(){
 
@@ -71,6 +81,11 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
     }
 
+    /**
+     * This method set the part of Panel relative of changing language
+     * @param panelPasswordId
+     */
+
     private void setLanguageSelection(JPanel panelPasswordId){
 
         JLabel labelLanguage = new JLabel("Language   :");
@@ -87,6 +102,11 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
         panelPasswordId.add(panelSelectLanguage);
 
     }
+
+    /**
+     * This method set the part of Panel relative of Password and Text Fields
+     * @param panelPasswordId
+     */
 
     private void setJTextFieldAndJPasswordField(JPanel panelPasswordId){
 
@@ -118,6 +138,11 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
     }
 
+    /**
+     * This method set the part of Panel relative of the error message visible if something go wrong with login credential
+     * @param buttonPanel
+     */
+
     private void setMessageError(JPanel buttonPanel){
 
         errorLabel = new JLabel();
@@ -129,6 +154,11 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
         buttonPanel.add(errorLabel);
 
     }
+
+    /**
+     * This method set the part of Panel relative of button
+     * @param buttonPanel
+     */
 
     private void setButton(JPanel buttonPanel){
 
@@ -147,11 +177,20 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
     }
 
+    /**
+     * This method set the action of the "Sign In" button
+     */
+
     private void setAction(){
 
         login.addActionListener(this);
 
     }
+
+    /**
+     * This method create change the panel if the credentials are right or call update method
+     * @param e
+     */
 
     public void actionPerformed(ActionEvent e) {
 
@@ -162,7 +201,7 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
                 password = null;
                 jpf = null;
                 frame.remove(this);
-                frame.add(new PannelloImpostazioni(frame));
+                frame.add(new PannelloIniziale(frame));
                 frame.repaint();
                 frame.validate();
 
@@ -180,6 +219,10 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
         }
 
     }
+
+    /**
+     * This method set the error message visible
+     */
 
     public void update() {
 

@@ -5,6 +5,12 @@ import DeliveryManSystem.DeliveryManClient;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class create the DeliveryManGui's Frame
+ * @author Roberto Zappa
+ * @version 0.1
+ */
+
 public class Gui extends JFrame {
 
     private Dimension screenSize;
@@ -17,6 +23,9 @@ public class Gui extends JFrame {
         ClientGUI();
     }
 
+    /**
+     * This method create the frame and add to it the first Panel
+     */
     public void ClientGUI() {
 
         //settings frame
