@@ -83,7 +83,7 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
     /**
      * This method set the part of Panel relative of changing language
-     * @param panelPasswordId
+     * @param panelPasswordId panel that contains everything that is in the half height part of the panel
      */
 
     private void setLanguageSelection(JPanel panelPasswordId){
@@ -105,7 +105,7 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
     /**
      * This method set the part of Panel relative of Password and Text Fields
-     * @param panelPasswordId
+     * @param panelPasswordId panel that contains everything that is in the half height part of the panel
      */
 
     private void setJTextFieldAndJPasswordField(JPanel panelPasswordId){
@@ -140,7 +140,7 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
     /**
      * This method set the part of Panel relative of the error message visible if something go wrong with login credential
-     * @param buttonPanel
+     * @param buttonPanel panel that contains everything that is in the half low part of the panel
      */
 
     private void setMessageError(JPanel buttonPanel){
@@ -157,7 +157,7 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
     /**
      * This method set the part of Panel relative of button
-     * @param buttonPanel
+     * @param buttonPanel panel that contains everything that is in the half low part of the panel
      */
 
     private void setButton(JPanel buttonPanel){
@@ -189,7 +189,7 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
     /**
      * This method create change the panel if the credentials are right or call update method
-     * @param e
+     * @param e The action listener
      */
 
     public void actionPerformed(ActionEvent e) {
