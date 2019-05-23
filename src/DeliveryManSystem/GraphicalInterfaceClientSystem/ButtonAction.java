@@ -21,13 +21,13 @@ public class ButtonAction  implements ActionListener {
     public void actionPerformed(ActionEvent event ) {
 
         switch (event.getActionCommand()){
-            case "impostazioni" :
+            /*case "impostazioni" :
                 frame.remove(iniziale);
                 finale = new PannelloImpostazioni(frame);
                 frame.add(finale);
                 frame.repaint();
                 frame.validate();
-                break;
+                break;*/
 
             /*case "connetti" :
                 frame.remove(iniziale);
