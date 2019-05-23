@@ -9,17 +9,17 @@ public class Gui extends JFrame {
 
     private Dimension screenSize;
     private int width,height;
-    private DeliveryManClient fattorino;
+    private DeliveryManClient deliveryman;
 
-    public Gui(DeliveryManClient fattorino){
+    public Gui(DeliveryManClient deliveryman){
 
-        this.fattorino = fattorino;
+        this.deliveryman = deliveryman;
         ClientGUI();
     }
 
     public void ClientGUI() {
 
-        //impostazioni frame
+        //settings frame
 
         screenSize = getToolkit().getScreenSize();
         setLayout(new BorderLayout());
@@ -28,14 +28,10 @@ public class Gui extends JFrame {
         height = screenSize.height/2;
         setSize(new java.awt.Dimension(width,height));
         setResizable(false);
-        setTitle("Versione Beta");
+        setTitle("Amazon for poor people");
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Icons/amazonFakeIcon.png"));
         setIconImage(image);
-
-
-        //creazione e aggiunta pannello iniziale
-
-        add(new LoginPanel(this , fattorino , width , height));
+        add(new LoginPanel(this , deliveryman, width , height));
         setVisible(true);
 
     }

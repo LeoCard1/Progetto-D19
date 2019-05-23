@@ -19,7 +19,7 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
     private DeliveryManClient deliveryman;
     private JPasswordField jpf;
     private JTextField jtf;
-    private JLabel indicazioni;
+    private JLabel errorLabel;
     private int width;
     private int height;
 
@@ -32,120 +32,118 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
         SetLoginPanel();
     }
 
-    public void SetLoginPanel(){
+    private void SetLoginPanel(){
 
-        //impostazioni pannelloBackground
+        //settings panelBackground
 
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createLineBorder(Color.black,height/80 ));
 
-        //impostazioni pannelloContenitore
+        //settings panelContainer
 
-        JPanel pannelloContenitore = new JPanel();
-        pannelloContenitore.setLayout(new GridLayout(2,1 ));
+        JPanel panelContainer = new JPanel();
+        panelContainer.setLayout(new GridLayout(2,1 ));
 
-        //impostazioni pannelloDatiDiAccesso
+        //settings panelPassword
 
-        JPanel pannelloPasswordId = new JPanel();
-        pannelloPasswordId.setLayout(new GridLayout(3,2));
-        pannelloPasswordId.setBorder(BorderFactory.createTitledBorder("Sign In"));
-        setLanguageSelection(pannelloPasswordId);
-        setJTextFieldAndJPasswordField(pannelloPasswordId);
+        JPanel panelPasswordId = new JPanel();
+        panelPasswordId.setLayout(new GridLayout(3,2));
+        panelPasswordId.setBorder(BorderFactory.createTitledBorder("Sign In"));
+        setLanguageSelection(panelPasswordId);
+        setJTextFieldAndJPasswordField(panelPasswordId);
 
-        //impostazione pannelloBottoni
+        //settings buttonPanel
 
-        JPanel pannelloBottoni = new JPanel();
-        pannelloBottoni.setLayout(new GridLayout(2,1));
-        pannelloBottoni.setBorder(BorderFactory.createEmptyBorder(0,height/50,height/10,height/50));
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(2,1));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0,height/50,height/10,height/50));
 
+        setMessageError(buttonPanel);
+        setButton(buttonPanel);
 
-        setMessageError(pannelloBottoni);
-        setBotton(pannelloBottoni);
+        //add to background panel
 
-        //aggiunta al pannello principale
-
-        pannelloContenitore.add(pannelloPasswordId);
-        pannelloContenitore.add(pannelloBottoni);
-        add(pannelloContenitore);
+        panelContainer.add(panelPasswordId);
+        panelContainer.add(buttonPanel);
+        add(panelContainer);
 
         setAction();
 
     }
 
-    private void setLanguageSelection(JPanel pannelloPasswordId){
+    private void setLanguageSelection(JPanel panelPasswordId){
 
         JLabel labelLanguage = new JLabel("Language   :");
-        JPanel pannelloLanguage = new JPanel();
-        pannelloLanguage.setBorder(BorderFactory.createEmptyBorder(height/15,0,0,width/7));
-        pannelloLanguage.add(labelLanguage);
+        JPanel panelLanguage = new JPanel();
+        panelLanguage.setBorder(BorderFactory.createEmptyBorder(height/15,0,0,width/7));
+        panelLanguage.add(labelLanguage);
 
-        JPanel pannelloSelectLanguage = new JPanel();
-        pannelloSelectLanguage.setBorder(BorderFactory.createEmptyBorder(height/15,0,0,0));
+        JPanel panelSelectLanguage = new JPanel();
+        panelSelectLanguage.setBorder(BorderFactory.createEmptyBorder(height/15,0,0,0));
         JComboBox language = new JComboBox(languageSelector);
-        pannelloSelectLanguage.add(language);
+        panelSelectLanguage.add(language);
 
-        pannelloPasswordId.add(pannelloLanguage);
-        pannelloPasswordId.add(pannelloSelectLanguage);
+        panelPasswordId.add(panelLanguage);
+        panelPasswordId.add(panelSelectLanguage);
 
     }
 
-    private void setJTextFieldAndJPasswordField(JPanel pannelloPasswordId){
+    private void setJTextFieldAndJPasswordField(JPanel panelPasswordId){
 
         JLabel labelPassword = new JLabel("Password   :");
         JLabel labelId = new JLabel("Id   :");
         jpf = new JPasswordField();
         jtf = new JTextField() ;
-        JPanel pannelloPassword = new JPanel();
-        pannelloPassword.setBorder(BorderFactory.createEmptyBorder(height/20,0,0,width/7));
-        pannelloPassword.add(labelPassword );
+        JPanel panelPassword = new JPanel();
+        panelPassword.setBorder(BorderFactory.createEmptyBorder(height/20,0,0,width/7));
+        panelPassword.add(labelPassword );
 
-        JPanel pannelloPasswordField = new JPanel();
-        pannelloPasswordField.setLayout(new GridLayout(2,1));
-        pannelloPasswordField.setBorder(BorderFactory.createEmptyBorder(height/20,0,0,0));
-        pannelloPasswordField.add(jpf);
+        JPanel panelPasswordField = new JPanel();
+        panelPasswordField.setLayout(new GridLayout(2,1));
+        panelPasswordField.setBorder(BorderFactory.createEmptyBorder(height/20,0,0,0));
+        panelPasswordField.add(jpf);
 
-        JPanel pannelloText = new JPanel();
-        pannelloText.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-        pannelloText.add(labelId);
+        JPanel panelText = new JPanel();
+        panelText.add(labelId);
 
-        JPanel pannelloTextField = new JPanel();
-        pannelloTextField.setLayout(new GridLayout(2,1));
-        pannelloTextField.setBorder(BorderFactory.createEmptyBorder(0,0,height/20,0));
-        pannelloTextField.add(jtf);
+        JPanel panelTextField = new JPanel();
+        panelTextField.setLayout(new GridLayout(2,1));
+        panelTextField.setBorder(BorderFactory.createEmptyBorder(0,0,height/20,0));
+        panelTextField.add(jtf);
 
-        pannelloPasswordId.add(pannelloPassword);
-        pannelloPasswordId.add(pannelloPasswordField);
-        pannelloPasswordId.add(pannelloText);
-        pannelloPasswordId.add(pannelloTextField);
+        panelPasswordId.add(panelPassword);
+        panelPasswordId.add(panelPasswordField);
+        panelPasswordId.add(panelText);
+        panelPasswordId.add(panelTextField);
 
     }
 
-    private void setMessageError(JPanel pannelloBottoni){
+    private void setMessageError(JPanel buttonPanel){
 
-        indicazioni = new JLabel();
+        errorLabel = new JLabel();
         ImageIcon imageIcon = new ImageIcon(new ImageIcon(getClass().getResource("Icons/problem.png")).getImage().getScaledInstance(width/5, height/10, Image.SCALE_DEFAULT));
-        indicazioni.setIcon(imageIcon);
+        errorLabel.setIcon(imageIcon);
         Font font = new Font("Arial" ,ITALIC , 15);
-        indicazioni.setBorder(BorderFactory.createTitledBorder( indicazioni.getBorder(),"Important Message!" , ITALIC , 0, font, Color.red));
-        indicazioni.setVisible(false);
-        pannelloBottoni.add(indicazioni);
+        errorLabel.setBorder(BorderFactory.createTitledBorder( errorLabel.getBorder(),"Important Message!" , ITALIC , 0, font, Color.red));
+        errorLabel.setVisible(false);
+        buttonPanel.add(errorLabel);
 
     }
 
-    private void setBotton(JPanel pannelloBottoni){
+    private void setButton(JPanel buttonPanel){
 
-        //creazione bottoni
+        //new button
 
         login = new JButton("Sign In");
 
-        //impostazione bottoni
+        //settings button
 
         login.setBackground(Color.orange);
         login.setFocusable(false);
 
-        //aggiunta bottoni
+        //add button
 
-        pannelloBottoni.add(login);
+        buttonPanel.add(login);
 
     }
 
@@ -161,7 +159,7 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
             String password = new String(jpf.getPassword());
             if (deliveryman.logIn(jtf.getText(),password)) {
-                password = "";
+                password = null;
                 jpf = null;
                 frame.remove(this);
                 frame.add(new PannelloImpostazioni(frame));
@@ -170,13 +168,13 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
             } else {
 
-                indicazioni.setText("Incorrect Password or Id");
+                errorLabel.setText("Incorrect Password or Id");
                 update();
             }
 
-        } catch (IOException eccezione) {
+        } catch (IOException exception) {
 
-            indicazioni.setText("Service unavailable");
+            errorLabel.setText("Service unavailable");
             update();
 
         }
@@ -185,7 +183,7 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
     public void update() {
 
-       indicazioni.setVisible(true);
+       errorLabel.setVisible(true);
 
     }
 
