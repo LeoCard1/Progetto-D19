@@ -1,8 +1,5 @@
 package DeliveryManSystem;
 
-
-import DeliveryManSystem.GraphicalInterfaceClientSystem.Gui;
-
 import java.io.IOException;
 
 public class DeliveryManMain {
