@@ -188,7 +188,7 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
     }
 
     /**
-     * This method create change the panel if the credentials are right or call update method
+     * This method create and change the panel if the credentials are right or call update method
      * @param e The action listener
      */
 

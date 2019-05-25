@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * This class create the DeliveryManGui's Frame
  * @author Roberto Zappa
- * @version 0.1
+ * @version 1
  */
 
 public class Gui extends JFrame {
@@ -24,7 +24,7 @@ public class Gui extends JFrame {
     }
 
     /**
-     * This method create the frame and add to it the first Panel
+     * This method create the frame and add to it the Login Panel
      */
     public void ClientGUI() {
 

@@ -72,8 +72,16 @@ public class ManagerConnect extends Thread {
     }
 
     public void authentication() throws IOException {
-        String[] division = readMessage().split("\t");
-        if(manager.getDeliveryMan(division[0])!=null && manager.getDeliveryMan(division[0]).getPassword().equals(division[1])){
+        String line = readMessage();
+
+        if (line.equals("")) {
+            send("notauthenticated");
+            return;
+        }
+
+        String[] division = line.split("\t");
+
+        if (manager.getDeliveryMan(division[0]).getPassword().equals(division[1])) {
             send("authenticated");
         } else {
             send("notauthenticated");
