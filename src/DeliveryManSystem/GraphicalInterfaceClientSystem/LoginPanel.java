@@ -36,6 +36,7 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
         this.deliveryman = deliveryman;
         this.frame = frame;
         SetLoginPanel();
+
     }
 
     /**
@@ -201,7 +202,7 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
                 password = null;
                 jpf = null;
                 frame.remove(this);
-                frame.add(new PannelloIniziale(frame));
+                frame.add(new PannelloIniziale(frame , deliveryman , width , height));
                 frame.repaint();
                 frame.validate();
 
