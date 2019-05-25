@@ -24,7 +24,7 @@ public class ManagerConnect extends Thread {
         this.start();
     }
 
-    /*
+    /**
      *  run:
      *  - se il messaggio del client è "DeliveryMan" il server resta in attesa di ricevere il messaggio che
      *  indica la richiesta di quel client, 2 casi possibili:
@@ -110,6 +110,7 @@ public class ManagerConnect extends Thread {
         manager.removeDeliveryDate(packID);
         manager.removePassword(packID);
     }
+
     public void packAdded() throws IOException {
         String boxToString = readMessage();
         String[] division = boxToString.split("\t");

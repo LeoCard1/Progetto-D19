@@ -14,7 +14,7 @@ import java.util.*;
 
 public class PickupPoint {
 
-    /*
+    /**
      *  -id: codice identificativo PickupPoint.
      *  -boxList: lista contenente tutte le Box.
      *  -availableBox: HashMap contenente le Box piene associate alla password per aprirle.
@@ -41,13 +41,11 @@ public class PickupPoint {
         for(int i = 0; i < numLargeBox; i++){
             boxList.add(new LargeBox());
         }
-
         server.start();
-
         createGUI();
     }
 
-    /*
+    /**
      *  -addPackage: consente di aggiungere pacchi alla lista, inoltre viene generata una password
      *  per sbloccare la box, quindi viene associata alla box aggiungendo password e box all'HashMap
      *  availableBox, viene inoltre notificato il ManagerServer dell'aggiunta del pacco. Restituisce

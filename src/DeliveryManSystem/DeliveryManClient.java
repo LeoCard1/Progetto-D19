@@ -20,7 +20,7 @@ public class DeliveryManClient {
     private DeliveryMan deliveryMan;
     private ArrayList<Observer> observers = new ArrayList<>();
 
-    /*
+    /**
      *  -logIn: si connette al ManagerServer e invia id e password per autenticarsi, in
      *  caso positivo viene creato un deliveryman con quell'id e password.
      *  -sendList: invia id e password del DeliveryMan al PickupPointServer, in caso di

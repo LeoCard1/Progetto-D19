@@ -59,13 +59,17 @@ public class AddPackDMPanel extends JPanel implements Observer {
     }
 
     public void updateBox(){
-        boxDM.removeAllItems();
-        for(DeliveryMan del : manager.getDeliveryMenList()) {
-            boxDM.addItem(del.getId());
+        if(boxDM.getItemCount()!=manager.getDeliveryMenList().size()) {
+            boxDM.removeAllItems();
+            for (DeliveryMan del : manager.getDeliveryMenList()) {
+                boxDM.addItem(del.getId());
+            }
         }
-        boxPack.removeAllItems();
-        for(Package pack : manager.getUnassignedPackagesList()) {
-            boxPack.addItem(pack.getId());
+        if(boxPack.getItemCount()!=manager.getUnassignedPackagesList().size()) {
+            boxPack.removeAllItems();
+            for (Package pack : manager.getUnassignedPackagesList()) {
+                boxPack.addItem(pack.getId());
+            }
         }
     }
 

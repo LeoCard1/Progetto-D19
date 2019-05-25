@@ -17,7 +17,7 @@ public class PickupPointClient {
         this.pickupPoint = pickupPoint;
     }
 
-    /*
+    /**
      *  -notifyOfPackageAdded: notifica il ManagerServer dell'aggiunta del pacco, invia il boxToString
      *  per far si che il Manager aggiorni il file DeliveryDate e invia la password della box contenente
      *  il pacco consegnato.
