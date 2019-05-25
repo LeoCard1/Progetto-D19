@@ -34,7 +34,6 @@ public class NewDMPanel extends JPanel {
             }
         });
 
-
         JPanel p1 = new JPanel();
         p1.setLayout(new GridLayout(1,2));
         p1.add(insertIDLabel); p1.add(insertID);

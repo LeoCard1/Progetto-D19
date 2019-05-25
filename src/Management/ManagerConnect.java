@@ -110,6 +110,7 @@ public class ManagerConnect extends Thread {
         manager.removeDeliveryDate(packID);
         manager.removePassword(packID);
     }
+
     public void packAdded() throws IOException {
         String boxToString = readMessage();
         String[] division = boxToString.split("\t");

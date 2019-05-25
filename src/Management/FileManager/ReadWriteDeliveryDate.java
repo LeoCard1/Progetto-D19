@@ -10,11 +10,11 @@ public class ReadWriteDeliveryDate {
          file = new File("src/Management/Archive/DeliveryDate");
     }
 
-    /*
-     *  insertText: aggiunge al file DeliveryDate la stringa passata come argomento.
-     *  removeText: rimuove dal file DeliveryDate la riga contenente il packID passato
+    /**
+     *  -insertText: aggiunge al file DeliveryDate la stringa passata come argomento.
+     *  -removeText: rimuove dal file DeliveryDate la riga contenente il packID passato
      *  come argomento.
-     *  getText: restituisce il testo del file DeliveryDate.
+     *  -getText: restituisce il testo del file DeliveryDate.
      */
 
     public void insertText(String text) throws IOException {

@@ -14,12 +14,12 @@ public class ReadWritePackagesList {
         file = new File("src/Management/Archive/PackagesList");
     }
 
-    /*
-     *  insertText: aggiunge al file PackagesList la stringa passata come argomento.
-     *  removeText: rimuove dal file PackagesList la riga contenente il packID passato
+    /**
+     *  -insertText: aggiunge al file PackagesList la stringa passata come argomento.
+     *  -removeText: rimuove dal file PackagesList la riga contenente il packID passato
      *  come argomento.
-     *  getText: restituisce il testo del file PackagesList.
-     *  getLineFromID: restituisce la riga contenente il packID passato come argomento.
+     *  -getText: restituisce il testo del file PackagesList.
+     *  -getLineFromID: restituisce la riga contenente il packID passato come argomento.
      */
 
     public void insertText(String text) throws IOException {

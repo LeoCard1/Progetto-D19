@@ -48,11 +48,9 @@ public class ViewPackPanel extends JPanel implements Observer {
         p1.setLayout(new GridLayout(2,1));
         p1.add(filterBox);  p1.add(buttonConfirm);
 
-
         JPanel p2 = new JPanel();
         p2.setLayout(new BorderLayout());
         p2.add(p1,BorderLayout.NORTH);
-
 
         JPanel p21 = new JPanel();
         p21.setLayout(new BorderLayout());
@@ -64,7 +62,6 @@ public class ViewPackPanel extends JPanel implements Observer {
 
         setLayout(new BorderLayout());
         add(p21, BorderLayout.WEST);  add(p3, BorderLayout.CENTER);
-
 
     }
 
