@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @version 1.0
  */
 
-public class DeliveryMan implements Observer {
+public class DeliveryMan {
 
     private String id;
     private String password;
@@ -44,15 +44,30 @@ public class DeliveryMan implements Observer {
         return password;
     }
 
+    public Package getPackage(String packID){
+        for(Package pack : packageList){
+            if(pack.getId().equals(packID)){
+                return pack;
+            }
+        }
+       return null;
+    }
+
     /**
      * This method add one pack into the deliveryman's array list
      * @param pack the pack that must be added
      */
 
     public void addPackage(Package pack){
+        if(!hasPackage(pack.getId())) {
+            packageList.add(pack);
+        }
+    }
 
-        packageList.add(pack);
-
+    public void removePackage(String packID){
+        if(hasPackage(packID)){
+            packageList.remove(getPackage(packID));
+        }
     }
 
     /**
@@ -92,7 +107,7 @@ public class DeliveryMan implements Observer {
      * This method wipe out all pack inside deliveryman's array list
      */
 
-    public void update() {
+    public void clearPackages() {
 
         packageList.clear();
 

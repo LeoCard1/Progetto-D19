@@ -116,7 +116,7 @@ public class ManagerConnect extends Thread {
         String[] division = boxToString.split("\t");
         String packID = division[1];
         if(manager.getDeliveryManFromPackID(packID)!=null){
-            manager.getDeliveryManFromPackID(packID).update();
+            manager.getDeliveryManFromPackID(packID).removePackage(packID);
         }
         manager.addDeliveryDate(boxToString);
         String password = readMessage();

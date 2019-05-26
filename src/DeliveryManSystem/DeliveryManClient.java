@@ -17,12 +17,12 @@ public class DeliveryManClient {
     private BufferedReader in = null;
     private PrintStream out = null;
     private Socket socket = null;
-    private DeliveryMan deliveryMan;
-    private ArrayList<Observer> observers = new ArrayList<>();
+    public DeliveryMan deliveryMan;
 
     /**
      *  -logIn: si connette al ManagerServer e invia id e password per autenticarsi, in
-     *  caso positivo viene creato un deliveryman con quell'id e password.
+     *  caso positivo viene creato un deliveryman con quell'id e password e viene richiamato
+     *  l'updateList.
      *  -sendList: invia id e password del DeliveryMan al PickupPointServer, in caso di
      *  autenticazione riuscita, invia al PickupPointServer la lista di pacchi in possesso
      *  dal corriere,  riceve dal PickupPointServer l'id dei pacchi e i relativi codici
@@ -40,7 +40,7 @@ public class DeliveryManClient {
     public boolean logIn(String id, String password) throws IOException {
          if (authenticationManager(id, password)) {
             deliveryMan = new DeliveryMan(id,password);
-            addObserver(deliveryMan);
+            updateList();
             return true;
          }  else {
             return false;
@@ -69,13 +69,14 @@ public class DeliveryManClient {
             System.err.println("Not authenticated!");
         }
         disconnect();
-        notifyObservers();
+        updateList();
     }
 
     public void updateList() throws IOException {
         connectManager();
         send("updatelist");
         send(deliveryMan.getId());
+        deliveryMan.clearPackages();
         addPackagesFromList();
         System.out.println("Package list updated");
         disconnect();
@@ -145,13 +146,4 @@ public class DeliveryManClient {
         socket.close();
     }
 
-    private void addObserver(Observer ob){
-        observers.add(ob);
-    }
-
-    private void notifyObservers(){
-        for(Observer ob : observers){
-            ob.update();
-        }
-    }
 }

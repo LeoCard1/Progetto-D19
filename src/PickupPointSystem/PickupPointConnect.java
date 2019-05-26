@@ -43,8 +43,12 @@ public class PickupPointConnect {
                 StringTokenizer st = new StringTokenizer(in.readLine());
                 while (st.hasMoreTokens()) {
                     String id = st.nextToken();
-                    int boxCode = pickupPoint.addPackage(new Package(id, Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken())));
-                    message.append("Pack: ").append(id).append(" Box number: ").append(boxCode).append("\n");
+                    int boxCode;
+                    if((boxCode = pickupPoint.addPackage(new Package(id, Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()))))!=0) {
+                        message.append("Pack: ").append(id).append(" Box number: ").append(boxCode).append("\n");
+                    } else {
+                        message.append("Pack: ").append(id).append(" No box available\n");
+                    }
                 }
             }
         } else {

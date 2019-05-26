@@ -17,14 +17,13 @@ import java.util.StringTokenizer;
 public class Manager implements Observer {
 
     /**
-     *  -deliveryManCode: password che deve inserire il DeliveryMan per accedere al PickupPoint.
      *  -deliveryMen: lista di DeliveryMan.
      *  -packages: lista di tutti i Package.
      *  -password: HashMap di packID associati a password per sbloccare la box in cui sono stati
      *  inseriti.
      *  -readWritePackagesList: reader e writer per il file PackageList.
      *  -readWriteDeliveryDate: reader e writer per il file DeliveryDate.
-     *  -server: server del Manager per ricevere richiete da DeliveryManClient e PickupPointClient.
+     *  -server: server del Manager per ricevere richieste da DeliveryManClient e PickupPointClient.
      */
 
     private ArrayList<DeliveryMan> deliveryMen = new ArrayList<>();
@@ -45,8 +44,8 @@ public class Manager implements Observer {
 
     /**
      *  -updatePackages: consente di aggiungere pacchi alla lista prendendo le
-     *  informazioni dal file di testo ReadWritePackagesList, se il pacco è gia
-     *  presente non viene aggiunto.
+     *  informazioni dal file di testo PackagesList, se il pacco è gia presente non
+     *  viene aggiunto.
      *  -removePackage: rimuove dal file PackagesList il pacco corrispondente all'id
      *  passato come argomento, quindi ReadWritePackagesList notifichera il manager del
      *  cambiamento che quindi effettuerà un update aggiornando l'arraylist packages.
