@@ -20,7 +20,7 @@ import static java.awt.Font.ITALIC;
 public class LoginPanel extends JPanel implements ActionListener , Observer {
 
     private Frame frame;
-    private String[] languageSelector = {"English" , "Italian"};
+    private String[] languageSelector = {SetDMLanguage.getInstance().setLoginPanel()[1], SetDMLanguage.getInstance().setLoginPanel()[2]};
     private JButton login;
     private DeliveryManClient deliveryman;
     private JPasswordField jpf;
@@ -28,6 +28,11 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
     private JLabel errorLabel;
     private int width;
     private int height;
+    private int n;
+    private JComboBox l;
+    private JLabel l1, l2, l3, l4;
+    private JPanel p;
+    private JButton b;
 
     LoginPanel(Frame frame , DeliveryManClient deliveryman , int width , int height){
 
@@ -59,9 +64,10 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
         JPanel panelPasswordId = new JPanel();
         panelPasswordId.setLayout(new GridLayout(3,2));
-        panelPasswordId.setBorder(BorderFactory.createTitledBorder("Sign In"));
+        panelPasswordId.setBorder(BorderFactory.createTitledBorder(SetDMLanguage.getInstance().setLoginPanel()[3]));
         setLanguageSelection(panelPasswordId);
         setJTextFieldAndJPasswordField(panelPasswordId);
+        p = panelPasswordId;
 
         //settings buttonPanel
 
@@ -89,18 +95,34 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
     private void setLanguageSelection(JPanel panelPasswordId){
 
-        JLabel labelLanguage = new JLabel("Language   :");
+        JLabel labelLanguage = new JLabel(SetDMLanguage.getInstance().setLoginPanel()[4]);
         JPanel panelLanguage = new JPanel();
         panelLanguage.setBorder(BorderFactory.createEmptyBorder(height/15,0,0,width/7));
         panelLanguage.add(labelLanguage);
+        l1 = labelLanguage;
 
         JPanel panelSelectLanguage = new JPanel();
         panelSelectLanguage.setBorder(BorderFactory.createEmptyBorder(height/15,0,0,0));
         JComboBox language = new JComboBox(languageSelector);
         panelSelectLanguage.add(language);
+        l = language;
 
         panelPasswordId.add(panelLanguage);
         panelPasswordId.add(panelSelectLanguage);
+
+        ActionListener languageListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(language.getSelectedIndex() == n){
+                    SetDMLanguage.getInstance().changeLanguage("english");
+                }else{
+                    SetDMLanguage.getInstance().changeLanguage("italiano");
+                }
+                refresh();
+            }
+        };
+
+        language.addActionListener(languageListener);
 
     }
 
@@ -111,13 +133,15 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
     private void setJTextFieldAndJPasswordField(JPanel panelPasswordId){
 
-        JLabel labelPassword = new JLabel("Password   :");
-        JLabel labelId = new JLabel("Id   :");
+        JLabel labelPassword = new JLabel(SetDMLanguage.getInstance().setLoginPanel()[5]);
+        JLabel labelId = new JLabel(SetDMLanguage.getInstance().setLoginPanel()[6]);
         jpf = new JPasswordField();
         jtf = new JTextField() ;
         JPanel panelPassword = new JPanel();
         panelPassword.setBorder(BorderFactory.createEmptyBorder(height/20,0,0,width/7));
         panelPassword.add(labelPassword );
+        l2 = labelPassword;
+        l3 = labelId;
 
         JPanel panelPasswordField = new JPanel();
         panelPasswordField.setLayout(new GridLayout(2,1));
@@ -150,9 +174,10 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
         ImageIcon imageIcon = new ImageIcon(new ImageIcon(getClass().getResource("Icons/problem.png")).getImage().getScaledInstance(width/5, height/10, Image.SCALE_DEFAULT));
         errorLabel.setIcon(imageIcon);
         Font font = new Font("Arial" ,ITALIC , 15);
-        errorLabel.setBorder(BorderFactory.createTitledBorder( errorLabel.getBorder(),"Important Message!" , ITALIC , 0, font, Color.red));
+        errorLabel.setBorder(BorderFactory.createTitledBorder( errorLabel.getBorder(),SetDMLanguage.getInstance().setLoginPanel()[7] , ITALIC , 0, font, Color.red));
         errorLabel.setVisible(false);
         buttonPanel.add(errorLabel);
+        l4 = errorLabel;
 
     }
 
@@ -165,7 +190,7 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
         //new button
 
-        login = new JButton("Sign In");
+        login = new JButton(SetDMLanguage.getInstance().setLoginPanel()[8]);
 
         //settings button
 
@@ -175,6 +200,7 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
         //add button
 
         buttonPanel.add(login);
+        b = login;
 
     }
 
@@ -208,13 +234,13 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
             } else {
 
-                errorLabel.setText("Incorrect Password or Id");
+                errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[9]);
                 update();
             }
 
         } catch (IOException exception) {
 
-            errorLabel.setText("Service unavailable");
+            errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[10]);
             update();
 
         }
@@ -228,6 +254,22 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
     public void update() {
 
        errorLabel.setVisible(true);
+
+    }
+
+    private void refresh() {
+        n = Integer.parseInt(SetDMLanguage.getInstance().setLoginPanel()[0]);
+        l.removeAllItems();
+        l.addItem(SetDMLanguage.getInstance().setLoginPanel()[1]);
+        l.addItem(SetDMLanguage.getInstance().setLoginPanel()[2]);
+        p.setBorder(BorderFactory.createTitledBorder(SetDMLanguage.getInstance().setLoginPanel()[3]));
+        l1.setText(SetDMLanguage.getInstance().setLoginPanel()[4]);
+        l2.setText(SetDMLanguage.getInstance().setLoginPanel()[5]);
+        l3.setText(SetDMLanguage.getInstance().setLoginPanel()[6]);
+        l4.setBorder(BorderFactory.createTitledBorder(SetDMLanguage.getInstance().setLoginPanel()[7]));
+        b.setText(SetDMLanguage.getInstance().setLoginPanel()[8]);
+
+
 
     }
 
