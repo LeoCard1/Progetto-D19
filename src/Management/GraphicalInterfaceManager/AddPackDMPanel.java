@@ -18,6 +18,10 @@ public class AddPackDMPanel extends JPanel implements Observer {
     private JComboBox boxDM = new JComboBox();
     private JComboBox boxPack = new JComboBox();
     private JTextArea areaInfo = new JTextArea();
+    private JLabel delID = new JLabel("Delivery Man ID: ");
+    private JLabel packID = new JLabel("Pack ID: ");
+    private JButton buttonConfirm = new JButton("Confirm");
+    private JScrollPane scrollPane = new JScrollPane();
 
     public AddPackDMPanel(Manager manager){
         this.manager = manager;
@@ -28,9 +32,7 @@ public class AddPackDMPanel extends JPanel implements Observer {
     public void initPanel(){
         update();
         areaInfo.setEditable(false);
-        JLabel delID = new JLabel("Delivery Man ID: ");
-        JLabel packID = new JLabel("Pack ID: ");
-        JButton buttonConfirm = new JButton("Confirm");
+        scrollPane.setViewportView(areaInfo);
         buttonConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -38,13 +40,17 @@ public class AddPackDMPanel extends JPanel implements Observer {
                     String delID = boxDM.getSelectedItem().toString();
                     String packID = boxPack.getSelectedItem().toString();
                     manager.addPackageToDeliveryMan(delID, packID);
-                    areaInfo.setText("Pack "+packID+" added to the Delivery Man "+delID);
+                    String oldText = areaInfo.getText();
+                    areaInfo.setText(oldText+"Pack "+packID+" added to the Delivery Man "+delID+"\n");
                 } else {
                     ErrorGUIMain guiError = new ErrorGUIMain("No object!", true);
                 }
             }
         });
+        orderComponents();
+    }
 
+    public void orderComponents(){
         JPanel p1 = new JPanel();
         p1.add(delID);  p1.add(boxDM);
 
@@ -55,7 +61,7 @@ public class AddPackDMPanel extends JPanel implements Observer {
         p3.add(p1); p3.add(p2); p3.add(buttonConfirm);
 
         setLayout(new BorderLayout());
-        add(p3,BorderLayout.NORTH); add(areaInfo, BorderLayout.CENTER);
+        add(p3,BorderLayout.NORTH); add(scrollPane, BorderLayout.CENTER);
     }
 
     public void updateBox(){

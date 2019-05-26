@@ -14,7 +14,10 @@ import java.util.ArrayList;
 public class ViewPackPanel extends JPanel implements Observer {
 
     private Manager manager;
+    private JButton buttonConfirm = new JButton("Confirm");
+    private JLabel packDetails = new JLabel("packID          height             length              width               password");
     private JComboBox filterBox = new JComboBox();
+    private JScrollPane scrollPane = new JScrollPane();
     private JTextArea packArea = new JTextArea();
     private ArrayList<String> filters = new ArrayList<>();
 
@@ -29,21 +32,21 @@ public class ViewPackPanel extends JPanel implements Observer {
         filters.add("Delivered");
         filters.add("Unassigned");
         filters.add("In transit");
-        
         for(String filter : filters){
             filterBox.addItem(filter);
         }
-
+        scrollPane.setViewportView(packArea);
         packArea.setEditable(false);
-        JLabel packDetails = new JLabel("packID          height             length              width               password");
-        JButton buttonConfirm = new JButton("Confirm");
         buttonConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 updatePackText();
             }
         });
+        orderComponents();
+    }
 
+    public void orderComponents(){
         JPanel p1 = new JPanel();
         p1.setLayout(new GridLayout(2,1));
         p1.add(filterBox);  p1.add(buttonConfirm);
@@ -58,11 +61,10 @@ public class ViewPackPanel extends JPanel implements Observer {
 
         JPanel p3 = new JPanel();
         p3.setLayout(new BorderLayout());
-        p3.add(packDetails, BorderLayout.NORTH);   p3.add(packArea, BorderLayout.CENTER);
+        p3.add(packDetails, BorderLayout.NORTH);   p3.add(scrollPane, BorderLayout.CENTER);
 
         setLayout(new BorderLayout());
         add(p21, BorderLayout.WEST);  add(p3, BorderLayout.CENTER);
-
     }
 
     public void updatePackText(){

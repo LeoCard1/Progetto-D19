@@ -13,8 +13,13 @@ public class ViewDMPanel extends JPanel implements Observer {
 
     private Manager manager;
     private JComboBox boxDM = new JComboBox();
+    private JScrollPane scrollPane = new JScrollPane();
     private JTextArea infoPack = new JTextArea();
     private JTextField infoDM = new JTextField();
+    private JLabel descriptionPack = new JLabel("packID          height             length              width");
+    private JLabel password = new JLabel("Password");
+    private JLabel select = new JLabel("Select DM: ");
+    private JButton buttonConfirm = new JButton("Confirm");
 
     public ViewDMPanel(Manager manager){
         this.manager= manager;
@@ -24,19 +29,19 @@ public class ViewDMPanel extends JPanel implements Observer {
 
     public void initPanel(){
         update();
+        scrollPane.setViewportView(infoPack);
         infoPack.setEditable(false);
         infoDM.setEditable(false);
-        JLabel descriptionPack = new JLabel("packID          height             length              width");
-        JLabel password = new JLabel("Password");
-        JLabel select = new JLabel("Select DM:");
-        JButton buttonConfirm = new JButton("Confirm");
         buttonConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 updateText();
             }
         });
+        orderComponents();
+    }
 
+    public void orderComponents(){
         JPanel p0 = new JPanel();
         p0.setLayout(new GridLayout(1,2));
         p0.add(select); p0.add(boxDM);
@@ -63,19 +68,10 @@ public class ViewDMPanel extends JPanel implements Observer {
 
         JPanel p5 = new JPanel();
         p5.setLayout(new BorderLayout());
-        p5.add(descriptionPack,BorderLayout.NORTH); p5.add(infoPack,BorderLayout.CENTER);
+        p5.add(descriptionPack,BorderLayout.NORTH); p5.add(scrollPane,BorderLayout.CENTER);
 
         setLayout(new BorderLayout());
         add(p41, BorderLayout.WEST);  add(p5, BorderLayout.CENTER);
-    }
-
-    @Override
-    public void update() {
-        boxDM.removeAllItems();
-        for(DeliveryMan del : manager.getDeliveryMenList()) {
-            boxDM.addItem(del.getId());
-        }
-        updateText();
     }
 
     public void updateText(){
@@ -85,5 +81,14 @@ public class ViewDMPanel extends JPanel implements Observer {
             infoPack.setText(del.packageListToString());
             infoDM.setText(del.getPassword());
         }
+    }
+
+    @Override
+    public void update() {
+        boxDM.removeAllItems();
+        for(DeliveryMan del : manager.getDeliveryMenList()) {
+            boxDM.addItem(del.getId());
+        }
+        updateText();
     }
 }

@@ -13,6 +13,9 @@ public class NewDMPanel extends JPanel {
     private Manager manager;
     private JTextField insertID = new JTextField();
     private JTextArea infoArea = new JTextArea();
+    private JScrollPane scrollPane = new JScrollPane();
+    private JLabel insertIDLabel = new JLabel("Insert ID: ");
+    private JButton buttonConfirm = new JButton("Confirm");
 
     public NewDMPanel(Manager manager){
         this.manager = manager;
@@ -20,9 +23,8 @@ public class NewDMPanel extends JPanel {
     }
 
     public void initPanel(){
+        scrollPane.setViewportView(infoArea);
         infoArea.setEditable(false);
-        JLabel insertIDLabel = new JLabel("Insert ID: ");
-        JButton buttonConfirm = new JButton("Confirm");
         buttonConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -33,7 +35,10 @@ public class NewDMPanel extends JPanel {
                 }
             }
         });
+        orderComponents();
+    }
 
+    public void orderComponents(){
         JPanel p1 = new JPanel();
         p1.setLayout(new GridLayout(1,2));
         p1.add(insertIDLabel); p1.add(insertID);
@@ -51,8 +56,6 @@ public class NewDMPanel extends JPanel {
         p31.add(p3,BorderLayout.WEST);  p31.add(new JPanel(),BorderLayout.CENTER);
 
         setLayout(new BorderLayout());
-        add(p31,BorderLayout.WEST);  add(infoArea, BorderLayout.CENTER);
-
+        add(p31,BorderLayout.WEST);  add(scrollPane, BorderLayout.CENTER);
     }
-
 }

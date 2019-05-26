@@ -22,17 +22,15 @@ public class ManagerFrame extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        initPanel();
+        initFrame();
     }
 
-    private void initPanel(){
+    private void initFrame(){
         JTabbedPane tabPan = new JTabbedPane();
         add(tabPan);
-        tabPan.addTab("New DeliveryMan",new NewDMPanel(manager));
-        tabPan.addTab("Add Pack To DeliveryMan",new AddPackDMPanel(manager));
         tabPan.addTab("View Packages", new ViewPackPanel(manager));
         tabPan.addTab("View Delivery Man", new ViewDMPanel(manager));
-
-
+        tabPan.addTab("Add Pack To DeliveryMan",new AddPackDMPanel(manager));
+        tabPan.addTab("New DeliveryMan",new NewDMPanel(manager));
     }
 }

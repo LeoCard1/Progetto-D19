@@ -108,9 +108,7 @@ public class DeliveryMan {
      */
 
     public void clearPackages() {
-
         packageList.clear();
-
     }
 
 }
