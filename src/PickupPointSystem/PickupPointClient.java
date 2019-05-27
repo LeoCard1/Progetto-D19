@@ -11,11 +11,6 @@ public class PickupPointClient {
     BufferedReader in = null;
     PrintStream out = null;
     Socket socket = null;
-    PickupPoint pickupPoint;
-
-    public PickupPointClient(PickupPoint pickupPoint){
-        this.pickupPoint = pickupPoint;
-    }
 
     /**
      *  -notifyOfPackageAdded: notifica il ManagerServer dell'aggiunta del pacco, invia il boxToString

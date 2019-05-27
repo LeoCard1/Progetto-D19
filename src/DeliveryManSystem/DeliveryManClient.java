@@ -17,7 +17,7 @@ public class DeliveryManClient {
     private BufferedReader in = null;
     private PrintStream out = null;
     private Socket socket = null;
-    public DeliveryMan deliveryMan;
+    private DeliveryMan deliveryMan;
 
     /**
      *  -logIn: si connette al ManagerServer e invia id e password per autenticarsi, in

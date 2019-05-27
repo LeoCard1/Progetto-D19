@@ -18,10 +18,8 @@ public class DeliveryMan {
     private ArrayList<Package> packageList = new ArrayList<>(40);
 
     public DeliveryMan(String id, String password){
-
         this.password=password;
         this.id = id;
-
     }
 
     /**
@@ -30,7 +28,6 @@ public class DeliveryMan {
      */
 
     public String getId(){
-
         return id;
     }
 
@@ -40,7 +37,6 @@ public class DeliveryMan {
      */
 
     public String getPassword(){
-
         return password;
     }
 
@@ -77,14 +73,12 @@ public class DeliveryMan {
      */
 
     public boolean hasPackage(String packID){
-
         for(Package pack : packageList){
             if(pack.getId().equals(packID)){
                 return true;
             }
         }
         return false;
-
     }
 
     /**
@@ -94,13 +88,11 @@ public class DeliveryMan {
      */
 
     public String  packageListToString(){
-
         String text="";
         for(Package pack : packageList){
             text += pack.toString()+"\n";
         }
         return text;
-
     }
 
     /**

@@ -35,7 +35,8 @@ public class PickupPointConnect {
     public void connect() throws IOException {
         StringBuilder message = new StringBuilder();
         String credentials = readLine();
-        if (pickupPoint.checkDeliveryManCredentials(credentials)) {
+        PickupPointClient piPoClient = new PickupPointClient();
+        if (piPoClient.checkDeliveryManCredentials(credentials)) {
             send("authenticated");
             System.out.println("Authenticated");
             while (!in.ready()) ;

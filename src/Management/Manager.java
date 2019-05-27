@@ -23,7 +23,6 @@ public class Manager implements Observer {
      *  inseriti.
      *  -readWritePackagesList: reader e writer per il file PackageList.
      *  -readWriteDeliveryDate: reader e writer per il file DeliveryDate.
-     *  -server: server del Manager per ricevere richieste da DeliveryManClient e PickupPointClient.
      */
 
     private ArrayList<DeliveryMan> deliveryMen = new ArrayList<>();
@@ -31,11 +30,11 @@ public class Manager implements Observer {
     private HashMap<String,String> password = new HashMap<>();
     private ReadWritePackagesList readWritePackagesList = new ReadWritePackagesList();
     private ReadWriteDeliveryDate readWriteDeliveryDate = new ReadWriteDeliveryDate();
-    private ManagerServer server = new ManagerServer(this);
     private ArrayList<Observer> observers = new ArrayList<>();
 
 
     public Manager() throws IOException {
+        createServer();
         createGUI();
         readWritePackagesList.addObserver(this);
         updatePackages();
@@ -55,8 +54,7 @@ public class Manager implements Observer {
      *  in input.
      *  -addPackageToDeliveryMan: permette di aggiungere pacchi ad un determinato DeliveryMan
      *  dati ID del DeliveryMan e ID del pacco, è consentito solo se il pacco non è stato
-     *  assegnato a nessun altro deliveryman, una volta aggiunto il pacco viene rimosso
-     *  dagli unassignedPackage.
+     *  assegnato a nessun altro deliveryman.
      *  -getUnassignedPackagesList: ritorna i pacchi non ancora affidati ad un corriere,
      *  controlla se il pacco non è assegnato ad un corriere e se non è presente nell'
      *  HashMap password dei pacchi consegnati.
@@ -227,6 +225,11 @@ public class Manager implements Observer {
         for(Observer ob : observers){
             ob.update();
         }
+    }
+
+    public void createServer() throws IOException {
+        ManagerServer server = new ManagerServer(this);
+        server.start();
     }
 
     public void createGUI(){

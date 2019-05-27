@@ -1,8 +1,6 @@
 package PickupPointSystem;
 
 
-import PickupPointSystem.GraphicalInterface.ErrorGUI.ErrorGUIMain;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;

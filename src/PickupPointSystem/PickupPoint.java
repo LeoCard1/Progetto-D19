@@ -19,16 +19,15 @@ public class PickupPoint {
      *  -boxList: lista contenente tutte le Box.
      *  -availableBox: HashMap contenente le Box piene associate alla password per aprirle.
      *  -obsList: lista di observer.
-     *  -server: server del PickupPoint per comunicare con il DeliveryManClient.
-     *  -client: client del PickupPoint per comunicare con il ManagerServer.
+     *  -piPoClient: client del PickupPoint, comunica col ManagerServer, viene utilizzato per
+     *  notificare al Manager consegne e ritiri di pacchi.
      */
 
     private String id;
     private ArrayList<Box> boxList = new ArrayList<>();
     private HashMap<String, Box> availableBox = new HashMap<>();
     private ArrayList<Observer> obsList = new ArrayList<>();
-    private PickupPointServer server = new PickupPointServer(this);
-    private PickupPointClient client = new PickupPointClient(this);
+    private PickupPointClient piPoClient = new PickupPointClient();
 
     public PickupPoint(String id, int numSmallBox, int numMediumBox, int numLargeBox) throws IOException {
         this.id = id;
@@ -41,7 +40,7 @@ public class PickupPoint {
         for(int i = 0; i < numLargeBox; i++){
             boxList.add(new LargeBox());
         }
-        server.start();
+        createServer();
         createGUI();
     }
 
@@ -66,7 +65,7 @@ public class PickupPoint {
                 box.addPackage(pack);
                 String password = generateBoxPassword(box.toString());
                 availableBox.put(password, box);
-                notifyOfPackageAdded(box.toString(),password);
+                piPoClient.notifyOfPackageAdded(box.toString(),password);
                 notifyObservers();
                 return box.getCode();
             }
@@ -82,7 +81,7 @@ public class PickupPoint {
             pack = box.getPack();
             box.removePackage();
             availableBox.remove(cod);
-            notifyOfPackagePickedUp(pack.getId());
+            piPoClient.notifyOfPackagePickedUp(pack.getId());
             notifyObservers();
         }
         catch (NullPointerException e) {
@@ -92,6 +91,15 @@ public class PickupPoint {
             e.printStackTrace();
         }
     }
+
+    public Box getBoxFromIndex(int index) {
+        return boxList.get(index);
+    }
+
+    public Size getBoxSizeGivenIndex(int index) {
+        return getBoxFromIndex(index).getSize();
+    }
+
 
     public String generateBoxPassword(String boxToString) {
         String[] division = boxToString.split("\t");
@@ -107,6 +115,11 @@ public class PickupPoint {
         }
         password = password + division[0] + division[2];
         return password.replaceAll("\\s+","");
+    }
+
+    private void createServer() throws IOException {
+        PickupPointServer server = new PickupPointServer(this);
+        server.start();
     }
 
     private void createGUI() {
@@ -128,23 +141,4 @@ public class PickupPoint {
         }
     }
 
-    public Box getBoxFromIndex(int index) {
-        return boxList.get(index);
-    }
-
-    public Size getBoxSizeGivenIndex(int index) {
-        return getBoxFromIndex(index).getSize();
-    }
-
-    public void notifyOfPackageAdded(String boxToString, String password) throws IOException {
-        client.notifyOfPackageAdded(boxToString,password);
-    }
-
-    public void notifyOfPackagePickedUp(String packID) throws IOException {
-        client.notifyOfPackagePickedUp(packID);
-    }
-
-    public boolean checkDeliveryManCredentials(String credentials) throws IOException{
-        return client.checkDeliveryManCredentials(credentials);
-    }
 }

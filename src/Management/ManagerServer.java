@@ -13,7 +13,6 @@ public class ManagerServer extends Thread{
         this.manager=manager;
         server = new ServerSocket(5000);
         System.out.println("[0] ManagerServer waiting on port 5000...");
-        this.start();
     }
 
     /**
