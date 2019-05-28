@@ -31,7 +31,8 @@ public class ErrorGUIMain extends JFrame {
         initPanel(message);
 
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        if (closeProgram) setDefaultCloseOperation(EXIT_ON_CLOSE);
+        else setDefaultCloseOperation(HIDE_ON_CLOSE);
     }
 
     private void initPanel(String message) {

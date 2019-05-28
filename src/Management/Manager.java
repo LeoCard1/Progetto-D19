@@ -75,11 +75,11 @@ public class Manager implements Observer {
                 notifyObserver();
                 return true;
             } else {
-                ErrorGUIMain guiError = new ErrorGUIMain("Existing ID", true);
+                new ErrorGUIMain("Existing ID", false);
                 return false;
             }
         } else {
-            ErrorGUIMain guiError = new ErrorGUIMain("ID too short!", true);
+            new ErrorGUIMain("ID too short!", false);
             return false;
         }
     }
@@ -99,7 +99,7 @@ public class Manager implements Observer {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorGUIMain guiError = new ErrorGUIMain(e.getMessage(), true);
+            new ErrorGUIMain(e.getMessage(), false);
         }
         notifyObserver();
     }
@@ -125,7 +125,7 @@ public class Manager implements Observer {
             del.addPackage(unasspack);
             notifyObserver();
         } else {
-            ErrorGUIMain guiError = new ErrorGUIMain("Invalid ID!", true);
+            new ErrorGUIMain("Invalid ID!", false);
         }
     }
 
