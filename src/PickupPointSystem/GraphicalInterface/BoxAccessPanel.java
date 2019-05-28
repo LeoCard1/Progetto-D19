@@ -6,6 +6,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author Sergio Gentilini
+ * @version 1.0.1
+ */
+
 public class BoxAccessPanel extends JPanel {
     private PickupPoint piPo;
     private GraIntMain gra;
@@ -15,6 +20,12 @@ public class BoxAccessPanel extends JPanel {
     private JLabel l;
     private int n;
 
+    /**
+     * This is the constructor.
+     * @param pipo The pickup point.
+     * @param gra The GUI itself.
+     */
+
     public BoxAccessPanel(PickupPoint pipo, GraIntMain gra) {
         piPo = pipo;
         this.gra = gra;
@@ -23,11 +34,20 @@ public class BoxAccessPanel extends JPanel {
         initPanel();
     }
 
+    /**
+     * This method initialises the panel.
+     */
+
     private void initPanel() {
         add(languagePanel());
         ins = new InsertCodePanel(piPo);
         add(ins);
     }
+
+    /**
+     * The 'language' part of the panel.
+     * @return The panel that has been created.
+     */
 
     private JPanel languagePanel() {
         JPanel langPan = new JPanel();
@@ -65,6 +85,10 @@ public class BoxAccessPanel extends JPanel {
 
         return langPan;
     }
+
+    /**
+     * The refresh method is needed after changing the language.
+     */
 
     private void refresh() {
         n = Integer.parseInt(SetLanguage.getInstance().setBoxAccessPanel()[0]);
