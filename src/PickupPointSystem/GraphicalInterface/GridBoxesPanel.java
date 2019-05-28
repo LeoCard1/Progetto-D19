@@ -9,10 +9,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * @author Sergio Gentilini
+ * @version 1.0.1
+ */
+
 public class GridBoxesPanel extends JPanel implements Observer {
     private PickupPoint piPo;
     private JPanel mainPanel;
     private int numBox;
+
+    /**
+     * The constructor.
+     * @param piPo The pickup point.
+     */
 
 
     public GridBoxesPanel(PickupPoint piPo) {
@@ -22,6 +32,10 @@ public class GridBoxesPanel extends JPanel implements Observer {
 
         initPanel();
     }
+
+    /**
+     * This method initialises the panel.
+     */
 
     private void initPanel() {
         numBox=0;
@@ -56,6 +70,13 @@ public class GridBoxesPanel extends JPanel implements Observer {
 
     }
 
+    /**
+     * A method to create the grid-like boxes panel.
+     * @param elements The number of boxes of the same type (small,
+     *                 medium etc.).
+     * @return The panel that has been created.
+     */
+
     private JPanel makeGrid(int elements) {
         int rows = 4;
         while (elements%rows != 0) {
@@ -79,6 +100,10 @@ public class GridBoxesPanel extends JPanel implements Observer {
 
         return grid;
     }
+
+    /**
+     * The interface is updated after a package is added or removed.
+     */
 
     @Override
     public void update() {
