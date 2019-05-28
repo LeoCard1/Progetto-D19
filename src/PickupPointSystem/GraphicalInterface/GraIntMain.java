@@ -6,6 +6,11 @@ import ObserverPattern.Observer;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author Sergio Gentilini
+ * @version 1.0.1
+ */
+
 public class GraIntMain extends JFrame implements Observer {
     private PickupPoint piPo;
     private ViewBoxesPanel viewBoxesPanel;
@@ -13,7 +18,12 @@ public class GraIntMain extends JFrame implements Observer {
     private int width;
     private JTabbedPane t; // variabile necessaria per cambiare la lingua delle tab (più informazioni nella classe SetLanguage)
 
-    public GraIntMain(PickupPoint pipo) throws HeadlessException {
+    /**
+     * The constructor.
+     * @param pipo The pickup point.
+     */
+
+    public GraIntMain(PickupPoint pipo){
         piPo = pipo;
         Toolkit tk = Toolkit.getDefaultToolkit();
         height = tk.getScreenSize().height;
@@ -28,6 +38,10 @@ public class GraIntMain extends JFrame implements Observer {
 
         initPanel();
     }
+
+    /**
+     * This method initialises the panel.
+     */
 
     private void initPanel() {
         JTabbedPane tabP = new JTabbedPane();
@@ -44,11 +58,19 @@ public class GraIntMain extends JFrame implements Observer {
         t = tabP;
     }
 
+    /**
+     * Refresh after changing the language.
+     */
+
     public void refresh() {
         setTitle(SetLanguage.getInstance().setGraIntMain()[0]);
         t.setTitleAt(0, SetLanguage.getInstance().setGraIntMain()[1]);
         t.setTitleAt(1, SetLanguage.getInstance().setGraIntMain()[2]);
     }
+
+    /**
+     * The interface is updated after a package is added or removed.
+     */
 
     @Override
     public void update() {
