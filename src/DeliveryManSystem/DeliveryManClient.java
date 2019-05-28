@@ -17,6 +17,7 @@ public class DeliveryManClient {
     private BufferedReader in = null;
     private PrintStream out = null;
     private Socket socket = null;
+    private boolean logged = false;
     private DeliveryMan deliveryMan;
 
     /**
@@ -40,6 +41,7 @@ public class DeliveryManClient {
     public boolean logIn(String id, String password) throws IOException {
          if (authenticationManager(id, password)) {
             deliveryMan = new DeliveryMan(id,password);
+            logged = true;
             updateList();
             return true;
          }  else {
@@ -61,6 +63,8 @@ public class DeliveryManClient {
     }
 
     public void sendList() throws IOException {
+        if (!logged) return;
+
         if(authenticationPickupPoint()){
             System.out.println("Authenticated");
             send(deliveryMan.packageListToString());
@@ -73,6 +77,8 @@ public class DeliveryManClient {
     }
 
     public void updateList() throws IOException {
+        if (!logged) return;
+
         connectManager();
         send("updatelist");
         send(deliveryMan.getId());

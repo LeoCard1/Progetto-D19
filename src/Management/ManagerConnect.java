@@ -81,11 +81,16 @@ public class ManagerConnect extends Thread {
 
         String[] division = line.split("\t");
 
-        if (manager.getDeliveryMan(division[0]).getPassword().equals(division[1])) {
-            send("authenticated");
-        } else {
-            send("notauthenticated");
+        DeliveryMan delMan = manager.getDeliveryMan(division[0]);
+
+        if (delMan != null) {
+            if (delMan.getPassword().equals(division[1])) {
+                send("authenticated");
+                return;
+            }
         }
+
+        send("notauthenticated");
     }
 
     public void sendList() throws IOException {
