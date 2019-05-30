@@ -8,9 +8,9 @@ import java.net.Socket;
 
 public class PickupPointClient {
 
-    BufferedReader in = null;
-    PrintStream out = null;
-    Socket socket = null;
+    private BufferedReader in = null;
+    private PrintStream out = null;
+    private Socket socket = null;
 
     /**
      *  -notifyOfPackageAdded: notifica il ManagerServer dell'aggiunta del pacco, invia il boxToString

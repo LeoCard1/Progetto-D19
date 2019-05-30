@@ -5,6 +5,9 @@ import ObserverPattern.Observer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+
+import static java.awt.Toolkit.getDefaultToolkit;
 
 /**
  * @author Sergio Gentilini
@@ -22,7 +25,6 @@ public class ViewBoxesPanel extends JPanel implements Observer {
 
     public ViewBoxesPanel(PickupPoint pipo) {
         piPo = pipo;
-
         setLayout(new BorderLayout());
         initPanel();
     }

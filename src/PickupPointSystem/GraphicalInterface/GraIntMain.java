@@ -32,6 +32,7 @@ public class GraIntMain extends JFrame implements Observer {
         setSize(width/2, height/2);
         setLocation(width/4, height/4);
 
+        setResizable(false);
         setTitle(SetLanguage.getInstance().setGraIntMain()[0]);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -44,6 +45,8 @@ public class GraIntMain extends JFrame implements Observer {
      */
 
     private void initPanel() {
+        setTheme("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+
         JTabbedPane tabP = new JTabbedPane();
         add(tabP);
 
@@ -56,6 +59,25 @@ public class GraIntMain extends JFrame implements Observer {
         tabP.addTab(SetLanguage.getInstance().setGraIntMain()[2], viewBoxesPanel);
 
         t = tabP;
+    }
+
+    /**
+     * This method changes the frame theme.
+     * @param className
+     */
+
+    public void setTheme(String className){
+        try {
+            UIManager.setLookAndFeel(className);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
