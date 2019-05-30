@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static java.awt.Toolkit.getDefaultToolkit;
+
 /**
  * @author Sergio Gentilini
  * @version 1.0.1
@@ -18,12 +20,13 @@ public class GridBoxesPanel extends JPanel implements Observer {
     private PickupPoint piPo;
     private JPanel mainPanel;
     private int numBox;
+    private int width;
+    private int height;
 
     /**
      * The constructor.
      * @param piPo The pickup point.
      */
-
 
     public GridBoxesPanel(PickupPoint piPo) {
         this.piPo = piPo;
@@ -45,9 +48,10 @@ public class GridBoxesPanel extends JPanel implements Observer {
 
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension screenSize = tk.getScreenSize();
+        width = screenSize.width;
+        height = screenSize.height;
 
-        jp.setPreferredSize(new Dimension((screenSize.width/3), (screenSize.height/3)));
-
+        jp.setPreferredSize(new Dimension(width/4, height/3));
         add(jp);
 
         ArrayList<Box> boxList =  piPo.getBoxList();
@@ -91,14 +95,45 @@ public class GridBoxesPanel extends JPanel implements Observer {
             JButton bu = new JButton(Integer.toString(box.getCode()));
             bu.setFont(new Font(Font.SERIF, Font.PLAIN, 15));
             if(box.isAvailable()){
-                bu.setForeground(Color.GREEN);
+                bu.setForeground(Color.decode("#228b22"));
             } else bu.setForeground(Color.RED);
-            bu.setBackground(Color.YELLOW);
+            bu.setBackground(Color.ORANGE);
             grid.add(bu);
             numBox++;
         }
-
+        grid.setBackground(Color.ORANGE);
         return grid;
+    }
+
+    /**
+     * This method sets the panel background.
+     * @param g
+     */
+    
+    @Override
+    public void paintComponent(Graphics g){
+        setOpaque(false);
+        Image img = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/wallbackground.jpg");
+        img = img.getScaledInstance(width/2,height/2,0);
+        loadImage(img);
+        g.drawImage(img,0,0,this);
+        super.paintComponent(g);
+    }
+
+    /**
+     * This method ensures that the image is loaded into memory before being used,
+     * blocks the execution of the code until the image is actually loaded into
+     * memory.
+     * @param img
+     */
+    private void loadImage(Image img){
+        MediaTracker track = new MediaTracker(this);
+        track.addImage(img,0);
+        try {
+            track.waitForID(0);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
