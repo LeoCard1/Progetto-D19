@@ -9,9 +9,14 @@ import static java.awt.Toolkit.getDefaultToolkit;
 
 public class ButtonBox extends JButton {
 
+    /**
+     * The constructor.
+     * @param boxCode
+     */
+
     public ButtonBox(String boxCode){
         super(boxCode);
-        
+
         Image packImage = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/pack.jpg");
         Image emptyBoxImage = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/emptybox.jpg");
 

@@ -25,8 +25,6 @@ public class GridBoxesPanel extends JPanel implements Observer {
     private int numBox;
     private int width;
     private int height;
-    private Image packImage;
-    private Image darkImage;
 
     /**
      * The constructor.
@@ -110,12 +108,6 @@ public class GridBoxesPanel extends JPanel implements Observer {
         grid.setBackground(Color.decode("#FF8C00"));
         return grid;
     }
-
-    /**
-     * This method shows an image on button when clicked.
-     * @param bu
-     */
-
 
     /**
      * This method sets the panel background.
