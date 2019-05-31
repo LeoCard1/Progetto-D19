@@ -7,6 +7,9 @@ import ObserverPattern.Observer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.http.WebSocket;
 import java.util.ArrayList;
 
 import static java.awt.Toolkit.getDefaultToolkit;
@@ -22,6 +25,8 @@ public class GridBoxesPanel extends JPanel implements Observer {
     private int numBox;
     private int width;
     private int height;
+    private Image packImage;
+    private Image darkImage;
 
     /**
      * The constructor.
@@ -86,24 +91,31 @@ public class GridBoxesPanel extends JPanel implements Observer {
         while (elements%rows != 0) {
             rows -= 1;
         }
-
         JPanel grid = new JPanel();
         grid.setLayout(new GridLayout(rows, elements/rows));
 
         for (int i = 0; i < elements; i++) {
             Box box = piPo.getBoxFromIndex(numBox);
-            JButton bu = new JButton(Integer.toString(box.getCode()));
-            bu.setFont(new Font(Font.SERIF, Font.PLAIN, 15));
+            ButtonBox bu = new ButtonBox(Integer.toString(box.getCode()));
+            bu.setFont(new Font(Font.SERIF, Font.BOLD, 10));
             if(box.isAvailable()){
                 bu.setForeground(Color.decode("#228b22"));
-            } else bu.setForeground(Color.RED);
-            bu.setBackground(Color.ORANGE);
+            } else{
+                bu.setForeground(Color.RED);
+            }
+            bu.setBackground(Color.decode("#FF8C00"));
             grid.add(bu);
             numBox++;
         }
-        grid.setBackground(Color.ORANGE);
+        grid.setBackground(Color.decode("#FF8C00"));
         return grid;
     }
+
+    /**
+     * This method shows an image on button when clicked.
+     * @param bu
+     */
+
 
     /**
      * This method sets the panel background.
@@ -114,7 +126,7 @@ public class GridBoxesPanel extends JPanel implements Observer {
     public void paintComponent(Graphics g){
         setOpaque(false);
         Image img = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/wallbackground.jpg");
-        img = img.getScaledInstance(width/2,height/2,0);
+        img = img.getScaledInstance(width/2,height/2,Image.SCALE_DEFAULT);
         loadImage(img);
         g.drawImage(img,0,0,this);
         super.paintComponent(g);
