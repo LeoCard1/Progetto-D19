@@ -10,7 +10,7 @@ public class DatabaseConnect {
         String url = "jdbc:mysql://remotemysql.com:3306/QaZzMlKPoa";
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
