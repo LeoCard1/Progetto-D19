@@ -1,4 +1,4 @@
-package LockerSystem;
+package PickupPointSystem.LockerSystem;
 
 
 

@@ -1,6 +1,6 @@
-package LockerSystem.BoxType;
+package PickupPointSystem.LockerSystem.BoxType;
 
-import LockerSystem.Size;
+import PickupPointSystem.LockerSystem.Size;
 
 public class SmallBox extends Box {
 

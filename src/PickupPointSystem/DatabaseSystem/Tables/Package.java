@@ -1,6 +1,9 @@
-package LockerSystem;
+package PickupPointSystem.DatabaseSystem.Tables;
+
+import PickupPointSystem.LockerSystem.Size;
 
 public class Package {
+
     private String id;
     private Size size;
 

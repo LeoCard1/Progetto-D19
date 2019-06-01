@@ -34,7 +34,7 @@ public class DeliveryManClient {
 
         while (true) {
             out.println("deliveryman");
-            out.println("Prova");
+            out.println("ANDREA ECAKE91749");
             out.println("close");
 
             in.close();

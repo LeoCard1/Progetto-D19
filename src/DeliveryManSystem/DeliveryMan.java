@@ -1,7 +1,6 @@
 package DeliveryManSystem;
 
-import LockerSystem.Package;
-import ObserverPattern.Observer;
+import PickupPointSystem.DatabaseSystem.Tables.Package;
 
 import java.util.ArrayList;
 

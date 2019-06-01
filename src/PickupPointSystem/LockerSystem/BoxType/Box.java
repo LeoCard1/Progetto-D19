@@ -1,7 +1,7 @@
-package LockerSystem.BoxType;
+package PickupPointSystem.LockerSystem.BoxType;
 
-import LockerSystem.Size;
-import LockerSystem.Package;
+import PickupPointSystem.LockerSystem.Size;
+import PickupPointSystem.DatabaseSystem.Tables.Package;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,17 +9,17 @@ import java.util.Random;
 
 public abstract class Box  implements Comparable {
 
-    protected boolean availability;
+    private boolean availability;
     protected Size size;
     private Package pack;
-    protected int code;
-    protected static int numBox;
+    private int boxNumber;
+    private static int numBox;
     private Date date;
 
     public Box(){
         availability = true;
         numBox ++;
-        code = numBox;
+        boxNumber = numBox;
     }
 
     public boolean isAvailable(){
@@ -30,24 +30,27 @@ public abstract class Box  implements Comparable {
         return size;
     }
 
-    public int getCode(){
-        return code;
+    public int getBoxNumber(){
+        return boxNumber;
     }
 
     public Package getPack(){
         return pack;
     }
 
-    public String getDate(){
+    public String getStringDate(){
         SimpleDateFormat sdf = new SimpleDateFormat();
         sdf.applyPattern("dd-MM-yyyy");
         return sdf.format(date);
     }
 
+    public void setDate(Date date){
+        this.date = date;
+    }
+
     public void addPackage(Package pack){
         availability = false;
         this.pack = pack;
-        date = new Date();
     }
 
     public void removePackage(){
@@ -62,9 +65,9 @@ public abstract class Box  implements Comparable {
     }
 
     public String toString(){
-        String s = "" + code;
+        String s = "" + boxNumber;
         if(!isAvailable()){
-            s += " \t" + pack.getId() + "\t" + getDate();
+            s += " \t" + pack.getId() + "\t" + getStringDate();
         }
         return s;
     }

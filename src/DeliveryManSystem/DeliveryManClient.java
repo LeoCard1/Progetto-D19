@@ -1,15 +1,13 @@
 package DeliveryManSystem;
 
 import DeliveryManSystem.GraphicalInterfaceClientSystem.Gui;
-import LockerSystem.Package;
-import ObserverPattern.Observer;
+import PickupPointSystem.DatabaseSystem.Tables.Package;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class DeliveryManClient {

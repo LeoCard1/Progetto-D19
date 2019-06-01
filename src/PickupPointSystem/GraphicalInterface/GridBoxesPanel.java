@@ -1,15 +1,12 @@
 package PickupPointSystem.GraphicalInterface;
 
-import LockerSystem.BoxType.Box;
-import LockerSystem.Size;
+import PickupPointSystem.LockerSystem.BoxType.Box;
+import PickupPointSystem.LockerSystem.Size;
 import PickupPointSystem.PickupPoint;
 import ObserverPattern.Observer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.net.http.WebSocket;
 import java.util.ArrayList;
 
 import static java.awt.Toolkit.getDefaultToolkit;
@@ -94,7 +91,7 @@ public class GridBoxesPanel extends JPanel implements Observer {
 
         for (int i = 0; i < elements; i++) {
             Box box = piPo.getBoxFromIndex(numBox);
-            ButtonBox bu = new ButtonBox(Integer.toString(box.getCode()));
+            ButtonBox bu = new ButtonBox(Integer.toString(box.getBoxNumber()));
             bu.setFont(new Font(Font.SERIF, Font.BOLD, 10));
             if(box.isAvailable()){
                 bu.setForeground(Color.decode("#228b22"));

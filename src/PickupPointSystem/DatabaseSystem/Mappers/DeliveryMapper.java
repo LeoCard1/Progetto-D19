@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 /**
  * @author Andrea Stella
  * @version 1.0
@@ -29,24 +30,25 @@ public class DeliveryMapper implements Mapper {
     }
 
     /**
-     * This method returns an ArrayList of deliveries inside the database given the DeliveryMan
+     * This method returns an ArrayList of deliveries inside the database given the PickupPoint
      * id passed as an argument.
-     * @param delID
+     * @param pipoID
      * @return ArrayList<Delivery>
      */
 
     @Override
-    public ArrayList<Delivery> get(String delID) {
+    public ArrayList<Delivery> get(String pipoID) {
         ArrayList<Delivery> deliveries = new ArrayList<>();
         try {
             ResultSet res = stm.executeQuery("select * from deliveries");
             while (res.next()) {
-                if(res.getString("deliveryman_id").equals(delID) && res.getInt("box_number")!=0){
+                if((res.getString("pickuppoint_id")!= null && res.getString("pickuppoint_id").equals(pipoID))){
                     String packID = res.getString("package_id");
                     Date dateOfDelivery = res.getDate("date_of_delivery");
-                    Date dateOfArrival = res.getDate("date_of_arrival");
                     int boxNumber = res.getInt("box_number");
-                    deliveries.add(new Delivery(packID, dateOfDelivery, dateOfArrival, boxNumber, delID));
+                    String boxPassword = res.getString("box_password");
+                    String delID = res.getString("deliveryman_id");
+                    deliveries.add(new Delivery(packID, dateOfDelivery, boxNumber, boxPassword, delID));
                 }
             }
         } catch (SQLException e) {
@@ -54,10 +56,48 @@ public class DeliveryMapper implements Mapper {
         }
         return deliveries;
     }
-    /*
-    public ArrayList<Delivery> getFromPickupPointID(String pipoID){
+
+    /**
+     * This method removes the row containing the given pack id.
+     * @param packID
+     */
+
+    public void removeRowFromPackID(String packID){
+        try {
+            ResultSet res = stm.executeQuery("select * from deliveries");
+            while(res.next()){
+                if(res.getString("package_id").equals(packID)){
+                    res.deleteRow();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * This method updates the delivery date, the box number and the box password of
+     * the given Delivery.
+     * @param delivery
+     */
+
+    public void update(Delivery delivery){
+        try {
+            ResultSet res = stm.executeQuery("select * from deliveries");
+            while(res.next()){
+                if(res.getString("package_id").equals(delivery.getPackID())){
+                    res.updateDate("date_of_delivery", new java.sql.Date(delivery.getDateOfDelivery().getTime()));
+                    res.updateInt("box_number", delivery.getBoxNumber());
+                    res.updateString("box_password", delivery.getBoxPassword());
+                    res.updateRow();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
     }
-    */
+
 
 }

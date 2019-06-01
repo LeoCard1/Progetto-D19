@@ -1,11 +1,10 @@
 package PickupPointSystem.DatabaseSystem;
 
 
-import PickupPointSystem.DatabaseSystem.Mappers.DeliveryMapper;
-import PickupPointSystem.DatabaseSystem.Mappers.Mapper;
-import PickupPointSystem.DatabaseSystem.Mappers.MapperFactory;
+import PickupPointSystem.DatabaseSystem.Mappers.*;
 import PickupPointSystem.DatabaseSystem.Tables.Delivery;
 import PickupPointSystem.DatabaseSystem.Tables.DeliveryMan;
+import PickupPointSystem.DatabaseSystem.Tables.Package;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,35 +28,109 @@ public class PersistenceFacade {
     }
 
     /**
-     * This method returns an ArrayList of packages inside the database given the DeliveryMan
-     * id passed as an argument.
-     * @param delID
+     * This method returns an ArrayList of packages that the DeliveryMan must deliver to the
+     * PickupPoint specified by the id entered as an argument.
+     * @param pipoID, delID
      * @return ArrayList<Package>
      */
 
-    public ArrayList<Package> getPackagesFromDelID(String delID){
-        ArrayList<Delivery> deliveries = ((DeliveryMapper) mappers.get("DeliveryMapper")).get(delID);
+    public ArrayList<Package> getPackagesFromDelID(String pipoID, String delID){
+        ArrayList<Delivery> deliveries = getDeliveries(pipoID);
         ArrayList<Package> packages = new ArrayList<>();
         for(Delivery delivery : deliveries) {
-            Package pack = (Package) mappers.get("PackageMapper").get(delivery.getPackID());
-            packages.add(pack);
+            if(!delivery.wasMade() && delivery.hasDelID(delID)) {
+                packages.add(getPackage(delivery.getPackID()));
+            }
         }
         return packages;
     }
 
     /**
-     * This method returns the internal DeliveryMan to the database given the DeliveryMan id.
-     * @param delID
-     * @return DeliveryMan
+     * This method returns the Delivery in which the pack was inserted in the box corresponding
+     * to the id passed as an argument.
+     * @param pipoID
+     * @param boxNumber
+     * @return Delivery
      */
 
-    public DeliveryMan getDeliveryMan(String delID){
-        DeliveryMan deliveryMan = (DeliveryMan) mappers.get("DeliveryManMapper").get(delID);
-        return deliveryMan;
+    public Delivery getDeliveryFromBoxNumber(String pipoID, int boxNumber){
+        ArrayList<Delivery> deliveries = getDeliveriesMade(pipoID);
+        for(Delivery delivery : deliveries){
+            if(delivery.hasBoxNumber(boxNumber)){
+                return delivery;
+            }
+        }
+        return null;
     }
 
+    /**
+     * This method returns the Delivery related to the package passed as an argument.
+     * @param pipoID
+     * @param packID
+     * @return Delivery
+     */
 
+    public Delivery getDeliveryFromPackID(String pipoID, String packID){
+        ArrayList<Delivery> deliveries = getDeliveries(pipoID);
+        for(Delivery delivery : deliveries){
+            if(delivery.hasPackage(packID)){
+                return delivery;
+            }
+        }
+        return null;
+    }
 
+    /**
+     * This method returns deliveries made.
+     * @param pipoID
+     * @return ArrayList<Delivery><
+     */
 
+    public ArrayList<Delivery> getDeliveriesMade(String pipoID){
+        ArrayList<Delivery> deliveries = getDeliveries(pipoID);
+        ArrayList<Delivery> deliveriesMade = new ArrayList<>();
+        for(Delivery del : deliveries){
+            if(del.wasMade()){
+                deliveriesMade.add(del);
+            }
+        }
+        return deliveriesMade;
+    }
+
+    public void updateDelivery(Delivery delivery){
+        getDeliveryMapper().update(delivery);
+    }
+
+    public void removeDelivery(String packID){
+        getDeliveryMapper().removeRowFromPackID(packID);
+    }
+
+    public void removePack(String packID){
+        getPackageMapper().remove(packID);
+    }
+
+    public ArrayList<Delivery> getDeliveries(String pipoID){
+        return getDeliveryMapper().get(pipoID);
+    }
+
+    public DeliveryMan getDeliveryMan(String delID){
+        return getDeliveryManMapper().get(delID);
+    }
+
+    public Package getPackage(String packID){
+        return getPackageMapper().get(packID);
+    }
+
+    public DeliveryMapper getDeliveryMapper(){
+        return (DeliveryMapper) mappers.get("DeliveryMapper");
+    }
+
+    public DeliveryManMapper getDeliveryManMapper(){
+        return (DeliveryManMapper) mappers.get("DeliveryManMapper");
+    }
+
+    public PackageMapper getPackageMapper(){
+        return (PackageMapper) mappers.get("PackageMapper");
+    }
 
 }

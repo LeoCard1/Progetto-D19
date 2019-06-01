@@ -1,6 +1,6 @@
 package PickupPointSystem.DatabaseSystem.Mappers;
 
-import LockerSystem.Package;
+import PickupPointSystem.DatabaseSystem.Tables.Package;
 import PickupPointSystem.DatabaseSystem.DatabaseConnect;
 
 import java.sql.ResultSet;
@@ -38,16 +38,36 @@ public class PackageMapper implements Mapper {
             ResultSet res = stm.executeQuery("select * from packages");
             while(res.next()){
                 if(res.getString("id").equals(packID)){
-                    double height = Double.parseDouble(res.getString("height"));
-                    double lenght = Double.parseDouble(res.getString("lenght"));
-                    double width = Double.parseDouble(res.getString("width"));
-                    return new Package(packID,height,lenght,width);
+                    double height = res.getDouble("height");
+                    double length = res.getDouble("length");
+                    double width = res.getDouble("width");
+                    return new Package(packID,height,length,width);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * This method removes the package from the database.
+     * @param packID
+     */
+
+    public void remove(String packID){
+        try {
+            ResultSet res = stm.executeQuery("select * from packages");
+            while(res.next()){
+                if(res.getString("id").equals(packID)){
+                    res.deleteRow();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 

@@ -9,7 +9,7 @@ import java.sql.*;
 
 public class DatabaseConnect {
 
-    private final String url = "jdbc:mysql://remotemysql.com:3306/QaZzMlKPoa?useSSL=false";
+    private final String url = "jdbc:mysql://remotemysql.com:3306/QaZzMlKPoa";
     private final String user = "QaZzMlKPoa";
     private final String password = "35sMfdz9D4";
 
@@ -22,7 +22,7 @@ public class DatabaseConnect {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url, user, password);
-            Statement stm = connection.createStatement();
+            Statement stm = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
             return stm;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
