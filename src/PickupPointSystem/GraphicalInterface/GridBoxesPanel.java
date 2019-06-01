@@ -7,9 +7,6 @@ import ObserverPattern.Observer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.net.http.WebSocket;
 import java.util.ArrayList;
 
 import static java.awt.Toolkit.getDefaultToolkit;

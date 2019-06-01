@@ -7,7 +7,7 @@ import java.io.PrintStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-public class DeliveryManClient {
+public class DeliveryManClient extends Thread {
     private Socket client;
     private BufferedReader in;
     private PrintStream out;

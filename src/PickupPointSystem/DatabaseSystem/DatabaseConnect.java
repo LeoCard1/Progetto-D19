@@ -9,7 +9,7 @@ import java.sql.*;
 
 public class DatabaseConnect {
 
-    private final String url = "jdbc:mysql://remotemysql.com:3306/QaZzMlKPoa?useSSL=false";
+    private final String url = "jdbc:mysql://remotemysql.com:3306/QaZzMlKPoa";
     private final String user = "QaZzMlKPoa";
     private final String password = "35sMfdz9D4";
 
