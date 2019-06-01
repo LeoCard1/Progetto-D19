@@ -1,4 +1,4 @@
-package NewClientServer.Client;
+package DeliveryManSystem.Client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,6 +11,7 @@ public class DeliveryManClient {
     private Socket client;
     private BufferedReader in;
     private PrintStream out;
+
 
     public void connectToPickupPoint() {
         try {

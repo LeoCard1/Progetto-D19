@@ -7,6 +7,7 @@ import LockerSystem.Package;
 
 import LockerSystem.Size;
 import ObserverPattern.Observer;
+import PickupPointSystem.Server.PickupPointServer;
 
 import java.io.IOException;
 import java.util.*;
@@ -27,7 +28,6 @@ public class PickupPoint {
     private ArrayList<Box> boxList = new ArrayList<>();
     private HashMap<String, Box> availableBox = new HashMap<>();
     private ArrayList<Observer> obsList = new ArrayList<>();
-    private PickupPointClient piPoClient = new PickupPointClient();
 
     public PickupPoint(String id, int numSmallBox, int numMediumBox, int numLargeBox) throws IOException {
         this.id = id;
@@ -63,9 +63,8 @@ public class PickupPoint {
         for(Box box : boxList){
             if(box.isAvailable() && box.getSize().compareTo(pack.getSize()) > -1){
                 box.addPackage(pack);
-                String password = generateBoxPassword(box.toString());
+                String password = box.generateBoxPassword();
                 availableBox.put(password, box);
-                piPoClient.notifyOfPackageAdded(box.toString(),password);
                 notifyObservers();
                 return box.getCode();
             }
@@ -81,14 +80,11 @@ public class PickupPoint {
             pack = box.getPack();
             box.removePackage();
             availableBox.remove(cod);
-            piPoClient.notifyOfPackagePickedUp(pack.getId());
             notifyObservers();
         }
         catch (NullPointerException e) {
             e.printStackTrace();
             new ErrorGUIMain("the code is invalid", false);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -101,24 +97,8 @@ public class PickupPoint {
     }
 
 
-    public String generateBoxPassword(String boxToString) {
-        String[] division = boxToString.split("\t");
-        division[2] = division[2].replaceAll("\\D","");
-
-        String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String password = new String();
-        Random rand = new Random();
-        for (int i = 0; i < 5; i++) {
-            int n = rand.nextInt(25);
-            char c = letters.charAt(n);
-            password = password + c;
-        }
-        password = password + division[0] + division[2];
-        return password.replaceAll("\\s+","");
-    }
-
     private void createServer() throws IOException {
-        PickupPointServer server = new PickupPointServer(this);
+        PickupPointServer server = new PickupPointServer();
         server.start();
     }
 

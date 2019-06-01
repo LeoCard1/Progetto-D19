@@ -1,4 +1,4 @@
-package NewClientServer.Server;
+package PickupPointSystem.Server;
 
 import java.io.BufferedReader;
 import java.io.IOException;

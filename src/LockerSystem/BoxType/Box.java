@@ -5,6 +5,7 @@ import LockerSystem.Package;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public abstract class Box  implements Comparable {
 
@@ -66,6 +67,22 @@ public abstract class Box  implements Comparable {
             s += " \t" + pack.getId() + "\t" + getDate();
         }
         return s;
+    }
+
+    public String generateBoxPassword() {
+        String[] division = toString().split("\t");
+        division[2] = division[2].replaceAll("\\D","");
+
+        String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String password = new String();
+        Random rand = new Random();
+        for (int i = 0; i < 5; i++) {
+            int n = rand.nextInt(25);
+            char c = letters.charAt(n);
+            password = password + c;
+        }
+        password = password + division[0] + division[2];
+        return password.replaceAll("\\s+","");
     }
 
 }

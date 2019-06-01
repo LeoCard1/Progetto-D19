@@ -1,4 +1,4 @@
-package NewClientServer.Server;
+package PickupPointSystem.Server;
 
 public class ManageConnectionsFactory {
 
