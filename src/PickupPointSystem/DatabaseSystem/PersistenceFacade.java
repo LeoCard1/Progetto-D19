@@ -54,9 +54,9 @@ public class PersistenceFacade {
      */
 
     public Delivery getDeliveryFromBoxNumber(String pipoID, int boxNumber){
-        ArrayList<Delivery> deliveries = getDeliveriesMade(pipoID);
+        ArrayList<Delivery> deliveries = getDeliveries(pipoID);
         for(Delivery delivery : deliveries){
-            if(delivery.hasBoxNumber(boxNumber)){
+            if(delivery.wasMade() && delivery.hasBoxNumber(boxNumber)){
                 return delivery;
             }
         }
@@ -64,7 +64,7 @@ public class PersistenceFacade {
     }
 
     /**
-     * This method returns the Delivery related to the package passed as an argument.
+     * This method returns the Delivery related to the pack id passed as an argument.
      * @param pipoID
      * @param packID
      * @return Delivery
@@ -78,23 +78,6 @@ public class PersistenceFacade {
             }
         }
         return null;
-    }
-
-    /**
-     * This method returns deliveries made.
-     * @param pipoID
-     * @return ArrayList<Delivery><
-     */
-
-    public ArrayList<Delivery> getDeliveriesMade(String pipoID){
-        ArrayList<Delivery> deliveries = getDeliveries(pipoID);
-        ArrayList<Delivery> deliveriesMade = new ArrayList<>();
-        for(Delivery del : deliveries){
-            if(del.wasMade()){
-                deliveriesMade.add(del);
-            }
-        }
-        return deliveriesMade;
     }
 
     public void updateDelivery(Delivery delivery){
