@@ -24,6 +24,7 @@ public class DatabaseOperations {
         try {
             Statement statement = connect();
             logIn(statement);
+            synchronizeAndLoad(statement);
         } catch (ClassNotFoundException | SQLException | UsernameOrPasswordException e) {
             e.printStackTrace();
         }
@@ -41,5 +42,24 @@ public class DatabaseOperations {
                 "where id = \"" + delManID + "\" and password = \"" + delManPassword + "\"");
 
         if (!res.next()) throw new UsernameOrPasswordException();
+    }
+
+    private void synchronizeAndLoad(Statement statement) throws SQLException {
+        String myPackage;
+
+        ResultSet res = statement.executeQuery("select * " +
+                "from deliveries " +
+                "where deliveryman_id = \"" + delManID + "\"");
+
+        while (res.next()) {
+            myPackage = res.getString("package_id");
+
+            /*
+            Qui si potrebbe implementare un metodo per inserire i pacchi
+            nel DeliveryMan (se serve), o mostrarli sul palmare.
+             */
+
+            System.out.println(myPackage);
+        }
     }
 }
