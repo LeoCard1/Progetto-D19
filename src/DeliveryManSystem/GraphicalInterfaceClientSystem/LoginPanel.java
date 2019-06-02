@@ -1,6 +1,8 @@
 package DeliveryManSystem.GraphicalInterfaceClientSystem;
 
-import DeliveryManSystem.DeliveryManClient;
+import DeliveryManSystem.Client.DeliveryManClient;
+import DeliveryManSystem.DeliveryMan;
+import DeliveryManSystem.ObserverResponse;
 import ObserverPattern.Observer;
 
 import javax.swing.*;
@@ -17,7 +19,7 @@ import static java.awt.Font.ITALIC;
  * @version 1.0
  */
 
-public class LoginPanel extends JPanel implements ActionListener , Observer {
+public class LoginPanel extends JPanel implements ActionListener, ObserverResponse {
 
     private Frame frame;
     private String[] languageSelector = {SetDMLanguage.getInstance().setLoginPanel()[1], SetDMLanguage.getInstance().setLoginPanel()[2]};
@@ -40,6 +42,8 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
         this.height = height;
         this.deliveryman = deliveryman;
         this.frame = frame;
+
+        deliveryman.addObserver(this);
         SetLoginPanel();
 
     }
@@ -174,7 +178,7 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
         ImageIcon imageIcon = new ImageIcon(new ImageIcon(getClass().getResource("Icons/problem.png")).getImage().getScaledInstance(width/5, height/10, Image.SCALE_DEFAULT));
         errorLabel.setIcon(imageIcon);
         Font font = new Font("Arial" ,ITALIC , 15);
-        errorLabel.setBorder(BorderFactory.createTitledBorder( errorLabel.getBorder(),SetDMLanguage.getInstance().setLoginPanel()[7] , ITALIC , 0, font, Color.red));
+        errorLabel.setBorder(BorderFactory.createTitledBorder(errorLabel.getBorder(),SetDMLanguage.getInstance().setLoginPanel()[7] , ITALIC , 0, font, Color.red));
         errorLabel.setVisible(false);
         buttonPanel.add(errorLabel);
         l4 = errorLabel;
@@ -220,11 +224,10 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
      */
 
     public void actionPerformed(ActionEvent e) {
+        deliveryman.connectToPickupPoint(jtf.getText(), new String(jpf.getPassword()));
 
-        try {
-
-            String password = new String(jpf.getPassword());
-            if (deliveryman.logIn(jtf.getText(),password)) {
+            /*String password = new String(jpf.getPassword());
+            if (deliveryman.logIn(jtf.getText(), password)) {
                 password = null;
                 jpf = null;
                 frame.remove(this);
@@ -233,27 +236,29 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
                 frame.validate();
 
             } else {
-
                 errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[9]);
                 update();
-            }
-
-        } catch (IOException exception) {
-
-            errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[10]);
-            update();
-
-        }
-
+            }*/
     }
 
     /**
      * This method set the error message visible
      */
 
-    public void update() {
+    public void update(String result) {
 
-       errorLabel.setVisible(true);
+        if (result.equals("accepted")) {
+            jpf = null;
+            frame.remove(this);
+            frame.add(new PannelloIniziale(frame , deliveryman , width , height));
+            frame.repaint();
+            frame.validate();
+        }
+
+        if (result.equals("refused")) {
+            errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[9]);
+            errorLabel.setVisible(true);
+        }
 
     }
 
@@ -272,5 +277,4 @@ public class LoginPanel extends JPanel implements ActionListener , Observer {
 
 
     }
-
 }

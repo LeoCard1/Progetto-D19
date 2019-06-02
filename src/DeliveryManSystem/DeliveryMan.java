@@ -1,5 +1,7 @@
 package DeliveryManSystem;
 
+import DeliveryManSystem.Client.DeliveryManClient;
+import DeliveryManSystem.GraphicalInterfaceClientSystem.Gui;
 import PickupPointSystem.DatabaseSystem.Tables.Package;
 
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ public class DeliveryMan {
     private ArrayList<Package> packageList = new ArrayList<>(40);
 
     public DeliveryMan(String id, String password){
-        this.password=password;
+        this.password = password;
         this.id = id;
     }
 
