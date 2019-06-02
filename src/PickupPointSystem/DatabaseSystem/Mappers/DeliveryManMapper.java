@@ -35,12 +35,10 @@ public class DeliveryManMapper implements Mapper {
 
     public DeliveryMan get(String delID){
         try {
-            ResultSet res = stm.executeQuery("select id,password from deliverymen");
+            ResultSet res = stm.executeQuery("select id,password from deliverymen where id = \""+ delID +"\"");
             while(res.next()){
-                if(res.getString("id").equals(delID)){
-                    String password = res.getString("password");
-                    return new DeliveryMan(delID, password);
-                }
+                String password = res.getString("password");
+                return new DeliveryMan(delID, password);
             }
         } catch (SQLException e) {
             e.printStackTrace();

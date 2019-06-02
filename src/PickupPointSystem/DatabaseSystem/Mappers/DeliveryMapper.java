@@ -40,16 +40,14 @@ public class DeliveryMapper implements Mapper {
     public ArrayList<Delivery> get(String pipoID) {
         ArrayList<Delivery> deliveries = new ArrayList<>();
         try {
-            ResultSet res = stm.executeQuery("select * from deliveries");
+            ResultSet res = stm.executeQuery("select * from deliveries where pickuppoint_id = \""+pipoID+"\"");
             while (res.next()) {
-                if((res.getString("pickuppoint_id")!= null && res.getString("pickuppoint_id").equals(pipoID))){
-                    String packID = res.getString("package_id");
-                    Date dateOfDelivery = res.getDate("date_of_delivery");
-                    int boxNumber = res.getInt("box_number");
-                    String boxPassword = res.getString("box_password");
-                    String delID = res.getString("deliveryman_id");
-                    deliveries.add(new Delivery(packID, dateOfDelivery, boxNumber, boxPassword, delID));
-                }
+                String packID = res.getString("package_id");
+                Date dateOfDelivery = res.getDate("date_of_delivery");
+                int boxNumber = res.getInt("box_number");
+                String boxPassword = res.getString("box_password");
+                String delID = res.getString("deliveryman_id");
+                deliveries.add(new Delivery(packID, dateOfDelivery, boxNumber, boxPassword, delID));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,11 +62,9 @@ public class DeliveryMapper implements Mapper {
 
     public void removeRowFromPackID(String packID){
         try {
-            ResultSet res = stm.executeQuery("select * from deliveries");
+            ResultSet res = stm.executeQuery("select * from deliveries where package_id = \""+ packID +"\"");
             while(res.next()){
-                if(res.getString("package_id").equals(packID)){
-                    res.deleteRow();
-                }
+                res.deleteRow();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -83,14 +79,12 @@ public class DeliveryMapper implements Mapper {
 
     public void update(Delivery delivery){
         try {
-            ResultSet res = stm.executeQuery("select * from deliveries");
+            ResultSet res = stm.executeQuery("select * from deliveries where package_id = \"" + delivery.getPackID() +"\"");
             while(res.next()){
-                if(res.getString("package_id").equals(delivery.getPackID())){
-                    res.updateDate("date_of_delivery", new java.sql.Date(delivery.getDateOfDelivery().getTime()));
-                    res.updateInt("box_number", delivery.getBoxNumber());
-                    res.updateString("box_password", delivery.getBoxPassword());
-                    res.updateRow();
-                }
+                res.updateDate("date_of_delivery", new java.sql.Date(delivery.getDateOfDelivery().getTime()));
+                res.updateInt("box_number", delivery.getBoxNumber());
+                res.updateString("box_password", delivery.getBoxPassword());
+                res.updateRow();
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -35,14 +35,12 @@ public class PackageMapper implements Mapper {
     @Override
     public Package get(String packID) {
         try {
-            ResultSet res = stm.executeQuery("select * from packages");
+            ResultSet res = stm.executeQuery("select * from packages where id = \""+ packID + "\"");
             while(res.next()){
-                if(res.getString("id").equals(packID)){
-                    double height = res.getDouble("height");
-                    double length = res.getDouble("length");
-                    double width = res.getDouble("width");
-                    return new Package(packID,height,length,width);
-                }
+                double height = res.getDouble("height");
+                double length = res.getDouble("length");
+                double width = res.getDouble("width");
+                return new Package(packID,height,length,width);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,11 +55,9 @@ public class PackageMapper implements Mapper {
 
     public void remove(String packID){
         try {
-            ResultSet res = stm.executeQuery("select * from packages");
+            ResultSet res = stm.executeQuery("select * from packages where id = \""+ packID + "\"");
             while(res.next()){
-                if(res.getString("id").equals(packID)){
-                    res.deleteRow();
-                }
+                res.deleteRow();
             }
         } catch (SQLException e) {
             e.printStackTrace();
