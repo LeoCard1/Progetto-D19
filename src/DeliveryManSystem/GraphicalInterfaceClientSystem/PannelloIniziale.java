@@ -2,7 +2,8 @@ package DeliveryManSystem.GraphicalInterfaceClientSystem;
 
 
 
-import DeliveryManSystem.DeliveryManClient;
+import DeliveryManSystem.Client.DeliveryManClient;
+import DeliveryManSystem.DeliveryMan;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +20,7 @@ public class PannelloIniziale extends JPanel {
     private int width;
     private int height;
 
-    PannelloIniziale(Frame frame , DeliveryManClient deliveryman , int width , int height){
+    PannelloIniziale(Frame frame, DeliveryManClient deliveryman, int width, int height){
 
         updateList(deliveryman);
         this.width = width;
@@ -30,15 +31,13 @@ public class PannelloIniziale extends JPanel {
 
     }
 
-    public void updateList( DeliveryManClient deliveryMan){
+    public void updateList(DeliveryManClient deliveryMan) {
 
-        try {
+        /*try {
             deliveryMan.updateList();
-        }catch (IOException exception){
-
-
-
-        }
+        } catch (IOException exception){
+            exception.printStackTrace();
+        }*/
 
     }
 

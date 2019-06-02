@@ -35,26 +35,33 @@ public class ManageConnectionsDeliveryMan implements ManageConnections {
 
     private void manageConnection() throws IOException {
         String line = in.readLine();
+        StringTokenizer st = new StringTokenizer(line);
 
-        if (line.equals("close")) {
+        String command = st.nextToken();
+
+        if (command.equals("close")) {
             out.close();
             client.close();
             in.close();
             return;
         }
 
-        StringTokenizer st = new StringTokenizer(line);
-        String delID = st.nextToken();
-        String password = st.nextToken();
+        if (command.equals("login")) {
+            String delID = st.nextToken();
+            String password = st.nextToken();
 
-        if(authenticationDeliveryMan(delID,password)){
-            addDeliverymanPackages(delID);
+            System.out.println(delID + " " + password);
+
+            if (authenticationDeliveryMan(delID, password)) {
+                out.println("accepted");
+                addDeliverymanPackages(delID);
+            } else out.println("refused");
         }
     }
 
     private boolean authenticationDeliveryMan(String delID, String password){
         DeliveryMan del = facade.getDeliveryMan(delID);
-        if(del!=null && del.getPassword().equals(password)){
+        if (del != null && del.getPassword().equals(password)){
             return true;
         }
         return false;

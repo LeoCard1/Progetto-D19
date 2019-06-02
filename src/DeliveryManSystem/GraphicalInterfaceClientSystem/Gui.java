@@ -1,7 +1,8 @@
 package DeliveryManSystem.GraphicalInterfaceClientSystem;
 
 
-import DeliveryManSystem.DeliveryManClient;
+import DeliveryManSystem.Client.DeliveryManClient;
+import DeliveryManSystem.DeliveryMan;
 
 import javax.swing.*;
 import java.awt.*;

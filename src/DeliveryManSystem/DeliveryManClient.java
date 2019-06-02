@@ -33,7 +33,7 @@ public class DeliveryManClient {
      */
 
     public DeliveryManClient() {
-        Gui gui = new Gui(this);
+        /*Gui gui = new Gui(this);*/
     }
 
     public boolean logIn(String id, String password) throws IOException {
