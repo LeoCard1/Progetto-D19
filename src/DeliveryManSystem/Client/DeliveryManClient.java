@@ -40,21 +40,19 @@ public class DeliveryManClient {
     private void goConnect(String id, String password) throws IOException {
         System.out.println("Connection estabilished!");
 
-        while (true) {
-            out.println("deliveryman");
-            out.println("login " + id + " " + password);
+        out.println("deliveryman");
+        out.println("login " + id + " " + password);
 
-            while (!in.ready()) ;
-            String response = in.readLine();
-            notifyObservers(response);
+        while (!in.ready()) ;
+        String response = in.readLine();
+        notifyObservers(response);
 
-            out.println("close");
+        out.println("close");
 
-            in.close();
-            out.close();
+        in.close();
+        out.close();
 
-            client.close();
-        }
+        client.close();
     }
 
     public void addObserver(ObserverResponse obs) {

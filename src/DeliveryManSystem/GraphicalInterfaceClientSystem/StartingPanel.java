@@ -11,7 +11,7 @@ import java.io.IOException;
 
 import static java.awt.Font.ITALIC;
 
-public class PannelloIniziale extends JPanel {
+public class StartingPanel extends JPanel {
 
     private Frame frame;
     private JButton sendList;
@@ -20,14 +20,14 @@ public class PannelloIniziale extends JPanel {
     private int width;
     private int height;
 
-    PannelloIniziale(Frame frame, DeliveryManClient deliveryman, int width, int height){
+    StartingPanel(Frame frame, DeliveryManClient deliveryman, int width, int height){
 
         updateList(deliveryman);
         this.width = width;
         this.height = height;
         this.deliveryman = deliveryman;
         this.frame = frame;
-        SetListPanel();
+        setListPanel();
 
     }
 
@@ -41,7 +41,7 @@ public class PannelloIniziale extends JPanel {
 
     }
 
-    private void SetListPanel(){
+    private void setListPanel(){
 
         //settings panelBackground
 
@@ -122,7 +122,7 @@ public class PannelloIniziale extends JPanel {
                 password = null;
                 jpf = null;
                 frame.remove(this);
-                frame.add(new PannelloIniziale(frame , deliveryman , width , height));
+                frame.add(new StartingPanel(frame , deliveryman , width , height));
                 frame.repaint();
                 frame.validate();
 
@@ -146,7 +146,5 @@ public class PannelloIniziale extends JPanel {
         errorLabel.setVisible(true);
 
     }
-
-
 
 }

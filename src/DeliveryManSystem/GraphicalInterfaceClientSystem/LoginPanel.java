@@ -36,7 +36,7 @@ public class LoginPanel extends JPanel implements ActionListener, ObserverRespon
     private JPanel p;
     private JButton b;
 
-    LoginPanel(Frame frame , DeliveryManClient deliveryman , int width , int height){
+    LoginPanel(Frame frame, DeliveryManClient deliveryman, int width, int height){
 
         this.width = width;
         this.height = height;
@@ -44,7 +44,7 @@ public class LoginPanel extends JPanel implements ActionListener, ObserverRespon
         this.frame = frame;
 
         deliveryman.addObserver(this);
-        SetLoginPanel();
+        setLoginPanel();
 
     }
 
@@ -52,7 +52,7 @@ public class LoginPanel extends JPanel implements ActionListener, ObserverRespon
      * This method build the Login Panel
      */
 
-    private void SetLoginPanel(){
+    private void setLoginPanel(){
 
         //settings panelBackground
 
@@ -250,9 +250,12 @@ public class LoginPanel extends JPanel implements ActionListener, ObserverRespon
         if (result.equals("accepted")) {
             jpf = null;
             frame.remove(this);
-            frame.add(new PannelloIniziale(frame , deliveryman , width , height));
+            frame.add(new StartingPanel(frame, deliveryman, width, height));
             frame.repaint();
             frame.validate();
+            /*frame.add(this);*/
+            frame.setVisible(false);
+            frame.setVisible(true);
         }
 
         if (result.equals("refused")) {

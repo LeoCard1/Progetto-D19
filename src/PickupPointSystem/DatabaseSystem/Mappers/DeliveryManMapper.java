@@ -39,14 +39,15 @@ public class DeliveryManMapper implements Mapper {
             while(res.next()){
                 if(res.getString("id").equals(delID)){
                     String password = res.getString("password");
+                    stm.close();
                     return new DeliveryMan(delID, password);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
 
+        return null;
     }
 
 }

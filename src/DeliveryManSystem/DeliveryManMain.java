@@ -13,7 +13,7 @@ public class DeliveryManMain {
         andrea.sendList();*/
 
         /* Prova per connettersi al database */
-        DeliveryManClient sergio = new DeliveryManClient();
+        DeliveryManClient andrea = new DeliveryManClient();
         /*DatabaseOperations dop = new DatabaseOperations();
         dop.synchronizePackages();*/
     }
