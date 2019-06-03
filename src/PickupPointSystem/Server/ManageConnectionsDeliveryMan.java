@@ -14,14 +14,16 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class ManageConnectionsDeliveryMan implements ManageConnections {
+    private PickupPoint pickupPoint;
+    private PersistenceFacade facade = new PersistenceFacade();
     private ServerSocket server;
     private Socket client;
     private BufferedReader in;
     private PrintStream out;
-    private PersistenceFacade facade = new PersistenceFacade();
 
     @Override
-    public void goConnect(ServerSocket server, Socket client, BufferedReader in, PrintStream out) throws IOException {
+    public void goConnect(PickupPoint pickupPoint, ServerSocket server, Socket client, BufferedReader in, PrintStream out) throws IOException {
+        this.pickupPoint = pickupPoint;
         this.server = server;
         this.client = client;
         this.in = in;
@@ -68,7 +70,6 @@ public class ManageConnectionsDeliveryMan implements ManageConnections {
     }
 
     private String addDeliverymanPackages(String delID) throws IOException {
-        PickupPoint pickupPoint = PickupPoint.getInstance("PAV01",21,15,9);
         ArrayList<Package> packages = facade.getPackagesFromDelID(pickupPoint.getId(), delID);
         String message ="";
         for(Package pack : packages){

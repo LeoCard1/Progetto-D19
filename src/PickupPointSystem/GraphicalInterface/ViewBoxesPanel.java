@@ -35,8 +35,7 @@ public class ViewBoxesPanel extends JPanel implements Observer {
 
     private void initPanel() {
         gridBoxesPanel = new GridBoxesPanel(piPo);
-        GridBoxesPanel grid = gridBoxesPanel;
-        add(grid);
+        add(gridBoxesPanel);
     }
 
     /**

@@ -12,7 +12,7 @@ public class DatabaseConnect {
     private final String url = "jdbc:mysql://remotemysql.com:3306/QaZzMlKPoa";
     private final String user = "QaZzMlKPoa";
     private final String password = "35sMfdz9D4";
-
+    
     /**
      * This method make the connection with database.
      * @return the Statement of the connection;

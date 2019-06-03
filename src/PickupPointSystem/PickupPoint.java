@@ -22,7 +22,6 @@ import java.util.*;
 
 public class PickupPoint {
 
-    private static PickupPoint instance = null;
     private String id;
     private ArrayList<Box> boxList = new ArrayList<>();
     private HashMap<String, Box> availableBox = new HashMap<>();
@@ -39,7 +38,7 @@ public class PickupPoint {
      * @throws IOException
      */
 
-    private PickupPoint(String id, int numSmallBox, int numMediumBox, int numLargeBox) throws IOException {
+    public PickupPoint(String id, int numSmallBox, int numMediumBox, int numLargeBox) throws IOException {
         this.id = id;
         for(int i = 0; i < numSmallBox; i++){
             boxList.add(new SmallBox());
@@ -50,16 +49,9 @@ public class PickupPoint {
         for(int i = 0; i < numLargeBox; i++){
             boxList.add(new LargeBox());
         }
-        updateBox();
-        createServer();
         createGUI();
-    }
-
-    public static PickupPoint getInstance(String id, int numSmallBox, int numMediumBox, int numLargeBox) throws IOException {
-        if(instance==null){
-            instance = new PickupPoint(id, numSmallBox, numMediumBox, numLargeBox);
-        }
-        return instance;
+        createServer();
+        updateBox();
     }
 
     /**
@@ -128,6 +120,7 @@ public class PickupPoint {
                 availableBox.put(delivery.getBoxPassword(),box);
             }
         }
+        notifyObservers();
     }
 
     public ArrayList<Box> getBoxList() {
@@ -147,7 +140,7 @@ public class PickupPoint {
     }
 
     private void createServer() throws IOException {
-        PickupPointServer server = new PickupPointServer();
+        PickupPointServer server = new PickupPointServer(this);
         server.start();
     }
 

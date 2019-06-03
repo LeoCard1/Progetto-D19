@@ -3,8 +3,11 @@ package PickupPointSystem.GraphicalInterface;
 import PickupPointSystem.PickupPoint;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import static java.awt.Toolkit.getDefaultToolkit;
 
 /**
  * @author Sergio Gentilini
@@ -30,7 +33,6 @@ public class BoxAccessPanel extends JPanel {
         piPo = pipo;
         this.gra = gra;
 
-        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         initPanel();
     }
 
@@ -39,9 +41,15 @@ public class BoxAccessPanel extends JPanel {
      */
 
     private void initPanel() {
-        add(languagePanel());
         ins = new InsertCodePanel(piPo);
-        add(ins);
+        JPanel p1 = new JPanel();
+        p1.setLayout(new BoxLayout(p1, BoxLayout.PAGE_AXIS));
+        p1.add(languagePanel());
+        p1.add(ins);
+        Toolkit tk = getDefaultToolkit();
+        int height = tk.getScreenSize().height;
+        setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/8));
+        add(p1);
     }
 
     /**

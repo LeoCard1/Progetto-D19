@@ -47,6 +47,7 @@ public class InsertCodePanel extends JPanel {
         textF.setFont(new Font("", Font.PLAIN, 24));
         textF.setMaximumSize(new Dimension(200, 200));
         add(textF);
+        
 
         JButton confBut = new JButton(SetLanguage.getInstance().setInsertCodePanel()[1]);
         add(confBut);

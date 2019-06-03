@@ -33,7 +33,7 @@ public class PersistenceFacade {
      * @param pipoID, delID
      * @return ArrayList<Package>
      */
-
+    
     public ArrayList<Package> getPackagesFromDelID(String pipoID, String delID){
         ArrayList<Delivery> deliveries = getDeliveries(pipoID);
         ArrayList<Package> packages = new ArrayList<>();
@@ -80,29 +80,67 @@ public class PersistenceFacade {
         return null;
     }
 
+    /**
+     * This method update the database delivery.
+     * @param delivery
+     */
+
     public void updateDelivery(Delivery delivery){
         getDeliveryMapper().update(delivery);
     }
+
+    /**
+     * This method removes the delivery from the database.
+     * @param packID
+     */
 
     public void removeDelivery(String packID){
         getDeliveryMapper().removeRowFromPackID(packID);
     }
 
+    /**
+     * This method removes the pack from the database.
+     * @param packID
+     */
+
     public void removePack(String packID){
         getPackageMapper().remove(packID);
     }
+
+    /**
+     * This method returns deliveries to the PickupPoint id given.
+     * @param pipoID
+     * @return  ArrayList<Delivery>
+     */
 
     public ArrayList<Delivery> getDeliveries(String pipoID){
         return getDeliveryMapper().get(pipoID);
     }
 
+    /**
+     * This method returns the DeliveryMan identified by the given id.
+     * @param delID
+     * @return DeliveryMan
+     */
+
     public DeliveryMan getDeliveryMan(String delID){
         return getDeliveryManMapper().get(delID);
     }
 
+    /**
+     *
+     * This method returns the Package identified by the given id.
+     * @param packID
+     * @return Package
+     */
     public Package getPackage(String packID){
         return getPackageMapper().get(packID);
     }
+
+    /**
+     * This methods return the mappers.
+     * @return Mapper
+     */
 
     public DeliveryMapper getDeliveryMapper(){
         return (DeliveryMapper) mappers.get("DeliveryMapper");

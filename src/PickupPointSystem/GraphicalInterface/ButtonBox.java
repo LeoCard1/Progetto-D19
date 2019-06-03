@@ -7,6 +7,11 @@ import java.awt.event.ActionListener;
 
 import static java.awt.Toolkit.getDefaultToolkit;
 
+/**
+ * @author Andrea Stella
+ * @version 1.0
+ */
+
 public class ButtonBox extends JButton {
 
     /**

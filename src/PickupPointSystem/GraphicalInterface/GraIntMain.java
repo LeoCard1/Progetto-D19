@@ -6,6 +6,8 @@ import ObserverPattern.Observer;
 import javax.swing.*;
 import java.awt.*;
 
+import static java.awt.Toolkit.getDefaultToolkit;
+
 /**
  * @author Sergio Gentilini
  * @version 1.0.1
@@ -51,10 +53,9 @@ public class GraIntMain extends JFrame implements Observer {
         add(tabP);
 
         JPanel jp = new JPanel();
-        jp.setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/8));
-        jp.add(new BoxAccessPanel(piPo, this));
 
-        tabP.addTab(SetLanguage.getInstance().setGraIntMain()[1], jp);
+        BoxAccessPanel boxAccessPanel = new BoxAccessPanel(piPo, this);
+        tabP.addTab(SetLanguage.getInstance().setGraIntMain()[1], boxAccessPanel);
         viewBoxesPanel = new ViewBoxesPanel(piPo);
         tabP.addTab(SetLanguage.getInstance().setGraIntMain()[2], viewBoxesPanel);
 
