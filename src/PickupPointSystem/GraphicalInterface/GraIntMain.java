@@ -36,10 +36,10 @@ public class GraIntMain extends JFrame implements Observer {
 
         setResizable(false);
         setTitle(SetLanguage.getInstance().setGraIntMain()[0]);
-        setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         initPanel();
+        setVisible(true);
     }
 
     /**
@@ -49,7 +49,7 @@ public class GraIntMain extends JFrame implements Observer {
     private void initPanel() {
         setTheme("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 
-        JTabbedPane tabP = new JTabbedPane();
+        /*JTabbedPane tabP = new JTabbedPane();
         add(tabP);
 
         JPanel jp = new JPanel();
@@ -59,7 +59,11 @@ public class GraIntMain extends JFrame implements Observer {
         viewBoxesPanel = new ViewBoxesPanel(piPo);
         tabP.addTab(SetLanguage.getInstance().setGraIntMain()[2], viewBoxesPanel);
 
-        t = tabP;
+        t = tabP;*/
+
+        viewBoxesPanel = new ViewBoxesPanel(piPo);
+        add(viewBoxesPanel);
+
     }
 
     /**
@@ -98,5 +102,6 @@ public class GraIntMain extends JFrame implements Observer {
     @Override
     public void update() {
         viewBoxesPanel.update();
+        revalidate();
     }
 }
