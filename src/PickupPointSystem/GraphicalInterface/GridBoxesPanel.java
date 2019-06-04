@@ -54,7 +54,7 @@ public class GridBoxesPanel extends JPanel implements Observer {
         jp.setPreferredSize(new Dimension(width/4, height/3));
         add(jp);
 
-        ArrayList<Box> boxList =  piPo.getBoxList();
+        /*ArrayList<Box> boxList =  piPo.getBoxList();
         Size boxSize;
         Size comparingSize = piPo.getBoxSizeGivenIndex(0);
         int boxCounter = 0;
@@ -70,7 +70,11 @@ public class GridBoxesPanel extends JPanel implements Observer {
             }
             boxCounter++;
         }
-        jp.add(makeGrid(boxCounter));
+        jp.add(makeGrid(boxCounter));*/
+
+        jp.add(makeGrid(piPo.getSmallBoxes()));
+        jp.add(makeGrid(piPo.getMediumBoxes()));
+        jp.add(makeGrid(piPo.getLargeBoxes()));
 
     }
 
@@ -88,6 +92,7 @@ public class GridBoxesPanel extends JPanel implements Observer {
         }
         JPanel grid = new JPanel();
         grid.setLayout(new GridLayout(rows, elements/rows));
+        GridBagLayout a = new GridBagLayout();
 
         for (int i = 0; i < elements; i++) {
             Box box = piPo.getBoxFromIndex(numBox);
@@ -104,6 +109,16 @@ public class GridBoxesPanel extends JPanel implements Observer {
         }
         grid.setBackground(Color.decode("#FF8C00"));
         return grid;
+    }
+
+    private JPanel makeCenterGrid(int elements) {
+        int columns = 6;
+        while (elements%columns != 0) {
+            columns -= 2;
+        }
+        
+
+        return null;
     }
 
     /**

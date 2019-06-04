@@ -27,6 +27,9 @@ public class PickupPoint {
     private HashMap<String, Box> availableBox = new HashMap<>();
     private ArrayList<Observer> obsList = new ArrayList<>();
     private PersistenceFacade facade = new PersistenceFacade();
+    private int smallBoxes;
+    private int mediumBoxes;
+    private int largeBoxes;
 
     /**
      * The constructor.Adds the boxes to the list, updates the boxes from the database,
@@ -47,14 +50,18 @@ public class PickupPoint {
         listQuantity.add(numBox3);
         Collections.sort(listQuantity);
 
-        for(int i = 0; i < listQuantity.get(2); i++){
-            boxList.add(new LargeBox());
+        largeBoxes = listQuantity.get(0);
+        mediumBoxes = listQuantity.get(1);
+        smallBoxes = listQuantity.get(2);
+
+        for(int i = 0; i < smallBoxes; i++){
+            boxList.add(new SmallBox());
         }
-        for(int i = 0; i < listQuantity.get(1); i++){
+        for(int i = 0; i < mediumBoxes; i++){
             boxList.add(new MediumBox());
         }
-        for(int i = 0; i < listQuantity.get(0); i++){
-            boxList.add(new SmallBox());
+        for(int i = 0; i < largeBoxes; i++){
+            boxList.add(new LargeBox());
         }
         createGUI();
         createServer();
@@ -168,5 +175,17 @@ public class PickupPoint {
         for (Observer obsOfList : obsList) {
             obsOfList.update();
         }
+    }
+
+    public int getSmallBoxes() {
+        return smallBoxes;
+    }
+
+    public int getMediumBoxes() {
+        return mediumBoxes;
+    }
+
+    public int getLargeBoxes() {
+        return largeBoxes;
     }
 }
