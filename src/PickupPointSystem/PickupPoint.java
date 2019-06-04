@@ -32,22 +32,29 @@ public class PickupPoint {
      * The constructor.Adds the boxes to the list, updates the boxes from the database,
      * creates the server and the graphical interface.
      * @param id
-     * @param numSmallBox
-     * @param numMediumBox
-     * @param numLargeBox
+     * @param numBox1
+     * @param numBox2
+     * @param numBox3
      * @throws IOException
      */
 
-    public PickupPoint(String id, int numSmallBox, int numMediumBox, int numLargeBox) throws IOException {
+    public PickupPoint(String id, int numBox1, int numBox2, int numBox3) throws IOException {
         this.id = id;
-        for(int i = 0; i < numSmallBox; i++){
-            boxList.add(new SmallBox());
+
+        ArrayList<Integer> listQuantity = new ArrayList<>();
+        listQuantity.add(numBox1);
+        listQuantity.add(numBox2);
+        listQuantity.add(numBox3);
+        Collections.sort(listQuantity);
+
+        for(int i = 0; i < listQuantity.get(2); i++){
+            boxList.add(new LargeBox());
         }
-        for(int i = 0; i < numMediumBox; i++){
+        for(int i = 0; i < listQuantity.get(1); i++){
             boxList.add(new MediumBox());
         }
-        for(int i = 0; i < numLargeBox; i++){
-            boxList.add(new LargeBox());
+        for(int i = 0; i < listQuantity.get(0); i++){
+            boxList.add(new SmallBox());
         }
         createGUI();
         createServer();
