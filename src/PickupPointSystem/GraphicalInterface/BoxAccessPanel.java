@@ -17,7 +17,10 @@ import static java.awt.Toolkit.getDefaultToolkit;
 public class BoxAccessPanel extends JPanel {
     private PickupPoint piPo;
     private GraIntMain gra;
+    private BackGroundPanel bgp;
     private InsertCodePanel ins;
+    private int height;
+    private int width;
     // c, l ed n sono variabili necessarie per cambiare la lingua delle tab (più informazioni nella classe SetLanguage)
     private JComboBox c;
     private JLabel l;
@@ -29,9 +32,13 @@ public class BoxAccessPanel extends JPanel {
      * @param gra The GUI itself.
      */
 
-    public BoxAccessPanel(PickupPoint pipo, GraIntMain gra) {
+    public BoxAccessPanel(PickupPoint pipo, GraIntMain gra, BackGroundPanel bgp) {
         piPo = pipo;
         this.gra = gra;
+        this.bgp = bgp;
+        Toolkit tk = getDefaultToolkit();
+        height = tk.getScreenSize().height;
+        width = tk.getScreenSize().width;
 
         initPanel();
     }
@@ -41,15 +48,51 @@ public class BoxAccessPanel extends JPanel {
      */
 
     private void initPanel() {
+        setPreferredSize(new Dimension(width*2/3, height*2/3));
+        setLayout(new BorderLayout());
+        add(createPasswordPanel(), BorderLayout.CENTER);
+        add(createExitPanel(), BorderLayout.NORTH);
+    }
+
+    /**
+     * This method creates the PasswordPanel by inserting the InsertCodePanel and the languagePanel
+     * into it.
+     * @return JPanel
+     */
+
+    private JPanel createPasswordPanel(){
         ins = new InsertCodePanel(piPo);
         JPanel p1 = new JPanel();
         p1.setLayout(new BoxLayout(p1, BoxLayout.PAGE_AXIS));
         p1.add(languagePanel());
         p1.add(ins);
-        Toolkit tk = getDefaultToolkit();
-        int height = tk.getScreenSize().height;
-        setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/8));
-        add(p1);
+        JPanel p2 = new JPanel();
+        p2.setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/8));
+        p2.add(p1);
+        return p2;
+    }
+
+    /**
+     * This method creates the ExitPanel by inserting the buttonExit into it,
+     * when the button is clicked, the panel is changed to startPanel and the
+     * deleteText method of the InsertCodePanel is called.
+     *
+     * @return JPanel
+     */
+
+    private JPanel createExitPanel(){
+        JButton buttonExit = new JButton("EXIT");
+        buttonExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bgp.changePanel("startPanel");
+                ins.deleteText();
+            }
+        });
+        JPanel p = new JPanel();
+        p.setLayout(new BorderLayout());
+        p.add(buttonExit, BorderLayout.WEST);
+        return p;
     }
 
     /**
@@ -98,7 +141,7 @@ public class BoxAccessPanel extends JPanel {
      * The refresh method is needed after changing the language.
      */
 
-    private void refresh() {
+    public void refresh() {
         n = Integer.parseInt(SetLanguage.getInstance().setBoxAccessPanel()[0]);
         l.setText(SetLanguage.getInstance().setBoxAccessPanel()[1]);
         c.removeAllItems();

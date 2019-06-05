@@ -14,6 +14,9 @@ import static java.awt.Toolkit.getDefaultToolkit;
 
 public class ButtonBox extends JButton {
 
+    private Image packImage = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/pack.jpg");
+    private Image emptyBoxImage = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/emptybox.jpg");
+
     /**
      * The constructor.
      * @param boxCode
@@ -21,27 +24,30 @@ public class ButtonBox extends JButton {
 
     public ButtonBox(String boxCode){
         super(boxCode);
+    }
 
-        Image packImage = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/pack.jpg");
-        Image emptyBoxImage = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/emptybox.jpg");
+    /**
+     * This method sets the packImage Image as the button icon if the foreground is red,
+     * otherwise sets the emptyBoxImage Image as icon.
+     */
 
-        addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Image img;
-                if(getIcon()!=null){
-                    setIcon(null);
-                    return;
-                }
-                if(getForeground()==Color.RED){
-                    img = packImage;
-                }  else {
-                    img = emptyBoxImage;
-                }
-                img = img.getScaledInstance(getWidth()+8, getHeight()-3,Image.SCALE_DEFAULT);
-                setIcon(new ImageIcon(img));
-            }
-        });
+    public void setIcon(){
+        Image img;
+        if(getForeground()==Color.RED){
+            img = packImage;
+        }  else {
+            img = emptyBoxImage ;
+        }
+        img = img.getScaledInstance(getWidth()+8, getHeight()-3,Image.SCALE_DEFAULT);
+        setIcon(new ImageIcon(img));
+    }
+
+    /**
+     * This method removes the icon from the button.
+     */
+
+    public void removeIcon(){
+        setIcon(null);
     }
 
 }

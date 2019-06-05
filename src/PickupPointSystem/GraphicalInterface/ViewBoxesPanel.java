@@ -5,9 +5,9 @@ import ObserverPattern.Observer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import static java.awt.Toolkit.getDefaultToolkit;
 
 /**
  * @author Sergio Gentilini
@@ -17,13 +17,15 @@ import static java.awt.Toolkit.getDefaultToolkit;
 public class ViewBoxesPanel extends JPanel implements Observer {
     private PickupPoint piPo;
     private GridBoxesPanel gridBoxesPanel;
+    private BackGroundPanel bgp;
 
     /**
      * The constructor.
      * @param pipo The pickup point.
      */
 
-    public ViewBoxesPanel(PickupPoint pipo) {
+    public ViewBoxesPanel(PickupPoint pipo, BackGroundPanel bgp) {
+        this.bgp = bgp;
         piPo = pipo;
         setLayout(new BorderLayout());
         initPanel();
@@ -35,7 +37,32 @@ public class ViewBoxesPanel extends JPanel implements Observer {
 
     private void initPanel() {
         gridBoxesPanel = new GridBoxesPanel(piPo);
-        add(gridBoxesPanel);
+        setLayout(new BorderLayout());
+        add(gridBoxesPanel, BorderLayout.CENTER);
+        add(createExitPanel(), BorderLayout.NORTH);
+    }
+
+    /**
+     * This method creates the ExitPanel by inserting the buttonExit into it,
+     * when the button is clicked the panel is changed to startPanel and the
+     * box icons of the gridBoxesPanel are removed.
+     *
+     * @return JPanel
+     */
+
+    private JPanel createExitPanel(){
+        JButton buttonExit = new JButton("Exit");
+        buttonExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bgp.changePanel("startPanel");
+                gridBoxesPanel.closeBoxes();
+            }
+        });
+        JPanel p = new JPanel();
+        p.setLayout(new BorderLayout());
+        p.add(buttonExit, BorderLayout.WEST);
+        return p;
     }
 
     /**

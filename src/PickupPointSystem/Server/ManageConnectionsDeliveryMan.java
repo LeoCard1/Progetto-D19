@@ -76,6 +76,7 @@ public class ManageConnectionsDeliveryMan implements ManageConnections {
             int boxNumber = pickupPoint.addPackage(pack);
             message+= pack.getId() + "\t" + boxNumber+"\n";
         }
+        
         return message;
     }
 

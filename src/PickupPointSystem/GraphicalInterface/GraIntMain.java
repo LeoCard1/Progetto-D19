@@ -14,11 +14,11 @@ import static java.awt.Toolkit.getDefaultToolkit;
  */
 
 public class GraIntMain extends JFrame implements Observer {
+
     private PickupPoint piPo;
-    private ViewBoxesPanel viewBoxesPanel;
+    private BackGroundPanel backGroundPanel;
     private int height;
     private int width;
-    private JTabbedPane t; // variabile necessaria per cambiare la lingua delle tab (più informazioni nella classe SetLanguage)
 
     /**
      * The constructor.
@@ -31,8 +31,8 @@ public class GraIntMain extends JFrame implements Observer {
         height = tk.getScreenSize().height;
         width = tk.getScreenSize().width;
 
-        setSize(width/2, height/2);
-        setLocation(width/4, height/4);
+        setSize(width*2/3, height*3/4);
+        setLocation(width/2, height/2);
 
         setResizable(false);
         setTitle(SetLanguage.getInstance().setGraIntMain()[0]);
@@ -49,20 +49,8 @@ public class GraIntMain extends JFrame implements Observer {
     private void initPanel() {
         setTheme("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 
-        /*JTabbedPane tabP = new JTabbedPane();
-        add(tabP);
-
-        JPanel jp = new JPanel();
-
-        BoxAccessPanel boxAccessPanel = new BoxAccessPanel(piPo, this);
-        tabP.addTab(SetLanguage.getInstance().setGraIntMain()[1], boxAccessPanel);
-        viewBoxesPanel = new ViewBoxesPanel(piPo);
-        tabP.addTab(SetLanguage.getInstance().setGraIntMain()[2], viewBoxesPanel);
-
-        t = tabP;*/
-
-        viewBoxesPanel = new ViewBoxesPanel(piPo);
-        add(viewBoxesPanel);
+        backGroundPanel = new BackGroundPanel(piPo,this);
+        add(backGroundPanel);
 
     }
 
@@ -91,8 +79,7 @@ public class GraIntMain extends JFrame implements Observer {
 
     public void refresh() {
         setTitle(SetLanguage.getInstance().setGraIntMain()[0]);
-        t.setTitleAt(0, SetLanguage.getInstance().setGraIntMain()[1]);
-        t.setTitleAt(1, SetLanguage.getInstance().setGraIntMain()[2]);
+        backGroundPanel.refresh();
     }
 
     /**
@@ -101,7 +88,7 @@ public class GraIntMain extends JFrame implements Observer {
 
     @Override
     public void update() {
-        viewBoxesPanel.update();
+        backGroundPanel.update();
         revalidate();
     }
 }

@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 
 public class InsertCodePanel extends JPanel {
     private PickupPoint piPo;
+    private JTextField textF = new JTextField();
     JLabel l;
     JButton b;
     // l e b sono variabili necessarie per cambiare la lingua delle tab (più informazioni nella classe SetLanguage)
@@ -43,7 +44,6 @@ public class InsertCodePanel extends JPanel {
         add(panLab);
         l = insCod;
 
-        JTextField textF = new JTextField();
         textF.setFont(new Font("", Font.PLAIN, 24));
         textF.setMaximumSize(new Dimension(200, 200));
         add(textF);
@@ -57,11 +57,19 @@ public class InsertCodePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 String code = textF.getText();
+                deleteText();
                 piPo.emptyBox(code);
             }
         };
-
         confBut.addActionListener(checkCode);
+    }
+
+    /**
+     * This method deletes the text from the JTextField textF.
+     */
+
+    public void deleteText(){
+        textF.setText("");
     }
 
     /**

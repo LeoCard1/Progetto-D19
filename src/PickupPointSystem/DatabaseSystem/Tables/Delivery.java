@@ -53,7 +53,7 @@ public class Delivery {
     }
 
     public boolean hasDelID(String delID){
-        if(this.delID.equals(delID)){
+        if(this.delID!=null && this.delID.equals(delID)){
             return true;
         }
         return false;

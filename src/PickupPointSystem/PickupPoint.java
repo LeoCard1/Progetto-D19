@@ -35,24 +35,18 @@ public class PickupPoint {
      * The constructor.Adds the boxes to the list, updates the boxes from the database,
      * creates the server and the graphical interface.
      * @param id
-     * @param numBox1
-     * @param numBox2
-     * @param numBox3
+     * @param smallBoxes
+     * @param mediumBoxes
+     * @param largeBoxes
      * @throws IOException
      */
 
-    public PickupPoint(String id, int numBox1, int numBox2, int numBox3) throws IOException {
+    public PickupPoint(String id, int smallBoxes, int mediumBoxes, int largeBoxes) throws IOException {
         this.id = id;
 
-        ArrayList<Integer> listQuantity = new ArrayList<>();
-        listQuantity.add(numBox1);
-        listQuantity.add(numBox2);
-        listQuantity.add(numBox3);
-        Collections.sort(listQuantity);
-
-        largeBoxes = listQuantity.get(0);
-        mediumBoxes = listQuantity.get(1);
-        smallBoxes = listQuantity.get(2);
+        this.largeBoxes = largeBoxes;
+        this.mediumBoxes = mediumBoxes;
+        this.smallBoxes = smallBoxes;
 
         for(int i = 0; i < smallBoxes; i++){
             boxList.add(new SmallBox());
@@ -63,9 +57,10 @@ public class PickupPoint {
         for(int i = 0; i < largeBoxes; i++){
             boxList.add(new LargeBox());
         }
+        updateBox();
         createGUI();
         createServer();
-        updateBox();
+
     }
 
     /**
@@ -134,19 +129,22 @@ public class PickupPoint {
                 availableBox.put(delivery.getBoxPassword(),box);
             }
         }
-        notifyObservers();
     }
 
-    public ArrayList<Box> getBoxList() {
-        return boxList;
+    public int getSmallBoxes() {
+        return smallBoxes;
+    }
+
+    public int getMediumBoxes() {
+        return mediumBoxes;
+    }
+
+    public int getLargeBoxes() {
+        return largeBoxes;
     }
 
     public Box getBoxFromIndex(int index) {
         return boxList.get(index);
-    }
-
-    public Size getBoxSizeGivenIndex(int index) {
-        return getBoxFromIndex(index).getSize();
     }
 
     public String getId(){
@@ -177,15 +175,4 @@ public class PickupPoint {
         }
     }
 
-    public int getSmallBoxes() {
-        return smallBoxes;
-    }
-
-    public int getMediumBoxes() {
-        return mediumBoxes;
-    }
-
-    public int getLargeBoxes() {
-        return largeBoxes;
-    }
 }
