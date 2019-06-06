@@ -2,12 +2,11 @@ package PickupPointSystem.GraphicalInterface;
 
 import PickupPointSystem.LockerSystem.BoxType.Box;
 import PickupPointSystem.PickupPoint;
-import ObserverPattern.Observer;
+import PickupPointSystem.ObserverPattern.Observer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static java.awt.Toolkit.getDefaultToolkit;
 

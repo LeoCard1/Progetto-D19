@@ -1,4 +1,4 @@
-package ObserverPattern;
+package PickupPointSystem.ObserverPattern;
 
 
 public interface Observer {
