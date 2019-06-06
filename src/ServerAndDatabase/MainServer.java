@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.StringTokenizer;
 
 public class MainServer extends Thread {
@@ -47,13 +48,15 @@ public class MainServer extends Thread {
             try {
 
                 Connection connection = conFac.getConnection(strTok.nextToken());
-                connection.manageConnection(in, out, client);
+                connection.manageConnection(in, out, client, strTok);
 
             } catch (ConnectionUnknownException e) {
 
                 e.printStackTrace();
                 System.err.println("Client: " + client.getLocalAddress());
 
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
 
             closeConnection();
