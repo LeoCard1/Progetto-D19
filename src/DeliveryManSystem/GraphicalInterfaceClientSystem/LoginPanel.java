@@ -1,15 +1,12 @@
 package DeliveryManSystem.GraphicalInterfaceClientSystem;
 
 import DeliveryManSystem.Client.DeliveryManClient;
-import DeliveryManSystem.DeliveryMan;
 import DeliveryManSystem.ObserverResponse;
-import ObserverPattern.Observer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import static java.awt.Font.ITALIC;
 

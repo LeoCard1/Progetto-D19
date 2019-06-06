@@ -1,12 +1,10 @@
 package PickupPointSystem.GraphicalInterface;
 
 import PickupPointSystem.PickupPoint;
-import ObserverPattern.Observer;
+import PickupPointSystem.ObserverPattern.Observer;
 
 import javax.swing.*;
 import java.awt.*;
-
-import static java.awt.Toolkit.getDefaultToolkit;
 
 /**
  * @author Sergio Gentilini

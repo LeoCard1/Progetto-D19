@@ -7,8 +7,7 @@ import PickupPointSystem.GraphicalInterface.GraIntMain;
 import PickupPointSystem.LockerSystem.BoxType.*;
 import PickupPointSystem.DatabaseSystem.Tables.Package;
 
-import PickupPointSystem.LockerSystem.Size;
-import ObserverPattern.Observer;
+import PickupPointSystem.ObserverPattern.Observer;
 import PickupPointSystem.Server.PickupPointServer;
 
 import java.io.IOException;
