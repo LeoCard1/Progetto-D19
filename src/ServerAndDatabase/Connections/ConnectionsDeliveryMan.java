@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 
 public class ConnectionsDeliveryMan implements Connection {
     @Override
-    public void manageConnection(BufferedReader in, PrintStream out, Socket client, StringTokenizer strTok) throws SQLException {
-
+    public boolean manageConnection(BufferedReader in, PrintStream out, Socket client, StringTokenizer strTok) throws SQLException {
+        return true;
     }
 }
