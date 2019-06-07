@@ -38,6 +38,41 @@ public class ConnectionsPickupPoint implements Connection {
         }
 
         /*
+        pickuppoint removerowfrompackid packID
+         */
+        if (nextToken.equalsIgnoreCase("removerowfrompackid")) {
+            ResultSet res = statement.executeQuery("select * from deliveries where package_id = \""
+                    + strTok.nextToken() + "\"");
+            while (res.next()) {
+                res.deleteRow();
+            }
+            out.println(strBuf);
+            return true;
+        }
+
+        /*
+        pickuppoint update packID dateOfDelivery boxNumber boxPassword
+         */
+        if (nextToken.equalsIgnoreCase("update")) {
+            ResultSet res = statement.executeQuery("select * from deliveries where package_id = \""
+                    + strTok.nextToken() +"\"");
+            while (res.next()) {
+                res.updateDate("date_of_delivery", new java.sql.Date(Long.parseLong(strTok.nextToken())));
+                res.updateInt("box_number", Integer.parseInt(strTok.nextToken()));
+                res.updateString("box_password", strTok.nextToken());
+                res.updateRow();
+            }
+        }
+        /*{
+            ResultSet res = stm.executeQuery("select * from deliveries where package_id = \"" + delivery.getPackID() +"\"");
+            while(res.next()){
+                res.updateDate("date_of_delivery", new java.sql.Date(delivery.getDateOfDelivery().getTime()));
+                res.updateInt("box_number", delivery.getBoxNumber());
+                res.updateString("box_password", delivery.getBoxPassword());
+                res.updateRow();
+            }*/
+
+        /*
         pickuppoint close
          */
         if (nextToken.equalsIgnoreCase("close")) {

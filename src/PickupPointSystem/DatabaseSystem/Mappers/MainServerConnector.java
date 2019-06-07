@@ -6,15 +6,13 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.StringTokenizer;
 
 public class MainServerConnector {
-    static MainServerConnector instance;
     private Socket client = new Socket();
     private BufferedReader in;
     private PrintStream out;
 
-    private MainServerConnector() {
+    public MainServerConnector() {
         startServer();
     }
 
@@ -42,7 +40,6 @@ public class MainServerConnector {
                 strBuf.append(in.readLine() + "\n");
             }
 
-            System.out.println(strBuf);
             return strBuf.toString();
 
         } catch (IOException e) {
@@ -52,13 +49,16 @@ public class MainServerConnector {
         return null;
     }
 
-    public void close() {
-        out.println("pickuppoint close");
-        instance = null;
+    public void removeRowFromPackID(String packID) {
+        out.println("pickuppoint removerowfrompackid " + packID);
     }
 
-    public static synchronized MainServerConnector getInstance() {
-        if (instance == null) instance = new MainServerConnector();
-        return instance;
+    public void updatePickupPoint(String packID, String dateOfDelivery, String boxNumber, String boxPassword) {
+        out.println("pickuppoint update " + packID + " " + dateOfDelivery +
+                " " + boxNumber + " " + boxPassword);
+    }
+
+    public void close() {
+        out.println("pickuppoint close");
     }
 }

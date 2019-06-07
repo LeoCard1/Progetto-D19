@@ -46,7 +46,8 @@ public class DeliveryMapper implements Mapper {
     public ArrayList<Delivery> get(String pipoID) {
         if (buffer.containsKey(pipoID)) return buffer.get(pipoID);
 
-        MainServerConnector server = MainServerConnector.getInstance();
+        MainServerConnector server = new MainServerConnector();
+
         StringTokenizer linesTok = new StringTokenizer(server.get(pipoID), "\n");
         StringTokenizer singleLineTok;
         String[] elements = new String[6];
@@ -90,6 +91,7 @@ public class DeliveryMapper implements Mapper {
             }
         }
 
+        server.close();
         buffer.put(pipoID, deliveries);
         return deliveries;
     }
@@ -100,14 +102,18 @@ public class DeliveryMapper implements Mapper {
      */
 
     public void removeRowFromPackID(String packID){
-        try {
+        MainServerConnector server = new MainServerConnector();
+        server.removeRowFromPackID(packID);
+        server.close();
+
+        /*try {
             ResultSet res = stm.executeQuery("select * from deliveries where package_id = \""+ packID +"\"");
             while(res.next()){
                 res.deleteRow();
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     /**
@@ -117,7 +123,11 @@ public class DeliveryMapper implements Mapper {
      */
 
     public void update(Delivery delivery){
-        try {
+        MainServerConnector server = new MainServerConnector();
+        server.updatePickupPoint(delivery.getPackID(), String.valueOf(delivery.getDateOfDelivery().getTime()),
+                String.valueOf(delivery.getBoxNumber()), delivery.getBoxPassword());
+        server.close();
+        /*try {
             ResultSet res = stm.executeQuery("select * from deliveries where package_id = \"" + delivery.getPackID() +"\"");
             while(res.next()){
                 res.updateDate("date_of_delivery", new java.sql.Date(delivery.getDateOfDelivery().getTime()));
@@ -127,9 +137,7 @@ public class DeliveryMapper implements Mapper {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-
-
+        }*/
     }
 
 

@@ -129,7 +129,6 @@ public class PickupPoint {
                 availableBox.put(delivery.getBoxPassword(),box);
             }
         }
-        MainServerConnector.getInstance().close();
     }
 
     public int getSmallBoxes() {
