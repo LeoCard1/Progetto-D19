@@ -47,7 +47,6 @@ public class ManageConnectionsDeliveryMan implements ManageConnections {
             in.close();
             return;
         }
-
         if (command.equals("login")) {
             String delID = st.nextToken();
             String password = st.nextToken();
