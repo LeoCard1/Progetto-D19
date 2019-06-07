@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.StringTokenizer;
 
 public class MainServerConnector {
     static MainServerConnector instance;
@@ -30,19 +31,25 @@ public class MainServerConnector {
         }
     }
 
-    public void get(String piPoID) {
+    public String get(String piPoID) {
         try {
             out.println("pickuppoint get " + piPoID);
 
             while (!in.ready()) ;
+            StringBuffer strBuf = new StringBuffer();
 
             while (in.ready()) {
-                System.out.println(in.readLine());
+                strBuf.append(in.readLine() + "\n");
             }
+
+            System.out.println(strBuf);
+            return strBuf.toString();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return null;
     }
 
     public void close() {
