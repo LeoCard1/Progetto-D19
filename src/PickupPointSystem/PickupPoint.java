@@ -1,5 +1,6 @@
 package PickupPointSystem;
 
+import PickupPointSystem.DatabaseSystem.Mappers.MainServerConnector;
 import PickupPointSystem.DatabaseSystem.PersistenceFacade;
 import PickupPointSystem.DatabaseSystem.Tables.Delivery;
 import PickupPointSystem.GraphicalInterface.ErrorGUI.ErrorGUIMain;
@@ -128,6 +129,7 @@ public class PickupPoint {
                 availableBox.put(delivery.getBoxPassword(),box);
             }
         }
+        MainServerConnector.getInstance().close();
     }
 
     public int getSmallBoxes() {

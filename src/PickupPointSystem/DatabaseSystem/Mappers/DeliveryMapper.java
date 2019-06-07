@@ -38,6 +38,9 @@ public class DeliveryMapper implements Mapper {
 
     @Override
     public ArrayList<Delivery> get(String pipoID) {
+        MainServerConnector server = MainServerConnector.getInstance();
+        server.get(pipoID);
+
         ArrayList<Delivery> deliveries = new ArrayList<>();
         try {
             ResultSet res = stm.executeQuery("select * from deliveries where pickuppoint_id = \""+pipoID+"\"");

@@ -40,6 +40,12 @@ public class MainServer extends Thread {
             in = new BufferedReader(new InputStreamReader(client.getInputStream()));
             out = new PrintStream(client.getOutputStream(), true);
 
+            handleConnection();
+        }
+    }
+
+    private void handleConnection() throws IOException {
+        while (!client.isClosed()) {
             while (!in.ready()) ;
 
             StringTokenizer strTok = new StringTokenizer(in.readLine());
@@ -48,18 +54,18 @@ public class MainServer extends Thread {
             try {
 
                 Connection connection = conFac.getConnection(strTok.nextToken());
-                connection.manageConnection(in, out, client, strTok);
+                if (!connection.manageConnection(in, out, client, strTok)) break;
 
             } catch (ConnectionUnknownException e) {
 
                 e.printStackTrace();
                 System.err.println("Client: " + client.getLocalAddress());
+                closeConnection();
 
             } catch (SQLException e) {
                 e.printStackTrace();
+                closeConnection();
             }
-
-            closeConnection();
         }
     }
 

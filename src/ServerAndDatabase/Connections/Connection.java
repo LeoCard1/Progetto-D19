@@ -7,5 +7,5 @@ import java.sql.SQLException;
 import java.util.StringTokenizer;
 
 public interface Connection {
-    void manageConnection(BufferedReader in, PrintStream out, Socket client, StringTokenizer strTok) throws SQLException;
+    boolean manageConnection(BufferedReader in, PrintStream out, Socket client, StringTokenizer strTok) throws SQLException;
 }
