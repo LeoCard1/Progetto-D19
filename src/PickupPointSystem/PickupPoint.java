@@ -23,7 +23,7 @@ public class PickupPoint {
 
     private String id;
     private ArrayList<Box> boxList = new ArrayList<>();
-    private HashMap<String, Box> availableBox = new HashMap<>();
+    private HashMap<String, Box> unavailablesBoxes = new HashMap<>();
     private ArrayList<Observer> obsList = new ArrayList<>();
     private PersistenceFacade facade = new PersistenceFacade();
     private int smallBoxes;
@@ -56,10 +56,9 @@ public class PickupPoint {
         for(int i = 0; i < largeBoxes; i++){
             boxList.add(new LargeBox());
         }
-        updateBox();
         createGUI();
+        updateBox();
         createServer();
-
     }
 
     /**
@@ -78,7 +77,7 @@ public class PickupPoint {
                 Date dateOfDelivery = new Date();
                 box.setDate(dateOfDelivery);
                 String password = box.generateBoxPassword();
-                availableBox.put(password, box);
+                unavailablesBoxes.put(password, box);
                 Delivery delivery = facade.getDeliveryFromPackID(id, pack.getId());
                 delivery.setDateOfDelivery(dateOfDelivery);
                 delivery.setBoxNumber(box.getBoxNumber());
@@ -93,7 +92,7 @@ public class PickupPoint {
 
     /**
      * This method empties the box associated with the entered password and remove it from
-     * the availableBox, remove the package and delivery from the database.
+     * the unavailablesBoxes, remove the package and delivery from the database.
      * @param cod
      */
 
@@ -101,10 +100,10 @@ public class PickupPoint {
         Box box = null;
         Package pack = null;
         try {
-            box = availableBox.get(cod);
+            box = unavailablesBoxes.get(cod);
             pack = box.getPack();
             box.removePackage();
-            availableBox.remove(cod);
+            unavailablesBoxes.remove(cod);
             facade.removeDelivery(pack.getId());
             facade.removePack(pack.getId());
             notifyObservers();
@@ -125,9 +124,10 @@ public class PickupPoint {
             if(delivery!=null){
                 box.addPackage(facade.getPackage(delivery.getPackID()));
                 box.setDate(delivery.getDateOfDelivery());
-                availableBox.put(delivery.getBoxPassword(),box);
+                unavailablesBoxes.put(delivery.getBoxPassword(),box);
             }
         }
+        notifyObservers();
     }
 
     public int getSmallBoxes() {
