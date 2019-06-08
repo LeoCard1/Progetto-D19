@@ -7,6 +7,7 @@ import PickupPointSystem.DatabaseSystem.Tables.DeliveryMan;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.StringTokenizer;
 
 /**
  * @author Andrea Stella
@@ -15,16 +16,16 @@ import java.sql.Statement;
 
 public class DeliveryManMapper implements Mapper {
 
-    private Statement stm;
+    /*private Statement stm;*/
 
     /**
      * The constructor. Initialize the statement.
      */
 
-    public DeliveryManMapper(){
+    /*public DeliveryManMapper(){
         DatabaseConnect dbc = new DatabaseConnect();
         stm = dbc.connect();
-    }
+    }*/
 
     /**
      * This method returns the internal DeliveryMan to the database given the
@@ -34,7 +35,15 @@ public class DeliveryManMapper implements Mapper {
      */
 
     public DeliveryMan get(String delID){
-        try {
+        MainServerConnector server = new MainServerConnector();
+
+        String password = server.deliveryManGet(delID);
+        server.close();
+
+        if (password.equalsIgnoreCase("null")) return null;
+        return new DeliveryMan(delID, password);
+
+       /* try {
             ResultSet res = stm.executeQuery("select id,password from deliverymen where id = \""+ delID +"\"");
             while(res.next()){
                 String password = res.getString("password");
@@ -42,8 +51,8 @@ public class DeliveryManMapper implements Mapper {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        return null;
+        }*/
+        //return null;
     }
 
 }

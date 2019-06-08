@@ -23,17 +23,17 @@ import java.util.StringTokenizer;
 
 public class DeliveryMapper implements Mapper {
 
-    private Statement stm;
+    /*private Statement stm;*/
     private HashMap<String, ArrayList<Delivery>> buffer = new HashMap<>();
 
     /**
      * The constructor. Initialize the statement.
      */
 
-    public DeliveryMapper(){
+   /* public DeliveryMapper(){
         DatabaseConnect dbc = new DatabaseConnect();
         stm = dbc.connect();
-    }
+    }*/
 
     /**
      * This method returns an ArrayList of deliveries inside the database given the PickupPoint
@@ -48,7 +48,7 @@ public class DeliveryMapper implements Mapper {
 
         MainServerConnector server = new MainServerConnector();
 
-        StringTokenizer linesTok = new StringTokenizer(server.get(pipoID), "\n");
+        StringTokenizer linesTok = new StringTokenizer(server.pickupPointGet(pipoID), "\n");
         StringTokenizer singleLineTok;
         String[] elements = new String[6];
 
@@ -73,8 +73,6 @@ public class DeliveryMapper implements Mapper {
             for (int i = 0; singleLineTok.hasMoreTokens(); i++) {
                 elements[i] = singleLineTok.nextToken();
                 if (elements[i].equalsIgnoreCase("null")) elements[i] = null;
-
-                System.out.println(elements[i]);
             }
 
             try {
@@ -102,6 +100,7 @@ public class DeliveryMapper implements Mapper {
      */
 
     public void removeRowFromPackID(String packID){
+        buffer.clear();
         MainServerConnector server = new MainServerConnector();
         server.removeRowFromPackID(packID);
         server.close();
@@ -123,6 +122,7 @@ public class DeliveryMapper implements Mapper {
      */
 
     public void update(Delivery delivery){
+        buffer.clear();
         MainServerConnector server = new MainServerConnector();
         server.updatePickupPoint(delivery.getPackID(), String.valueOf(delivery.getDateOfDelivery().getTime()),
                 String.valueOf(delivery.getBoxNumber()), delivery.getBoxPassword());
