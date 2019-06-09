@@ -1,7 +1,6 @@
 package DeliveryManSystem;
 
 
-import DeliveryManSystem.Client.DatabaseOperations;
 import DeliveryManSystem.Client.DeliveryManClient;
 
 import java.io.IOException;
