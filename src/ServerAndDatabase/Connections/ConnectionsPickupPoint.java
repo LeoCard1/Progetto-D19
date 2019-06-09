@@ -12,11 +12,12 @@ import java.sql.Statement;
 import java.util.StringTokenizer;
 
 public class ConnectionsPickupPoint implements Connection {
+    private Statement statement;
 
     @Override
     public boolean manageConnection(BufferedReader in, PrintStream out, Socket client, StringTokenizer strTok) throws SQLException {
         DatabaseConnector datCon = new DatabaseConnector();
-        Statement statement = datCon.connectAndReturnStatement();
+        this.statement = datCon.connectAndReturnStatement();
 
         String nextToken = strTok.nextToken();
         StringBuffer strBuf = new StringBuffer();
@@ -25,15 +26,7 @@ public class ConnectionsPickupPoint implements Connection {
         pickuppoint get piPoName
          */
         if (nextToken.equalsIgnoreCase("get")) {
-            ResultSet res = statement.executeQuery("select * from deliveries where pickuppoint_id = \""
-                    + strTok.nextToken() + "\"");
-            while (res.next()) {
-                for (int i = 1; i < 7; i++) {
-                    strBuf.append(res.getString(i) + ".");
-                }
-                strBuf.append("\n");
-            }
-            out.println(strBuf);
+            get(strTok, out);
             return true;
         }
 
@@ -41,12 +34,7 @@ public class ConnectionsPickupPoint implements Connection {
         pickuppoint removerowfrompackid packID
          */
         if (nextToken.equalsIgnoreCase("removerowfrompackid")) {
-            ResultSet res = statement.executeQuery("select * from deliveries where package_id = \""
-                    + strTok.nextToken() + "\"");
-            while (res.next()) {
-                res.deleteRow();
-            }
-            out.println(strBuf);
+            removeRowFromPackID(strTok);
             return true;
         }
 
@@ -54,32 +42,16 @@ public class ConnectionsPickupPoint implements Connection {
         pickuppoint update packID dateOfDelivery boxNumber boxPassword
          */
         if (nextToken.equalsIgnoreCase("update")) {
-            ResultSet res = statement.executeQuery("select * from deliveries where package_id = \""
-                    + strTok.nextToken() +"\"");
-            while (res.next()) {
-                res.updateDate("date_of_delivery", new java.sql.Date(Long.parseLong(strTok.nextToken())));
-                res.updateInt("box_number", Integer.parseInt(strTok.nextToken()));
-                res.updateString("box_password", strTok.nextToken());
-                res.updateRow();
-            }
+            updatePickupPoint(strTok);
+            return true;
         }
-        /*{
-            ResultSet res = stm.executeQuery("select * from deliveries where package_id = \"" + delivery.getPackID() +"\"");
-            while(res.next()){
-                res.updateDate("date_of_delivery", new java.sql.Date(delivery.getDateOfDelivery().getTime()));
-                res.updateInt("box_number", delivery.getBoxNumber());
-                res.updateString("box_password", delivery.getBoxPassword());
-                res.updateRow();
-            }*/
 
         /*
         pickuppoint close
          */
         if (nextToken.equalsIgnoreCase("close")) {
             try {
-                in.close();
-                out.close();
-                client.close();
+                close(in, out, client);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -87,5 +59,48 @@ public class ConnectionsPickupPoint implements Connection {
         }
 
         return true;
+    }
+
+    private void get(StringTokenizer strTok, PrintStream out) throws SQLException {
+        StringBuffer strBuf = new StringBuffer();
+
+        ResultSet res = statement.executeQuery("select * from deliveries where pickuppoint_id = \""
+                + strTok.nextToken() + "\"");
+
+        while (res.next()) {
+            for (int i = 1; i < 7; i++) {
+                strBuf.append(res.getString(i) + ".");
+            }
+            strBuf.append("\n");
+        }
+
+        out.println(strBuf);
+    }
+
+    private void removeRowFromPackID(StringTokenizer strTok) throws SQLException {
+        ResultSet res = statement.executeQuery("select * from deliveries where package_id = \""
+                    + strTok.nextToken() + "\"");
+
+        while (res.next()) {
+            res.deleteRow();
+        }
+    }
+
+    private void updatePickupPoint(StringTokenizer strTok) throws SQLException {
+        ResultSet res = statement.executeQuery("select * from deliveries where package_id = \""
+                + strTok.nextToken() +"\"");
+
+        while (res.next()) {
+            res.updateDate("date_of_delivery", new java.sql.Date(Long.parseLong(strTok.nextToken())));
+            res.updateInt("box_number", Integer.parseInt(strTok.nextToken()));
+            res.updateString("box_password", strTok.nextToken());
+            res.updateRow();
+        }
+    }
+
+    private void close(BufferedReader in, PrintStream out, Socket client) throws IOException {
+        in.close();
+        out.close();
+        client.close();
     }
 }

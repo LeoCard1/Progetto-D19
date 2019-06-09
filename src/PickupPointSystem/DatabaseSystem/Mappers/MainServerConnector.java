@@ -29,19 +29,9 @@ public class MainServerConnector {
         }
     }
 
-    public String get(String piPoID) {
+    public String pickupPointGet(String piPoID) {
         try {
-            out.println("pickuppoint get " + piPoID);
-
-            while (!in.ready()) ;
-            StringBuffer strBuf = new StringBuffer();
-
-            while (in.ready()) {
-                strBuf.append(in.readLine() + "\n");
-            }
-
-            return strBuf.toString();
-
+            return  sendAndWaitForResponse("pickuppoint get " + piPoID);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -58,7 +48,30 @@ public class MainServerConnector {
                 " " + boxNumber + " " + boxPassword);
     }
 
+    public String deliveryManGet(String delID) {
+        try {
+            return sendAndWaitForResponse("deliveryman get " + delID);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public void close() {
         out.println("pickuppoint close");
+    }
+
+    private String sendAndWaitForResponse(String command) throws IOException {
+        StringBuffer strBuf = new StringBuffer();
+        out.println(command);
+
+        while (!in.ready()) ;
+
+        while (in.ready()) {
+            strBuf.append(in.readLine() + "\n");
+        }
+
+        return strBuf.toString();
     }
 }
