@@ -3,6 +3,7 @@ package PickupPointSystem.Server;
 import PickupPointSystem.DatabaseSystem.Tables.Package;
 import PickupPointSystem.DatabaseSystem.PersistenceFacade;
 import PickupPointSystem.DatabaseSystem.Tables.DeliveryMan;
+import PickupPointSystem.LoginDelMan;
 import PickupPointSystem.PickupPoint;
 
 import java.io.BufferedReader;
@@ -48,35 +49,17 @@ public class ManageConnectionsDeliveryMan implements ManageConnections {
             return;
         }
         if (command.equals("login")) {
+            LoginDelMan logDel = new LoginDelMan(pickupPoint);
             String delID = st.nextToken();
             String password = st.nextToken();
 
             System.out.println(delID + " " + password);
 
-            if (authenticationDeliveryMan(delID, password)) {
+            if (logDel.login(delID, password)) {
                 out.println("accepted");
-                addDeliverymanPackages(delID);
+                logDel.addDeliverymanPackages();
             } else out.println("refused");
         }
-    }
-
-    private boolean authenticationDeliveryMan(String delID, String password){
-        DeliveryMan del = facade.getDeliveryMan(delID);
-        if (del != null && del.getPassword().equals(password)){
-            return true;
-        }
-        return false;
-    }
-
-    private String addDeliverymanPackages(String delID) throws IOException {
-        ArrayList<Package> packages = facade.getPackagesFromDelID(pickupPoint.getId(), delID);
-        String message ="";
-        for(Package pack : packages){
-            int boxNumber = pickupPoint.addPackage(pack);
-            message+= pack.getId() + "\t" + boxNumber+"\n";
-        }
-        
-        return message;
     }
 
 }

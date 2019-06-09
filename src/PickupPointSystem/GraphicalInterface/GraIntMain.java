@@ -11,7 +11,7 @@ import java.awt.*;
  * @version 1.0.1
  */
 
-public class GraIntMain extends JFrame implements Observer {
+public class GraIntMain extends JFrame {
 
     private PickupPoint piPo;
     private BackGroundPanel backGroundPanel;
@@ -80,13 +80,4 @@ public class GraIntMain extends JFrame implements Observer {
         backGroundPanel.refresh();
     }
 
-    /**
-     * The interface is updated after a package is added or removed.
-     */
-
-    @Override
-    public void update() {
-        backGroundPanel.update();
-        revalidate();
-    }
 }

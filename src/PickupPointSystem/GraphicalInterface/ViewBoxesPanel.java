@@ -27,6 +27,7 @@ public class ViewBoxesPanel extends JPanel implements Observer {
     public ViewBoxesPanel(PickupPoint pipo, BackGroundPanel bgp) {
         this.bgp = bgp;
         piPo = pipo;
+        piPo.addObserver(this);
         setLayout(new BorderLayout());
         initPanel();
     }
@@ -71,6 +72,7 @@ public class ViewBoxesPanel extends JPanel implements Observer {
 
     @Override
     public void update() {
-        gridBoxesPanel.update();
+        bgp.changePanel("viewBoxesPanel");
+        gridBoxesPanel.checkState();
     }
 }

@@ -13,13 +13,14 @@ import static java.awt.Toolkit.getDefaultToolkit;
  * @version 1.0
  */
 
-public class BackGroundPanel extends JPanel implements Observer {
+public class BackGroundPanel extends JPanel {
 
     private int height;
     private int width;
     private BoxAccessPanel boxAccessPanel;
     private ViewBoxesPanel viewBoxesPanel;
     private StartPanel startPanel;
+    private LoginDelManPanel loginDelManPanel;
     private CardLayout cardLayout = new CardLayout();
     private JPanel panelCont = new JPanel();
 
@@ -32,6 +33,7 @@ public class BackGroundPanel extends JPanel implements Observer {
     public BackGroundPanel(PickupPoint pipo, GraIntMain gra){
         boxAccessPanel = new BoxAccessPanel(pipo, gra, this);
         viewBoxesPanel = new ViewBoxesPanel(pipo,this);
+        loginDelManPanel = new LoginDelManPanel(pipo,this);
         startPanel = new StartPanel(this);
         Toolkit tk = getDefaultToolkit();
         height = tk.getScreenSize().height;
@@ -47,6 +49,7 @@ public class BackGroundPanel extends JPanel implements Observer {
         panelCont.setLayout(cardLayout);
         panelCont.add(boxAccessPanel, "boxAccessPanel");
         panelCont.add(viewBoxesPanel,"viewBoxesPanel");
+        panelCont.add(loginDelManPanel,"loginDelManPanel");
         panelCont.add(startPanel, "startPanel");
         cardLayout.show(panelCont, "startPanel");
 
@@ -83,16 +86,6 @@ public class BackGroundPanel extends JPanel implements Observer {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * This method updates viewBoxesPanel and changes the panel to viewBoxesPanel.
-     */
-
-    @Override
-    public void update() {
-        viewBoxesPanel.update();
-        changePanel("viewBoxesPanel");
     }
 
     /**

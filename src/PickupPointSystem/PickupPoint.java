@@ -56,8 +56,8 @@ public class PickupPoint {
         for(int i = 0; i < largeBoxes; i++){
             boxList.add(new LargeBox());
         }
-        createGUI();
         updateBox();
+        createGUI();
         createServer();
     }
 
@@ -96,22 +96,20 @@ public class PickupPoint {
      * @param cod
      */
 
-    public void emptyBox(String cod){
+    public boolean emptyBox(String cod){
         Box box = null;
         Package pack = null;
-        try {
-            box = unavailablesBoxes.get(cod);
-            pack = box.getPack();
-            box.removePackage();
-            unavailablesBoxes.remove(cod);
-            facade.removeDelivery(pack.getId());
-            facade.removePack(pack.getId());
-            notifyObservers();
+        box = unavailablesBoxes.get(cod);
+        if(box == null){
+            return false;
         }
-        catch (NullPointerException e) {
-            e.printStackTrace();
-            new ErrorGUIMain("the code is invalid", false);
-        }
+        pack = box.getPack();
+        box.removePackage();
+        unavailablesBoxes.remove(cod);
+        facade.removeDelivery(pack.getId());
+        facade.removePack(pack.getId());
+        notifyObservers();
+        return true;
     }
 
     /**
@@ -157,10 +155,9 @@ public class PickupPoint {
 
     private void createGUI() {
         GraIntMain gui = new GraIntMain(this);
-        addObserver(gui);
     }
 
-    private void addObserver(Observer obs) {
+    public void addObserver(Observer obs) {
         for (Observer obsOfList : obsList) {
             if (obs == obsOfList) return;
         }

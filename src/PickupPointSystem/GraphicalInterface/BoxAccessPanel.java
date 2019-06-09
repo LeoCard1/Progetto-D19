@@ -51,7 +51,7 @@ public class BoxAccessPanel extends JPanel {
         setPreferredSize(new Dimension(width*2/3, height*2/3));
         setLayout(new BorderLayout());
         add(createPasswordPanel(), BorderLayout.CENTER);
-        add(createExitPanel(), BorderLayout.NORTH);
+        add(createNorthPanel(), BorderLayout.NORTH);
     }
 
     /**
@@ -80,8 +80,15 @@ public class BoxAccessPanel extends JPanel {
      * @return JPanel
      */
 
-    private JPanel createExitPanel(){
-        JButton buttonExit = new JButton("EXIT");
+    private JPanel createNorthPanel(){
+        JButton buttonExit = new JButton("Exit");
+        JButton buttonDelManLogin = new JButton("I'm delivery man");
+        buttonDelManLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bgp.changePanel("loginDelManPanel");
+            }
+        });
         buttonExit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -92,6 +99,7 @@ public class BoxAccessPanel extends JPanel {
         JPanel p = new JPanel();
         p.setLayout(new BorderLayout());
         p.add(buttonExit, BorderLayout.WEST);
+        p.add(buttonDelManLogin,BorderLayout.EAST);
         return p;
     }
 

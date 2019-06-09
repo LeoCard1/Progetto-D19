@@ -1,5 +1,6 @@
 package PickupPointSystem.GraphicalInterface;
 
+import PickupPointSystem.GraphicalInterface.ErrorGUI.ErrorGUIMain;
 import PickupPointSystem.PickupPoint;
 
 import javax.swing.*;
@@ -33,7 +34,6 @@ public class InsertCodePanel extends JPanel {
     public InsertCodePanel(PickupPoint pipo) {
         piPo = pipo;
         setLayout(new GridLayout(3, 1));
-        setPreferredSize(new Dimension(200,120));
         initPanel();
     }
 
@@ -64,7 +64,9 @@ public class InsertCodePanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String code = textF.getText();
                 deleteText();
-                piPo.emptyBox(code);
+                if(piPo.emptyBox(code)==false){
+                    new ErrorGUIMain("the code is invalid", false);
+                }
             }
         });
         return confBut;

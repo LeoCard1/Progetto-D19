@@ -15,7 +15,7 @@ import static java.awt.Toolkit.getDefaultToolkit;
  * @version 1.0.1
  */
 
-public class GridBoxesPanel extends JPanel implements Observer {
+public class GridBoxesPanel extends JPanel{
     private PickupPoint piPo;
     private static ArrayList<ButtonBox> boxes = new ArrayList<>();
     private int numBox;
@@ -93,7 +93,7 @@ public class GridBoxesPanel extends JPanel implements Observer {
      * inserted in the ButtonBox and the color of the number is changed.
      */
 
-    private void checkState(){
+    public void checkState(){
         for(ButtonBox butBox : boxes){
             if(piPo.getBoxFromIndex(Integer.parseInt(butBox.getText())-1).isAvailable()){
                 if(!butBox.getForeground().equals(Color.decode("#228b22"))) {
@@ -150,12 +150,4 @@ public class GridBoxesPanel extends JPanel implements Observer {
         }
     }
 
-    /**
-     * The interface is updated after a package is added or removed.
-     */
-
-    @Override
-    public void update() {
-        checkState();
-    }
 }
