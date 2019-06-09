@@ -41,7 +41,7 @@ public class DeliveryManMapper implements Mapper {
         server.close();
 
         if (password.equalsIgnoreCase("null")) return null;
-        return new DeliveryMan(delID, password);
+        return new DeliveryMan(delID, password.replace("\n", ""));
 
        /* try {
             ResultSet res = stm.executeQuery("select id,password from deliverymen where id = \""+ delID +"\"");

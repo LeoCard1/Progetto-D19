@@ -22,7 +22,7 @@ public class LoginDelMan{
     public boolean login(String delID, String password){
         DeliveryMan del = facade.getDeliveryMan(delID);
 
-        if (del != null && del.getPassword().replace("\n", "").equals(password)){
+        if (del != null && del.getPassword().equals(password)){
             this.delID = delID;
             return true;
         }

@@ -84,6 +84,13 @@ public class ConnectionsPickupPoint implements Connection {
         while (res.next()) {
             res.deleteRow();
         }
+
+        res = statement.executeQuery("select * from packages where package_id = \""
+                + strTok.nextToken() + "\"");
+
+        while (res.next()) {
+            res.deleteRow();
+        }
     }
 
     private void updatePickupPoint(StringTokenizer strTok) throws SQLException {
