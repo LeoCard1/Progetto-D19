@@ -58,6 +58,20 @@ public class MainServerConnector {
         return null;
     }
 
+    public String packageGet(String packageID) {
+        try {
+            return sendAndWaitForResponse("package get " + packageID);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void removePackage(String packID) {
+        out.println("package remove " + packID);
+    }
+
     public void close() {
         out.println("pickuppoint close");
     }

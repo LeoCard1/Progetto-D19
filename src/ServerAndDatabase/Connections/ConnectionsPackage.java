@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.StringTokenizer;
 
-public class ConnectionsDeliveryMan implements Connection {
+public class ConnectionsPackage implements Connection {
     private Statement statement;
 
     @Override
@@ -22,7 +22,7 @@ public class ConnectionsDeliveryMan implements Connection {
         String nextToken = strTok.nextToken();
 
         /*
-        deliveryman get delID
+        package get packID
          */
         if (nextToken.equalsIgnoreCase("get")) {
             get(strTok, out);
@@ -30,7 +30,15 @@ public class ConnectionsDeliveryMan implements Connection {
         }
 
         /*
-        deliveryman close
+        package remove packID
+         */
+        if (nextToken.equalsIgnoreCase("remove")) {
+            remove(strTok);
+            return true;
+        }
+
+        /*
+        package close
          */
         if (nextToken.equalsIgnoreCase("close")) {
             try {
@@ -45,11 +53,25 @@ public class ConnectionsDeliveryMan implements Connection {
     }
 
     private void get(StringTokenizer strTok, PrintStream out) throws SQLException {
-        ResultSet res = statement.executeQuery("select id, password from deliverymen where id = \""
+        ResultSet res = statement.executeQuery("select * from packages where id = \""
                 + strTok.nextToken() + "\"");
 
-        res.next();
-        out.println(res.getString("password"));
+        while(res.next()){
+            double height = res.getDouble("height");
+            double length = res.getDouble("length");
+            double width = res.getDouble("width");
+
+            out.println(height + " " + length + " " + width);
+        }
+    }
+
+    private void remove(StringTokenizer strTok) throws SQLException {
+        ResultSet res = statement.executeQuery("select * from packages where id = \""
+                + strTok.nextToken() + "\"");
+
+        while(res.next()){
+            res.deleteRow();
+        }
     }
 
     private void close(BufferedReader in, PrintStream out, Socket client) throws IOException {

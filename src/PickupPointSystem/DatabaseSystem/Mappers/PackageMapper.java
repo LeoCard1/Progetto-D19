@@ -6,6 +6,7 @@ import PickupPointSystem.DatabaseSystem.DatabaseConnect;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.StringTokenizer;
 
 /**
  * @author Andrea Stella
@@ -14,16 +15,16 @@ import java.sql.Statement;
 
 public class PackageMapper implements Mapper {
 
-    Statement stm;
+    /*Statement stm;*/
 
     /**
      * The constructor. Initialize the statement.
      */
 
-    public PackageMapper(){
+    /*public PackageMapper(){
         DatabaseConnect dbc = new DatabaseConnect();
         stm = dbc.connect();
-    }
+    }*/
 
     /**
      * This method returns the internal Package to the database given the packID
@@ -34,7 +35,20 @@ public class PackageMapper implements Mapper {
 
     @Override
     public Package get(String packID) {
-        try {
+        MainServerConnector server = new MainServerConnector();
+
+        String packageDimensions = server.packageGet(packID);
+        server.close();
+
+        StringTokenizer strTok = new StringTokenizer(packageDimensions.replaceAll("\n", ""));
+
+        double height = Double.parseDouble(strTok.nextToken());
+        double length = Double.parseDouble(strTok.nextToken());
+        double width = Double.parseDouble(strTok.nextToken());
+
+        return new Package(packID, height, length, width);
+
+        /*try {
             ResultSet res = stm.executeQuery("select * from packages where id = \""+ packID + "\"");
             while(res.next()){
                 double height = res.getDouble("height");
@@ -45,7 +59,9 @@ public class PackageMapper implements Mapper {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return null;
+        */
     }
 
     /**
@@ -54,16 +70,18 @@ public class PackageMapper implements Mapper {
      */
 
     public void remove(String packID){
-        try {
+        MainServerConnector server = new MainServerConnector();
+        server.removePackage(packID);
+        server.close();
+
+        /*try {
             ResultSet res = stm.executeQuery("select * from packages where id = \""+ packID + "\"");
             while(res.next()){
                 res.deleteRow();
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-
-
+        }*/
     }
 
 

@@ -20,7 +20,6 @@ public class ConnectionsPickupPoint implements Connection {
         this.statement = datCon.connectAndReturnStatement();
 
         String nextToken = strTok.nextToken();
-        StringBuffer strBuf = new StringBuffer();
 
         /*
         pickuppoint get piPoName
@@ -78,15 +77,17 @@ public class ConnectionsPickupPoint implements Connection {
     }
 
     private void removeRowFromPackID(StringTokenizer strTok) throws SQLException {
+        String packageID = strTok.nextToken();
+
         ResultSet res = statement.executeQuery("select * from deliveries where package_id = \""
-                    + strTok.nextToken() + "\"");
+                    + packageID + "\"");
 
         while (res.next()) {
             res.deleteRow();
         }
 
         res = statement.executeQuery("select * from packages where package_id = \""
-                + strTok.nextToken() + "\"");
+                + packageID + "\"");
 
         while (res.next()) {
             res.deleteRow();

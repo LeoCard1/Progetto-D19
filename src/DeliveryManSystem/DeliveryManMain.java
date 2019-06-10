@@ -11,9 +11,6 @@ public class DeliveryManMain {
         andrea.logIn("Andrea, ECAKE91749");
         andrea.sendList();*/
 
-        /* Prova per connettersi al database */
         DeliveryManClient andrea = new DeliveryManClient();
-        /*DatabaseOperations dop = new DatabaseOperations();
-        dop.synchronizePackages();*/
     }
 }
