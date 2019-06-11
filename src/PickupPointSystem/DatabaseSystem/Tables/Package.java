@@ -6,14 +6,20 @@ public class Package {
 
     private String id;
     private Size size;
+    private String customerEmail;
 
-    public Package(String id, double height, double length, double width ){
+    public Package(String id, double height, double length, double width, String customerEmail ){
         this.size = new Size(height, length, width);
         this.id = id;
+        this.customerEmail = customerEmail;
     }
 
     public String getId() {
         return id;
+    }
+
+    public String getCustomerEmail(){
+        return customerEmail;
     }
 
     public Size getSize() {

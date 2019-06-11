@@ -1,6 +1,8 @@
 package PickupPointSystem.DatabaseSystem.Tables;
 
 
+import PickupPointSystem.DateHandler;
+
 import java.util.Date;
 
 /**
@@ -78,6 +80,16 @@ public class Delivery {
             return true;
         }
         return false;
+    }
+
+    public boolean hasPackDeliveredForThreeDays(){
+        DateHandler dateHandler = new DateHandler();
+        if(dateHandler.differenceInDays(new Date(),dateOfDelivery)>3){
+            return true;
+        }
+        return false;
+
+
     }
 
 }

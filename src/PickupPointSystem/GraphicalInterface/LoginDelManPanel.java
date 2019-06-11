@@ -77,6 +77,7 @@ public class LoginDelManPanel extends JPanel {
                 if(loginDelMan.login(delID.getText(), password.getText())){
                     try {
                         loginDelMan.addDeliverymanPackages();
+                        loginDelMan.getPackagesToPickup();
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }

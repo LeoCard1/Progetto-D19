@@ -1,3 +1,4 @@
+
 package DeliveryManSystem;
 
 import DeliveryManSystem.GraphicalInterfaceClientSystem.Gui;
@@ -81,7 +82,7 @@ public class DeliveryManClient {
         send("updatelist");
         send(deliveryMan.getId());
         deliveryMan.clearPackages();
-        addPackagesFromList();
+       // addPackagesFromList();
         System.out.println("Package list updated");
         disconnect();
     }
@@ -130,7 +131,7 @@ public class DeliveryManClient {
         }
         return in.readLine();
     }
-
+    /*
     public void addPackagesFromList() throws IOException {
         while(!in.ready()){
 
@@ -143,11 +144,13 @@ public class DeliveryManClient {
             }
         }
     }
+    */
 
     public void disconnect() throws IOException {
         in.close();
         out.close();
         socket.close();
     }
+
 
 }

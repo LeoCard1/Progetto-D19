@@ -45,8 +45,9 @@ public class PackageMapper implements Mapper {
         double height = Double.parseDouble(strTok.nextToken());
         double length = Double.parseDouble(strTok.nextToken());
         double width = Double.parseDouble(strTok.nextToken());
+        String customerEmail = strTok.nextToken();
 
-        return new Package(packID, height, length, width);
+        return new Package(packID, height, length, width, customerEmail);
 
         /*try {
             ResultSet res = stm.executeQuery("select * from packages where id = \""+ packID + "\"");

@@ -41,8 +41,9 @@ public class ConnectionsPackage implements Connection {
             double height = res.getDouble("height");
             double length = res.getDouble("length");
             double width = res.getDouble("width");
+            String customerEmail = res.getString("customer_email");
 
-            out.println(height + " " + length + " " + width);
+            out.println(height + " " + length + " " + width + " " +customerEmail);
         }
     }
 
