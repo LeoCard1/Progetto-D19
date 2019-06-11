@@ -29,7 +29,7 @@ public class GraIntMain extends JFrame {
         height = tk.getScreenSize().height;
         width = tk.getScreenSize().width;
 
-        setSize(width*2/3, height*3/4);
+        setSize(width*2/3, height*4/5);
         setLocation(width/2, height/2);
 
         setResizable(false);

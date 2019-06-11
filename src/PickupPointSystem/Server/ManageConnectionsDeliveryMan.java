@@ -1,8 +1,6 @@
 package PickupPointSystem.Server;
 
-import PickupPointSystem.DatabaseSystem.Tables.Package;
 import PickupPointSystem.DatabaseSystem.PersistenceFacade;
-import PickupPointSystem.DatabaseSystem.Tables.DeliveryMan;
 import PickupPointSystem.LoginDelMan;
 import PickupPointSystem.PickupPoint;
 
@@ -11,7 +9,6 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class ManageConnectionsDeliveryMan implements ManageConnections {

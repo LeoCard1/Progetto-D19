@@ -94,6 +94,9 @@ public class BackGroundPanel extends JPanel {
      */
 
     public void changePanel(String namePanel){
+        if(namePanel.equals("startPanel")){
+            startPanel.startTimer();
+        }
         cardLayout.show(panelCont,namePanel);
     }
 

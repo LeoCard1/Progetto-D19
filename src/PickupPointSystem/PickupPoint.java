@@ -56,6 +56,7 @@ public class PickupPoint {
         for(int i = 0; i < largeBoxes; i++){
             boxList.add(new LargeBox());
         }
+
         updateBox();
         createGUI();
         createServer();
