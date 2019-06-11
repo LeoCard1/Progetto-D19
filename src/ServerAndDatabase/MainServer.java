@@ -45,6 +45,8 @@ public class MainServer extends Thread {
     }
 
     private void handleConnection() throws IOException {
+        String firstWord;
+
         while (!client.isClosed()) {
             while (!in.ready()) ;
 
@@ -53,8 +55,18 @@ public class MainServer extends Thread {
 
             try {
 
-                Connection connection = conFac.getConnection(strTok.nextToken());
-                if (!connection.manageConnection(in, out, client, strTok)) break;
+                firstWord = strTok.nextToken();
+
+                if (firstWord.equalsIgnoreCase("close")) {
+                    in.close();
+                    out.close();
+                    client.close();
+
+                    return;
+                }
+
+                Connection connection = conFac.getConnection(firstWord);
+                connection.manageConnection(out, strTok);
 
             } catch (ConnectionUnknownException e) {
 

@@ -3,7 +3,6 @@ package PickupPointSystem;
 import PickupPointSystem.DatabaseSystem.PersistenceFacade;
 import PickupPointSystem.DatabaseSystem.Tables.DeliveryMan;
 import PickupPointSystem.DatabaseSystem.Tables.Package;
-import PickupPointSystem.ObserverPattern.Observer;
 
 import java.io.IOException;
 import java.util.ArrayList;

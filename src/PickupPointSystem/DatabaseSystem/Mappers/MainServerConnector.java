@@ -29,9 +29,9 @@ public class MainServerConnector {
         }
     }
 
-    public String pickupPointGet(String piPoID) {
+    public String getDelivery(String piPoID) {
         try {
-            return  sendAndWaitForResponse("pickuppoint get " + piPoID);
+            return  sendAndWaitForResponse("delivery get " + piPoID);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,11 +40,11 @@ public class MainServerConnector {
     }
 
     public void removeRowFromPackID(String packID) {
-        out.println("pickuppoint removerowfrompackid " + packID);
+        out.println("delivery removerowfrompackid " + packID);
     }
 
-    public void updatePickupPoint(String packID, String dateOfDelivery, String boxNumber, String boxPassword) {
-        out.println("pickuppoint update " + packID + " " + dateOfDelivery +
+    public void updateDelivery(String packID, String dateOfDelivery, String boxNumber, String boxPassword) {
+        out.println("delivery update " + packID + " " + dateOfDelivery +
                 " " + boxNumber + " " + boxPassword);
     }
 
@@ -73,7 +73,7 @@ public class MainServerConnector {
     }
 
     public void close() {
-        out.println("pickuppoint close");
+        out.println("close");
     }
 
     private String sendAndWaitForResponse(String command) throws IOException {

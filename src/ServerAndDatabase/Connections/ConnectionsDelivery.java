@@ -2,62 +2,42 @@ package ServerAndDatabase.Connections;
 
 import ServerAndDatabase.Database.DatabaseConnector;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.StringTokenizer;
 
-public class ConnectionsPickupPoint implements Connection {
+public class ConnectionsDelivery implements Connection {
     private Statement statement;
 
     @Override
-    public boolean manageConnection(BufferedReader in, PrintStream out, Socket client, StringTokenizer strTok) throws SQLException {
+    public void manageConnection(PrintStream out, StringTokenizer strTok) throws SQLException {
         DatabaseConnector datCon = new DatabaseConnector();
         this.statement = datCon.connectAndReturnStatement();
 
         String nextToken = strTok.nextToken();
 
         /*
-        pickuppoint get piPoName
+        delivery get piPoName
          */
         if (nextToken.equalsIgnoreCase("get")) {
             get(strTok, out);
-            return true;
         }
 
         /*
-        pickuppoint removerowfrompackid packID
+        delivery removerowfrompackid packID
          */
         if (nextToken.equalsIgnoreCase("removerowfrompackid")) {
             removeRowFromPackID(strTok);
-            return true;
         }
 
         /*
-        pickuppoint update packID dateOfDelivery boxNumber boxPassword
+        delivery update packID dateOfDelivery boxNumber boxPassword
          */
         if (nextToken.equalsIgnoreCase("update")) {
-            updatePickupPoint(strTok);
-            return true;
+            updateDelivery(strTok);
         }
-
-        /*
-        pickuppoint close
-         */
-        if (nextToken.equalsIgnoreCase("close")) {
-            try {
-                close(in, out, client);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return false;
-        }
-
-        return true;
     }
 
     private void get(StringTokenizer strTok, PrintStream out) throws SQLException {
@@ -86,7 +66,7 @@ public class ConnectionsPickupPoint implements Connection {
             res.deleteRow();
         }
 
-        res = statement.executeQuery("select * from packages where package_id = \""
+        res = statement.executeQuery("select * from packages where id = \""
                 + packageID + "\"");
 
         while (res.next()) {
@@ -94,7 +74,7 @@ public class ConnectionsPickupPoint implements Connection {
         }
     }
 
-    private void updatePickupPoint(StringTokenizer strTok) throws SQLException {
+    private void updateDelivery(StringTokenizer strTok) throws SQLException {
         ResultSet res = statement.executeQuery("select * from deliveries where package_id = \""
                 + strTok.nextToken() +"\"");
 
@@ -104,11 +84,5 @@ public class ConnectionsPickupPoint implements Connection {
             res.updateString("box_password", strTok.nextToken());
             res.updateRow();
         }
-    }
-
-    private void close(BufferedReader in, PrintStream out, Socket client) throws IOException {
-        in.close();
-        out.close();
-        client.close();
     }
 }
