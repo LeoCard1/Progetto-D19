@@ -8,6 +8,7 @@ import PickupPointSystem.LockerSystem.BoxType.*;
 import PickupPointSystem.DatabaseSystem.Tables.Package;
 
 import PickupPointSystem.ObserverPattern.Observer;
+import PickupPointSystem.Server.NotificationSystem;
 import PickupPointSystem.Server.PickupPointServer;
 
 import java.io.IOException;
@@ -84,6 +85,8 @@ public class PickupPoint {
                 delivery.setBoxNumber(box.getBoxNumber());
                 delivery.setBoxPassword(password);
                 facade.updateDelivery(delivery);
+                NotificationSystem notify = new NotificationSystem();
+                notify.sendDeliveryMail("andrea.stella3797@gmail.com", this.id, password, dateOfDelivery);
                 notifyObservers();
                 return box.getBoxNumber();
             }
