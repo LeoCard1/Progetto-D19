@@ -1,11 +1,7 @@
 package PickupPointSystem.DatabaseSystem.Mappers;
 
 import PickupPointSystem.DatabaseSystem.Tables.Package;
-import PickupPointSystem.DatabaseSystem.DatabaseConnect;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.StringTokenizer;
 
 /**
@@ -14,17 +10,6 @@ import java.util.StringTokenizer;
  */
 
 public class PackageMapper implements Mapper {
-
-    /*Statement stm;*/
-
-    /**
-     * The constructor. Initialize the statement.
-     */
-
-    /*public PackageMapper(){
-        DatabaseConnect dbc = new DatabaseConnect();
-        stm = dbc.connect();
-    }*/
 
     /**
      * This method returns the internal Package to the database given the packID
@@ -48,21 +33,6 @@ public class PackageMapper implements Mapper {
         String customerEmail = strTok.nextToken();
 
         return new Package(packID, height, length, width, customerEmail);
-
-        /*try {
-            ResultSet res = stm.executeQuery("select * from packages where id = \""+ packID + "\"");
-            while(res.next()){
-                double height = res.getDouble("height");
-                double length = res.getDouble("length");
-                double width = res.getDouble("width");
-                return new Package(packID,height,length,width);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-        */
     }
 
     /**
@@ -74,15 +44,6 @@ public class PackageMapper implements Mapper {
         MainServerConnector server = new MainServerConnector();
         server.removePackage(packID);
         server.close();
-
-        /*try {
-            ResultSet res = stm.executeQuery("select * from packages where id = \""+ packID + "\"");
-            while(res.next()){
-                res.deleteRow();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
     }
 
 

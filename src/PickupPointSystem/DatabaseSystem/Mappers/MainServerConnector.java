@@ -72,6 +72,16 @@ public class MainServerConnector {
         out.println("package remove " + packID);
     }
 
+    public String pickupPointGet(String piPoID) {
+        try {
+            return sendAndWaitForResponse("pickuppoint get " + piPoID);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public void close() {
         out.println("close");
     }
