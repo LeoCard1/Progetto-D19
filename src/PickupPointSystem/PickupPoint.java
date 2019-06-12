@@ -22,6 +22,9 @@ import java.util.*;
 public class PickupPoint {
 
     private String id;
+    private String ip;
+    private String address;
+    private String location;
     private ArrayList<Box> boxList = new ArrayList<>();
     private HashMap<String, Box> unavailablesBoxes = new HashMap<>();
     private ArrayList<Observer> obsList = new ArrayList<>();
@@ -34,32 +37,38 @@ public class PickupPoint {
      * The constructor.Adds the boxes to the list, updates the boxes from the database,
      * creates the server and the graphical interface.
      * @param id
-     * @param smallBoxes
-     * @param mediumBoxes
-     * @param largeBoxes
-     * @throws IOException
      */
 
-    public PickupPoint(String id, int smallBoxes, int mediumBoxes, int largeBoxes) throws IOException {
-        this.id = id;
+    public PickupPoint(String id) {
+        try {
+            PickupPointSystem.DatabaseSystem.Tables.PickupPoint piPo = facade.getPickupPoint(id);
+            if (piPo == null) throw new Exception("Error.");
 
-        this.largeBoxes = largeBoxes;
-        this.mediumBoxes = mediumBoxes;
-        this.smallBoxes = smallBoxes;
+            this.id = piPo.getId();
+            this.location = piPo.getLocation();
+            this.ip = piPo.getIp();
+            this.smallBoxes = Integer.parseInt(piPo.getSmall_boxes());
+            this.mediumBoxes = Integer.parseInt(piPo.getMedium_boxes());
+            this.largeBoxes = Integer.parseInt(piPo.getLarge_boxes());
+            this.address = piPo.getAddress();
 
-        for(int i = 0; i < smallBoxes; i++){
-            boxList.add(new SmallBox());
-        }
-        for(int i = 0; i < mediumBoxes; i++){
-            boxList.add(new MediumBox());
-        }
-        for(int i = 0; i < largeBoxes; i++){
-            boxList.add(new LargeBox());
-        }
 
-        updateBox();
-        createGUI();
-        createServer();
+            for(int i = 0; i < smallBoxes; i++){
+                boxList.add(new SmallBox());
+            }
+            for(int i = 0; i < mediumBoxes; i++){
+                boxList.add(new MediumBox());
+            }
+            for(int i = 0; i < largeBoxes; i++){
+                boxList.add(new LargeBox());
+            }
+
+            updateBox();
+            createGUI();
+            createServer();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -88,8 +97,7 @@ public class PickupPoint {
                 DateHandler dateHandler = new DateHandler();
                 EMailSender notify = new EMailSender();
                 String email = facade.getPackage(pack.getId()).getCustomerEmail();
-                String address = facade.getPickupPoint(id).getAddress();
-                notify.sendDeliveryMail(email, this.id, pack.getId(), password, dateHandler.addDays(dateOfDelivery,3), address);
+                notify.sendDeliveryMail(email, id, pack.getId(), password, dateHandler.addDays(dateOfDelivery,3), location, address);
                 notifyObservers();
                 return box.getBoxNumber();
             }
@@ -155,13 +163,13 @@ public class PickupPoint {
         return id;
     }
 
-    private void createServer() throws IOException {
+    private void createServer() {
         PickupPointServer server = new PickupPointServer(this);
         server.start();
     }
 
     private void createGUI() {
-        GraIntMain gui = new GraIntMain(this);
+        new GraIntMain(this);
     }
 
     public void addObserver(Observer obs) {

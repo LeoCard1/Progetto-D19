@@ -12,6 +12,8 @@ public class PickupPointMapper implements Mapper {
         StringTokenizer strTok = new StringTokenizer(server.pickupPointGet(piPoID).replace("\n", ""), ":");
         server.close();
 
+        if (!strTok.hasMoreTokens()) return null;
+
         String id = strTok.nextToken();
         String location = strTok.nextToken();
         String ip = strTok.nextToken();

@@ -46,13 +46,13 @@ public class EMailSender {
         }
     }
 
-    public void sendDeliveryMail(String email, String piPoID, String packID, String password, Date pickupDate, String address){
+    public void sendDeliveryMail(String email, String piPoID, String packID, String password, Date pickupDate, String location, String address){
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
         String pickupDateString = sdf.format(pickupDate);
 
         String text = "Hello,\n\nYour parcel " + packID + " has been delivered to PickupPoint "+ piPoID +" in "+ address +
-                "\n\nYour pick-up code is " + password + "\n\nYour package will be available for pick up until the" +
-                " location closes on " + pickupDateString + "\n\nWhen you arrive at SmartLocker, enter your pick-up" +
+                ", " + location + "\n\nYour pick-up code is " + password + "\n\nYour package will be available for pick up" +
+                " until the location closes on " + pickupDateString + "\n\nWhen you arrive at SmartLocker, enter your pick-up" +
                 " code and follow the instructions on the screen. " + "If you're unable to pick-up your parcel before the" +
                 " location closes on " + pickupDateString + " it will be returned " + "for a full refund.\n\nWe look" +
                 " forward to seeing you again soon!";
