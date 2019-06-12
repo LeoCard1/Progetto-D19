@@ -20,6 +20,7 @@ public class MapperFactory {
         mappers.put("DeliveryMapper", new DeliveryMapper());
         mappers.put("DeliveryManMapper", new DeliveryManMapper());
         mappers.put("PackageMapper", new PackageMapper());
+        mappers.put("PickupPointMapper", new PickupPointMapper());
         return mappers;
     }
 }

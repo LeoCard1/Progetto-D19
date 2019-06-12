@@ -4,8 +4,7 @@ import PickupPointSystem.DatabaseSystem.PersistenceFacade;
 import PickupPointSystem.DatabaseSystem.Tables.Delivery;
 import PickupPointSystem.DatabaseSystem.Tables.DeliveryMan;
 import PickupPointSystem.DatabaseSystem.Tables.Package;
-import PickupPointSystem.LockerSystem.BoxType.Box;
-import PickupPointSystem.Server.NotificationSystem;
+import PickupPointSystem.Server.EMailSender;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -77,7 +76,7 @@ public class LoginDelMan{
             if(delivery.wasMade() && delivery.hasPackDeliveredForThreeDays()){
                 String packID = delivery.getPackID();
                 String email = facade.getPackage(packID).getCustomerEmail();
-                NotificationSystem notify = new NotificationSystem();
+                EMailSender notify = new EMailSender();
                 notify.sendPickupMail(email,packID);
                 pickupPoint.emptyBox(delivery.getBoxPassword());
                 message+= packID + "\t" + delivery.getBoxNumber()+"\n";

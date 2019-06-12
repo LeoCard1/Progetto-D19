@@ -5,6 +5,7 @@ import PickupPointSystem.DatabaseSystem.Mappers.*;
 import PickupPointSystem.DatabaseSystem.Tables.Delivery;
 import PickupPointSystem.DatabaseSystem.Tables.DeliveryMan;
 import PickupPointSystem.DatabaseSystem.Tables.Package;
+import PickupPointSystem.DatabaseSystem.Tables.PickupPoint;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -137,21 +138,28 @@ public class PersistenceFacade {
         return getPackageMapper().get(packID);
     }
 
+    public PickupPoint getPickupPoint(String piPoID) {
+        return getPickupPointMapper().get(piPoID);
+    }
+
     /**
      * This methods return the mappers.
      * @return Mapper
      */
 
-    public DeliveryMapper getDeliveryMapper(){
+    private DeliveryMapper getDeliveryMapper(){
         return (DeliveryMapper) mappers.get("DeliveryMapper");
     }
 
-    public DeliveryManMapper getDeliveryManMapper(){
+    private DeliveryManMapper getDeliveryManMapper(){
         return (DeliveryManMapper) mappers.get("DeliveryManMapper");
     }
 
-    public PackageMapper getPackageMapper(){
+    private PackageMapper getPackageMapper(){
         return (PackageMapper) mappers.get("PackageMapper");
     }
 
+    private PickupPointMapper getPickupPointMapper() {
+        return (PickupPointMapper) mappers.get("PickupPointMapper");
+    }
 }

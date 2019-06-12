@@ -2,13 +2,12 @@ package PickupPointSystem;
 
 import PickupPointSystem.DatabaseSystem.PersistenceFacade;
 import PickupPointSystem.DatabaseSystem.Tables.Delivery;
-import PickupPointSystem.GraphicalInterface.ErrorGUI.ErrorGUIMain;
 import PickupPointSystem.GraphicalInterface.GraIntMain;
 import PickupPointSystem.LockerSystem.BoxType.*;
 import PickupPointSystem.DatabaseSystem.Tables.Package;
 
 import PickupPointSystem.ObserverPattern.Observer;
-import PickupPointSystem.Server.NotificationSystem;
+import PickupPointSystem.Server.EMailSender;
 import PickupPointSystem.Server.PickupPointServer;
 
 import java.io.IOException;
@@ -68,10 +67,9 @@ public class PickupPoint {
      * by setting the password, updates the database delivery and sends the delivery mail.
      * @param pack
      * @return boxNumber
-     * @throws IOException
      */
 
-    public int addPackage(Package pack) throws IOException {
+    public int addPackage(Package pack) {
         Collections.sort(boxList);
         for(Box box : boxList){
             if(box.isAvailable() && box.getSize().compareTo(pack.getSize()) > -1){
@@ -88,9 +86,10 @@ public class PickupPoint {
                 facade.updateDelivery(delivery);
 
                 DateHandler dateHandler = new DateHandler();
-                NotificationSystem notify = new NotificationSystem();
+                EMailSender notify = new EMailSender();
                 String email = facade.getPackage(pack.getId()).getCustomerEmail();
-                notify.sendDeliveryMail(email, this.id, pack.getId(), password, dateHandler.addDays(dateOfDelivery,3));
+                String address = facade.getPickupPoint(id).getAddress();
+                notify.sendDeliveryMail(email, this.id, pack.getId(), password, dateHandler.addDays(dateOfDelivery,3), address);
                 notifyObservers();
                 return box.getBoxNumber();
             }
