@@ -65,7 +65,7 @@ public class PickupPoint {
 
     /**
      * This method adds the package to a specific box, adds the box to the available boxes
-     * by setting the password and updates the database delivery.
+     * by setting the password, updates the database delivery and sends the delivery mail.
      * @param pack
      * @return boxNumber
      * @throws IOException
@@ -80,13 +80,17 @@ public class PickupPoint {
                 box.setDate(dateOfDelivery);
                 String password = box.generateBoxPassword();
                 unavailablesBoxes.put(password, box);
+
                 Delivery delivery = facade.getDeliveryFromPackID(id, pack.getId());
                 delivery.setDateOfDelivery(dateOfDelivery);
                 delivery.setBoxNumber(box.getBoxNumber());
                 delivery.setBoxPassword(password);
                 facade.updateDelivery(delivery);
+
+                DateHandler dateHandler = new DateHandler();
                 NotificationSystem notify = new NotificationSystem();
-                notify.sendDeliveryMail("andrea.stella3797@gmail.com", this.id, password, dateOfDelivery);
+                String email = facade.getPackage(pack.getId()).getCustomerEmail();
+                notify.sendDeliveryMail(email, this.id, pack.getId(), password, dateHandler.addDays(dateOfDelivery,3));
                 notifyObservers();
                 return box.getBoxNumber();
             }

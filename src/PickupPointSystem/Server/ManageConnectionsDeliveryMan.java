@@ -1,6 +1,5 @@
 package PickupPointSystem.Server;
 
-import PickupPointSystem.DatabaseSystem.PersistenceFacade;
 import PickupPointSystem.LoginDelMan;
 import PickupPointSystem.PickupPoint;
 
@@ -13,7 +12,6 @@ import java.util.StringTokenizer;
 
 public class ManageConnectionsDeliveryMan implements ManageConnections {
     private PickupPoint pickupPoint;
-    private PersistenceFacade facade = new PersistenceFacade();
     private ServerSocket server;
     private Socket client;
     private BufferedReader in;
@@ -54,7 +52,8 @@ public class ManageConnectionsDeliveryMan implements ManageConnections {
 
             if (logDel.login(delID, password)) {
                 out.println("accepted");
-                logDel.addDeliverymanPackages();
+                System.out.println(logDel.addDeliverymanPackages());
+                System.out.println(logDel.getPackagesToPickup());
             } else out.println("refused");
         }
     }
