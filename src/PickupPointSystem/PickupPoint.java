@@ -7,7 +7,8 @@ import PickupPointSystem.LockerSystem.BoxType.*;
 import PickupPointSystem.DatabaseSystem.Tables.Package;
 
 import PickupPointSystem.ObserverPattern.Observer;
-import PickupPointSystem.Server.EMailSender;
+import PickupPointSystem.Server.NotificationSystem.DeliveryMail;
+import PickupPointSystem.Server.NotificationSystem.EMailSender;
 import PickupPointSystem.Server.PickupPointServer;
 
 import java.io.IOException;
@@ -95,9 +96,9 @@ public class PickupPoint {
                 facade.updateDelivery(delivery);
 
                 DateHandler dateHandler = new DateHandler();
-                EMailSender notify = new EMailSender();
                 String email = facade.getPackage(pack.getId()).getCustomerEmail();
-                notify.sendDeliveryMail(email, id, pack.getId(), password, dateHandler.addDays(dateOfDelivery,3), location, address);
+                DeliveryMail notify = new DeliveryMail(email, id, pack.getId(), password, dateHandler.addDays(dateOfDelivery,3), location, address);
+                notify.start();
                 notifyObservers();
                 return box.getBoxNumber();
             }
@@ -132,7 +133,7 @@ public class PickupPoint {
      */
 
     public void updateBox(){
-        for(Box box : boxList){
+        /*for(Box box : boxList){
             Delivery delivery = facade.getDeliveryFromBoxNumber(id, box.getBoxNumber());
             if(delivery!=null){
                 box.addPackage(facade.getPackage(delivery.getPackID()));
@@ -140,6 +141,20 @@ public class PickupPoint {
                 unavailablesBoxes.put(delivery.getBoxPassword(),box);
             }
         }
+        facade.clearDeliveryCache();
+        notifyObservers();*/
+
+        ArrayList<Delivery> deliveries = facade.getDeliveries(id);
+        for (Delivery delivery : deliveries) {
+            for (Box box : boxList) {
+                if(delivery.hasBoxNumber(box.getBoxNumber())){
+                    box.addPackage(facade.getPackage(delivery.getPackID()));
+                    box.setDate(delivery.getDateOfDelivery());
+                    unavailablesBoxes.put(delivery.getBoxPassword(),box);
+                }
+            }
+        }
+
         notifyObservers();
     }
 
