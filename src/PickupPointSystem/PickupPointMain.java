@@ -6,7 +6,7 @@ import java.io.IOException;
 
 
 public class PickupPointMain {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) {
         new PickupPoint("PAV01");
     }
 }

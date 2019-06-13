@@ -108,6 +108,10 @@ public class PersistenceFacade {
         getPackageMapper().remove(packID);
     }
 
+    public void clearDeliveryCache() {
+        getDeliveryMapper().clearCache();
+    }
+
     /**
      * This method returns deliveries to the PickupPoint id given.
      * @param pipoID

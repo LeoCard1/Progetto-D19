@@ -19,7 +19,7 @@ import java.util.StringTokenizer;
 
 public class DeliveryMapper implements Mapper {
 
-    private HashMap<String, ArrayList<Delivery>> buffer = new HashMap<>();
+    private ArrayList<Delivery> cache = new ArrayList<>();
 
     /**
      * This method returns an ArrayList of deliveries inside the database given the PickupPoint
@@ -30,7 +30,7 @@ public class DeliveryMapper implements Mapper {
 
     @Override
     public ArrayList<Delivery> get(String pipoID) {
-        if (buffer.containsKey(pipoID)) return buffer.get(pipoID);
+        if (!cache.isEmpty()) return cache;
 
         MainServerConnector server = new MainServerConnector();
 
@@ -56,14 +56,17 @@ public class DeliveryMapper implements Mapper {
                 int boxNumber = 0;
                 if (elements[3] != null) boxNumber = Integer.parseInt(elements[3]);
 
-                deliveries.add(new Delivery(elements[0], dateOfDelivery, boxNumber, elements[5], elements[4]));
+                Delivery deliveryToAdd = new Delivery(elements[0], dateOfDelivery, boxNumber, elements[5], elements[4]);
+
+                deliveries.add(deliveryToAdd);
+                if (cache.size() > 50) cache.remove(0);
+                cache.add(deliveryToAdd);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
         }
 
         server.close();
-        buffer.put(pipoID, deliveries);
         return deliveries;
     }
 
@@ -73,7 +76,7 @@ public class DeliveryMapper implements Mapper {
      */
 
     public void removeRowFromPackID(String packID){
-        buffer.clear();
+        clearCache();
         MainServerConnector server = new MainServerConnector();
         server.removeRowFromPackID(packID);
         server.close();
@@ -86,10 +89,14 @@ public class DeliveryMapper implements Mapper {
      */
 
     public void update(Delivery delivery){
-        buffer.clear();
+        clearCache();
         MainServerConnector server = new MainServerConnector();
         server.updateDelivery(delivery.getPackID(), String.valueOf(delivery.getDateOfDelivery().getTime()),
                 String.valueOf(delivery.getBoxNumber()), delivery.getBoxPassword());
         server.close();
+    }
+
+    public void clearCache() {
+        cache.clear();
     }
 }
