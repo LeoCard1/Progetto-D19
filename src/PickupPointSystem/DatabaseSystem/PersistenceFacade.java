@@ -54,7 +54,7 @@ public class PersistenceFacade {
      * @return Delivery
      */
 
-    public Delivery getDeliveryFromBoxNumber(String pipoID, int boxNumber){
+    /*public Delivery getDeliveryFromBoxNumber(String pipoID, int boxNumber){
         ArrayList<Delivery> deliveries = getDeliveries(pipoID);
         for(Delivery delivery : deliveries){
             if(delivery.wasMade() && delivery.hasBoxNumber(boxNumber)){
@@ -62,7 +62,7 @@ public class PersistenceFacade {
             }
         }
         return null;
-    }
+    }*/
 
     /**
      * This method returns the Delivery related to the pack id passed as an argument.
@@ -108,9 +108,9 @@ public class PersistenceFacade {
         getPackageMapper().remove(packID);
     }
 
-    public void clearDeliveryCache() {
+    /*public void clearDeliveryCache() {
         getDeliveryMapper().clearCache();
-    }
+    }*/
 
     /**
      * This method returns deliveries to the PickupPoint id given.

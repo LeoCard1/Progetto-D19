@@ -133,7 +133,7 @@ public class PickupPoint {
      */
 
     public void updateBox(){
-        for(Box box : boxList){
+        /*for(Box box : boxList){
             Delivery delivery = facade.getDeliveryFromBoxNumber(id, box.getBoxNumber());
             if(delivery!=null){
                 box.addPackage(facade.getPackage(delivery.getPackID()));
@@ -142,6 +142,19 @@ public class PickupPoint {
             }
         }
         facade.clearDeliveryCache();
+        notifyObservers();*/
+
+        ArrayList<Delivery> deliveries = facade.getDeliveries(id);
+        for (Delivery delivery : deliveries) {
+            for (Box box : boxList) {
+                if(delivery.hasBoxNumber(box.getBoxNumber())){
+                    box.addPackage(facade.getPackage(delivery.getPackID()));
+                    box.setDate(delivery.getDateOfDelivery());
+                    unavailablesBoxes.put(delivery.getBoxPassword(),box);
+                }
+            }
+        }
+
         notifyObservers();
     }
 

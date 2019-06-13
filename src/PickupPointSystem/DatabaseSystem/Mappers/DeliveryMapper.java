@@ -19,7 +19,7 @@ import java.util.StringTokenizer;
 
 public class DeliveryMapper implements Mapper {
 
-    private ArrayList<Delivery> cache = new ArrayList<>();
+    /*private ArrayList<Delivery> cache = new ArrayList<>();*/
 
     /**
      * This method returns an ArrayList of deliveries inside the database given the PickupPoint
@@ -30,7 +30,7 @@ public class DeliveryMapper implements Mapper {
 
     @Override
     public ArrayList<Delivery> get(String pipoID) {
-        if (!cache.isEmpty()) return cache;
+        /*if (!cache.isEmpty()) return cache;*/
 
         MainServerConnector server = new MainServerConnector();
 
@@ -59,8 +59,8 @@ public class DeliveryMapper implements Mapper {
                 Delivery deliveryToAdd = new Delivery(elements[0], dateOfDelivery, boxNumber, elements[5], elements[4]);
 
                 deliveries.add(deliveryToAdd);
-                if (cache.size() > 50) cache.remove(0);
-                cache.add(deliveryToAdd);
+                /*if (cache.size() > 50) cache.remove(0);
+                cache.add(deliveryToAdd);*/
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -76,7 +76,7 @@ public class DeliveryMapper implements Mapper {
      */
 
     public void removeRowFromPackID(String packID){
-        clearCache();
+        /*clearCache();*/
         MainServerConnector server = new MainServerConnector();
         server.removeRowFromPackID(packID);
         server.close();
@@ -89,14 +89,14 @@ public class DeliveryMapper implements Mapper {
      */
 
     public void update(Delivery delivery){
-        clearCache();
+        /*clearCache();*/
         MainServerConnector server = new MainServerConnector();
         server.updateDelivery(delivery.getPackID(), String.valueOf(delivery.getDateOfDelivery().getTime()),
                 String.valueOf(delivery.getBoxNumber()), delivery.getBoxPassword());
         server.close();
     }
 
-    public void clearCache() {
+    /*public void clearCache() {
         cache.clear();
-    }
+    }*/
 }
