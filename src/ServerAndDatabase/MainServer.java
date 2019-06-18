@@ -2,7 +2,7 @@ package ServerAndDatabase;
 
 import ServerAndDatabase.Connections.Connection;
 import ServerAndDatabase.Connections.ConnectionUnknownException;
-import ServerAndDatabase.Connections.ConnectionsFactory;
+import ServerAndDatabase.Connections.ConnectionsStrategy;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,11 +18,13 @@ public class MainServer extends Thread {
     private Socket client;
     private BufferedReader in;
     private PrintStream out;
+    private ConnectionsStrategy conStr;
 
     @Override
     public void run() {
         try {
             server = new ServerSocket(8500);
+            conStr = new ConnectionsStrategy();
             System.out.println("[0] PickupPointServer waiting on port 8500...");
             startServer();
         } catch (IOException e) {
@@ -50,22 +52,18 @@ public class MainServer extends Thread {
         while (!client.isClosed()) {
             while (!in.ready()) ;
 
-            StringTokenizer strTok = new StringTokenizer(in.readLine());
-            ConnectionsFactory conFac = new ConnectionsFactory();
+            String stringReceived = in.readLine();
+            System.out.println(stringReceived);
+
+            StringTokenizer strTok = new StringTokenizer(stringReceived);
 
             try {
 
                 firstWord = strTok.nextToken();
 
-                if (firstWord.equalsIgnoreCase("close")) {
-                    in.close();
-                    out.close();
-                    client.close();
+                if (firstWord.equalsIgnoreCase("close")) closeConnection();
 
-                    return;
-                }
-
-                Connection connection = conFac.getConnection(firstWord);
+                Connection connection = conStr.getConnection(firstWord);
                 connection.manageConnection(out, strTok);
 
             } catch (ConnectionUnknownException e) {
