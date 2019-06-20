@@ -73,19 +73,20 @@ public abstract class Box  implements Comparable {
     }
 
     public String generateBoxPassword() {
-        String[] division = toString().split("\t");
-        division[2] = division[2].replaceAll("\\D","");
-
-        String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String password = new String();
+        String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        String password = "";
         Random rand = new Random();
-        for (int i = 0; i < 5; i++) {
-            int n = rand.nextInt(25);
+
+        for (int i = 0; i < 6; i++) {
+            int n = rand.nextInt(51);
             char c = letters.charAt(n);
-            password = password + c;
+            password += c;
         }
-        password = password + division[0] + division[2];
-        return password.replaceAll("\\s+","");
+
+        if (boxNumber < 10) password += "0";
+        password += String.valueOf(boxNumber);
+
+        return password;
     }
 
 }

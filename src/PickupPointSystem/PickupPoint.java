@@ -132,17 +132,7 @@ public class PickupPoint {
      * This method updates the status of the boxes from the database.
      */
 
-    public void updateBox(){
-        /*for(Box box : boxList){
-            Delivery delivery = facade.getDeliveryFromBoxNumber(id, box.getBoxNumber());
-            if(delivery!=null){
-                box.addPackage(facade.getPackage(delivery.getPackID()));
-                box.setDate(delivery.getDateOfDelivery());
-                unavailablesBoxes.put(delivery.getBoxPassword(),box);
-            }
-        }
-        facade.clearDeliveryCache();
-        notifyObservers();*/
+    public void updateBox() {
 
         ArrayList<Delivery> deliveries = facade.getDeliveries(id);
         for (Delivery delivery : deliveries) {
