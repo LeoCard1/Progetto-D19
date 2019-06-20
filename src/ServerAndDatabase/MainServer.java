@@ -61,7 +61,10 @@ public class MainServer extends Thread {
 
                 firstWord = strTok.nextToken();
 
-                if (firstWord.equalsIgnoreCase("close")) closeConnection();
+                if (firstWord.equalsIgnoreCase("close")){
+                    closeConnection();
+                    return;
+                }
 
                 Connection connection = conStr.getConnection(firstWord);
                 connection.manageConnection(out, strTok);

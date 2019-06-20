@@ -142,6 +142,12 @@ public class PersistenceFacade {
         return getPackageMapper().get(packID);
     }
 
+    /**
+     * This method returns the PickupPoint identified by the given id.
+     * @param piPoID
+     * @return PickupPoint
+     */
+
     public PickupPoint getPickupPoint(String piPoID) {
         return getPickupPointMapper().get(piPoID);
     }

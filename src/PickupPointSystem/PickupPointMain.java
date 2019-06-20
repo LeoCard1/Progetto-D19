@@ -2,7 +2,6 @@ package PickupPointSystem;
 
 
 
-import java.io.IOException;
 
 
 public class PickupPointMain {

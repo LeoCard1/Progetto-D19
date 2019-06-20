@@ -10,11 +10,10 @@ import java.util.StringTokenizer;
 
 public class ConnectionsDeliveryMan implements Connection {
     private DatabaseConnector datCon = new DatabaseConnector();
-    private Statement statement;
+    private Statement statement = datCon.connectAndReturnStatement();
 
     @Override
     public void manageConnection(PrintStream out, StringTokenizer strTok) throws SQLException {
-        this.statement = datCon.connectAndReturnStatement();
 
         String nextToken = strTok.nextToken();
 

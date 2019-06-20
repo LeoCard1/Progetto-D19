@@ -4,6 +4,7 @@ import PickupPointSystem.DatabaseSystem.PersistenceFacade;
 import PickupPointSystem.DatabaseSystem.Tables.Delivery;
 import PickupPointSystem.DatabaseSystem.Tables.DeliveryMan;
 import PickupPointSystem.DatabaseSystem.Tables.Package;
+import PickupPointSystem.ObserverPattern.Observer;
 import PickupPointSystem.Server.NotificationSystem.EMailSender;
 import PickupPointSystem.Server.NotificationSystem.PickupMail;
 
@@ -85,6 +86,5 @@ public class LoginDelMan{
         }
         return message;
     }
-
 
 }

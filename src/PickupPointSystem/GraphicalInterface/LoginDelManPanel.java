@@ -13,6 +13,11 @@ import java.io.IOException;
 
 import static java.awt.Toolkit.getDefaultToolkit;
 
+/**
+ * @author Andrea Stella
+ * @version 1.0
+ */
+
 public class LoginDelManPanel extends JPanel {
 
     private PickupPoint pickupPoint;
