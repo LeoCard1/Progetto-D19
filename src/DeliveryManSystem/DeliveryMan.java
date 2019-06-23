@@ -32,10 +32,6 @@ public class DeliveryMan {
         updateDeliveries();
     }
 
-    public DeliveryManClient getClient(){
-        return client;
-    }
-
     public void sendCredentials(){
         client.connectToPickupPoint(id, password);
     }

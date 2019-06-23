@@ -39,7 +39,7 @@ public class MainServerConnector {
         return null;
     }
 
-    public String deliveryManGet(String delID) {
+    public String getDeliveryMan(String delID) {
         try {
             return sendAndWaitForResponse("deliveryman get " + delID);
         } catch (IOException e) {
@@ -49,7 +49,7 @@ public class MainServerConnector {
         return null;
     }
 
-    public String pickupPointGet(String piPoID) {
+    public String getPickupPoint(String piPoID) {
         try {
             return sendAndWaitForResponse("pickuppoint get " + piPoID);
         } catch (IOException e) {

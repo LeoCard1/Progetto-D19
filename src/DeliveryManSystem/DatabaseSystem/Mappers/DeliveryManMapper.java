@@ -20,7 +20,7 @@ public class DeliveryManMapper implements Mapper {
     public DeliveryManTable get(String delID){
         MainServerConnector server = new MainServerConnector();
 
-        String password = server.deliveryManGet(delID);
+        String password = server.getDeliveryMan(delID);
         server.close();
 
         password = password.replaceAll("\n", "");

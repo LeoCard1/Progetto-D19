@@ -74,9 +74,7 @@ public class ConnectionsDelivery implements Connection {
         }
 
         out.println(strBuf);
-
     }
-
 
 
     private void removeRowFromPackID(StringTokenizer strTok) throws SQLException {

@@ -1,6 +1,7 @@
 package ServerAndDatabase.Connections;
 
 public class ConnectionsStrategy {
+
     private ConnectionsDeliveryMan connectionsDeliveryMan = new ConnectionsDeliveryMan();
     private ConnectionsDelivery connectionsDelivery = new ConnectionsDelivery();
     private ConnectionsPackage connectionsPackage = new ConnectionsPackage();

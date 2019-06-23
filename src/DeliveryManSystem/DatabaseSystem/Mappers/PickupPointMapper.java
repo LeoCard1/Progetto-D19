@@ -11,7 +11,7 @@ public class PickupPointMapper implements Mapper {
 
         MainServerConnector server = new MainServerConnector();
 
-        StringTokenizer strTok = new StringTokenizer(server.pickupPointGet(piPoID).replace("\n", ""), ":");
+        StringTokenizer strTok = new StringTokenizer(server.getPickupPoint(piPoID).replace("\n", ""), ":");
         server.close();
 
         if (!strTok.hasMoreTokens()) return null;

@@ -35,11 +35,11 @@ public class LoginDelManPanel extends JPanel {
         Toolkit tk = getDefaultToolkit();
         height = tk.getScreenSize().height;
         width = tk.getScreenSize().width;
+        setPreferredSize(new Dimension(width*2/3, height*2/3));
         initPanel();
     }
 
     private void initPanel(){
-        setPreferredSize(new Dimension(width*2/3, height*2/3));
         setLayout(new BorderLayout());
         add(createBackPanel(), BorderLayout.NORTH);
         add(createLoginPanel(), BorderLayout.CENTER);

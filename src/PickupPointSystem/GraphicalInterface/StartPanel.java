@@ -146,27 +146,13 @@ public class StartPanel extends JPanel {
     @Override
     public void paintComponent(Graphics g){
         setOpaque(false);
-        currentImage = currentImage.getScaledInstance(width*2/3,height*2/3,Image.SCALE_DEFAULT);
-        loadImage(currentImage);
+        currentImage = currentImage.getScaledInstance(width*2/3,height*2/3, Image.SCALE_DEFAULT);
+        ImageLoader imgLoader = new ImageLoader();
+        imgLoader.loadImage(currentImage, this);
         g.drawImage(currentImage,0,0,this);
         super.paintComponent(g);
     }
 
 
-    /**
-     * This method ensures that the image is loaded into memory before being used,
-     * blocks the execution of the code until the image is actually loaded into
-     * memory.
-     * @param img
-     */
-    private void loadImage(Image img){
-        MediaTracker track = new MediaTracker(this);
-        track.addImage(img,0);
-        try {
-            track.waitForID(0);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 
 }

@@ -227,7 +227,6 @@ public class LoginPanel extends JPanel implements ActionListener, ObserverRespon
             e1.printStackTrace();
         }
 
-        deliveryMan.getClient().addObserver(this);
 
 
 

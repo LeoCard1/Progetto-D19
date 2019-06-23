@@ -1,6 +1,5 @@
 package PickupPointSystem.GraphicalInterface;
 
-import PickupPointSystem.ObserverPattern.Observer;
 import PickupPointSystem.PickupPoint;
 
 import javax.swing.*;
@@ -66,27 +65,13 @@ public class BackGroundPanel extends JPanel {
     public void paintComponent(Graphics g){
         setOpaque(false);
         Image img = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/logobackground.jpg");
-        img = img.getScaledInstance(width*2/3,height*2/3,Image.SCALE_DEFAULT);
-        loadImage(img);
+        img = img.getScaledInstance(width*2/3,height*2/3, Image.SCALE_DEFAULT);
+        ImageLoader imgLoader = new ImageLoader();
+        imgLoader.loadImage(img, this);
         g.drawImage(img,0,0,this);
         super.paintComponent(g);
     }
 
-    /**
-     * This method ensures that the image is loaded into memory before being used,
-     * blocks the execution of the code until the image is actually loaded into
-     * memory.
-     * @param img
-     */
-    private void loadImage(Image img){
-        MediaTracker track = new MediaTracker(this);
-        track.addImage(img,0);
-        try {
-            track.waitForID(0);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * This method canges the panel to the one whose name is passed as an argument.
