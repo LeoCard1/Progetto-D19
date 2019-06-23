@@ -25,7 +25,7 @@ public class MainServer extends Thread {
         try {
             server = new ServerSocket(8500);
             conStr = new ConnectionsStrategy();
-            System.out.println("[0] PickupPointServer waiting on port 8500...");
+            System.out.println("[0] Server waiting on port 8500...");
             startServer();
         } catch (IOException e) {
             e.printStackTrace();

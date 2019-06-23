@@ -18,10 +18,17 @@ public class ConnectionsDelivery implements Connection {
         String nextToken = strTok.nextToken();
 
         /*
-        delivery get piPoName
+        delivery getfrompipoid piPoName
          */
-        if (nextToken.equalsIgnoreCase("get")) {
-            get(strTok, out);
+        if (nextToken.equalsIgnoreCase("getfrompipoid")) {
+            getFromPipoID(strTok, out);
+        }
+
+         /*
+        delivery getfromdelid DeliveryManName
+         */
+        if (nextToken.equalsIgnoreCase("getfromdelid")) {
+            getFromDelManID(strTok, out);
         }
 
         /*
@@ -39,11 +46,25 @@ public class ConnectionsDelivery implements Connection {
         }
     }
 
-    private void get(StringTokenizer strTok, PrintStream out) throws SQLException {
-        StringBuffer strBuf = new StringBuffer();
+    private void getFromPipoID(StringTokenizer strTok, PrintStream out) throws SQLException {
 
         ResultSet res = statement.executeQuery("select * from deliveries where pickuppoint_id = \""
                 + strTok.nextToken() + "\"");
+
+        sendDelivery(res, out);
+    }
+
+    private void getFromDelManID(StringTokenizer strTok, PrintStream out) throws SQLException {
+
+        ResultSet res = statement.executeQuery("select * from deliveries where deliveryman_id = \""
+                + strTok.nextToken() + "\"");
+
+        sendDelivery(res, out);
+
+    }
+
+    private void sendDelivery(ResultSet res, PrintStream out) throws SQLException {
+        StringBuffer strBuf = new StringBuffer();
 
         while (res.next()) {
             for (int i = 1; i < 7; i++) {
@@ -53,7 +74,10 @@ public class ConnectionsDelivery implements Connection {
         }
 
         out.println(strBuf);
+
     }
+
+
 
     private void removeRowFromPackID(StringTokenizer strTok) throws SQLException {
         String packageID = strTok.nextToken();

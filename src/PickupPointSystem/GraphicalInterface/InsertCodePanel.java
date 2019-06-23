@@ -45,7 +45,7 @@ public class InsertCodePanel extends JPanel {
         textF.setFont(new Font("", Font.PLAIN, 24));
         add(createInsCodLabel());
         add(textF);
-        add(createConfermButton());
+        add(createConfirmButton());
     }
 
     private JLabel createInsCodLabel(){
@@ -56,7 +56,7 @@ public class InsertCodePanel extends JPanel {
         return insCod;
     }
 
-    private JButton createConfermButton(){
+    private JButton createConfirmButton(){
         JButton confBut = new JButton(SetLanguage.getInstance().setInsertCodePanel()[1]);
         b = confBut;
         confBut.addActionListener(new ActionListener() {

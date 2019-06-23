@@ -1,7 +1,7 @@
-package PickupPointSystem.DatabaseSystem.Mappers;
+package DeliveryManSystem.DatabaseSystem.Mappers;
 
-import PickupPointSystem.DatabaseSystem.Tables.DeliveryTable;
 
+import DeliveryManSystem.DatabaseSystem.Tables.DeliveryTable;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.StringTokenizer;
 
-
 /**
  * @author D19 Group
  * @version 2.0
@@ -18,22 +17,20 @@ import java.util.StringTokenizer;
 
 public class DeliveryMapper implements Mapper {
 
-    /*private ArrayList<DeliveryTable> cache = new ArrayList<>();*/
 
     /**
      * This method returns an ArrayList of deliveries inside the database given the PickupPointTable
      * id passed as an argument.
-     * @param pipoID
+     * @param delID
      * @return ArrayList<DeliveryTable>
      */
 
     @Override
-    public ArrayList<DeliveryTable> get(String pipoID) {
-        /*if (!cache.isEmpty()) return cache;*/
+    public ArrayList<DeliveryTable> get(String delID) {
 
         MainServerConnector server = new MainServerConnector();
 
-        StringTokenizer linesTok = new StringTokenizer(server.getDelivery(pipoID), "\n");
+        StringTokenizer linesTok = new StringTokenizer(server.getDelivery(delID), "\n");
         StringTokenizer singleLineTok;
         String[] elements = new String[6];
 
@@ -55,11 +52,10 @@ public class DeliveryMapper implements Mapper {
                 int boxNumber = 0;
                 if (elements[3] != null) boxNumber = Integer.parseInt(elements[3]);
 
-                DeliveryTable deliveryToAdd = new DeliveryTable(elements[0], elements [1], dateOfDelivery, boxNumber, elements[5], elements[4]);
+                DeliveryTable deliveryToAdd = new DeliveryTable(elements[0], elements[1], dateOfDelivery, boxNumber, elements[5], elements[4]);
 
                 deliveries.add(deliveryToAdd);
-                /*if (cache.size() > 50) cache.remove(0);
-                cache.add(deliveryToAdd);*/
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -69,33 +65,6 @@ public class DeliveryMapper implements Mapper {
         return deliveries;
     }
 
-    /**
-     * This method removes the row containing the given pack id.
-     * @param packID
-     */
 
-    public void removeRowFromPackID(String packID){
-        /*clearCache();*/
-        MainServerConnector server = new MainServerConnector();
-        server.removeRowFromPackID(packID);
-        server.close();
-    }
-
-    /**
-     * This method updates the delivery date, the box number and the box password of
-     * the given DeliveryTable.
-     * @param delivery
-     */
-
-    public void update(DeliveryTable delivery){
-        /*clearCache();*/
-        MainServerConnector server = new MainServerConnector();
-        server.updateDelivery(delivery.getPackID(), String.valueOf(delivery.getDateOfDelivery().getTime()),
-                String.valueOf(delivery.getBoxNumber()), delivery.getBoxPassword());
-        server.close();
-    }
-
-    /*public void clearCache() {
-        cache.clear();
-    }*/
 }
+

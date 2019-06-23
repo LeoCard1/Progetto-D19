@@ -10,7 +10,7 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# PickupPointSystem.DatabaseSystem.Tables.Package Files #
+# PickupPointSystem.DatabaseSystem.Tables.PackageTable Files #
 *.jar
 *.war
 *.nar

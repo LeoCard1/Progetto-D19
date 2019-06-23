@@ -7,6 +7,8 @@ import DeliveryManSystem.DeliveryMan;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import static java.awt.Font.ITALIC;
@@ -15,29 +17,18 @@ public class StartingPanel extends JPanel {
 
     private Frame frame;
     private JButton sendList;
-    private DeliveryManClient deliveryman;
+    private DeliveryMan deliveryman;
     private JLabel errorLabel;
     private int width;
     private int height;
 
-    StartingPanel(Frame frame, DeliveryManClient deliveryman, int width, int height){
+    StartingPanel(Frame frame, DeliveryMan deliveryman, int width, int height){
 
-        updateList(deliveryman);
         this.width = width;
         this.height = height;
         this.deliveryman = deliveryman;
         this.frame = frame;
         setListPanel();
-
-    }
-
-    public void updateList(DeliveryManClient deliveryMan) {
-
-        /*try {
-            deliveryMan.updateList();
-        } catch (IOException exception){
-            exception.printStackTrace();
-        }*/
 
     }
 
@@ -95,6 +86,13 @@ public class StartingPanel extends JPanel {
         //new button
 
         sendList = new JButton("Send List");
+
+        sendList.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                deliveryman.sendCredentials();
+            }
+        });
 
         //settings button
 

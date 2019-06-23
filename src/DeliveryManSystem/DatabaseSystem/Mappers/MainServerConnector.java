@@ -1,4 +1,4 @@
-package PickupPointSystem.DatabaseSystem.Mappers;
+package DeliveryManSystem.DatabaseSystem.Mappers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,23 +29,14 @@ public class MainServerConnector {
         }
     }
 
-    public String getDelivery(String piPoID) {
+    public String getDelivery(String delID) {
         try {
-            return  sendAndWaitForResponse("delivery getfrompipoid " + piPoID);
+            return  sendAndWaitForResponse("delivery getfromdelid " + delID);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         return null;
-    }
-
-    public void removeRowFromPackID(String packID) {
-        out.println("delivery removerowfrompackid " + packID);
-    }
-
-    public void updateDelivery(String packID, String dateOfDelivery, String boxNumber, String boxPassword) {
-        out.println("delivery update " + packID + " " + dateOfDelivery +
-                " " + boxNumber + " " + boxPassword);
     }
 
     public String deliveryManGet(String delID) {
@@ -56,20 +47,6 @@ public class MainServerConnector {
         }
 
         return null;
-    }
-
-    public String packageGet(String packageID) {
-        try {
-            return sendAndWaitForResponse("package get " + packageID);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    public void removePackage(String packID) {
-        out.println("package remove " + packID);
     }
 
     public String pickupPointGet(String piPoID) {

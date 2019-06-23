@@ -1,6 +1,7 @@
 package DeliveryManSystem.GraphicalInterfaceClientSystem;
 
 import DeliveryManSystem.Client.DeliveryManClient;
+import DeliveryManSystem.DeliveryMan;
 import DeliveryManSystem.ObserverResponse;
 
 import javax.swing.*;
@@ -18,10 +19,10 @@ import static java.awt.Font.ITALIC;
 
 public class LoginPanel extends JPanel implements ActionListener, ObserverResponse {
 
+    private DeliveryMan deliveryMan;
     private Frame frame;
     private String[] languageSelector = {SetDMLanguage.getInstance().setLoginPanel()[1], SetDMLanguage.getInstance().setLoginPanel()[2]};
     private JButton login;
-    private DeliveryManClient deliveryman;
     private JPasswordField jpf;
     private JTextField jtf;
     private JLabel errorLabel;
@@ -33,14 +34,13 @@ public class LoginPanel extends JPanel implements ActionListener, ObserverRespon
     private JPanel p;
     private JButton b;
 
-    LoginPanel(Frame frame, DeliveryManClient deliveryman, int width, int height){
+    LoginPanel(Frame frame, int width, int height){
 
         this.width = width;
         this.height = height;
-        this.deliveryman = deliveryman;
         this.frame = frame;
 
-        deliveryman.addObserver(this);
+
         setLoginPanel();
 
     }
@@ -221,7 +221,15 @@ public class LoginPanel extends JPanel implements ActionListener, ObserverRespon
      */
 
     public void actionPerformed(ActionEvent e) {
-        deliveryman.connectToPickupPoint(jtf.getText(), new String(jpf.getPassword()));
+        try {
+            deliveryMan = new DeliveryMan(jtf.getText(), new String(jpf.getPassword()));
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+
+        deliveryMan.getClient().addObserver(this);
+
+
 
             /*String password = new String(jpf.getPassword());
             if (deliveryman.logIn(jtf.getText(), password)) {
@@ -247,7 +255,7 @@ public class LoginPanel extends JPanel implements ActionListener, ObserverRespon
         if (result.equals("accepted")) {
             jpf = null;
             frame.remove(this);
-            frame.add(new StartingPanel(frame, deliveryman, width, height));
+            frame.add(new StartingPanel(frame, deliveryMan, width, height));
             frame.repaint();
             frame.validate();
             /*frame.add(this);*/

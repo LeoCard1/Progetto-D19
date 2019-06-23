@@ -17,11 +17,9 @@ public class Gui extends JFrame {
 
     private Dimension screenSize;
     private int width, height;
-    private DeliveryManClient deliveryman;
 
-    public Gui(DeliveryManClient deliveryman) {
+    public Gui() {
 
-        this.deliveryman = deliveryman;
         ClientGUI();
     }
 
@@ -42,7 +40,7 @@ public class Gui extends JFrame {
         setTitle("Amazon for poor people");
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Icons/amazonFakeIcon.png"));
         setIconImage(image);
-        add(new LoginPanel(this , deliveryman, width , height));
+        add(new LoginPanel(this , width , height));
         setVisible(true);
 
     }

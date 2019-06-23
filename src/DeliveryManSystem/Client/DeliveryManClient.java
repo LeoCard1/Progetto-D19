@@ -17,9 +17,6 @@ public class DeliveryManClient {
     private PrintStream out;
     private ArrayList<ObserverResponse> obsList = new ArrayList<>();
 
-    public DeliveryManClient() {
-        new Gui(this);
-    }
 
     public void connectToPickupPoint(String id, String password) {
         try {

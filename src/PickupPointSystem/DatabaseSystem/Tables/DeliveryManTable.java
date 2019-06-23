@@ -5,12 +5,12 @@ package PickupPointSystem.DatabaseSystem.Tables;
  * @version 1.0
  */
 
-public class DeliveryMan {
+public class DeliveryManTable {
 
     private String delID;
     private String password;
 
-    public DeliveryMan(String delID, String password){
+    public DeliveryManTable(String delID, String password){
         this.delID = delID;
         this.password = password;
     }

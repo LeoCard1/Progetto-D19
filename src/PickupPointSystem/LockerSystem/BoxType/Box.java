@@ -1,7 +1,7 @@
 package PickupPointSystem.LockerSystem.BoxType;
 
+import PickupPointSystem.DatabaseSystem.Tables.PackageTable;
 import PickupPointSystem.LockerSystem.Size;
-import PickupPointSystem.DatabaseSystem.Tables.Package;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,7 +11,7 @@ public abstract class Box  implements Comparable {
 
     private boolean availability;
     protected Size size;
-    private Package pack;
+    private PackageTable pack;
     private int boxNumber;
     private static int numBox;
     private Date date;
@@ -34,7 +34,7 @@ public abstract class Box  implements Comparable {
         return boxNumber;
     }
 
-    public Package getPack(){
+    public PackageTable getPack(){
         return pack;
     }
 
@@ -48,7 +48,7 @@ public abstract class Box  implements Comparable {
         this.date = date;
     }
 
-    public void addPackage(Package pack){
+    public void addPackage(PackageTable pack){
         availability = false;
         this.pack = pack;
     }
@@ -63,15 +63,7 @@ public abstract class Box  implements Comparable {
         Box boxObject = (Box)o;
         return size.compareTo(boxObject.getSize());
     }
-
-    public String toString(){
-        String s = "" + boxNumber;
-        if(!isAvailable()){
-            s += " \t" + pack.getId() + "\t" + getStringDate();
-        }
-        return s;
-    }
-
+    
     public String generateBoxPassword() {
         String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         String password = "";

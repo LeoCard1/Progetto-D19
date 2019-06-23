@@ -1,12 +1,14 @@
-package PickupPointSystem.DatabaseSystem.Mappers;
+package DeliveryManSystem.DatabaseSystem.Mappers;
 
-import PickupPointSystem.DatabaseSystem.Tables.PickupPointTable;
+
+import DeliveryManSystem.DatabaseSystem.Tables.PickupPointTable;
 
 import java.util.StringTokenizer;
 
 public class PickupPointMapper implements Mapper {
     @Override
     public PickupPointTable get(String piPoID) {
+
         MainServerConnector server = new MainServerConnector();
 
         StringTokenizer strTok = new StringTokenizer(server.pickupPointGet(piPoID).replace("\n", ""), ":");

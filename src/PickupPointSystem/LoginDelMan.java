@@ -1,11 +1,9 @@
 package PickupPointSystem;
 
 import PickupPointSystem.DatabaseSystem.PersistenceFacade;
-import PickupPointSystem.DatabaseSystem.Tables.Delivery;
-import PickupPointSystem.DatabaseSystem.Tables.DeliveryMan;
-import PickupPointSystem.DatabaseSystem.Tables.Package;
-import PickupPointSystem.ObserverPattern.Observer;
-import PickupPointSystem.Server.NotificationSystem.EMailSender;
+import PickupPointSystem.DatabaseSystem.Tables.DeliveryTable;
+import PickupPointSystem.DatabaseSystem.Tables.DeliveryManTable;
+import PickupPointSystem.DatabaseSystem.Tables.PackageTable;
 import PickupPointSystem.Server.NotificationSystem.PickupMail;
 
 import java.io.IOException;
@@ -33,14 +31,14 @@ public class LoginDelMan{
     }
 
     /**
-     * This method authenticates the DeliveryMan.
+     * This method authenticates the DeliveryManTable.
      * @param delID
      * @param password
      * @return true if the credentials are correct, else false.
      */
 
     public boolean login(String delID, String password){
-        DeliveryMan del = facade.getDeliveryMan(delID);
+        DeliveryManTable del = facade.getDeliveryMan(delID);
 
         if (del != null && del.getPassword().equals(password)){
             this.delID = delID;
@@ -50,15 +48,15 @@ public class LoginDelMan{
     }
 
     /**
-     * This method adds the DeliveryMan packages that is authenticated.
+     * This method adds the DeliveryManTable packages that is authenticated.
      * @return a message containing the pack id to deliver and the box number.
      * @throws IOException
      */
 
     public String addDeliverymanPackages() throws IOException {
-        ArrayList<Package> packages = facade.getPackagesFromDelID(pickupPoint.getId(), delID);
+        ArrayList<PackageTable> packages = facade.getPackagesFromDelID(pickupPoint.getId(), delID);
         String message ="Parcels to be delivered:\n\n";
-        for(Package pack : packages){
+        for(PackageTable pack : packages){
             int boxNumber = pickupPoint.addPackage(pack);
             message+= pack.getId() + "\t" + boxNumber+"\n";
         }
@@ -72,9 +70,9 @@ public class LoginDelMan{
      */
 
     public String getPackagesToPickup(){
-        ArrayList<Delivery> deliveries = facade.getDeliveries(pickupPoint.getId());
+        ArrayList<DeliveryTable> deliveries = facade.getDeliveries(pickupPoint.getId());
         String message = "Parcels to pickup:\n\n";
-        for(Delivery delivery : deliveries){
+        for(DeliveryTable delivery : deliveries){
             if(delivery.wasMade() && delivery.hasPackDeliveredForThreeDays()){
                 String packID = delivery.getPackID();
                 String email = facade.getPackage(packID).getCustomerEmail();

@@ -1,17 +1,16 @@
 package PickupPointSystem;
 
 import PickupPointSystem.DatabaseSystem.PersistenceFacade;
-import PickupPointSystem.DatabaseSystem.Tables.Delivery;
+import PickupPointSystem.DatabaseSystem.Tables.DeliveryTable;
+import PickupPointSystem.DatabaseSystem.Tables.PackageTable;
+import PickupPointSystem.DatabaseSystem.Tables.PickupPointTable;
 import PickupPointSystem.GraphicalInterface.GraIntMain;
 import PickupPointSystem.LockerSystem.BoxType.*;
-import PickupPointSystem.DatabaseSystem.Tables.Package;
 
 import PickupPointSystem.ObserverPattern.Observer;
 import PickupPointSystem.Server.NotificationSystem.DeliveryMail;
-import PickupPointSystem.Server.NotificationSystem.EMailSender;
 import PickupPointSystem.Server.PickupPointServer;
 
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -42,7 +41,7 @@ public class PickupPoint {
 
     public PickupPoint(String id) {
         try {
-            PickupPointSystem.DatabaseSystem.Tables.PickupPoint piPo = facade.getPickupPoint(id);
+            PickupPointTable piPo = facade.getPickupPoint(id);
             if (piPo == null) throw new Exception("Error.");
 
             this.id = piPo.getId();
@@ -79,7 +78,7 @@ public class PickupPoint {
      * @return boxNumber
      */
 
-    public int addPackage(Package pack) {
+    public int addPackage(PackageTable pack) {
         Collections.sort(boxList);
         for(Box box : boxList){
             if(box.isAvailable() && box.getSize().compareTo(pack.getSize()) > -1){
@@ -89,7 +88,7 @@ public class PickupPoint {
                 String password = box.generateBoxPassword();
                 unavailablesBoxes.put(password, box);
 
-                Delivery delivery = facade.getDeliveryFromPackID(id, pack.getId());
+                DeliveryTable delivery = facade.getDeliveryFromPackID(id, pack.getId());
                 delivery.setDateOfDelivery(dateOfDelivery);
                 delivery.setBoxNumber(box.getBoxNumber());
                 delivery.setBoxPassword(password);
@@ -114,7 +113,7 @@ public class PickupPoint {
 
     public boolean emptyBox(String cod){
         Box box = null;
-        Package pack = null;
+        PackageTable pack = null;
         box = unavailablesBoxes.get(cod);
         if(box == null){
             return false;
@@ -134,8 +133,8 @@ public class PickupPoint {
 
     public void updateBox() {
 
-        ArrayList<Delivery> deliveries = facade.getDeliveries(id);
-        for (Delivery delivery : deliveries) {
+        ArrayList<DeliveryTable> deliveries = facade.getDeliveries(id);
+        for (DeliveryTable delivery : deliveries) {
             for (Box box : boxList) {
                 if(delivery.hasBoxNumber(box.getBoxNumber())){
                     box.addPackage(facade.getPackage(delivery.getPackID()));

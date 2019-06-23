@@ -1,107 +1,64 @@
 package DeliveryManSystem;
 
+
 import DeliveryManSystem.Client.DeliveryManClient;
-import DeliveryManSystem.GraphicalInterfaceClientSystem.Gui;
-import PickupPointSystem.DatabaseSystem.Tables.Package;
+import DeliveryManSystem.DatabaseSystem.PersistenceFacade;
+import DeliveryManSystem.DatabaseSystem.Tables.DeliveryManTable;
+import DeliveryManSystem.DatabaseSystem.Tables.DeliveryTable;
+
 
 import java.util.ArrayList;
 
 /**
- * This class represent one delivery man
- * @author Roberto Zappa
- * @version 1.0
+ * @author Andrea Stella
+ * @version 2.0
  */
 
 public class DeliveryMan {
 
+    private PersistenceFacade facade = new PersistenceFacade();
+    private DeliveryManClient client = new DeliveryManClient();
+    private ArrayList<DeliveryTable> deliveries = new ArrayList<>();
     private String id;
     private String password;
-    private ArrayList<Package> packageList = new ArrayList<>(40);
 
-    public DeliveryMan(String id, String password){
+    public DeliveryMan(String id, String password) throws Exception {
+        DeliveryManTable delManTable = facade.getDeliveryMan(id);
+        if(delManTable == null || !delManTable.getPassword().equals(password)) throw new Exception("Error.");
+
         this.password = password;
         this.id = id;
+
+        updateDeliveries();
     }
 
-    /**
-     * This method return the Id of one deliveryman
-     * @return String
-     */
-
-    public String getId(){
-        return id;
+    public DeliveryManClient getClient(){
+        return client;
     }
 
-    /**
-     * This method return the password of one deliveryman
-     * @return String
-     */
-
-    public String getPassword(){
-        return password;
+    public void sendCredentials(){
+        client.connectToPickupPoint(id, password);
     }
 
-    public Package getPackage(String packID){
-        for(Package pack : packageList){
-            if(pack.getId().equals(packID)){
-                return pack;
+    public void updateDeliveries(){
+        deliveries.clear();
+        for(DeliveryTable delivery : facade.getDeliveries(id)){
+            if(!delivery.wasMade()){
+                deliveries.add(delivery);
             }
         }
-       return null;
+
     }
 
-    /**
-     * This method add one pack into the deliveryman's array list
-     * @param pack the pack that must be added
-     */
 
-    public void addPackage(Package pack){
-        if(!hasPackage(pack.getId())) {
-            packageList.add(pack);
-        }
-    }
 
-    public void removePackage(String packID){
-        if(hasPackage(packID)){
-            packageList.remove(getPackage(packID));
-        }
-    }
 
-    /**
-     * This method search if one pack is into deliveryman's array list
-     * @param packID the pack id of the pack that we are looking for
-     * @return boolean
-     */
 
-    public boolean hasPackage(String packID){
-        for(Package pack : packageList){
-            if(pack.getId().equals(packID)){
-                return true;
-            }
-        }
-        return false;
-    }
 
-    /**
-     * This method return all pack inside the deliveryman's array list like a one string.
-     * The packs are separated each other with an underscore
-     * @return String
-     */
 
-    public String  packageListToString(){
-        String text="";
-        for(Package pack : packageList){
-            text += pack.toString()+"\n";
-        }
-        return text;
-    }
 
-    /**
-     * This method wipe out all pack inside deliveryman's array list
-     */
 
-    public void clearPackages() {
-        packageList.clear();
-    }
+
+
 
 }

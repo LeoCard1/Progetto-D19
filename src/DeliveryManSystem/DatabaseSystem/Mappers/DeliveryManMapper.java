@@ -1,7 +1,7 @@
-package PickupPointSystem.DatabaseSystem.Mappers;
+package DeliveryManSystem.DatabaseSystem.Mappers;
 
 
-import PickupPointSystem.DatabaseSystem.Tables.DeliveryManTable;
+import DeliveryManSystem.DatabaseSystem.Tables.DeliveryManTable;
 
 /**
  * @author D19 Group

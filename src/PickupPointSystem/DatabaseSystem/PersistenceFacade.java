@@ -2,10 +2,10 @@ package PickupPointSystem.DatabaseSystem;
 
 
 import PickupPointSystem.DatabaseSystem.Mappers.*;
-import PickupPointSystem.DatabaseSystem.Tables.Delivery;
-import PickupPointSystem.DatabaseSystem.Tables.DeliveryMan;
-import PickupPointSystem.DatabaseSystem.Tables.Package;
-import PickupPointSystem.DatabaseSystem.Tables.PickupPoint;
+import PickupPointSystem.DatabaseSystem.Tables.DeliveryTable;
+import PickupPointSystem.DatabaseSystem.Tables.DeliveryManTable;
+import PickupPointSystem.DatabaseSystem.Tables.PackageTable;
+import PickupPointSystem.DatabaseSystem.Tables.PickupPointTable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,16 +29,16 @@ public class PersistenceFacade {
     }
 
     /**
-     * This method returns an ArrayList of packages that the DeliveryMan must deliver to the
-     * PickupPoint specified by the id entered as an argument.
+     * This method returns an ArrayList of packages that the DeliveryManTable must deliver to the
+     * PickupPointTable specified by the id entered as an argument.
      * @param pipoID, delID
-     * @return ArrayList<Package>
+     * @return ArrayList<PackageTable>
      */
     
-    public ArrayList<Package> getPackagesFromDelID(String pipoID, String delID){
-        ArrayList<Delivery> deliveries = getDeliveries(pipoID);
-        ArrayList<Package> packages = new ArrayList<>();
-        for(Delivery delivery : deliveries) {
+    public ArrayList<PackageTable> getPackagesFromDelID(String pipoID, String delID){
+        ArrayList<DeliveryTable> deliveries = getDeliveries(pipoID);
+        ArrayList<PackageTable> packages = new ArrayList<>();
+        for(DeliveryTable delivery : deliveries) {
             if(!delivery.wasMade() && delivery.hasDelID(delID)) {
                 packages.add(getPackage(delivery.getPackID()));
             }
@@ -46,34 +46,17 @@ public class PersistenceFacade {
         return packages;
     }
 
-    /**
-     * This method returns the Delivery in which the pack was inserted in the box corresponding
-     * to the id passed as an argument.
-     * @param pipoID
-     * @param boxNumber
-     * @return Delivery
-     */
-
-    /*public Delivery getDeliveryFromBoxNumber(String pipoID, int boxNumber){
-        ArrayList<Delivery> deliveries = getDeliveries(pipoID);
-        for(Delivery delivery : deliveries){
-            if(delivery.wasMade() && delivery.hasBoxNumber(boxNumber)){
-                return delivery;
-            }
-        }
-        return null;
-    }*/
 
     /**
-     * This method returns the Delivery related to the pack id passed as an argument.
+     * This method returns the DeliveryTable related to the pack id passed as an argument.
      * @param pipoID
      * @param packID
-     * @return Delivery
+     * @return DeliveryTable
      */
 
-    public Delivery getDeliveryFromPackID(String pipoID, String packID){
-        ArrayList<Delivery> deliveries = getDeliveries(pipoID);
-        for(Delivery delivery : deliveries){
+    public DeliveryTable getDeliveryFromPackID(String pipoID, String packID){
+        ArrayList<DeliveryTable> deliveries = getDeliveries(pipoID);
+        for(DeliveryTable delivery : deliveries){
             if(delivery.hasPackage(packID)){
                 return delivery;
             }
@@ -86,7 +69,7 @@ public class PersistenceFacade {
      * @param delivery
      */
 
-    public void updateDelivery(Delivery delivery){
+    public void updateDelivery(DeliveryTable delivery){
         getDeliveryMapper().update(delivery);
     }
 
@@ -108,47 +91,44 @@ public class PersistenceFacade {
         getPackageMapper().remove(packID);
     }
 
-    /*public void clearDeliveryCache() {
-        getDeliveryMapper().clearCache();
-    }*/
 
     /**
-     * This method returns deliveries to the PickupPoint id given.
+     * This method returns deliveries to the PickupPointTable id given.
      * @param pipoID
-     * @return  ArrayList<Delivery>
+     * @return  ArrayList<DeliveryTable>
      */
 
-    public ArrayList<Delivery> getDeliveries(String pipoID){
+    public ArrayList<DeliveryTable> getDeliveries(String pipoID){
         return getDeliveryMapper().get(pipoID);
     }
 
     /**
-     * This method returns the DeliveryMan identified by the given id.
+     * This method returns the DeliveryManTable identified by the given id.
      * @param delID
-     * @return DeliveryMan
+     * @return DeliveryManTable
      */
 
-    public DeliveryMan getDeliveryMan(String delID){
+    public DeliveryManTable getDeliveryMan(String delID){
         return getDeliveryManMapper().get(delID);
     }
 
     /**
      *
-     * This method returns the Package identified by the given id.
+     * This method returns the PackageTable identified by the given id.
      * @param packID
-     * @return Package
+     * @return PackageTable
      */
-    public Package getPackage(String packID){
+    public PackageTable getPackage(String packID){
         return getPackageMapper().get(packID);
     }
 
     /**
-     * This method returns the PickupPoint identified by the given id.
+     * This method returns the PickupPointTable identified by the given id.
      * @param piPoID
-     * @return PickupPoint
+     * @return PickupPointTable
      */
 
-    public PickupPoint getPickupPoint(String piPoID) {
+    public PickupPointTable getPickupPoint(String piPoID) {
         return getPickupPointMapper().get(piPoID);
     }
 

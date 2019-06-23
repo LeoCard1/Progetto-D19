@@ -1,6 +1,6 @@
 package PickupPointSystem.DatabaseSystem.Mappers;
 
-import PickupPointSystem.DatabaseSystem.Tables.Package;
+import PickupPointSystem.DatabaseSystem.Tables.PackageTable;
 
 import java.util.StringTokenizer;
 
@@ -12,14 +12,14 @@ import java.util.StringTokenizer;
 public class PackageMapper implements Mapper {
 
     /**
-     * This method returns the internal Package to the database given the packID
+     * This method returns the internal PackageTable to the database given the packID
      * passed as an argument.
      * @param packID
-     * @return Package
+     * @return PackageTable
      */
 
     @Override
-    public Package get(String packID) {
+    public PackageTable get(String packID) {
         MainServerConnector server = new MainServerConnector();
 
         String packageDimensions = server.packageGet(packID);
@@ -32,7 +32,7 @@ public class PackageMapper implements Mapper {
         double width = Double.parseDouble(strTok.nextToken());
         String customerEmail = strTok.nextToken();
 
-        return new Package(packID, height, length, width, customerEmail);
+        return new PackageTable(packID, height, length, width, customerEmail);
     }
 
     /**
