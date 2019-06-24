@@ -27,6 +27,8 @@ public class InfoPackPanel extends JPanel implements Observer {
         height = tk.getScreenSize().height;
         width = tk.getScreenSize().width;
         setPreferredSize(new Dimension(width*2/6, height*2/3));
+
+        initPanel();
     }
 
     private void initPanel() {
