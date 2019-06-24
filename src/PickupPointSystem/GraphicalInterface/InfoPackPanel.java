@@ -46,13 +46,13 @@ public class InfoPackPanel extends JPanel implements Observer {
 
     public void update() {
         text.append("<html>");
-        for (int i = 1; i < available.size() + 1; i++) {
+        for (int i = 0; i < available.size(); i++) {
             if (available.get(i) && !piPo.getBoxFromIndex(i).isAvailable()) {
-                text.append("Box " + i + ": deposit package (" + piPo.getBoxFromIndex(i).getPack().getId() + ").<br/>");
+                text.append("Box " + (i+1) + ": deposit package (" + piPo.getBoxFromIndex(i).getPack().getId() + ").<br/>");
             }
 
             if (!available.get(i) && piPo.getBoxFromIndex(i).isAvailable()) {
-                text.append("Box " + i + ": pickup package.<br/>");
+                text.append("Box " + (i+1) + ": pickup package.<br/>");
             }
         }
         text.append("</html>");
