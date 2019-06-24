@@ -31,7 +31,7 @@ public class LoginDelMan{
     }
 
     /**
-     * This method authenticates the DeliveryManTable.
+     * This method authenticates the DeliveryMan.
      * @param delID
      * @param password
      * @return true if the credentials are correct, else false.
@@ -39,7 +39,7 @@ public class LoginDelMan{
 
     public boolean login(String delID, String password){
         DeliveryManTable del = facade.getDeliveryMan(delID);
-
+        
         if (del != null && del.getPassword().equals(password)){
             this.delID = delID;
             return true;
@@ -48,12 +48,11 @@ public class LoginDelMan{
     }
 
     /**
-     * This method adds the DeliveryManTable packages that is authenticated.
+     * This method adds the DeliveryMan packages that is authenticated.
      * @return a message containing the pack id to deliver and the box number.
-     * @throws IOException
      */
 
-    public String addDeliverymanPackages() throws IOException {
+    public String addDeliverymanPackages() {
         ArrayList<PackageTable> packages = facade.getPackagesFromDelID(pickupPoint.getId(), delID);
         String message ="Parcels to be delivered:\n\n";
         for(PackageTable pack : packages){

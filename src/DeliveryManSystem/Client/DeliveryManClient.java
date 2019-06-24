@@ -15,13 +15,12 @@ public class DeliveryManClient {
     private Socket client;
     private BufferedReader in;
     private PrintStream out;
-    private ArrayList<ObserverResponse> obsList = new ArrayList<>();
 
 
-    public void connectToPickupPoint(String id, String password) {
+    public void connectToPickupPoint(String ip, String id, String password) {
         try {
             client = new Socket();
-            client.connect(new InetSocketAddress("localhost", 8000));
+            client.connect(new InetSocketAddress(ip, 8000));
 
             in = new BufferedReader(new InputStreamReader(client.getInputStream()));
             out = new PrintStream(client.getOutputStream(), true);
@@ -40,10 +39,6 @@ public class DeliveryManClient {
         out.println("deliveryman");
         out.println("login " + id + " " + password);
 
-        while (!in.ready()) ;
-        String response = in.readLine();
-        notifyObservers(response);
-
         out.println("close");
 
         in.close();
@@ -52,17 +47,4 @@ public class DeliveryManClient {
         client.close();
     }
 
-    public void addObserver(ObserverResponse obs) {
-        for (ObserverResponse obsInList : obsList) {
-            if (obsInList.equals(obs)) return;
-        }
-
-        obsList.add(obs);
-    }
-
-    public void notifyObservers(String result) {
-        for (ObserverResponse obs : obsList) {
-            obs.update(result);
-        }
-    }
 }

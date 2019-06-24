@@ -1,7 +1,6 @@
 package DeliveryManSystem;
 
 
-import DeliveryManSystem.Client.DeliveryManClient;
 import DeliveryManSystem.GraphicalInterfaceClientSystem.Gui;
 
 import java.io.IOException;
@@ -13,7 +12,9 @@ public class DeliveryManMain {
         andrea.sendList();*/
 
        // DeliveryManClient andrea = new DeliveryManClient();
+        DeliveryMan deliveryMan = new DeliveryMan("ANDREA", "ECAKE91749");
+        deliveryMan.sendCredentials("PAV01");
 
-        Gui delGui = new Gui();
+      //  Gui delGui = new Gui();
     }
 }

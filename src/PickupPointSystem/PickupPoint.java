@@ -168,7 +168,7 @@ public class PickupPoint {
     }
 
     private void createServer() {
-        PickupPointServer server = new PickupPointServer(this);
+        PickupPointServer server = new PickupPointServer();
         server.start();
     }
 

@@ -1,6 +1,6 @@
 package PickupPointSystem.Server;
 
-import PickupPointSystem.LoginDelMan;
+import PickupPointSystem.CredentialsReceiver;
 import PickupPointSystem.PickupPoint;
 
 import java.io.BufferedReader;
@@ -11,15 +11,14 @@ import java.net.Socket;
 import java.util.StringTokenizer;
 
 public class ManageConnectionsDeliveryMan implements ManageConnections {
-    private PickupPoint pickupPoint;
+
     private ServerSocket server;
     private Socket client;
     private BufferedReader in;
     private PrintStream out;
 
     @Override
-    public void goConnect(PickupPoint pickupPoint, ServerSocket server, Socket client, BufferedReader in, PrintStream out) throws IOException {
-        this.pickupPoint = pickupPoint;
+    public void goConnect(ServerSocket server, Socket client, BufferedReader in, PrintStream out) throws IOException {
         this.server = server;
         this.client = client;
         this.in = in;
@@ -44,17 +43,12 @@ public class ManageConnectionsDeliveryMan implements ManageConnections {
             return;
         }
         if (command.equals("login")) {
-            LoginDelMan logDel = new LoginDelMan(pickupPoint);
+
             String delID = st.nextToken();
             String password = st.nextToken();
+            CredentialsReceiver credentialReceiver = CredentialsReceiver.getInstance();
+            credentialReceiver.receiveCredentials(delID, password);
 
-            System.out.println(delID + " " + password);
-
-            if (logDel.login(delID, password)) {
-                out.println("accepted");
-                System.out.println(logDel.addDeliverymanPackages());
-                System.out.println(logDel.getPackagesToPickup());
-            } else out.println("refused");
         }
     }
 

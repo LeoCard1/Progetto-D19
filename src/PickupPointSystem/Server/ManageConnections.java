@@ -9,5 +9,5 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public interface ManageConnections {
-    public void goConnect(PickupPoint pickupPoint, ServerSocket server, Socket client, BufferedReader in, PrintStream out) throws IOException;
+    public void goConnect(ServerSocket server, Socket client, BufferedReader in, PrintStream out) throws IOException;
 }

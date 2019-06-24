@@ -1,6 +1,7 @@
 package PickupPointSystem.GraphicalInterface;
 
 import PickupPointSystem.GraphicalInterface.ErrorGUI.ErrorGUIMain;
+import PickupPointSystem.ObserverPattern.Observer;
 import PickupPointSystem.PickupPoint;
 
 import javax.swing.*;
@@ -20,8 +21,9 @@ import java.util.Set;
 
 public class InsertCodePanel extends JPanel {
     private PickupPoint piPo;
-    private ArrayList<JTextField> texts = new ArrayList<>();
+    private BackGroundPanel bgp;
     private JTextField textF = new JTextField();
+    private AlertLabel alertLabel;
     JLabel l;
     JButton b;
     // l e b sono variabili necessarie per cambiare la lingua delle tab (più informazioni nella classe SetLanguage)
@@ -31,9 +33,10 @@ public class InsertCodePanel extends JPanel {
      * @param pipo The pickup point.
      */
 
-    public InsertCodePanel(PickupPoint pipo) {
+    public InsertCodePanel(PickupPoint pipo, BackGroundPanel bgp) {
+        this.bgp = bgp;
         piPo = pipo;
-        setLayout(new GridLayout(3, 1));
+        setLayout(new GridLayout(4, 1));
         initPanel();
     }
 
@@ -42,10 +45,12 @@ public class InsertCodePanel extends JPanel {
      */
 
     private void initPanel() {
+        alertLabel = new AlertLabel("Correct Code", "Wrong Code");
         textF.setFont(new Font("", Font.PLAIN, 24));
         add(createInsCodLabel());
         add(textF);
         add(createConfirmButton());
+        add(alertLabel);
     }
 
     private JLabel createInsCodLabel(){
@@ -65,7 +70,10 @@ public class InsertCodePanel extends JPanel {
                 String code = textF.getText();
                 deleteText();
                 if(piPo.emptyBox(code)==false){
-                    new ErrorGUIMain("the code is invalid", false);
+                    alertLabel.wrongCode();
+                } else {
+                    alertLabel.correctCode();
+                    bgp.changePanel("viewBoxesPanel");
                 }
             }
         });
@@ -126,4 +134,5 @@ public class InsertCodePanel extends JPanel {
         l.setText(SetLanguage.getInstance().setInsertCodePanel()[0]);
         b.setText(SetLanguage.getInstance().setInsertCodePanel()[1]);
     }
+
 }

@@ -8,15 +8,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static java.awt.Toolkit.getDefaultToolkit;
+
 
 /**
  * @author Sergio Gentilini
  * @version 1.0.1
  */
 
-public class ViewBoxesPanel extends JPanel implements Observer {
+public class ViewBoxesPanel extends JPanel {
     private PickupPoint piPo;
     private GridBoxesPanel gridBoxesPanel;
+    private InfoPackPanel infoPackPanel;
     private BackGroundPanel bgp;
 
     /**
@@ -27,8 +30,6 @@ public class ViewBoxesPanel extends JPanel implements Observer {
     public ViewBoxesPanel(PickupPoint pipo, BackGroundPanel bgp) {
         this.bgp = bgp;
         piPo = pipo;
-        piPo.addObserver(this);
-        setLayout(new BorderLayout());
         initPanel();
     }
 
@@ -37,10 +38,22 @@ public class ViewBoxesPanel extends JPanel implements Observer {
      */
 
     private void initPanel() {
-        gridBoxesPanel = new GridBoxesPanel(piPo);
         setLayout(new BorderLayout());
-        add(gridBoxesPanel, BorderLayout.CENTER);
         add(createExitPanel(), BorderLayout.NORTH);
+        add(createCenteredPanel(), BorderLayout.CENTER);
+    }
+
+    private JPanel createCenteredPanel(){
+        Toolkit tk = getDefaultToolkit();
+        int height = tk.getScreenSize().height;
+        int width = tk.getScreenSize().width;
+        gridBoxesPanel = new GridBoxesPanel(piPo, width*2/6, height*2/3);
+        infoPackPanel = new InfoPackPanel(width*2/6, height*2/3);
+        JPanel centeredPanel = new JPanel();
+        centeredPanel.setLayout(new GridLayout(1,2));
+        centeredPanel.add(infoPackPanel);
+        centeredPanel.add(gridBoxesPanel);
+        return centeredPanel;
     }
 
     /**
@@ -66,13 +79,6 @@ public class ViewBoxesPanel extends JPanel implements Observer {
         return p;
     }
 
-    /**
-     * The interface is updated after a package is added or removed.
-     */
 
-    @Override
-    public void update() {
-        bgp.changePanel("viewBoxesPanel");
-        gridBoxesPanel.checkState();
-    }
+
 }

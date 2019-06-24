@@ -61,11 +61,12 @@ public class BoxAccessPanel extends JPanel {
      */
 
     private JPanel createPasswordPanel(){
-        ins = new InsertCodePanel(piPo);
+        ins = new InsertCodePanel(piPo, bgp);
         JPanel p1 = new JPanel();
         p1.setLayout(new BoxLayout(p1, BoxLayout.PAGE_AXIS));
         p1.add(languagePanel());
         p1.add(ins);
+
         JPanel p2 = new JPanel();
         p2.setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/8));
         p2.add(p1);
@@ -87,6 +88,7 @@ public class BoxAccessPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 bgp.changePanel("loginDelManPanel");
+                ins.deleteText();
             }
         });
         buttonExit.addActionListener(new ActionListener() {

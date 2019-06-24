@@ -90,7 +90,7 @@ public class StartingPanel extends JPanel {
         sendList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                deliveryman.sendCredentials();
+                deliveryman.sendCredentials("PAV01");
             }
         });
 

@@ -5,6 +5,7 @@ import DeliveryManSystem.Client.DeliveryManClient;
 import DeliveryManSystem.DatabaseSystem.PersistenceFacade;
 import DeliveryManSystem.DatabaseSystem.Tables.DeliveryManTable;
 import DeliveryManSystem.DatabaseSystem.Tables.DeliveryTable;
+import DeliveryManSystem.DatabaseSystem.Tables.PickupPointTable;
 
 
 import java.util.ArrayList;
@@ -32,8 +33,10 @@ public class DeliveryMan {
         updateDeliveries();
     }
 
-    public void sendCredentials(){
-        client.connectToPickupPoint(id, password);
+    public void sendCredentials(String piPoID){
+        PickupPointTable piPoTable = facade.getPickupPoint(piPoID);
+
+        client.connectToPickupPoint(piPoTable.getIp(), id, password);
     }
 
     public void updateDeliveries(){
@@ -45,13 +48,6 @@ public class DeliveryMan {
         }
 
     }
-
-
-
-
-
-
-
 
 
 

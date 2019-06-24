@@ -10,14 +10,14 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class PickupPointServer extends Thread {
-    private PickupPoint pickupPoint;
+
     private ServerSocket server;
     private Socket client;
     private BufferedReader in;
     private PrintStream out;
 
-    public PickupPointServer(PickupPoint pickupPoint){
-        this.pickupPoint = pickupPoint;
+    public PickupPointServer(){
+
     }
 
     @Override
@@ -46,7 +46,7 @@ public class PickupPointServer extends Thread {
             String line = in.readLine();
             ManageConnections connection = new ManageConnectionsFactory().getConnection(line);
 
-            connection.goConnect(pickupPoint, server, client, in, out);
+            connection.goConnect(server, client, in, out);
         }
     }
 }

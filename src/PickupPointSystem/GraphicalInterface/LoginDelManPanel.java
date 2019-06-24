@@ -1,8 +1,8 @@
 package PickupPointSystem.GraphicalInterface;
 
-import PickupPointSystem.GraphicalInterface.ErrorGUI.ErrorGUIMain;
+import PickupPointSystem.CredentialsReceiver;
 import PickupPointSystem.LoginDelMan;
-import PickupPointSystem.ObserverPattern.Observer;
+import PickupPointSystem.ObserverPattern.ObserverCredentials;
 import PickupPointSystem.PickupPoint;
 
 import javax.swing.*;
@@ -18,20 +18,22 @@ import static java.awt.Toolkit.getDefaultToolkit;
  * @version 1.0
  */
 
-public class LoginDelManPanel extends JPanel {
+public class LoginDelManPanel extends JPanel implements ObserverCredentials {
 
-    private PickupPoint pickupPoint;
     private BackGroundPanel bgp;
     private JTextField delID = new JTextField();
     private JPasswordField password = new JPasswordField();
+    private JButton buttonConfirm;
+    private AlertLabel alertLabel;
     private LoginDelMan loginDelMan;
     private int height;
     private int width;
 
     public LoginDelManPanel(PickupPoint pickupPoint, BackGroundPanel bgp){
-        this.pickupPoint = pickupPoint;
         loginDelMan = new LoginDelMan(pickupPoint);
         this.bgp = bgp;
+        CredentialsReceiver credentialReceiver = CredentialsReceiver.getInstance();
+        credentialReceiver.addObserver(this);
         Toolkit tk = getDefaultToolkit();
         height = tk.getScreenSize().height;
         width = tk.getScreenSize().width;
@@ -46,13 +48,15 @@ public class LoginDelManPanel extends JPanel {
     }
 
     private JPanel createLoginPanel(){
+        alertLabel = new AlertLabel("Correct Credentials", "Wrong Credentials");
         JLabel insertCred = new JLabel("Insert Your Credentials");
         insertCred.setFont(new Font("", Font.PLAIN, 24));
         JPanel loginPanel = new JPanel();
-        loginPanel.setLayout(new GridLayout(3,1));
+        loginPanel.setLayout(new GridLayout(4,1));
         loginPanel.add(insertCred);
         loginPanel.add(createCredentialsPanel());
         loginPanel.add(createConfirmButton());
+        loginPanel.add(alertLabel);
         JPanel p = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, height/8));
         p.add(loginPanel);
         return p;
@@ -75,19 +79,16 @@ public class LoginDelManPanel extends JPanel {
     }
 
     private JButton createConfirmButton(){
-        JButton buttonConfirm = new JButton("Confirm");
+        buttonConfirm = new JButton("Confirm");
         buttonConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(loginDelMan.login(delID.getText(), password.getText())){
-                    try {
-                        loginDelMan.addDeliverymanPackages();
-                        loginDelMan.getPackagesToPickup();
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
+                    alertLabel.correctCode();
+                    loginDelMan.addDeliverymanPackages();
+                    loginDelMan.getPackagesToPickup();
                     bgp.changePanel("viewBoxesPanel");
-                } else new ErrorGUIMain("Wrong username or password", false);
+                } else alertLabel.wrongCode();
                 deleteText();
             }
 
@@ -115,4 +116,12 @@ public class LoginDelManPanel extends JPanel {
         delID.setText("");
     }
 
+    @Override
+    public void updateCredentials(String id, String password) {
+        bgp.changePanel("loginDelManPanel");
+        delID.setText(id);
+        this.password.setText(password);
+        buttonConfirm.doClick();
+
+    }
 }
