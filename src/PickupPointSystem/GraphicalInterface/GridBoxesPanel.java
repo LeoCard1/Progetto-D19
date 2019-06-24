@@ -27,14 +27,15 @@ public class GridBoxesPanel extends JPanel implements Observer{
      * @param piPo The pickup point.
      */
 
-    public GridBoxesPanel(PickupPoint piPo, int width, int height) {
+    public GridBoxesPanel(PickupPoint piPo) {
         this.piPo = piPo;
         piPo.addObserver(this);
-        this.width = width;
-        this.height = height;
+        Toolkit tk = getDefaultToolkit();
+        height = tk.getScreenSize().height;
+        width = tk.getScreenSize().width;
         setBorder(BorderFactory.createLineBorder(new Color(255, 0, 0)));
         setLayout(new FlowLayout());
-        setPreferredSize(new Dimension(width, height));
+        setPreferredSize(new Dimension(width*2/6, height*2/3));
         initPanel();
     }
 
@@ -47,8 +48,8 @@ public class GridBoxesPanel extends JPanel implements Observer{
         JPanel jp = new JPanel();
         jp.setLayout(new GridLayout(3, 1));
 
-        jp.setPreferredSize(new Dimension(width*30/38, height*6/10));
-        setLayout(new FlowLayout(FlowLayout.CENTER, 0, height*3/34));
+        jp.setPreferredSize(new Dimension(width*5/19, height*2/5));
+        setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/17));
         add(jp);
 
         jp.add(makeGrid(piPo.getSmallBoxes()));
@@ -127,7 +128,7 @@ public class GridBoxesPanel extends JPanel implements Observer{
     public void paintComponent(Graphics g){
         setOpaque(false);
         Image img = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/locker.jpg");
-        img = img.getScaledInstance(width,height, Image.SCALE_DEFAULT);
+        img = img.getScaledInstance(width*2/6,height*2/3, Image.SCALE_DEFAULT);
         ImageLoader imgLoader = new ImageLoader();
         imgLoader.loadImage(img, this);
         g.drawImage(img,0,0,this);

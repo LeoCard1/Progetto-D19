@@ -47,8 +47,8 @@ public class ViewBoxesPanel extends JPanel {
         Toolkit tk = getDefaultToolkit();
         int height = tk.getScreenSize().height;
         int width = tk.getScreenSize().width;
-        gridBoxesPanel = new GridBoxesPanel(piPo, width*2/6, height*2/3);
-        infoPackPanel = new InfoPackPanel(width*2/6, height*2/3);
+        gridBoxesPanel = new GridBoxesPanel(piPo);
+        infoPackPanel = new InfoPackPanel();
         JPanel centeredPanel = new JPanel();
         centeredPanel.setLayout(new GridLayout(1,2));
         centeredPanel.add(infoPackPanel);

@@ -72,7 +72,7 @@ public class LoginDelMan{
         ArrayList<DeliveryTable> deliveries = facade.getDeliveries(pickupPoint.getId());
         String message = "Parcels to pickup:\n\n";
         for(DeliveryTable delivery : deliveries){
-            if(delivery.wasMade() && delivery.hasPackDeliveredForThreeDays()){
+            if(delivery.hasDelID(delID) && delivery.wasMade() && delivery.hasPackDeliveredForThreeDays()){
                 String packID = delivery.getPackID();
                 String email = facade.getPackage(packID).getCustomerEmail();
                 PickupMail notify = new PickupMail(email, packID);

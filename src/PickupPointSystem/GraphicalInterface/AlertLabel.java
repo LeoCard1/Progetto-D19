@@ -12,6 +12,7 @@ public class AlertLabel extends JLabel {
     private Timer timer;
 
     public AlertLabel(String correctCodeString, String wrongCodeString){
+
         this.correctCodeString = correctCodeString;
         this.wrongCodeString = wrongCodeString;
         setHorizontalAlignment(0);

@@ -32,7 +32,7 @@ public class CredentialsReceiver {
         observers.add(ob);
     }
 
-    public void notifyObservers(String id, String password){
+    private void notifyObservers(String id, String password){
         for(ObserverCredentials ob : observers){
             ob.updateCredentials(id, password);
         }
