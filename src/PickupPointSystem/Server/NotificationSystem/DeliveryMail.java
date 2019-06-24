@@ -29,7 +29,7 @@ public class DeliveryMail extends EMailSender {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
         String pickupDateString = sdf.format(pickupDate);
 
-        String text = "Hello,\n\nYour parcel " + packID + " has been delivered to PickupPointTable "+ piPoID +" in "+ address +
+        String text = "Hello,\n\nYour parcel " + packID + " has been delivered to PickupPoint "+ piPoID +" in "+ address +
                 ", " + location + "\n\nYour pick-up code is " + password + "\n\nYour package will be available for pick up" +
                 " until the location closes on " + pickupDateString + "\n\nWhen you arrive at SmartLocker, enter your pick-up" +
                 " code and follow the instructions on the screen. " + "If you're unable to pick-up your parcel before the" +

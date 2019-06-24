@@ -29,7 +29,6 @@ public class GridBoxesPanel extends JPanel implements Observer{
 
     public GridBoxesPanel(PickupPoint piPo) {
         this.piPo = piPo;
-        piPo.addObserver(this);
         Toolkit tk = getDefaultToolkit();
         height = tk.getScreenSize().height;
         width = tk.getScreenSize().width;

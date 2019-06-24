@@ -1,9 +1,7 @@
 package PickupPointSystem.GraphicalInterface;
 
-import PickupPointSystem.LockerSystem.BoxType.Box;
 import PickupPointSystem.ObserverPattern.Observer;
 import PickupPointSystem.PickupPoint;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +10,7 @@ import java.util.ArrayList;
 import static java.awt.Toolkit.getDefaultToolkit;
 
 public class InfoPackPanel extends JPanel implements Observer {
+
     private int width;
     private int height;
     private PickupPoint piPo;
@@ -39,8 +38,9 @@ public class InfoPackPanel extends JPanel implements Observer {
 
         removeAll();
         JLabel textLabel = new JLabel(text.toString());
+        textLabel.setFont(new Font("", Font.PLAIN, 24));
         add(textLabel);
-
+        
         text = new StringBuilder();
     }
 

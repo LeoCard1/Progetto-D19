@@ -77,7 +77,7 @@ public class BackGroundPanel extends JPanel {
 
 
     /**
-     * This method canges the panel to the one whose name is passed as an argument.
+     * This method changes the panel to the one whose name is passed as an argument.
      * @param namePanel
      */
 

@@ -27,7 +27,6 @@ public class PickupPoint {
     private String location;
     private ArrayList<Box> boxList = new ArrayList<>();
     private HashMap<String, Box> unavailablesBoxes = new HashMap<>();
-    private ArrayList<Observer> obsList = new ArrayList<>();
     private PersistenceFacade facade = new PersistenceFacade();
     private int smallBoxes;
     private int mediumBoxes;
@@ -98,7 +97,6 @@ public class PickupPoint {
                 String email = facade.getPackage(pack.getId()).getCustomerEmail();
                 DeliveryMail notify = new DeliveryMail(email, id, pack.getId(), password, dateHandler.addDays(dateOfDelivery,3), location, address);
                 notify.start();
-                notifyObservers();
                 return box.getBoxNumber();
             }
         }
@@ -123,7 +121,6 @@ public class PickupPoint {
         unavailablesBoxes.remove(cod);
         facade.removeDelivery(pack.getId());
         facade.removePack(pack.getId());
-        notifyObservers();
         return true;
     }
 
@@ -143,8 +140,6 @@ public class PickupPoint {
                 }
             }
         }
-
-        notifyObservers();
     }
 
     public int getSmallBoxes() {
@@ -174,20 +169,6 @@ public class PickupPoint {
 
     private void createGUI() {
         new GraIntMain(this);
-    }
-
-    public void addObserver(Observer obs) {
-        for (Observer obsOfList : obsList) {
-            if (obs == obsOfList) return;
-        }
-
-        obsList.add(obs);
-    }
-
-    private void notifyObservers(){
-        for (Observer obsOfList : obsList) {
-            obsOfList.update();
-        }
     }
 
 }
