@@ -1,9 +1,11 @@
 package PickupPointSystem.GraphicalInterface;
 
+import PickupPointSystem.ObserverPattern.Observer;
 import PickupPointSystem.PickupPoint;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 import static java.awt.Toolkit.getDefaultToolkit;
 
@@ -22,6 +24,7 @@ public class BackGroundPanel extends JPanel {
     private LoginDelManPanel loginDelManPanel;
     private CardLayout cardLayout = new CardLayout();
     private JPanel panelCont = new JPanel();
+    private ArrayList<Observer> obsList = new ArrayList<>();
 
     /**
      * The constructor. Creates boxAccessPanel, viewBoxesPanel and startPanel.
@@ -79,9 +82,14 @@ public class BackGroundPanel extends JPanel {
      */
 
     public void changePanel(String namePanel){
-        if(namePanel.equals("startPanel")){
+        if (namePanel.equals("startPanel")) {
             startPanel.startTimer();
         }
+
+        if (namePanel.equals("viewBoxesPanel")) {
+            notifyObservers();
+        }
+
         cardLayout.show(panelCont,namePanel);
     }
 
@@ -91,5 +99,15 @@ public class BackGroundPanel extends JPanel {
 
     public void refresh(){
         boxAccessPanel.refresh();
+    }
+
+    public void addObserver(Observer obs) {
+        obsList.add(obs);
+    }
+
+    private void notifyObservers() {
+        for (Observer obs : obsList) {
+            obs.update();
+        }
     }
 }

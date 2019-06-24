@@ -30,6 +30,8 @@ public class ViewBoxesPanel extends JPanel {
     public ViewBoxesPanel(PickupPoint pipo, BackGroundPanel bgp) {
         this.bgp = bgp;
         piPo = pipo;
+        infoPackPanel = new InfoPackPanel(piPo);
+
         initPanel();
     }
 
@@ -41,6 +43,8 @@ public class ViewBoxesPanel extends JPanel {
         setLayout(new BorderLayout());
         add(createExitPanel(), BorderLayout.NORTH);
         add(createCenteredPanel(), BorderLayout.CENTER);
+
+        bgp.addObserver(infoPackPanel);
     }
 
     private JPanel createCenteredPanel(){
@@ -48,7 +52,6 @@ public class ViewBoxesPanel extends JPanel {
         int height = tk.getScreenSize().height;
         int width = tk.getScreenSize().width;
         gridBoxesPanel = new GridBoxesPanel(piPo);
-        infoPackPanel = new InfoPackPanel();
         JPanel centeredPanel = new JPanel();
         centeredPanel.setLayout(new GridLayout(1,2));
         centeredPanel.add(infoPackPanel);
