@@ -27,7 +27,7 @@ public class BackGroundPanel extends JPanel {
     private ArrayList<Observer> obsList = new ArrayList<>();
 
     /**
-     * The constructor. Creates boxAccessPanel, viewBoxesPanel and startPanel.
+     * The constructor. Creates boxAccessPanel, viewBoxesPanel, loginDelManPanel and startPanel.
      * @param pipo
      * @param gra
      */
@@ -49,13 +49,14 @@ public class BackGroundPanel extends JPanel {
 
     private void initPanel(){
         panelCont.setLayout(cardLayout);
+        panelCont.setPreferredSize(new Dimension(width*2/3, height*2/3));
         panelCont.add(boxAccessPanel, "boxAccessPanel");
         panelCont.add(viewBoxesPanel,"viewBoxesPanel");
         panelCont.add(loginDelManPanel,"loginDelManPanel");
         panelCont.add(startPanel, "startPanel");
         cardLayout.show(panelCont, "startPanel");
 
-        setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/10));
+        setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/9));
         add(panelCont);
     }
 
@@ -68,7 +69,7 @@ public class BackGroundPanel extends JPanel {
     public void paintComponent(Graphics g){
         setOpaque(false);
         Image img = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/logobackground.jpg");
-        img = img.getScaledInstance(width*2/3,height*2/3, Image.SCALE_DEFAULT);
+        img = img.getScaledInstance(getWidth(),getHeight(), Image.SCALE_DEFAULT);
         ImageLoader imgLoader = new ImageLoader();
         imgLoader.loadImage(img, this);
         g.drawImage(img,0,0,this);

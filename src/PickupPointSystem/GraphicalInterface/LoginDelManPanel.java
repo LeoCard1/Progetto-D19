@@ -9,7 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import static java.awt.Toolkit.getDefaultToolkit;
 
@@ -26,18 +25,13 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
     private JButton buttonConfirm;
     private AlertLabel alertLabel;
     private LoginDelMan loginDelMan;
-    private int height;
-    private int width;
 
     public LoginDelManPanel(PickupPoint pickupPoint, BackGroundPanel bgp){
         loginDelMan = new LoginDelMan(pickupPoint);
         this.bgp = bgp;
         CredentialsReceiver credentialReceiver = CredentialsReceiver.getInstance();
         credentialReceiver.addObserver(this);
-        Toolkit tk = getDefaultToolkit();
-        height = tk.getScreenSize().height;
-        width = tk.getScreenSize().width;
-        setPreferredSize(new Dimension(width*2/3, height*2/3));
+
         initPanel();
     }
 
@@ -57,6 +51,8 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
         loginPanel.add(createCredentialsPanel());
         loginPanel.add(createConfirmButton());
         loginPanel.add(alertLabel);
+        Toolkit tk = getDefaultToolkit();
+        int height = tk.getScreenSize().height;
         JPanel p = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, height/8));
         p.add(loginPanel);
         return p;
@@ -86,7 +82,7 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
                 if(loginDelMan.login(delID.getText(), password.getText())){
                     alertLabel.correctCode();
                     loginDelMan.addDeliverymanPackages();
-                    loginDelMan.getPackagesToPickup();
+                    loginDelMan.pickupPackages();
                     bgp.changePanel("viewBoxesPanel");
                 } else alertLabel.wrongCode();
                 deleteText();

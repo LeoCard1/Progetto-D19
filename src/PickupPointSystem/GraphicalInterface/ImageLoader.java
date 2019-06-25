@@ -3,6 +3,11 @@ package PickupPointSystem.GraphicalInterface;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author Andrea Stella
+ * @version 1.0
+ */
+
 
 public class ImageLoader {
 

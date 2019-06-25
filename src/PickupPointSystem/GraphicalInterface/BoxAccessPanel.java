@@ -19,8 +19,6 @@ public class BoxAccessPanel extends JPanel {
     private GraIntMain gra;
     private BackGroundPanel bgp;
     private InsertCodePanel ins;
-    private int height;
-    private int width;
     // c, l ed n sono variabili necessarie per cambiare la lingua delle tab (più informazioni nella classe SetLanguage)
     private JComboBox c;
     private JLabel l;
@@ -36,9 +34,6 @@ public class BoxAccessPanel extends JPanel {
         piPo = pipo;
         this.gra = gra;
         this.bgp = bgp;
-        Toolkit tk = getDefaultToolkit();
-        height = tk.getScreenSize().height;
-        width = tk.getScreenSize().width;
 
         initPanel();
     }
@@ -48,7 +43,6 @@ public class BoxAccessPanel extends JPanel {
      */
 
     private void initPanel() {
-        setPreferredSize(new Dimension(width*2/3, height*2/3));
         setLayout(new BorderLayout());
         add(createPasswordPanel(), BorderLayout.CENTER);
         add(createNorthPanel(), BorderLayout.NORTH);
@@ -66,7 +60,8 @@ public class BoxAccessPanel extends JPanel {
         p1.setLayout(new BoxLayout(p1, BoxLayout.PAGE_AXIS));
         p1.add(languagePanel());
         p1.add(ins);
-
+        Toolkit tk = getDefaultToolkit();
+        int height = tk.getScreenSize().height;
         JPanel p2 = new JPanel();
         p2.setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/8));
         p2.add(p1);

@@ -49,28 +49,22 @@ public class LoginDelMan{
 
     /**
      * This method adds the DeliveryMan packages that is authenticated.
-     * @return a message containing the pack id to deliver and the box number.
      */
 
-    public String addDeliverymanPackages() {
+    public void addDeliverymanPackages() {
         ArrayList<PackageTable> packages = facade.getPackagesFromDelID(pickupPoint.getId(), delID);
-        String message ="Parcels to be delivered:\n\n";
         for(PackageTable pack : packages){
-            int boxNumber = pickupPoint.addPackage(pack);
-            message+= pack.getId() + "\t" + boxNumber+"\n";
+            pickupPoint.addPackage(pack);
         }
-        return message;
     }
 
     /**
      * This method empties the box that have inside them a package delivered
      * for at least 3 days and send the pick up mail.
-     * @return a message containing the pack id to pick up and the box number.
      */
 
-    public String getPackagesToPickup(){
+    public void pickupPackages(){
         ArrayList<DeliveryTable> deliveries = facade.getDeliveries(pickupPoint.getId());
-        String message = "Parcels to pickup:\n\n";
         for(DeliveryTable delivery : deliveries){
             if(delivery.hasDelID(delID) && delivery.wasMade() && delivery.hasPackDeliveredForThreeDays()){
                 String packID = delivery.getPackID();
@@ -78,10 +72,8 @@ public class LoginDelMan{
                 PickupMail notify = new PickupMail(email, packID);
                 notify.start();
                 pickupPoint.emptyBox(delivery.getBoxPassword());
-                message+= packID + "\t" + delivery.getBoxNumber()+"\n";
             }
         }
-        return message;
     }
 
 }

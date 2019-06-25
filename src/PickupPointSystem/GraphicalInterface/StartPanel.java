@@ -12,8 +12,6 @@ import static java.awt.Toolkit.getDefaultToolkit;
 
 public class StartPanel extends JPanel {
 
-    private int height;
-    private int width;
     private BackGroundPanel bgp;
     private ArrayList<Image> images = new ArrayList<>();
     private Image currentImage;
@@ -27,13 +25,9 @@ public class StartPanel extends JPanel {
 
     public StartPanel(BackGroundPanel bgp){
         this.bgp = bgp;
-        Toolkit tk = getDefaultToolkit();
-        height = tk.getScreenSize().height;
-        width = tk.getScreenSize().width;
         createImages();
         currentImage = images.get(0);
         createTimer();
-        setPreferredSize(new Dimension(width*2/3, height*2/3));
         initPanel();
     }
 
@@ -146,7 +140,7 @@ public class StartPanel extends JPanel {
     @Override
     public void paintComponent(Graphics g){
         setOpaque(false);
-        currentImage = currentImage.getScaledInstance(width*2/3,height*2/3, Image.SCALE_DEFAULT);
+        currentImage = currentImage.getScaledInstance(getWidth(),getHeight(), Image.SCALE_DEFAULT);
         ImageLoader imgLoader = new ImageLoader();
         imgLoader.loadImage(currentImage, this);
         g.drawImage(currentImage,0,0,this);

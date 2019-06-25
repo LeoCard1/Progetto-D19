@@ -17,7 +17,6 @@ import static java.awt.Toolkit.getDefaultToolkit;
  */
 
 public class ViewBoxesPanel extends JPanel {
-    private PickupPoint piPo;
     private GridBoxesPanel gridBoxesPanel;
     private InfoPackPanel infoPackPanel;
     private BackGroundPanel bgp;
@@ -29,9 +28,8 @@ public class ViewBoxesPanel extends JPanel {
 
     public ViewBoxesPanel(PickupPoint pipo, BackGroundPanel bgp) {
         this.bgp = bgp;
-        piPo = pipo;
-        infoPackPanel = new InfoPackPanel(piPo);
-        gridBoxesPanel = new GridBoxesPanel(piPo);
+        infoPackPanel = new InfoPackPanel(pipo);
+        gridBoxesPanel = new GridBoxesPanel(pipo);
         bgp.addObserver(infoPackPanel);
         bgp.addObserver(gridBoxesPanel);
 
@@ -51,9 +49,6 @@ public class ViewBoxesPanel extends JPanel {
     }
 
     private JPanel createCenteredPanel(){
-        Toolkit tk = getDefaultToolkit();
-        int height = tk.getScreenSize().height;
-        int width = tk.getScreenSize().width;
         JPanel centeredPanel = new JPanel();
         centeredPanel.setLayout(new GridLayout(1,2));
         centeredPanel.add(infoPackPanel);

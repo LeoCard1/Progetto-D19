@@ -32,7 +32,6 @@ public class GridBoxesPanel extends JPanel implements Observer{
         Toolkit tk = getDefaultToolkit();
         height = tk.getScreenSize().height;
         width = tk.getScreenSize().width;
-        setBorder(BorderFactory.createLineBorder(new Color(255, 0, 0)));
         setLayout(new FlowLayout());
         setPreferredSize(new Dimension(width*2/6, height*2/3));
         initPanel();
@@ -48,8 +47,15 @@ public class GridBoxesPanel extends JPanel implements Observer{
         jp.setLayout(new GridLayout(3, 1));
 
         jp.setPreferredSize(new Dimension(width*5/19, height*2/5));
-        setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/17));
+        setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/32));
+
+        JLabel textLabel = new JLabel("<html><font face = 'Times New Roman' size = 5> <center> <br> <strong>" +
+                "THANKS FOR USING <font color='green'>SMART</font> <font color='orange'>LOCKER</font> ! </strong>" +
+                "<br/><br/> <font color='#696969'>CLOSE THE BOXES AFTER FINISHING</font></center></html>\"");
+
         add(jp);
+        add(textLabel);
+
 
         jp.add(makeGrid(piPo.getSmallBoxes()));
         jp.add(makeGrid(piPo.getMediumBoxes()));
@@ -127,7 +133,7 @@ public class GridBoxesPanel extends JPanel implements Observer{
     public void paintComponent(Graphics g){
         setOpaque(false);
         Image img = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/locker.jpg");
-        img = img.getScaledInstance(width*2/6,height*2/3, Image.SCALE_DEFAULT);
+        img = img.getScaledInstance(getWidth(),getHeight(), Image.SCALE_DEFAULT);
         ImageLoader imgLoader = new ImageLoader();
         imgLoader.loadImage(img, this);
         g.drawImage(img,0,0,this);
