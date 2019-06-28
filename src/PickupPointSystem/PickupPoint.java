@@ -64,9 +64,8 @@ public class PickupPoint {
                 boxList.add(new LargeBox());
             }
 
-            createGUI();
             updateBox();
-
+            createGUI();
             createServer();
         } catch (Exception e) {
             e.printStackTrace();
