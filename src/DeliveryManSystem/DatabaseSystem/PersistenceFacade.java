@@ -28,8 +28,10 @@ public class PersistenceFacade {
         mappers = mapperFactory.getAllMappers();
     }
 
+
     /**
-     * This method returns deliveries to the PickupPointTable id given.
+     * This method returns deliveries of the delivery man specified by the id passed as
+     * an argument
      * @param delID
      * @return  ArrayList<DeliveryTable>
      */

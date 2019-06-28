@@ -20,6 +20,7 @@ public class DeliveryMan {
     private PersistenceFacade facade = new PersistenceFacade();
     private DeliveryManClient client = new DeliveryManClient();
     private ArrayList<DeliveryTable> deliveries = new ArrayList<>();
+    private ArrayList<DeliveryTable> deliveriesExpired = new ArrayList<>();
     private String id;
     private String password;
 
@@ -31,6 +32,7 @@ public class DeliveryMan {
         this.id = id;
 
         updateDeliveries();
+        updateDeliveriesExpired();
     }
 
     public void sendCredentials(String piPoID){
@@ -46,7 +48,15 @@ public class DeliveryMan {
                 deliveries.add(delivery);
             }
         }
+    }
 
+    public void updateDeliveriesExpired(){
+        deliveriesExpired.clear();
+        for(DeliveryTable delivery : facade.getDeliveries(id)){
+            if(delivery.wasMade() && delivery.hasPackDeliveredForThreeDays()){
+                deliveriesExpired.add(delivery);
+            }
+        }
     }
 
 
