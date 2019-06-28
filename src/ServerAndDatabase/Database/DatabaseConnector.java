@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DatabaseConnector {
 
-    private final String url = "jdbc:mysql://remotemysql.com:3306/QaZzMlKPoa?autoReconnect=true";
+    private final String url = "jdbc:mysql://remotemysql.com:3306/QaZzMlKPoa";
     private final String user = "QaZzMlKPoa";
     private final String password = "35sMfdz9D4";
 

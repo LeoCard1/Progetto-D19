@@ -1,6 +1,8 @@
 package PickupPointSystem.GraphicalInterface;
 
 import PickupPointSystem.CredentialsReceiver;
+import PickupPointSystem.GraphicalInterface.ErrorGUI.ErrorGUIMain;
+import PickupPointSystem.GraphicalInterface.LoadingGUI.LoadingGUIMain;
 import PickupPointSystem.LoginDelMan;
 import PickupPointSystem.ObserverPattern.ObserverCredentials;
 import PickupPointSystem.PickupPoint;
@@ -9,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import static java.awt.Toolkit.getDefaultToolkit;
 
@@ -118,12 +121,22 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
         buttonConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(loginDelMan.login(delID.getText(), password.getText())){
-                    alertLabel.correctCode();
-                    loginDelMan.addDeliverymanPackages();
-                    loginDelMan.pickupPackages();
-                    bgp.changePanel("viewBoxesPanel");
-                } else alertLabel.wrongCode();
+                try {
+                    if(loginDelMan.login(delID.getText(), password.getText())){
+                        alertLabel.correctCode();
+                        LoadingGUIMain loading = new LoadingGUIMain();
+                        loading.setText("Downloading Data From The Server...");
+                        loginDelMan.addDeliverymanPackages();
+                        loginDelMan.pickupPackages();
+                        loading.closeFrame();
+                        bgp.changePanel("viewBoxesPanel");
+                    } else {
+                        alertLabel.wrongCode();
+                    }
+                } catch (IOException e1) {
+                    new ErrorGUIMain("Unable To Connect To Server", true);
+                    return;
+                }
                 deleteText();
             }
 

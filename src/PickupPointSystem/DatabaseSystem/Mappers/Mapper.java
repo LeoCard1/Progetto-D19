@@ -1,5 +1,7 @@
 package PickupPointSystem.DatabaseSystem.Mappers;
 
+import java.io.IOException;
+
 /**
  * @author Andrea Stella
  * @version 1.0
@@ -13,5 +15,5 @@ public interface Mapper {
      * @return Object
      */
 
-    public Object get(String oid);
+    public Object get(String oid) throws IOException;
 }

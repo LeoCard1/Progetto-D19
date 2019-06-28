@@ -2,6 +2,7 @@ package PickupPointSystem.DatabaseSystem.Mappers;
 
 import PickupPointSystem.DatabaseSystem.Tables.PackageTable;
 
+import java.io.IOException;
 import java.util.StringTokenizer;
 
 /**
@@ -19,7 +20,7 @@ public class PackageMapper implements Mapper {
      */
 
     @Override
-    public PackageTable get(String packID) {
+    public PackageTable get(String packID) throws IOException {
         MainServerConnector server = new MainServerConnector();
 
         String packageDimensions = server.packageGet(packID);
@@ -40,7 +41,7 @@ public class PackageMapper implements Mapper {
      * @param packID
      */
 
-    public void remove(String packID){
+    public void remove(String packID) throws IOException {
         MainServerConnector server = new MainServerConnector();
         server.removePackage(packID);
         server.close();

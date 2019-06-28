@@ -26,8 +26,8 @@ public class ErrorGUIMain extends JFrame {
 
         setTitle("Error");
         setSize(width, height);
-        setLocation(width/2, 3*height/2);
-
+        setLocationRelativeTo(null);
+        
         initPanel(message);
 
         setVisible(true);
@@ -37,7 +37,6 @@ public class ErrorGUIMain extends JFrame {
 
     private void initPanel(String message) {
         JPanel mainPanel = new JPanel();
-        // mainPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, height/4));
 
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 

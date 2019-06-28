@@ -3,6 +3,7 @@ package PickupPointSystem.DatabaseSystem.Mappers;
 import PickupPointSystem.DatabaseSystem.Tables.DeliveryTable;
 
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,7 +29,7 @@ public class DeliveryMapper implements Mapper {
      */
 
     @Override
-    public ArrayList<DeliveryTable> get(String pipoID) {
+    public ArrayList<DeliveryTable> get(String pipoID) throws IOException {
         /*if (!cache.isEmpty()) return cache;*/
 
         MainServerConnector server = new MainServerConnector();
@@ -74,7 +75,7 @@ public class DeliveryMapper implements Mapper {
      * @param packID
      */
 
-    public void removeRowFromPackID(String packID){
+    public void removeRowFromPackID(String packID) throws IOException {
         /*clearCache();*/
         MainServerConnector server = new MainServerConnector();
         server.removeRowFromPackID(packID);
@@ -87,7 +88,7 @@ public class DeliveryMapper implements Mapper {
      * @param delivery
      */
 
-    public void update(DeliveryTable delivery){
+    public void update(DeliveryTable delivery) throws IOException {
         /*clearCache();*/
         MainServerConnector server = new MainServerConnector();
         server.updateDelivery(delivery.getPackID(), String.valueOf(delivery.getDateOfDelivery().getTime()),

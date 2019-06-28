@@ -1,10 +1,15 @@
 package PickupPointSystem.GraphicalInterface;
 
+import PickupPointSystem.Exceptions.IncorrectIDException;
+import PickupPointSystem.GraphicalInterface.ErrorGUI.ErrorGUIMain;
+import PickupPointSystem.GraphicalInterface.LoadingGUI.LoadingGUIMain;
 import PickupPointSystem.PickupPoint;
 import PickupPointSystem.ObserverPattern.Observer;
+import PickupPointSystem.Server.PickupPointServer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 /**
  * @author Sergio Gentilini
@@ -23,14 +28,21 @@ public class GraIntMain extends JFrame {
      * @param pipo The pickup point.
      */
 
-    public GraIntMain(PickupPoint pipo){
-        piPo = pipo;
+    public GraIntMain(String piPoID){
+
+        if(!createPickupPoint(piPoID)){
+            return;
+        }
+
+        LoadingGUIMain loading = new LoadingGUIMain();
+        loading.setText("Graphical Interface Creation...");
+
         Toolkit tk = Toolkit.getDefaultToolkit();
         height = tk.getScreenSize().height;
         width = tk.getScreenSize().width;
 
         setSize(width*2/3, height*4/5);
-        setLocation(width/6, height/10);
+        setLocationRelativeTo(null);
 
         setResizable(false);
         setTitle(SetLanguage.getInstance().setGraIntMain()[0]);
@@ -38,6 +50,8 @@ public class GraIntMain extends JFrame {
 
         initPanel();
         setVisible(true);
+
+        loading.closeFrame();
     }
 
     /**
@@ -46,7 +60,6 @@ public class GraIntMain extends JFrame {
 
     private void initPanel() {
         setTheme("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-
         backGroundPanel = new BackGroundPanel(piPo,this);
         add(backGroundPanel);
 
@@ -79,5 +92,34 @@ public class GraIntMain extends JFrame {
         setTitle(SetLanguage.getInstance().setGraIntMain()[0]);
         backGroundPanel.refresh();
     }
+
+    /**
+     * This method creates the Pickup Point from the id passed as an argument
+     * and updates the box
+     * @param piPoID the pickup point id
+     * @return true if the creation and update was successful, else false
+     */
+
+    public boolean createPickupPoint(String piPoID){
+
+        LoadingGUIMain loadingGUIMain = new LoadingGUIMain();
+        loadingGUIMain.setText("Pickup Point Creation...");
+        try {
+            piPo = new PickupPoint(piPoID);
+            loadingGUIMain.setText("Updating Box...");
+            piPo.updateBox();
+            loadingGUIMain.closeFrame();
+        } catch(IOException e){
+            loadingGUIMain.closeFrame();
+            new ErrorGUIMain("Unable To Connect To Server", true);
+            return false;
+        } catch (IncorrectIDException e){
+            loadingGUIMain.closeFrame();
+            new ErrorGUIMain("Incorrect Pickup Point ID", true);
+            return false;
+        }
+        return true;
+    }
+
 
 }

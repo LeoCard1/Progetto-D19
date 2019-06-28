@@ -12,31 +12,23 @@ public class MainServerConnector {
     private BufferedReader in;
     private PrintStream out;
 
-    public MainServerConnector() {
+    public MainServerConnector() throws IOException {
         startServer();
     }
 
-    private void startServer() {
-        try {
-            System.out.println("[0] Connecting to main server...");
-            client.connect(new InetSocketAddress("127.0.0.1", 9000));
+    private void startServer() throws IOException {
 
-            System.out.println("[1] Connection successful!");
-            in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-            out = new PrintStream(client.getOutputStream(), true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.out.println("[0] Connecting to main server...");
+        client.connect(new InetSocketAddress("127.0.0.1", 9000));
+
+        System.out.println("[1] Connection successful!");
+        in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+        out = new PrintStream(client.getOutputStream(), true);
+
     }
 
-    public String getDelivery(String piPoID) {
-        try {
-            return  sendAndWaitForResponse("delivery getfrompipoid " + piPoID);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+    public String getDelivery(String piPoID) throws IOException {
+        return  sendAndWaitForResponse("delivery getfrompipoid " + piPoID);
     }
 
     public void removeRowFromPackID(String packID) {
@@ -48,38 +40,26 @@ public class MainServerConnector {
                 " " + boxNumber + " " + boxPassword);
     }
 
-    public String deliveryManGet(String delID) {
-        try {
-            return sendAndWaitForResponse("deliveryman get " + delID);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public String deliveryManGet(String delID) throws IOException {
 
-        return null;
+        return sendAndWaitForResponse("deliveryman get " + delID);
+
     }
 
-    public String packageGet(String packageID) {
-        try {
-            return sendAndWaitForResponse("package get " + packageID);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public String packageGet(String packageID) throws IOException {
 
-        return null;
+        return sendAndWaitForResponse("package get " + packageID);
+
     }
 
     public void removePackage(String packID) {
         out.println("package remove " + packID);
     }
 
-    public String pickupPointGet(String piPoID) {
-        try {
-            return sendAndWaitForResponse("pickuppoint get " + piPoID);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public String pickupPointGet(String piPoID) throws IOException {
 
-        return null;
+        return sendAndWaitForResponse("pickuppoint get " + piPoID);
+
     }
 
     public void close() {

@@ -3,6 +3,8 @@ package PickupPointSystem.DatabaseSystem.Mappers;
 
 import PickupPointSystem.DatabaseSystem.Tables.DeliveryManTable;
 
+import java.io.IOException;
+
 /**
  * @author D19 Group
  * @version 2.0
@@ -17,7 +19,7 @@ public class DeliveryManMapper implements Mapper {
      * @return DeliveryManTable
      */
 
-    public DeliveryManTable get(String delID){
+    public DeliveryManTable get(String delID) throws IOException {
         MainServerConnector server = new MainServerConnector();
 
         String password = server.deliveryManGet(delID);

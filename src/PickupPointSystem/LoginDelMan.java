@@ -36,7 +36,7 @@ public class LoginDelMan{
      * @return true if the credentials are correct, else false
      */
 
-    public boolean login(String delID, String password){
+    public boolean login(String delID, String password) throws IOException {
         DeliveryManTable del = facade.getDeliveryMan(delID);
         
         if (del != null && del.getPassword().equals(password)){
@@ -50,7 +50,7 @@ public class LoginDelMan{
      * This method adds the DeliveryMan packages that is authenticated.
      */
 
-    public void addDeliverymanPackages() {
+    public void addDeliverymanPackages() throws IOException {
         ArrayList<PackageTable> packages = facade.getPackagesFromDelID(pickupPoint.getId(), delID);
         for(PackageTable pack : packages){
             pickupPoint.addPackage(pack);
@@ -62,7 +62,7 @@ public class LoginDelMan{
      * by the delivery man who made the access and send the pick up mail
      */
 
-    public void pickupPackages(){
+    public void pickupPackages() throws IOException {
         ArrayList<DeliveryTable> deliveries = facade.getDeliveries(pickupPoint.getId());
         for(DeliveryTable delivery : deliveries){
             if(delivery.hasDelID(delID) && delivery.wasMade() && delivery.hasPackDeliveredForThreeDays()){

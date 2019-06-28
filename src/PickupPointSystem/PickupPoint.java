@@ -4,6 +4,7 @@ import PickupPointSystem.DatabaseSystem.PersistenceFacade;
 import PickupPointSystem.DatabaseSystem.Tables.DeliveryTable;
 import PickupPointSystem.DatabaseSystem.Tables.PackageTable;
 import PickupPointSystem.DatabaseSystem.Tables.PickupPointTable;
+import PickupPointSystem.Exceptions.IncorrectIDException;
 import PickupPointSystem.GraphicalInterface.GraIntMain;
 import PickupPointSystem.LockerSystem.BoxType.*;
 
@@ -11,6 +12,7 @@ import PickupPointSystem.ObserverPattern.Observer;
 import PickupPointSystem.Server.NotificationSystem.DeliveryMail;
 import PickupPointSystem.Server.PickupPointServer;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -40,36 +42,31 @@ public class PickupPoint {
      * @param id the Pickup Point id
      */
 
-    public PickupPoint(String id) {
-        try {
-            PickupPointTable piPo = facade.getPickupPoint(id);
-            if (piPo == null) throw new Exception("Error.");
+    public PickupPoint(String id) throws IOException {
+        PickupPointTable piPo = facade.getPickupPoint(id);
+        if (piPo == null) throw new IncorrectIDException();
 
-            this.id = piPo.getId();
-            this.location = piPo.getLocation();
-            this.ip = piPo.getIp();
-            this.smallBoxes = Integer.parseInt(piPo.getSmall_boxes());
-            this.mediumBoxes = Integer.parseInt(piPo.getMedium_boxes());
-            this.largeBoxes = Integer.parseInt(piPo.getLarge_boxes());
-            this.address = piPo.getAddress();
+        this.id = piPo.getId();
+        this.location = piPo.getLocation();
+        this.ip = piPo.getIp();
+        this.smallBoxes = Integer.parseInt(piPo.getSmall_boxes());
+        this.mediumBoxes = Integer.parseInt(piPo.getMedium_boxes());
+        this.largeBoxes = Integer.parseInt(piPo.getLarge_boxes());
+        this.address = piPo.getAddress();
 
 
-            for(int i = 0; i < smallBoxes; i++){
-                boxList.add(new SmallBox());
-            }
-            for(int i = 0; i < mediumBoxes; i++){
-                boxList.add(new MediumBox());
-            }
-            for(int i = 0; i < largeBoxes; i++){
-                boxList.add(new LargeBox());
-            }
-
-            updateBox();
-            createGUI();
-            createServer();
-        } catch (Exception e) {
-            e.printStackTrace();
+        for(int i = 0; i < smallBoxes; i++){
+            boxList.add(new SmallBox());
         }
+        for(int i = 0; i < mediumBoxes; i++){
+            boxList.add(new MediumBox());
+        }
+        for(int i = 0; i < largeBoxes; i++){
+            boxList.add(new LargeBox());
+        }
+
+        createServer();
+
     }
 
     /**
@@ -79,7 +76,7 @@ public class PickupPoint {
      * @param pack the package to be delivered
      */
 
-    public void addPackage(PackageTable pack) {
+    public void addPackage(PackageTable pack) throws IOException {
         Collections.sort(boxList);
         for(Box box : boxList){
             if(box.isAvailable() && box.getSize().compareTo(pack.getSize()) > -1){
@@ -110,7 +107,7 @@ public class PickupPoint {
      * @param cod the code to unlock the box
      */
 
-    public boolean emptyBox(String cod){
+    public boolean emptyBox(String cod) throws IOException {
         Box box = null;
         PackageTable pack = null;
         box = unavailablesBoxes.get(cod);
@@ -118,10 +115,10 @@ public class PickupPoint {
             return false;
         }
         pack = box.getPack();
-        box.removePackage();
         unavailablesBoxes.remove(cod);
         facade.removeDelivery(pack.getId());
         facade.removePack(pack.getId());
+        box.removePackage();
         return true;
     }
 
@@ -129,7 +126,7 @@ public class PickupPoint {
      * This method updates the status of the boxes from the database.
      */
 
-    public void updateBox() {
+    public void updateBox() throws IOException {
         ArrayList<DeliveryTable> deliveries = facade.getDeliveries(id);
         for (DeliveryTable delivery : deliveries) {
             for (Box box : boxList) {
@@ -194,14 +191,6 @@ public class PickupPoint {
     private void createServer() {
         PickupPointServer server = new PickupPointServer();
         server.start();
-    }
-
-    /**
-     * This method creates the graphic interface of the PickupPoint
-     */
-
-    private void createGUI() {
-        new GraIntMain(this);
     }
 
 }

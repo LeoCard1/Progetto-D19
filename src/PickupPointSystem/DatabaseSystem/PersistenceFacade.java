@@ -7,6 +7,7 @@ import PickupPointSystem.DatabaseSystem.Tables.DeliveryManTable;
 import PickupPointSystem.DatabaseSystem.Tables.PackageTable;
 import PickupPointSystem.DatabaseSystem.Tables.PickupPointTable;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -35,7 +36,7 @@ public class PersistenceFacade {
      * @return ArrayList<PackageTable>
      */
     
-    public ArrayList<PackageTable> getPackagesFromDelID(String pipoID, String delID){
+    public ArrayList<PackageTable> getPackagesFromDelID(String pipoID, String delID) throws IOException {
         ArrayList<DeliveryTable> deliveries = getDeliveries(pipoID);
         ArrayList<PackageTable> packages = new ArrayList<>();
         for(DeliveryTable delivery : deliveries) {
@@ -54,7 +55,7 @@ public class PersistenceFacade {
      * @return DeliveryTable
      */
 
-    public DeliveryTable getDeliveryFromPackID(String pipoID, String packID){
+    public DeliveryTable getDeliveryFromPackID(String pipoID, String packID) throws IOException {
         ArrayList<DeliveryTable> deliveries = getDeliveries(pipoID);
         for(DeliveryTable delivery : deliveries){
             if(delivery.hasPackage(packID)){
@@ -69,7 +70,7 @@ public class PersistenceFacade {
      * @param delivery
      */
 
-    public void updateDelivery(DeliveryTable delivery){
+    public void updateDelivery(DeliveryTable delivery) throws IOException {
         getDeliveryMapper().update(delivery);
     }
 
@@ -78,7 +79,7 @@ public class PersistenceFacade {
      * @param packID
      */
 
-    public void removeDelivery(String packID){
+    public void removeDelivery(String packID) throws IOException {
         getDeliveryMapper().removeRowFromPackID(packID);
     }
 
@@ -87,7 +88,7 @@ public class PersistenceFacade {
      * @param packID
      */
 
-    public void removePack(String packID){
+    public void removePack(String packID) throws IOException {
         getPackageMapper().remove(packID);
     }
 
@@ -98,7 +99,7 @@ public class PersistenceFacade {
      * @return  ArrayList<DeliveryTable>
      */
 
-    public ArrayList<DeliveryTable> getDeliveries(String pipoID){
+    public ArrayList<DeliveryTable> getDeliveries(String pipoID) throws IOException {
         return getDeliveryMapper().get(pipoID);
     }
 
@@ -108,7 +109,7 @@ public class PersistenceFacade {
      * @return DeliveryManTable
      */
 
-    public DeliveryManTable getDeliveryMan(String delID){
+    public DeliveryManTable getDeliveryMan(String delID) throws IOException {
         return getDeliveryManMapper().get(delID);
     }
 
@@ -118,7 +119,7 @@ public class PersistenceFacade {
      * @param packID
      * @return PackageTable
      */
-    public PackageTable getPackage(String packID){
+    public PackageTable getPackage(String packID) throws IOException {
         return getPackageMapper().get(packID);
     }
 
@@ -128,7 +129,7 @@ public class PersistenceFacade {
      * @return PickupPointTable
      */
 
-    public PickupPointTable getPickupPoint(String piPoID) {
+    public PickupPointTable getPickupPoint(String piPoID) throws IOException {
         return getPickupPointMapper().get(piPoID);
     }
 

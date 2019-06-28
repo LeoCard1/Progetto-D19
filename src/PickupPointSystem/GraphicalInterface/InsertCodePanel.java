@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -69,11 +70,16 @@ public class InsertCodePanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String code = textF.getText();
                 deleteText();
-                if(piPo.emptyBox(code)==false){
-                    alertLabel.wrongCode();
-                } else {
-                    alertLabel.correctCode();
-                    bgp.changePanel("viewBoxesPanel");
+                try {
+                    if(piPo.emptyBox(code)==false){
+                        alertLabel.wrongCode();
+                    } else {
+                        alertLabel.correctCode();
+                        bgp.changePanel("viewBoxesPanel");
+                    }
+                } catch (IOException e1) {
+                    new ErrorGUIMain("Unable To Connect To Server",true);
+                    return;
                 }
             }
         });
