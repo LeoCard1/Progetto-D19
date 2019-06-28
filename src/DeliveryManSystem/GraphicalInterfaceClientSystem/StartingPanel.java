@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import static java.awt.Font.ITALIC;
 
-public class StartingPanel extends JPanel {
+public class StartingPanel extends JPanel implements ActionListener {
 
     private Frame frame;
     private JButton sendList;
@@ -63,9 +63,7 @@ public class StartingPanel extends JPanel {
         panelContainer.add(buttonPanel);
         add(panelContainer);
 
-        //da implementare:
-
-        //setAction();
+        setAction();
 
     }
 
@@ -105,7 +103,7 @@ public class StartingPanel extends JPanel {
 
     }
 
-   /* private void setAction(){
+    private void setAction(){
 
         sendList.addActionListener(this);
 
@@ -113,31 +111,7 @@ public class StartingPanel extends JPanel {
 
     public void actionPerformed(ActionEvent e) {
 
-        try {
-
-            String password = new String(jpf.getPassword());
-            if (deliveryman.logIn(jtf.getText(),password)) {
-                password = null;
-                jpf = null;
-                frame.remove(this);
-                frame.add(new StartingPanel(frame , deliveryman , width , height));
-                frame.repaint();
-                frame.validate();
-
-            } else {
-
-                errorLabel.setText("Incorrect Password or Id");
-                refresh();
-            }
-
-        } catch (IOException exception) {
-
-            errorLabel.setText("Service unavailable");
-            refresh();
-
-        }
-
-    }*/
+    }
 
     public void update() {
 
