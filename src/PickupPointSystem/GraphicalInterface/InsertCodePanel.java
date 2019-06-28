@@ -1,6 +1,7 @@
 package PickupPointSystem.GraphicalInterface;
 
 import PickupPointSystem.GraphicalInterface.ErrorGUI.ErrorGUIMain;
+import PickupPointSystem.GraphicalInterface.LoadingGUI.LoadingGUIMain;
 import PickupPointSystem.ObserverPattern.Observer;
 import PickupPointSystem.PickupPoint;
 
@@ -71,7 +72,7 @@ public class InsertCodePanel extends JPanel {
                 String code = textF.getText();
                 deleteText();
                 try {
-                    if(piPo.emptyBox(code)==false){
+                    if(!piPo.emptyBox(code)){
                         alertLabel.wrongCode();
                     } else {
                         alertLabel.correctCode();

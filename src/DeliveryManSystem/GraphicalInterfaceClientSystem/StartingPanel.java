@@ -88,7 +88,11 @@ public class StartingPanel extends JPanel implements ActionListener {
         sendList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                deliveryman.sendCredentials("PAV01");
+                try {
+                    deliveryman.sendCredentials("PAV01");
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 

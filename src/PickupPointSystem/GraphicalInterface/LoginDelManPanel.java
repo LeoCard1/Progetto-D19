@@ -29,6 +29,7 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
     private JButton buttonConfirm;
     private AlertLabel alertLabel;
     private LoginDelMan loginDelMan;
+    private LoadingGUIMain loading = new LoadingGUIMain();
 
     /**
      * The constructor. Creates an instance of loginDelMan by passing the PickupPoint
@@ -124,16 +125,18 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
                 try {
                     if(loginDelMan.login(delID.getText(), password.getText())){
                         alertLabel.correctCode();
-                        LoadingGUIMain loading = new LoadingGUIMain();
+                        loading.setVisible(true);
                         loading.setText("Downloading Data From The Server...");
                         loginDelMan.addDeliverymanPackages();
                         loginDelMan.pickupPackages();
-                        loading.closeFrame();
+                        loading.dispose();
                         bgp.changePanel("viewBoxesPanel");
                     } else {
                         alertLabel.wrongCode();
                     }
+
                 } catch (IOException e1) {
+                    loading.dispose();
                     new ErrorGUIMain("Unable To Connect To Server", true);
                     return;
                 }

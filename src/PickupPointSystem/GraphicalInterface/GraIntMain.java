@@ -20,6 +20,7 @@ public class GraIntMain extends JFrame {
 
     private PickupPoint piPo;
     private BackGroundPanel backGroundPanel;
+    private LoadingGUIMain loadingGUIMain = new LoadingGUIMain();
     private int height;
     private int width;
 
@@ -34,8 +35,8 @@ public class GraIntMain extends JFrame {
             return;
         }
 
-        LoadingGUIMain loading = new LoadingGUIMain();
-        loading.setText("Graphical Interface Creation...");
+        loadingGUIMain.setVisible(true);
+        loadingGUIMain.setText("Graphical Interface Creation...");
 
         Toolkit tk = Toolkit.getDefaultToolkit();
         height = tk.getScreenSize().height;
@@ -51,7 +52,7 @@ public class GraIntMain extends JFrame {
         initPanel();
         setVisible(true);
 
-        loading.closeFrame();
+        loadingGUIMain.dispose();
     }
 
     /**
@@ -62,7 +63,6 @@ public class GraIntMain extends JFrame {
         setTheme("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         backGroundPanel = new BackGroundPanel(piPo,this);
         add(backGroundPanel);
-
     }
 
     /**
@@ -102,19 +102,19 @@ public class GraIntMain extends JFrame {
 
     public boolean createPickupPoint(String piPoID){
 
-        LoadingGUIMain loadingGUIMain = new LoadingGUIMain();
+        loadingGUIMain.setVisible(true);
         loadingGUIMain.setText("Pickup Point Creation...");
         try {
             piPo = new PickupPoint(piPoID);
             loadingGUIMain.setText("Updating Box...");
             piPo.updateBox();
-            loadingGUIMain.closeFrame();
+            loadingGUIMain.dispose();
         } catch(IOException e){
-            loadingGUIMain.closeFrame();
+            loadingGUIMain.dispose();
             new ErrorGUIMain("Unable To Connect To Server", true);
             return false;
         } catch (IncorrectIDException e){
-            loadingGUIMain.closeFrame();
+            loadingGUIMain.dispose();
             new ErrorGUIMain("Incorrect Pickup Point ID", true);
             return false;
         }

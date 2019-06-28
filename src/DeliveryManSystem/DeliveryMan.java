@@ -8,6 +8,7 @@ import DeliveryManSystem.DatabaseSystem.Tables.DeliveryTable;
 import DeliveryManSystem.DatabaseSystem.Tables.PickupPointTable;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -35,13 +36,13 @@ public class DeliveryMan {
         updateDeliveriesExpired();
     }
 
-    public void sendCredentials(String piPoID){
+    public void sendCredentials(String piPoID) throws IOException {
         PickupPointTable piPoTable = facade.getPickupPoint(piPoID);
 
         client.connectToPickupPoint(piPoTable.getIp(), id, password);
     }
 
-    public void updateDeliveries(){
+    public void updateDeliveries() throws IOException {
         deliveries.clear();
         for(DeliveryTable delivery : facade.getDeliveries(id)){
             if(!delivery.wasMade()){
@@ -50,7 +51,7 @@ public class DeliveryMan {
         }
     }
 
-    public void updateDeliveriesExpired(){
+    public void updateDeliveriesExpired() throws IOException {
         deliveriesExpired.clear();
         for(DeliveryTable delivery : facade.getDeliveries(id)){
             if(delivery.wasMade() && delivery.hasPackDeliveredForThreeDays()){

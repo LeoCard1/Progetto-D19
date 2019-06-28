@@ -3,11 +3,12 @@ package DeliveryManSystem.DatabaseSystem.Mappers;
 
 import DeliveryManSystem.DatabaseSystem.Tables.PickupPointTable;
 
+import java.io.IOException;
 import java.util.StringTokenizer;
 
 public class PickupPointMapper implements Mapper {
     @Override
-    public PickupPointTable get(String piPoID) {
+    public PickupPointTable get(String piPoID) throws IOException {
 
         MainServerConnector server = new MainServerConnector();
 

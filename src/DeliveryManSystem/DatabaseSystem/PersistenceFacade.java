@@ -7,6 +7,7 @@ import DeliveryManSystem.DatabaseSystem.Tables.DeliveryManTable;
 import DeliveryManSystem.DatabaseSystem.Tables.DeliveryTable;
 import DeliveryManSystem.DatabaseSystem.Tables.PickupPointTable;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -36,7 +37,7 @@ public class PersistenceFacade {
      * @return  ArrayList<DeliveryTable>
      */
 
-    public ArrayList<DeliveryTable> getDeliveries(String delID){
+    public ArrayList<DeliveryTable> getDeliveries(String delID) throws IOException {
         return getDeliveryMapper().get(delID);
     }
 
@@ -46,7 +47,7 @@ public class PersistenceFacade {
      * @return DeliveryManTable
      */
 
-    public DeliveryManTable getDeliveryMan(String delID){
+    public DeliveryManTable getDeliveryMan(String delID) throws IOException {
         return getDeliveryManMapper().get(delID);
     }
 
@@ -57,7 +58,7 @@ public class PersistenceFacade {
      * @return PickupPointTable
      */
 
-    public PickupPointTable getPickupPoint(String piPoID) {
+    public PickupPointTable getPickupPoint(String piPoID) throws IOException {
         return getPickupPointMapper().get(piPoID);
     }
 

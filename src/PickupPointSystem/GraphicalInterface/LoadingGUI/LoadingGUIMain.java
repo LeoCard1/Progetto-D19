@@ -27,7 +27,6 @@ public class LoadingGUIMain extends JFrame {
         setSize(width, height);
         setLocationRelativeTo(null);
         setResizable(false);
-        setVisible(true);
         initFrame();
     }
 
@@ -65,12 +64,6 @@ public class LoadingGUIMain extends JFrame {
         labelMessage.setText(text.toString());
     }
 
-    /**
-     * Closes the frame
-     */
 
-    public void closeFrame(){
-        setVisible(false);
-    }
 
 }

@@ -12,51 +12,28 @@ public class MainServerConnector {
     private BufferedReader in;
     private PrintStream out;
 
-    public MainServerConnector() {
+    public MainServerConnector() throws IOException {
         startServer();
     }
 
-    private void startServer() {
-        try {
-            System.out.println("[0] Connecting to main server...");
-            client.connect(new InetSocketAddress("127.0.0.1", 9000));
-
-            System.out.println("[1] Connection successful!");
-            in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-            out = new PrintStream(client.getOutputStream(), true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void startServer() throws IOException {
+        System.out.println("[0] Connecting to main server...");
+        client.connect(new InetSocketAddress("127.0.0.1", 9000));
+        System.out.println("[1] Connection successful!");
+        in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+        out = new PrintStream(client.getOutputStream(), true);
     }
 
-    public String getDelivery(String delID) {
-        try {
-            return  sendAndWaitForResponse("delivery getfromdelid " + delID);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+    public String getDelivery(String delID) throws IOException {
+        return  sendAndWaitForResponse("delivery getfromdelid " + delID);
     }
 
-    public String getDeliveryMan(String delID) {
-        try {
-            return sendAndWaitForResponse("deliveryman get " + delID);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+    public String getDeliveryMan(String delID) throws IOException {
+        return sendAndWaitForResponse("deliveryman get " + delID);
     }
 
-    public String getPickupPoint(String piPoID) {
-        try {
-            return sendAndWaitForResponse("pickuppoint get " + piPoID);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+    public String getPickupPoint(String piPoID) throws IOException {
+        return sendAndWaitForResponse("pickuppoint get " + piPoID);
     }
 
     public void close() {

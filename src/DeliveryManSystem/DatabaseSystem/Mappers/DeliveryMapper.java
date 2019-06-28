@@ -3,6 +3,7 @@ package DeliveryManSystem.DatabaseSystem.Mappers;
 
 import DeliveryManSystem.DatabaseSystem.Tables.DeliveryTable;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,7 +27,7 @@ public class DeliveryMapper implements Mapper {
      */
 
     @Override
-    public ArrayList<DeliveryTable> get(String delID) {
+    public ArrayList<DeliveryTable> get(String delID) throws IOException {
 
         MainServerConnector server = new MainServerConnector();
 
