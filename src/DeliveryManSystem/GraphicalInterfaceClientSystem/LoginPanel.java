@@ -17,7 +17,7 @@ import static java.awt.Font.ITALIC;
  * @version 1.0
  */
 
-public class LoginPanel extends JPanel implements ActionListener, ObserverResponse {
+public class LoginPanel extends JPanel implements ActionListener {
 
     private DeliveryMan deliveryMan;
     private Frame frame;
@@ -39,7 +39,6 @@ public class LoginPanel extends JPanel implements ActionListener, ObserverRespon
         this.width = width;
         this.height = height;
         this.frame = frame;
-
 
         setLoginPanel();
 
@@ -221,51 +220,25 @@ public class LoginPanel extends JPanel implements ActionListener, ObserverRespon
      */
 
     public void actionPerformed(ActionEvent e) {
+
         try {
             deliveryMan = new DeliveryMan(jtf.getText(), new String(jpf.getPassword()));
+            newFrame();
         } catch (Exception e1) {
-            e1.printStackTrace();
-        }
-
-
-
-
-            /*String password = new String(jpf.getPassword());
-            if (deliveryman.logIn(jtf.getText(), password)) {
-                password = null;
-                jpf = null;
-                frame.remove(this);
-                frame.add(new PannelloIniziale(frame , deliveryman , width , height));
-                frame.repaint();
-                frame.validate();
-
-            } else {
-                errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[9]);
-                refresh();
-            }*/
-    }
-
-    /**
-     * This method set the error message visible
-     */
-
-    public void update(String result) {
-
-        if (result.equals("accepted")) {
-            jpf = null;
-            frame.remove(this);
-            frame.add(new StartingPanel(frame, deliveryMan, width, height));
-            frame.repaint();
-            frame.validate();
-            /*frame.add(this);*/
-            frame.setVisible(false);
-            frame.setVisible(true);
-        }
-
-        if (result.equals("refused")) {
             errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[9]);
             errorLabel.setVisible(true);
+            e1.printStackTrace();
         }
+    }
+
+    private void newFrame(){
+
+        frame.remove(this);
+        frame.add(new StartingPanel(frame, deliveryMan, width, height));
+        frame.repaint();
+        frame.validate();
+        frame.setVisible(false);
+        frame.setVisible(true);
 
     }
 
@@ -280,8 +253,6 @@ public class LoginPanel extends JPanel implements ActionListener, ObserverRespon
         l3.setText(SetDMLanguage.getInstance().setLoginPanel()[6]);
         l4.setBorder(BorderFactory.createTitledBorder(SetDMLanguage.getInstance().setLoginPanel()[7]));
         b.setText(SetDMLanguage.getInstance().setLoginPanel()[8]);
-
-
 
     }
 }
