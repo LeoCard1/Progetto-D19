@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import static java.awt.Toolkit.getDefaultToolkit;
 
 /**
+ * This class is the access panel for the parcel collection
  * @author Sergio Gentilini
  * @version 1.0.1
  */
@@ -25,9 +26,10 @@ public class BoxAccessPanel extends JPanel {
     private int n;
 
     /**
-     * This is the constructor.
-     * @param pipo The pickup point.
-     * @param gra The GUI itself.
+     * The constructor.
+     * @param pipo the Pickup Point
+     * @param gra the frame
+     * @param bgp the BackGroundPanel
      */
 
     public BoxAccessPanel(PickupPoint pipo, GraIntMain gra, BackGroundPanel bgp) {
@@ -49,9 +51,9 @@ public class BoxAccessPanel extends JPanel {
     }
 
     /**
-     * This method creates the PasswordPanel by inserting the InsertCodePanel and the languagePanel
-     * into it.
-     * @return JPanel
+     * This method creates the PasswordPanel by inserting the InsertCodePanel and the
+     * languagePanel into it
+     * @return the panel that has been created
      */
 
     private JPanel createPasswordPanel(){
@@ -69,11 +71,11 @@ public class BoxAccessPanel extends JPanel {
     }
 
     /**
-     * This method creates the ExitPanel by inserting the buttonExit into it,
-     * when the button is clicked, the panel is changed to startPanel and the
-     * deleteText method of the InsertCodePanel is called.
-     *
-     * @return JPanel
+     * This method creates the NorthPanel by inserting the buttonExit and the
+     * buttonDelManLogin into it.
+     * When the buttonExit is clicked, the panel is changed to startPanel.
+     * When the buttonDelManLogin, the panel is changed to loginDelManPanel.
+     * @return the panel that has been created
      */
 
     private JPanel createNorthPanel(){
@@ -83,14 +85,12 @@ public class BoxAccessPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 bgp.changePanel("loginDelManPanel");
-                ins.deleteText();
             }
         });
         buttonExit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 bgp.changePanel("startPanel");
-                ins.deleteText();
             }
         });
         JPanel p = new JPanel();
@@ -102,7 +102,7 @@ public class BoxAccessPanel extends JPanel {
 
     /**
      * The 'language' part of the panel.
-     * @return The panel that has been created.
+     * @return the panel that has been created.
      */
 
     private JPanel languagePanel() {
@@ -140,6 +140,14 @@ public class BoxAccessPanel extends JPanel {
         langBox.addActionListener(languageListenner);
 
         return langPan;
+    }
+
+    /**
+     * @return the InsertCodePanel
+     */
+
+    public InsertCodePanel getInsertCodePanel(){
+        return ins;
     }
 
     /**

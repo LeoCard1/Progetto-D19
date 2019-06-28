@@ -14,10 +14,10 @@ import PickupPointSystem.Server.PickupPointServer;
 import java.util.*;
 
 /**
+ * This class handles pick up and delivery in the Pickup Point
  * @author Andrea Stella
  * @version 1.0
  */
-
 
 public class PickupPoint {
 
@@ -33,9 +33,11 @@ public class PickupPoint {
     private int largeBoxes;
 
     /**
-     * The constructor.Adds the boxes to the list, updates the boxes from the database,
-     * creates the server and the graphical interface.
-     * @param id
+     * The constructor. Requests to the central server the information of the PickupPoint
+     * associated to the id passed as an argument, through these it updates the attributes,
+     * adds the boxes to the list, updates the boxes from the database, creates the server
+     * and the graphical interface.
+     * @param id the Pickup Point id
      */
 
     public PickupPoint(String id) {
@@ -71,13 +73,13 @@ public class PickupPoint {
     }
 
     /**
-     * This method adds the package to a specific box, adds the box to the available boxes
-     * by setting the password, updates the database delivery and sends the delivery mail.
-     * @param pack
-     * @return boxNumber
+     * This method adds the package to the smaller box that can contain it, adds the box
+     * to the available boxes by setting the password, updates the database delivery and
+     * sends the delivery mail.
+     * @param pack the package to be delivered
      */
 
-    public int addPackage(PackageTable pack) {
+    public void addPackage(PackageTable pack) {
         Collections.sort(boxList);
         for(Box box : boxList){
             if(box.isAvailable() && box.getSize().compareTo(pack.getSize()) > -1){
@@ -97,16 +99,15 @@ public class PickupPoint {
                 String email = facade.getPackage(pack.getId()).getCustomerEmail();
                 DeliveryMail notify = new DeliveryMail(email, id, pack.getId(), password, dateHandler.addDays(dateOfDelivery,3), location, address);
                 notify.start();
-                return box.getBoxNumber();
+                return;
             }
         }
-        return 0;
     }
 
     /**
      * This method empties the box associated with the entered password and remove it from
      * the unavailablesBoxes, remove the package and delivery from the database.
-     * @param cod
+     * @param cod the code to unlock the box
      */
 
     public boolean emptyBox(String cod){
@@ -129,7 +130,6 @@ public class PickupPoint {
      */
 
     public void updateBox() {
-
         ArrayList<DeliveryTable> deliveries = facade.getDeliveries(id);
         for (DeliveryTable delivery : deliveries) {
             for (Box box : boxList) {
@@ -142,30 +142,63 @@ public class PickupPoint {
         }
     }
 
+    /**
+     * @return the number of small boxes
+     */
+
     public int getSmallBoxes() {
         return smallBoxes;
     }
+
+    /**
+     * @return the number of medium boxes
+     */
+
 
     public int getMediumBoxes() {
         return mediumBoxes;
     }
 
+    /**
+     * @return the number of large boxes
+     */
+
+
     public int getLargeBoxes() {
         return largeBoxes;
     }
+
+    /**
+     * This method returns the box of the ArrayList boxList from the index
+     * passed as an argument
+     * @param index the index relative to the box
+     * @return the requested box
+     */
 
     public Box getBoxFromIndex(int index) {
         return boxList.get(index);
     }
 
+    /**
+     * @return the PickupPoint id
+     */
+
     public String getId(){
         return id;
     }
+
+    /**
+     * This method creates and starts the server
+     */
 
     private void createServer() {
         PickupPointServer server = new PickupPointServer();
         server.start();
     }
+
+    /**
+     * This method creates the graphic interface of the PickupPoint
+     */
 
     private void createGUI() {
         new GraIntMain(this);

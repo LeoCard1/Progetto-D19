@@ -39,9 +39,9 @@ public class ConnectionsDelivery implements Connection {
         }
 
         /*
-        delivery update packID dateOfDelivery boxNumber boxPassword
+        delivery refresh packID dateOfDelivery boxNumber boxPassword
          */
-        if (nextToken.equalsIgnoreCase("update")) {
+        if (nextToken.equalsIgnoreCase("refresh")) {
             updateDelivery(strTok);
         }
     }

@@ -11,11 +11,12 @@ import java.util.ArrayList;
 import static java.awt.Toolkit.getDefaultToolkit;
 
 /**
+ * This panel graphically represents the locker with all the boxes
  * @author Sergio Gentilini
  * @version 1.0.1
  */
 
-public class GridBoxesPanel extends JPanel implements Observer{
+public class GridBoxesPanel extends JPanel {
     private PickupPoint piPo;
     private static ArrayList<ButtonBox> boxes = new ArrayList<>();
     private int numBox;
@@ -102,12 +103,12 @@ public class GridBoxesPanel extends JPanel implements Observer{
         for(ButtonBox butBox : boxes){
             if(piPo.getBoxFromIndex(Integer.parseInt(butBox.getText())-1).isAvailable()){
                 if(!butBox.getForeground().equals(Color.decode("#228b22"))) {
-                    butBox.setIcon();
+                    butBox.setIcon(true);
                     butBox.setForeground(Color.decode("#228b22"));
                 }
             }  else {
                 if(!butBox.getForeground().equals(Color.RED)) {
-                    butBox.setIcon();
+                    butBox.setIcon(false);
                     butBox.setForeground(Color.RED);
                 }
             }
@@ -125,8 +126,8 @@ public class GridBoxesPanel extends JPanel implements Observer{
     }
 
     /**
-     * This method sets the panel background.
-     * @param g
+     * This method sets the background image
+     * @param g the Graphics
      */
 
     @Override
@@ -140,12 +141,4 @@ public class GridBoxesPanel extends JPanel implements Observer{
         super.paintComponent(g);
     }
 
-    /**
-     * The interface is updated after a package is added or removed.
-     */
-    
-    @Override
-    public void update() {
-        checkState();
-    }
 }

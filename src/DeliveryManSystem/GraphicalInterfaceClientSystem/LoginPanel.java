@@ -216,7 +216,7 @@ public class LoginPanel extends JPanel implements ActionListener, ObserverRespon
     }
 
     /**
-     * This method create and change the panel if the credentials are right or call update method
+     * This method create and change the panel if the credentials are right or call refresh method
      * @param e The action listener
      */
 
@@ -241,7 +241,7 @@ public class LoginPanel extends JPanel implements ActionListener, ObserverRespon
 
             } else {
                 errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[9]);
-                update();
+                refresh();
             }*/
     }
 

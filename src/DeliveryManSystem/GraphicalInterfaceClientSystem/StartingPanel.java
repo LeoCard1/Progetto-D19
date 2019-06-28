@@ -127,13 +127,13 @@ public class StartingPanel extends JPanel {
             } else {
 
                 errorLabel.setText("Incorrect Password or Id");
-                update();
+                refresh();
             }
 
         } catch (IOException exception) {
 
             errorLabel.setText("Service unavailable");
-            update();
+            refresh();
 
         }
 

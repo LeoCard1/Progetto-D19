@@ -10,6 +10,11 @@ import java.util.ArrayList;
 
 import static java.awt.Toolkit.getDefaultToolkit;
 
+/**
+ * @author Andrea Stella
+ * @version 1.0
+ */
+
 public class StartPanel extends JPanel {
 
     private BackGroundPanel bgp;

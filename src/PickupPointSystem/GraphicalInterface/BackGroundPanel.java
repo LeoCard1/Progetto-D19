@@ -1,15 +1,14 @@
 package PickupPointSystem.GraphicalInterface;
 
-import PickupPointSystem.ObserverPattern.Observer;
 import PickupPointSystem.PickupPoint;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 import static java.awt.Toolkit.getDefaultToolkit;
 
-/**
+/** This class is the background panel that will contain all
+ * the other panels
  * @author Andrea Stella
  * @version 1.0
  */
@@ -24,12 +23,12 @@ public class BackGroundPanel extends JPanel {
     private LoginDelManPanel loginDelManPanel;
     private CardLayout cardLayout = new CardLayout();
     private JPanel panelCont = new JPanel();
-    private ArrayList<Observer> obsList = new ArrayList<>();
+    private String currentPanel = "";
 
     /**
      * The constructor. Creates boxAccessPanel, viewBoxesPanel, loginDelManPanel and startPanel.
-     * @param pipo
-     * @param gra
+     * @param pipo the PickupPoint
+     * @param gra the frame
      */
 
     public BackGroundPanel(PickupPoint pipo, GraIntMain gra){
@@ -44,7 +43,8 @@ public class BackGroundPanel extends JPanel {
     }
 
     /**
-     * This method adds the panels to panelCont and sets as the first panel startPanel.
+     * This method adds the panels to the panel container panelCont, sets as the first
+     * panel startPanel, sets the layout and adds panelCont
      */
 
     private void initPanel(){
@@ -54,15 +54,16 @@ public class BackGroundPanel extends JPanel {
         panelCont.add(viewBoxesPanel,"viewBoxesPanel");
         panelCont.add(loginDelManPanel,"loginDelManPanel");
         panelCont.add(startPanel, "startPanel");
-        cardLayout.show(panelCont, "startPanel");
+
+        changePanel("startPanel");
 
         setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/9));
         add(panelCont);
     }
 
     /**
-     * This method sets the panel background.
-     * @param g
+     * This method sets the background image
+     * @param g the Graphics
      */
 
     @Override
@@ -78,20 +79,41 @@ public class BackGroundPanel extends JPanel {
 
 
     /**
-     * This method changes the panel to the one whose name is passed as an argument.
-     * @param namePanel
+     * This method changes the panel to the one whose name is passed as an argument
+     * @param namePanel the panel name
      */
 
     public void changePanel(String namePanel){
+
         if (namePanel.equals("startPanel")) {
             startPanel.startTimer();
         }
 
         if (namePanel.equals("viewBoxesPanel")) {
-            notifyObservers();
+            viewBoxesPanel.getGridBoxesPanel().checkState();
+            viewBoxesPanel.getInfoPackPanel().refresh();
         }
 
+        checkCurrentPanel();
         cardLayout.show(panelCont,namePanel);
+        currentPanel = namePanel;
+    }
+
+    /**
+     * This method checks if you need to call some method of the current panel before
+     * changing it
+     */
+
+    private void checkCurrentPanel(){
+        if(currentPanel.equals("viewBoxesPanel")){
+            viewBoxesPanel.getGridBoxesPanel().closeBoxes();
+        }
+        if(currentPanel.equals("boxAccessPanel")){
+            boxAccessPanel.getInsertCodePanel().deleteText();
+        }
+        if(currentPanel.equals("loginDelManPanel")){
+            loginDelManPanel.deleteText();
+        }
     }
 
     /**
@@ -102,13 +124,4 @@ public class BackGroundPanel extends JPanel {
         boxAccessPanel.refresh();
     }
 
-    public void addObserver(Observer obs) {
-        obsList.add(obs);
-    }
-
-    private void notifyObservers() {
-        for (Observer obs : obsList) {
-            obs.update();
-        }
-    }
 }

@@ -65,7 +65,7 @@ public class PersistenceFacade {
     }
 
     /**
-     * This method update the database delivery.
+     * This method refresh the database delivery.
      * @param delivery
      */
 

@@ -7,6 +7,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
+/**
+ * This class represents the box
+ * @author Andrea Stella
+ * @version 1.0
+ */
+
 public abstract class Box  implements Comparable {
 
     private boolean availability;
@@ -16,11 +22,20 @@ public abstract class Box  implements Comparable {
     private static int numBox;
     private Date date;
 
+    /**
+     * The constructor.
+     */
+
     public Box(){
         availability = true;
         numBox ++;
         boxNumber = numBox;
     }
+
+    /**
+     * If the box is empty the availability is true, else false
+     * @return the availability
+     */
 
     public boolean isAvailable(){
         return availability;
@@ -37,13 +52,7 @@ public abstract class Box  implements Comparable {
     public PackageTable getPack(){
         return pack;
     }
-
-    public String getStringDate(){
-        SimpleDateFormat sdf = new SimpleDateFormat();
-        sdf.applyPattern("dd-MM-yyyy");
-        return sdf.format(date);
-    }
-
+    
     public void setDate(Date date){
         this.date = date;
     }

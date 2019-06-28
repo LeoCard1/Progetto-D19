@@ -30,9 +30,6 @@ public class ViewBoxesPanel extends JPanel {
         this.bgp = bgp;
         infoPackPanel = new InfoPackPanel(pipo);
         gridBoxesPanel = new GridBoxesPanel(pipo);
-        bgp.addObserver(infoPackPanel);
-        bgp.addObserver(gridBoxesPanel);
-
 
         initPanel();
     }
@@ -70,13 +67,20 @@ public class ViewBoxesPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 bgp.changePanel("startPanel");
-                gridBoxesPanel.closeBoxes();
             }
         });
         JPanel p = new JPanel();
         p.setLayout(new BorderLayout());
         p.add(buttonExit, BorderLayout.WEST);
         return p;
+    }
+
+    public InfoPackPanel getInfoPackPanel(){
+        return infoPackPanel;
+    }
+
+    public GridBoxesPanel getGridBoxesPanel(){
+        return gridBoxesPanel;
     }
 
 

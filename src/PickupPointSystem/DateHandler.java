@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 /**
+ * This class contains methods to manage dates
  * @author Andrea Stella
  * @version 1.0
  */
@@ -14,9 +15,9 @@ public class DateHandler {
 
     /**
      * This method adds the number of days passed as an argument to the date.
-     * @param date
-     * @param days
-     * @return Date
+     * @param date date to add days
+     * @param days days to add
+     * @return updated date
      */
 
     public Date addDays(Date date, int days){
@@ -28,9 +29,9 @@ public class DateHandler {
 
     /**
      * This method calculates the difference in days between two dates.
-     * @param firstDate
-     * @param secondDate
-     * @return the number of days
+     * @param firstDate date to compare
+     * @param secondDate date to compare
+     * @return the number of days of difference
      */
 
     public int differenceInDays(Date firstDate, Date secondDate){

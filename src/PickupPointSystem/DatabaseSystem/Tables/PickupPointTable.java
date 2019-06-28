@@ -1,6 +1,7 @@
 package PickupPointSystem.DatabaseSystem.Tables;
 
 public class PickupPointTable {
+
     private String id;
     private String location;
     private String ip;
@@ -10,6 +11,7 @@ public class PickupPointTable {
     private String address;
 
     public PickupPointTable(String id, String location, String ip, String small_boxes, String medium_boxes, String large_boxes, String address) {
+
         this.id = id;
         this.location = location;
         this.ip = ip;

@@ -20,6 +20,7 @@ public class DeliveryTable {
     private String delID;
 
     public DeliveryTable(String packID, String pipoID, Date dateOfDelivery, int boxNumber, String boxPassword, String delID){
+
         this.packID = packID;
         this.pipoID = pipoID;
         this.dateOfDelivery = dateOfDelivery;

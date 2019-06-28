@@ -9,11 +9,10 @@ import PickupPointSystem.Server.NotificationSystem.PickupMail;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
+/** This class manages the delivery man log in
  * @author Andrea Stella
  * @version 1.0
  */
-
 
 public class LoginDelMan{
 
@@ -23,7 +22,7 @@ public class LoginDelMan{
 
     /**
      * The constructor.
-     * @param pickupPoint
+     * @param pickupPoint the PickupPoint where the delivery man must access
      */
 
     public LoginDelMan(PickupPoint pickupPoint){
@@ -31,10 +30,10 @@ public class LoginDelMan{
     }
 
     /**
-     * This method authenticates the DeliveryMan.
-     * @param delID
-     * @param password
-     * @return true if the credentials are correct, else false.
+     * This method authenticates the DeliveryMan
+     * @param delID the delivery man id
+     * @param password the delivery man password
+     * @return true if the credentials are correct, else false
      */
 
     public boolean login(String delID, String password){
@@ -59,8 +58,8 @@ public class LoginDelMan{
     }
 
     /**
-     * This method empties the box that have inside them a package delivered
-     * for at least 3 days and send the pick up mail.
+     * This method empties the box that have inside them a package delivered for at least 3 days
+     * by the delivery man who made the access and send the pick up mail
      */
 
     public void pickupPackages(){

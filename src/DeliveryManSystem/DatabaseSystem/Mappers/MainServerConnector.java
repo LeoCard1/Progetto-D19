@@ -19,7 +19,7 @@ public class MainServerConnector {
     private void startServer() {
         try {
             System.out.println("[0] Connecting to main server...");
-            client.connect(new InetSocketAddress("127.0.0.1", 8700));
+            client.connect(new InetSocketAddress("127.0.0.1", 9000));
 
             System.out.println("[1] Connection successful!");
             in = new BufferedReader(new InputStreamReader(client.getInputStream()));

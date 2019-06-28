@@ -1,6 +1,5 @@
 package PickupPointSystem.GraphicalInterface;
 
-import PickupPointSystem.ObserverPattern.Observer;
 import PickupPointSystem.PickupPoint;
 
 import javax.swing.*;
@@ -9,7 +8,7 @@ import java.util.ArrayList;
 
 import static java.awt.Toolkit.getDefaultToolkit;
 
-public class InfoPackPanel extends JPanel implements Observer {
+public class InfoPackPanel extends JPanel {
 
     private int width;
     private int height;
@@ -27,7 +26,7 @@ public class InfoPackPanel extends JPanel implements Observer {
         height = tk.getScreenSize().height;
         width = tk.getScreenSize().width;
         setPreferredSize(new Dimension(width*2/6, height*2/3));
-        
+
 
         initPanel();
     }
@@ -43,12 +42,12 @@ public class InfoPackPanel extends JPanel implements Observer {
         JLabel textLabel = new JLabel(text.toString());
 
         add(textLabel);
-        
+
         text = new StringBuilder();
     }
 
-    public void update() {
-        text.append("<html><font face = 'Times New Roman' size = 5 color = '#696969'><center>");
+    public void refresh() {
+        text.append("<html><font face = 'Times New Roman' size = 5 color = '#696969'>");
         for (int i = 0; i < available.size(); i++) {
             if (available.get(i) && !piPo.getBoxFromIndex(i).isAvailable()) {
                 text.append("Box " + (i+1) + " opened: deposit package (" + piPo.getBoxFromIndex(i).getPack().getId() + ")<br/>");
@@ -58,14 +57,13 @@ public class InfoPackPanel extends JPanel implements Observer {
                 text.append("Box " + (i+1) + " opened: pickup package<br/>");
             }
         }
-        text.append("</center></html>");
 
         initPanel();
     }
 
     /**
-     * This method sets the panel background.
-     * @param g
+     * This method sets the background image
+     * @param g the Graphics
      */
 
     @Override

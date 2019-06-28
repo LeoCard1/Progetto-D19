@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import static java.awt.Toolkit.getDefaultToolkit;
 
 /**
+ * This class graphically represents a box
  * @author Andrea Stella
  * @version 1.0
  */
@@ -19,7 +20,7 @@ public class ButtonBox extends JButton {
 
     /**
      * The constructor.
-     * @param boxCode
+     * @param boxCode the box number
      */
 
     public ButtonBox(String boxCode){
@@ -27,13 +28,13 @@ public class ButtonBox extends JButton {
     }
 
     /**
-     * This method sets the packImage Image as the button icon if the foreground is red,
-     * otherwise sets the emptyBoxImage Image as icon.
+     * This method sets the packImage Image as the button icon if true is passed as an
+     * argument, otherwise sets the emptyBoxImage Image as icon.
      */
 
-    public void setIcon(){
+    public void setIcon(boolean hasPack){
         Image img;
-        if(getForeground()==Color.RED){
+        if(hasPack){
             img = packImage;
         }  else {
             img = emptyBoxImage ;
@@ -41,7 +42,7 @@ public class ButtonBox extends JButton {
         img = img.getScaledInstance(getWidth()+8, getHeight()-3,Image.SCALE_DEFAULT);
         setIcon(new ImageIcon(img));
     }
-
+    
     /**
      * This method removes the icon from the button.
      */
