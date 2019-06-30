@@ -29,7 +29,6 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
     private JButton buttonConfirm;
     private AlertLabel alertLabel;
     private LoginDelMan loginDelMan;
-    private LoadingGUIMain loading = new LoadingGUIMain();
 
     /**
      * The constructor. Creates an instance of loginDelMan by passing the PickupPoint
@@ -79,7 +78,9 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
         loginPanel.add(alertLabel);
         Toolkit tk = getDefaultToolkit();
         int height = tk.getScreenSize().height;
+        loginPanel.setOpaque(false);
         JPanel p = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, height/8));
+        p.setOpaque(false);
         p.add(loginPanel);
         return p;
     }
@@ -106,6 +107,7 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
         credPanel.add(delID);
         credPanel.add(passwordLabel);
         credPanel.add(password);
+        credPanel.setOpaque(false);
         return credPanel;
     }
 
@@ -125,18 +127,14 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
                 try {
                     if(loginDelMan.login(delID.getText(), password.getText())){
                         alertLabel.correctCode();
-                        loading.setVisible(true);
-                        loading.setText("Downloading Data From The Server...");
                         loginDelMan.addDeliverymanPackages();
                         loginDelMan.pickupPackages();
-                        loading.dispose();
                         bgp.changePanel("viewBoxesPanel");
                     } else {
                         alertLabel.wrongCode();
                     }
 
                 } catch (IOException e1) {
-                    loading.dispose();
                     new ErrorGUIMain("Unable To Connect To Server", true);
                     return;
                 }
@@ -164,6 +162,7 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
         JPanel backpanel = new JPanel();
         backpanel.setLayout(new BorderLayout());
         backpanel.add(buttonBack, BorderLayout.WEST);
+        backpanel.setOpaque(false);
         return backpanel;
     }
 
@@ -190,6 +189,21 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
         delID.setText(id);
         this.password.setText(password);
         buttonConfirm.doClick();
+    }
 
+    /**
+     * This method sets the background image
+     * @param g the Graphics
+     */
+
+    @Override
+    public void paintComponent(Graphics g){
+        setOpaque(false);
+        Image img = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/loginbackground.jpg");
+        img = img.getScaledInstance(getWidth(),getHeight(), Image.SCALE_DEFAULT);
+        ImageLoader imgLoader = new ImageLoader();
+        imgLoader.loadImage(img, this);
+        g.drawImage(img,0,0,this);
+        super.paintComponent(g);
     }
 }

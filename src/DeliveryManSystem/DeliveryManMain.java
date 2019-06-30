@@ -10,7 +10,10 @@ public class DeliveryManMain {
 
 
         DeliveryMan deliveryMan = new DeliveryMan("ANDREA", "ECAKE91749");
-        deliveryMan.sendCredentials("PAV01");
+       // deliveryMan.sendCredentials("PAV01");
+      
+
+
         Gui delGui = new Gui();
 
 

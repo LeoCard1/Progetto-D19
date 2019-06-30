@@ -58,13 +58,17 @@ public class BoxAccessPanel extends JPanel {
 
     private JPanel createPasswordPanel(){
         ins = new InsertCodePanel(piPo, bgp);
+        ins.setOpaque(false);
         JPanel p1 = new JPanel();
+        p1.setOpaque(false);
         p1.setLayout(new BoxLayout(p1, BoxLayout.PAGE_AXIS));
         p1.add(languagePanel());
         p1.add(ins);
         Toolkit tk = getDefaultToolkit();
         int height = tk.getScreenSize().height;
         JPanel p2 = new JPanel();
+        p2.setBackground(Color.BLACK);
+        p2.setOpaque(false);
         p2.setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/8));
         p2.add(p1);
         return p2;
@@ -97,6 +101,7 @@ public class BoxAccessPanel extends JPanel {
         p.setLayout(new BorderLayout());
         p.add(buttonExit, BorderLayout.WEST);
         p.add(buttonDelManLogin,BorderLayout.EAST);
+        p.setOpaque(false);
         return p;
     }
 
@@ -110,8 +115,11 @@ public class BoxAccessPanel extends JPanel {
         langPan.setLayout(new BoxLayout(langPan, BoxLayout.PAGE_AXIS));
 
         JPanel panBox = new JPanel();
+        panBox.setOpaque(false);
+
 
         JComboBox langBox = new JComboBox();
+
         langBox.addItem(SetLanguage.getInstance().setBoxAccessPanel()[2]);
         langBox.addItem(SetLanguage.getInstance().setBoxAccessPanel()[3]);
         c = langBox;
@@ -138,6 +146,7 @@ public class BoxAccessPanel extends JPanel {
         };
 
         langBox.addActionListener(languageListenner);
+        langPan.setOpaque(false);
 
         return langPan;
     }
@@ -160,6 +169,22 @@ public class BoxAccessPanel extends JPanel {
         c.removeAllItems();
         c.addItem(SetLanguage.getInstance().setBoxAccessPanel()[2]);
         c.addItem(SetLanguage.getInstance().setBoxAccessPanel()[3]);
+    }
+
+    /**
+     * This method sets the background image
+     * @param g the Graphics
+     */
+
+    @Override
+    public void paintComponent(Graphics g){
+        setOpaque(false);
+        Image img = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/loginbackground.jpg");
+        img = img.getScaledInstance(getWidth(),getHeight(), Image.SCALE_DEFAULT);
+        ImageLoader imgLoader = new ImageLoader();
+        imgLoader.loadImage(img, this);
+        g.drawImage(img,0,0,this);
+        super.paintComponent(g);
     }
 
 }

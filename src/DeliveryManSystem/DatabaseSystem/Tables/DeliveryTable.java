@@ -30,6 +30,9 @@ public class DeliveryTable {
         return packID;
     }
 
+    public String getPipoID() {
+        return pipoID;
+    }
 
     public boolean hasPipoID(String pipoID) {
         if (this.pipoID != null && this.pipoID.equals(pipoID)) {

@@ -61,19 +61,4 @@ public class InfoPackPanel extends JPanel {
         initPanel();
     }
 
-    /**
-     * This method sets the background image
-     * @param g the Graphics
-     */
-
-    @Override
-    public void paintComponent(Graphics g){
-        setOpaque(false);
-        Image img = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/lightbluebackground.jpg");
-        img = img.getScaledInstance(getWidth(),getHeight(), Image.SCALE_DEFAULT);
-        ImageLoader imgLoader = new ImageLoader();
-        imgLoader.loadImage(img, this);
-        g.drawImage(img,0,0,this);
-        super.paintComponent(g);
-    }
 }

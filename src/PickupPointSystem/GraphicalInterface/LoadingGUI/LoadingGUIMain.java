@@ -36,7 +36,9 @@ public class LoadingGUIMain extends JFrame {
 
     private void initFrame(){
         JPanel mainPanel = new JPanel();
+
         JPanel panelMessage = new JPanel();
+
         labelMessage = new JLabel();
         labelMessage.setText("<html></html>");
         labelMessage.setFont(new Font(Font.DIALOG, Font.PLAIN, 20));

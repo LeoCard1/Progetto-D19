@@ -65,6 +65,7 @@ public class InsertCodePanel extends JPanel {
 
     private JButton createConfirmButton(){
         JButton confBut = new JButton(SetLanguage.getInstance().setInsertCodePanel()[1]);
+
         b = confBut;
         confBut.addActionListener(new ActionListener() {
             @Override
