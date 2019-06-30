@@ -51,9 +51,10 @@ public class LoginDelMan{
      */
 
     public void addDeliverymanPackages() throws IOException {
-        ArrayList<PackageTable> packages = facade.getPackagesFromDelID(pickupPoint.getId(), delID);
-        for(PackageTable pack : packages){
-            pickupPoint.addPackage(pack);
+        for(DeliveryTable delivery : facade.getDeliveries(pickupPoint.getId())){
+            if(!delivery.wasMade() && delivery.hasDelID(delID)){
+                pickupPoint.addPackage(facade.getPackage(delivery.getPackID()));
+            }
         }
     }
 

@@ -67,7 +67,7 @@ public class GraIntMain extends JFrame {
 
     /**
      * This method changes the frame theme.
-     * @param className
+     * @param className the name of the theme
      */
 
     public void setTheme(String className){

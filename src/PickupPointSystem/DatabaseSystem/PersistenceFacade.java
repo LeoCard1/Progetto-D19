@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
+ * This class is an interface between the mappers and the other classes
+ * that need to use them
  * @author Andrea Stella
  * @version 1.0
  */
@@ -21,7 +23,7 @@ public class PersistenceFacade {
     private HashMap<String, Mapper> mappers;
 
     /**
-     * The constructor. Initiatialize the HashMap of mappers.
+     * The constructor. Initializes the HashMap of mappers.
      */
 
     public PersistenceFacade(){
@@ -30,44 +32,8 @@ public class PersistenceFacade {
     }
 
     /**
-     * This method returns an ArrayList of packages that the DeliveryManTable must deliver to the
-     * PickupPointTable specified by the id entered as an argument.
-     * @param pipoID, delID
-     * @return ArrayList<PackageTable>
-     */
-    
-    public ArrayList<PackageTable> getPackagesFromDelID(String pipoID, String delID) throws IOException {
-        ArrayList<DeliveryTable> deliveries = getDeliveries(pipoID);
-        ArrayList<PackageTable> packages = new ArrayList<>();
-        for(DeliveryTable delivery : deliveries) {
-            if(!delivery.wasMade() && delivery.hasDelID(delID)) {
-                packages.add(getPackage(delivery.getPackID()));
-            }
-        }
-        return packages;
-    }
-
-
-    /**
-     * This method returns the DeliveryTable related to the pack id passed as an argument.
-     * @param pipoID
-     * @param packID
-     * @return DeliveryTable
-     */
-
-    public DeliveryTable getDeliveryFromPackID(String pipoID, String packID) throws IOException {
-        ArrayList<DeliveryTable> deliveries = getDeliveries(pipoID);
-        for(DeliveryTable delivery : deliveries){
-            if(delivery.hasPackage(packID)){
-                return delivery;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * This method refresh the database delivery.
-     * @param delivery
+     * This method updated the database delivery
+     * @param delivery the DeliveryTable to be updated
      */
 
     public void updateDelivery(DeliveryTable delivery) throws IOException {
@@ -75,8 +41,9 @@ public class PersistenceFacade {
     }
 
     /**
-     * This method removes the delivery from the database.
-     * @param packID
+     * This method removes from the database the delivery associated with the pack id
+     * passed as an argument
+     * @param packID the Pack id
      */
 
     public void removeDelivery(String packID) throws IOException {
@@ -85,18 +52,18 @@ public class PersistenceFacade {
 
     /**
      * This method removes the pack from the database.
-     * @param packID
+     * @param packID the id of Pack to be removed
      */
 
     public void removePack(String packID) throws IOException {
         getPackageMapper().remove(packID);
     }
 
-
     /**
-     * This method returns deliveries to the PickupPointTable id given.
-     * @param pipoID
-     * @return  ArrayList<DeliveryTable>
+     * This method returns the deliveries to be made in the Pickup Point specified by the
+     * id passed as an argument
+     * @param pipoID the Pickup Point id
+     * @return the required ArrayList<DeliveryTable>
      */
 
     public ArrayList<DeliveryTable> getDeliveries(String pipoID) throws IOException {
@@ -105,8 +72,8 @@ public class PersistenceFacade {
 
     /**
      * This method returns the DeliveryManTable identified by the given id.
-     * @param delID
-     * @return DeliveryManTable
+     * @param delID the Delivery Man id
+     * @return the required DeliveryManTable
      */
 
     public DeliveryManTable getDeliveryMan(String delID) throws IOException {
@@ -114,19 +81,19 @@ public class PersistenceFacade {
     }
 
     /**
-     *
      * This method returns the PackageTable identified by the given id.
-     * @param packID
-     * @return PackageTable
+     * @param packID the Pack id
+     * @return the required PackageTable
      */
+
     public PackageTable getPackage(String packID) throws IOException {
         return getPackageMapper().get(packID);
     }
 
     /**
      * This method returns the PickupPointTable identified by the given id.
-     * @param piPoID
-     * @return PickupPointTable
+     * @param piPoID the Pickup Point id
+     * @return the required PickupPointTable
      */
 
     public PickupPointTable getPickupPoint(String piPoID) throws IOException {
@@ -134,21 +101,32 @@ public class PersistenceFacade {
     }
 
     /**
-     * This methods return the mappers.
-     * @return Mapper
+     * @return the DeliveryMapper
      */
 
     private DeliveryMapper getDeliveryMapper(){
         return (DeliveryMapper) mappers.get("DeliveryMapper");
     }
 
+    /**
+     * @return the DeliveryManMapper
+     */
+
     private DeliveryManMapper getDeliveryManMapper(){
         return (DeliveryManMapper) mappers.get("DeliveryManMapper");
     }
 
+    /**
+     * @return the PackageMapper
+     */
+
     private PackageMapper getPackageMapper(){
         return (PackageMapper) mappers.get("PackageMapper");
     }
+
+    /**
+     * @return the PickupPointMapper
+     */
 
     private PickupPointMapper getPickupPointMapper() {
         return (PickupPointMapper) mappers.get("PickupPointMapper");
