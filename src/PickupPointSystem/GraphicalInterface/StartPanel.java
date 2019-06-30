@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import static java.awt.Toolkit.getDefaultToolkit;
 
 /**
+ * This is the initial panel
  * @author Andrea Stella
  * @version 1.0
  */
@@ -25,7 +26,7 @@ public class StartPanel extends JPanel {
 
     /**
      * The constructor.
-     * @param bgp
+     * @param bgp the BackGroundPanel
      */
 
     public StartPanel(BackGroundPanel bgp){
@@ -37,7 +38,9 @@ public class StartPanel extends JPanel {
     }
 
     /**
-     * This method initialises the panel.
+     * This method initialises the panel by inserting into it:
+     * - the touch to start panel
+     * - the button start
      */
 
     private void initPanel(){
@@ -101,8 +104,8 @@ public class StartPanel extends JPanel {
 
     /**
      * This method creates the buttonStart, when the button is clicked,
-     * the panel is changed to boxAccessPanel.
-     * @return JButton
+     * the panel is changed to boxAccessPanel and the timer is stopped
+     * @return the JButton that has been created
      */
 
     private JButton createButtonStart(){
@@ -123,7 +126,7 @@ public class StartPanel extends JPanel {
     /**
      * This method creates the panel containing the label with "Touch to start"
      * written.
-     * @return JPanel.
+     * @return the JPanel that has been created
      */
 
     private JPanel createTouchToStartPanel(){
@@ -138,8 +141,8 @@ public class StartPanel extends JPanel {
     }
 
     /**
-     * This method sets the panel background.
-     * @param g
+     * This method sets the background image
+     * @param g the Graphics
      */
 
     @Override

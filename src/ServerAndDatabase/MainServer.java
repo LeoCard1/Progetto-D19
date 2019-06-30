@@ -23,7 +23,7 @@ public class MainServer extends Thread {
     @Override
     public void run() {
         try {
-            server = new ServerSocket(9100);
+            server = new ServerSocket(8500);
             conStr = new ConnectionsStrategy();
             System.out.println("[0] Server waiting on port 8500...");
             startServer();

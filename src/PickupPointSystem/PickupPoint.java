@@ -86,11 +86,14 @@ public class PickupPoint {
                 String password = box.generateBoxPassword();
                 unavailablesBoxes.put(password, box);
 
-                DeliveryTable delivery = facade.getDeliveryFromPackID(id, pack.getId());
-                delivery.setDateOfDelivery(dateOfDelivery);
-                delivery.setBoxNumber(box.getBoxNumber());
-                delivery.setBoxPassword(password);
-                facade.updateDelivery(delivery);
+                for(DeliveryTable delivery : facade.getDeliveries(id)){
+                    if(delivery.hasPackage(pack.getId())){
+                        delivery.setDateOfDelivery(dateOfDelivery);
+                        delivery.setBoxNumber(box.getBoxNumber());
+                        delivery.setBoxPassword(password);
+                        facade.updateDelivery(delivery);
+                    }
+                }
 
                 DateHandler dateHandler = new DateHandler();
                 String email = facade.getPackage(pack.getId()).getCustomerEmail();
