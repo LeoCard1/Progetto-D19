@@ -1,8 +1,6 @@
 package DeliveryManSystem.GraphicalInterfaceClientSystem;
 
-import DeliveryManSystem.Client.DeliveryManClient;
 import DeliveryManSystem.DeliveryMan;
-import DeliveryManSystem.ObserverResponse;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,7 +37,6 @@ public class LoginPanel extends JPanel implements ActionListener {
         this.width = width;
         this.height = height;
         this.frame = frame;
-
         setLoginPanel();
 
     }
