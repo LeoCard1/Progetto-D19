@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class StartingPanel extends JPanel implements ActionListener {
 
@@ -60,12 +61,16 @@ public class StartingPanel extends JPanel implements ActionListener {
 
     private JComboBox pickupPoints(){
 
-        try {
+       try {
 
-            JComboBox pickupPointId = new JComboBox();
-            return pickupPointId;
+            ArrayList<String> stringhe = new ArrayList<>();
+            stringhe.addAll(deliveryMan.getPickupPointsID());
+            String[] array = stringhe.toArray(new String[0]);
+            return new JComboBox(array);
 
         }catch (Exception e){
+
+            System.out.println("problema");
 
             return pickupPoints();
 
