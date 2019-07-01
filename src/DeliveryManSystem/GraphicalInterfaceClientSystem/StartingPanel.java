@@ -3,18 +3,21 @@ package DeliveryManSystem.GraphicalInterfaceClientSystem;
 import DeliveryManSystem.DeliveryMan;
 
 import javax.swing.*;
-import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static java.awt.Font.ITALIC;
+
 public class StartingPanel extends JPanel implements ActionListener {
 
     private Frame frame;
     private DeliveryMan deliveryMan;
     private JButton sendCredentials, viewPackage;
+    private JLabel instructionLabel;
+    private JComboBox pickupPointIdSelector;
     private int width;
     private int height;
 
@@ -46,7 +49,7 @@ public class StartingPanel extends JPanel implements ActionListener {
         buttonPanel.setLayout(new GridLayout(2,1));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(0,height/50,height/10,height/50));
 
-        //setMessageError(buttonPanel);
+        setMessage(buttonPanel);
         setButton(buttonPanel);
 
         //add to background panel
@@ -65,45 +68,49 @@ public class StartingPanel extends JPanel implements ActionListener {
 
             ArrayList<String> stringhe = new ArrayList<>();
             stringhe.addAll(deliveryMan.getPickupPointsID());
-            String[] array = stringhe.toArray(new String[0]);
-            return new JComboBox(array);
+            pickupPointIdSelector = new JComboBox(stringhe.toArray(new String[0]));
+            return pickupPointIdSelector;
 
         }catch (Exception e){
 
-            System.out.println("problema");
-
-            return pickupPoints();
+            return pickupPointIdSelector;
 
         }
-
-
     }
 
     private void setButton(JPanel buttonPanel){
 
         //new button
 
-        sendCredentials = new JButton("Send Credentials");
+
         viewPackage = new JButton("View Package");
 
         //settings button
 
-        sendCredentials.setBackground(Color.orange);
-        sendCredentials.setFocusable(false);
         viewPackage.setBackground(Color.orange);
         viewPackage.setFocusable(false);
 
         //add button
 
-        buttonPanel.add(sendCredentials);
         buttonPanel.add(viewPackage);
+
+    }
+
+    private void setMessage(JPanel buttonPanel){
+
+        instructionLabel = new JLabel("Selezionare l ' Id del punto di ritiro");
+        Font font = new Font("Arial" ,ITALIC , 15);
+        instructionLabel.setBorder(BorderFactory.createTitledBorder(instructionLabel.getBorder(),SetDMLanguage.getInstance().setLoginPanel()[7] , ITALIC , 0, font, Color.red));
+        instructionLabel.setVisible(false);
+        buttonPanel.add(instructionLabel);
+
 
     }
 
     private void setAction(){
 
-        sendCredentials.addActionListener(this);
         viewPackage.addActionListener(this);
+        pickupPointIdSelector.addActionListener(this);
 
     }
 
@@ -114,6 +121,20 @@ public class StartingPanel extends JPanel implements ActionListener {
         if (string.equals(viewPackage.getActionCommand())){
 
             newFrame();
+
+        }
+
+        else {
+            try {
+
+                deliveryMan.sendCredentials((String)pickupPointIdSelector.getSelectedItem());
+
+            }catch (IOException exception){
+
+                System.out.println("errore passaggio id classe startingpanel");
+
+
+            }
 
         }
 
