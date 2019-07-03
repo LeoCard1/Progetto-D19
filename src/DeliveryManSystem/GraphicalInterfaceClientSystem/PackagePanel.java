@@ -1,11 +1,16 @@
 package DeliveryManSystem.GraphicalInterfaceClientSystem;
 
+
+import DeliveryManSystem.DatabaseSystem.Tables.DeliveryTable;
 import DeliveryManSystem.DeliveryMan;
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 
 
 public class PackagePanel extends JPanel implements ActionListener {
@@ -45,7 +50,7 @@ public class PackagePanel extends JPanel implements ActionListener {
 
         //add to background panel
 
-       // panelContainer.add(packageList());
+        panelContainer.add(packageList());
         add(setButton(), BorderLayout.SOUTH);
         add(panelContainer);
 
@@ -53,22 +58,29 @@ public class PackagePanel extends JPanel implements ActionListener {
 
     }
 
-    /*private JTable packageList(){
+    private JTable packageList(){
 
         try {
 
-            JTable packages = new JTable();
+            String[] prova = {"Id Pipo" , "Id Pacco" };
+            String[][] table = new String[deliveryMan.getDeliveries().size()][];
+            int i = 0;
+            for (DeliveryTable e : deliveryMan.getDeliveries() ){
 
-            packages.add(deliveryMan.getDeliveries());
-            packages.add(deliveryMan.getDeliveriesExpired());
+                String[] p = {e.getPipoID() , e.getPackID()};
+                table[i] = p;
+
+            }
+
+            return new JTable(table , prova );
 
         }catch (IOException e){
 
+            System.out.println("problema con la tabella");
+            return new JTable();
+
         }
-
-
-
-    }*/
+    }
 
     private JButton setButton(){
 
