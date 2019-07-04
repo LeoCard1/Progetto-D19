@@ -196,4 +196,7 @@ public class PickupPoint {
         server.start();
     }
 
+    public HashMap<String, Box> getUnavailablesBoxes() {
+        return unavailablesBoxes;
+    }
 }
