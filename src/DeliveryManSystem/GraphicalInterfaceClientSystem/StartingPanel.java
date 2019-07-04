@@ -42,23 +42,22 @@ public class StartingPanel extends JPanel implements ActionListener {
 
         JPanel panelContainer = new JPanel();
         panelContainer.setLayout(new GridLayout(2,1 ));
+        panelContainer.add(pickupPoints());
+        panelContainer.add(buttonPanel());
+        add(panelContainer);
 
-       //settings buttonPanel
+        setAction();
+
+    }
+
+    private JPanel buttonPanel(){
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(2,1));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(0,height/50,height/10,height/50));
-
         setMessage(buttonPanel);
         setButton(buttonPanel);
-
-        //add to background panel
-
-        panelContainer.add(pickupPoints());
-        panelContainer.add(buttonPanel);
-        add(panelContainer);
-
-        setAction();
+        return buttonPanel;
 
     }
 
