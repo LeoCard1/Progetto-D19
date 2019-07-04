@@ -15,6 +15,7 @@ public class InfoPackPanel extends JPanel {
     private PickupPoint piPo;
     private int totalBoxes;
     private StringBuilder text;
+    private JLabel textLabel = new JLabel();
     private ArrayList<Boolean> available = new ArrayList<>();
 
     public InfoPackPanel(PickupPoint piPo) {
@@ -26,6 +27,7 @@ public class InfoPackPanel extends JPanel {
         height = tk.getScreenSize().height;
         width = tk.getScreenSize().width;
         setPreferredSize(new Dimension(width*2/6, height*2/3));
+        textLabel.setFont(new Font("", Font.PLAIN, height/40));
 
 
         initPanel();
@@ -39,7 +41,7 @@ public class InfoPackPanel extends JPanel {
         }
 
         removeAll();
-        JLabel textLabel = new JLabel(text.toString());
+        textLabel.setText(text.toString());
 
         add(textLabel);
 
@@ -47,7 +49,7 @@ public class InfoPackPanel extends JPanel {
     }
 
     public void refresh() {
-        text.append("<html><font face = 'Times New Roman' size = 5 color = '#696969'>");
+        text.append("<html><font face = 'Bookman' color = '#696969'>");
         for (int i = 0; i < available.size(); i++) {
             if (available.get(i) && !piPo.getBoxFromIndex(i).isAvailable()) {
                 text.append("Box " + (i+1) + " opened: deposit package (" + piPo.getBoxFromIndex(i).getPack().getId() + ")<br/>");
@@ -57,6 +59,7 @@ public class InfoPackPanel extends JPanel {
                 text.append("Box " + (i+1) + " opened: pickup package<br/>");
             }
         }
+        text.append("</html>");
 
         initPanel();
     }

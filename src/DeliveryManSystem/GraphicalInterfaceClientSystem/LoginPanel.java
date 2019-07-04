@@ -56,8 +56,26 @@ public class LoginPanel extends JPanel implements ActionListener {
 
         JPanel panelContainer = new JPanel();
         panelContainer.setLayout(new GridLayout(2,1 ));
+        panelContainer.add(panelPasswordId());
+        panelContainer.add(buttonPanel());
+        add(panelContainer);
 
-        //settings panelPassword
+        setAction();
+
+    }
+
+    private JPanel buttonPanel(){
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(2,1));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0,height/50,height/10,height/50));
+        setMessageError(buttonPanel);
+        setButton(buttonPanel);
+        return buttonPanel;
+
+    }
+
+    private JPanel panelPasswordId(){
 
         JPanel panelPasswordId = new JPanel();
         panelPasswordId.setLayout(new GridLayout(3,2));
@@ -65,23 +83,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         setLanguageSelection(panelPasswordId);
         setJTextFieldAndJPasswordField(panelPasswordId);
         p = panelPasswordId;
-
-        //settings buttonPanel
-
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(2,1));
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0,height/50,height/10,height/50));
-
-        setMessageError(buttonPanel);
-        setButton(buttonPanel);
-
-        //add to background panel
-
-        panelContainer.add(panelPasswordId);
-        panelContainer.add(buttonPanel);
-        add(panelContainer);
-
-        setAction();
+        return panelPasswordId;
 
     }
 

@@ -1,6 +1,5 @@
 package DeliveryManSystem.GraphicalInterfaceClientSystem;
 
-
 import DeliveryManSystem.DatabaseSystem.Tables.DeliveryTable;
 import DeliveryManSystem.DeliveryMan;
 
@@ -42,15 +41,8 @@ public class PackagePanel extends JPanel implements ActionListener {
 
         JPanel panelContainer = new JPanel();
         panelContainer.setLayout(new GridLayout(2,1 ));
-
-        //settings panelList
-
-
-
-
-        //add to background panel
-
-        panelContainer.add(packageList());
+        panelContainer.add(deliveries());
+        panelContainer.add(deliveriesExpired());
         add(setButton(), BorderLayout.SOUTH);
         add(panelContainer);
 
@@ -58,7 +50,7 @@ public class PackagePanel extends JPanel implements ActionListener {
 
     }
 
-    private JTable packageList(){
+    private JTable deliveries(){
 
         try {
 
@@ -66,6 +58,29 @@ public class PackagePanel extends JPanel implements ActionListener {
             String[][] table = new String[deliveryMan.getDeliveries().size()][];
             int i = 0;
             for (DeliveryTable e : deliveryMan.getDeliveries() ){
+
+                String[] p = {e.getPipoID() , e.getPackID()};
+                table[i] = p;
+
+            }
+            return new JTable(table , prova );
+
+        }catch (IOException e){
+
+            System.out.println("problema con la tabella");
+            return new JTable();
+
+        }
+    }
+
+    private JTable deliveriesExpired(){
+
+        try {
+
+            String[] prova = {"Id Pipo" , "Id Pacco" };
+            String[][] table = new String[deliveryMan.getDeliveries().size()][];
+            int i = 0;
+            for (DeliveryTable e : deliveryMan.getDeliveriesExpired() ){
 
                 String[] p = {e.getPipoID() , e.getPackID()};
                 table[i] = p;

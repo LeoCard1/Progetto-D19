@@ -50,9 +50,10 @@ public class GridBoxesPanel extends JPanel {
         jp.setPreferredSize(new Dimension(width*5/19, height*2/5));
         setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/32));
 
-        JLabel textLabel = new JLabel("<html><font face = 'Times New Roman' size = 5> <center> <br> <strong>" +
+        JLabel textLabel = new JLabel("<html><font face = 'Bookman'> <center> <br> <strong>" +
                 "THANKS FOR USING <font color='green'>SMART</font> <font color='orange'>LOCKER</font> ! </strong>" +
                 "<br/><br/> <font color='#696969'>CLOSE THE BOXES AFTER FINISHING</font></center></html>\"");
+        textLabel.setFont(new Font("", Font.PLAIN, height/40));
 
         add(jp);
         add(textLabel);
@@ -138,6 +139,7 @@ public class GridBoxesPanel extends JPanel {
         ImageLoader imgLoader = new ImageLoader();
         imgLoader.loadImage(img, this);
         g.drawImage(img,0,0,this);
+        setBorder(BorderFactory.createLineBorder(new Color(139, 211, 223)));
         super.paintComponent(g);
     }
 
