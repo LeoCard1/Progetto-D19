@@ -55,7 +55,7 @@ public class BackGroundPanel extends JPanel {
         panelCont.add(loginDelManPanel,"loginDelManPanel");
         panelCont.add(startPanel, "startPanel");
 
-        changePanel("viewBoxesPanel");
+        changePanel("startPanel");
 
         setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/9));
         add(panelCont);
