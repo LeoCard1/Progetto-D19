@@ -29,6 +29,8 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
     private JButton buttonConfirm;
     private AlertLabel alertLabel;
     private LoginDelMan loginDelMan;
+    private int height;
+    private int width;
 
     /**
      * The constructor. Creates an instance of loginDelMan by passing the PickupPoint
@@ -43,6 +45,10 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
         this.bgp = bgp;
         CredentialsReceiver credentialReceiver = CredentialsReceiver.getInstance();
         credentialReceiver.addObserver(this);
+        Toolkit tk = getDefaultToolkit();
+        height = tk.getScreenSize().height;
+        width = tk.getScreenSize().width;
+
 
         initPanel();
     }
@@ -69,17 +75,18 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
     private JPanel createLoginPanel(){
         alertLabel = new AlertLabel("Correct Credentials", "Wrong Credentials");
         JLabel insertCred = new JLabel("Insert Your Credentials");
-        insertCred.setFont(new Font("", Font.PLAIN, 24));
+        insertCred.setFont(new Font("", Font.PLAIN, height/20));
         JPanel loginPanel = new JPanel();
         loginPanel.setLayout(new GridLayout(4,1));
         loginPanel.add(insertCred);
         loginPanel.add(createCredentialsPanel());
+
         loginPanel.add(createConfirmButton());
         loginPanel.add(alertLabel);
         Toolkit tk = getDefaultToolkit();
         int height = tk.getScreenSize().height;
         loginPanel.setOpaque(false);
-        JPanel p = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, height/8));
+        JPanel p = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, height/12));
         p.setOpaque(false);
         p.add(loginPanel);
         return p;
@@ -95,14 +102,14 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
      */
 
     private JPanel createCredentialsPanel(){
-        JLabel idLabel = new JLabel("id: ");
-        idLabel.setFont(new Font("", Font.PLAIN, 20));
-        JLabel passwordLabel = new JLabel("password: ");
-        passwordLabel.setFont(new Font("", Font.PLAIN, 20));
+        JLabel idLabel = new JLabel("ID: ");
+        idLabel.setFont(new Font("", Font.PLAIN, height/30));
+        JLabel passwordLabel = new JLabel("Password: ");
+        passwordLabel.setFont(new Font("", Font.PLAIN, height/30));
         JPanel credPanel = new JPanel();
         credPanel.setLayout(new GridLayout(2,2));
-        delID.setFont(new Font("", Font.PLAIN, 15));
-        password.setFont(new Font("", Font.PLAIN, 15));
+        delID.setFont(new Font("", Font.PLAIN, height/30));
+        password.setFont(new Font("", Font.PLAIN, height/30));
         credPanel.add(idLabel);
         credPanel.add(delID);
         credPanel.add(passwordLabel);
@@ -119,8 +126,10 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
      * @return the button that has been created
      */
 
-    private JButton createConfirmButton(){
+    private JPanel createConfirmButton(){
         buttonConfirm = new JButton("Confirm");
+        buttonConfirm.setPreferredSize(new Dimension(width/10, height/20));
+        buttonConfirm.setFont(new Font("", Font.PLAIN, height/50));
         buttonConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -140,9 +149,12 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
                 }
                 deleteText();
             }
-
         });
-        return buttonConfirm;
+        JPanel p0 = new JPanel();
+        p0.setLayout(new FlowLayout(FlowLayout.CENTER,0,height/30));
+        p0.setOpaque(false);
+        p0.add(buttonConfirm);
+        return p0;
     }
 
     /**
