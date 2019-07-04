@@ -138,6 +138,7 @@ public class GridBoxesPanel extends JPanel {
         ImageLoader imgLoader = new ImageLoader();
         imgLoader.loadImage(img, this);
         g.drawImage(img,0,0,this);
+        setBorder(BorderFactory.createLineBorder(new Color(139, 211, 223)));
         super.paintComponent(g);
     }
 
