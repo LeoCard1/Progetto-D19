@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static java.awt.Toolkit.getDefaultToolkit;
+
 /**
  * This class is the label that contains the successfull and failed
  * authentication strings
@@ -30,8 +32,10 @@ public class AlertLabel extends JLabel {
 
         this.correctCodeString = correctCodeString;
         this.wrongCodeString = wrongCodeString;
+        Toolkit tk = getDefaultToolkit();
+        int height = tk.getScreenSize().height;
         setHorizontalAlignment(0);
-        setFont(new Font("", Font.PLAIN, 24));
+        setFont(new Font("", Font.PLAIN, height/20));
         setVisible(false);
         createTimer();
     }

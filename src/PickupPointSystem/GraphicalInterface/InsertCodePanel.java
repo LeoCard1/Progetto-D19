@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import static java.awt.Toolkit.getDefaultToolkit;
+
 /**
  * @author Sergio Gentilini
  * @version 1.0.1
@@ -26,6 +28,7 @@ public class InsertCodePanel extends JPanel {
     private BackGroundPanel bgp;
     private JTextField textF = new JTextField();
     private AlertLabel alertLabel;
+    private int height;
     JLabel l;
     JButton b;
     // l e b sono variabili necessarie per cambiare la lingua delle tab (più informazioni nella classe SetLanguage)
@@ -39,6 +42,8 @@ public class InsertCodePanel extends JPanel {
         this.bgp = bgp;
         piPo = pipo;
         setLayout(new GridLayout(4, 1));
+        Toolkit tk = getDefaultToolkit();
+        height = tk.getScreenSize().height;
         initPanel();
     }
 
@@ -48,7 +53,7 @@ public class InsertCodePanel extends JPanel {
 
     private void initPanel() {
         alertLabel = new AlertLabel("Correct Code", "Wrong Code");
-        textF.setFont(new Font("", Font.PLAIN, 24));
+        textF.setFont(new Font("", Font.PLAIN, height/20));
         add(createInsCodLabel());
         add(textF);
         add(createConfirmButton());
@@ -58,13 +63,14 @@ public class InsertCodePanel extends JPanel {
     private JLabel createInsCodLabel(){
         JLabel insCod = new JLabel(SetLanguage.getInstance().setInsertCodePanel()[0]);
         insCod.setHorizontalAlignment(JLabel.CENTER);
-        insCod.setFont(new Font("", Font.PLAIN, 24));
+        insCod.setFont(new Font("", Font.PLAIN, height/20));
         l = insCod;
         return insCod;
     }
 
     private JButton createConfirmButton(){
         JButton confBut = new JButton(SetLanguage.getInstance().setInsertCodePanel()[1]);
+        confBut.setFont(new Font("", Font.PLAIN, height/50));
 
         b = confBut;
         confBut.addActionListener(new ActionListener() {
