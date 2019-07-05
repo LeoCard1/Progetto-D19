@@ -1,9 +1,5 @@
 package DeliveryManSystem.GraphicalInterfaceClientSystem;
 
-
-import DeliveryManSystem.Client.DeliveryManClient;
-import DeliveryManSystem.DeliveryMan;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -30,9 +26,8 @@ public class Gui extends JFrame {
 
         //settings frame
 
-        screenSize = getToolkit().getScreenSize();
-        setLayout(new BorderLayout());
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        screenSize = getToolkit().getScreenSize();
         width = screenSize.width/6;
         height = screenSize.height/2;
         setSize(new java.awt.Dimension(width, height));
@@ -40,10 +35,14 @@ public class Gui extends JFrame {
         setTitle("Amazon for poor people");
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Icons/amazonFakeIcon.png"));
         setIconImage(image);
+        setLayout(new BorderLayout());
+        getRootPane().setBorder(BorderFactory.createLineBorder(Color.black,height/80 ));
         add(new LoginPanel(this , width , height));
         setVisible(true);
 
     }
+
+
 
 
 }

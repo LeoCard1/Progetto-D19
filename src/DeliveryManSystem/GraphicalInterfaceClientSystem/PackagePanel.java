@@ -3,7 +3,6 @@ package DeliveryManSystem.GraphicalInterfaceClientSystem;
 import DeliveryManSystem.DatabaseSystem.Tables.DeliveryTable;
 import DeliveryManSystem.DeliveryMan;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,39 +13,39 @@ import java.io.IOException;
 
 public class PackagePanel extends JPanel implements ActionListener {
 
-    private Frame frame;
+    private JPanel cardContainer;
     private DeliveryMan deliveryMan;
     private JButton back;
     private int width;
     private int height;
 
-    PackagePanel(Frame frame, DeliveryMan deliveryman, int width, int height){
+    PackagePanel(JPanel cardContainer, DeliveryMan deliveryman, int width, int height){
 
         this.width = width;
         this.height = height;
         this.deliveryMan = deliveryman;
-        this.frame = frame;
-        setListPanel();
+        this.cardContainer = cardContainer;
 
     }
 
-    private void setListPanel(){
-
-        //settings panelBackground
-
-        setLayout(new BorderLayout());
-        setBorder(BorderFactory.createLineBorder(Color.black,height/80 ));
-
-        //settings panelContainer
+    public JPanel packagePanelCard(){
 
         JPanel panelContainer = new JPanel();
-        panelContainer.setLayout(new GridLayout(2,1 ));
+        panelContainer.setLayout(new GridLayout(3,1 ));
         panelContainer.add(deliveries());
         panelContainer.add(deliveriesExpired());
-        add(setButton(), BorderLayout.SOUTH);
-        add(panelContainer);
-
+        panelContainer.add(buttonPanel());
         setAction();
+        return panelContainer;
+
+    }
+
+    private JPanel buttonPanel(){
+
+        JPanel buttonPanel = new JPanel(new GridLayout(1,1));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(height/10,height/50,height/10,height/50));
+        buttonPanel.add(setButton());
+        return buttonPanel;
 
     }
 
@@ -114,17 +113,14 @@ public class PackagePanel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
 
-        newFrame();
+        previousCard();
 
     }
 
-    private void newFrame(){
+    private void previousCard(){
 
-        frame.remove(this);
-        frame.add(new StartingPanel(frame, deliveryMan, width, height));
-        frame.repaint();
-        frame.validate();
-        frame.setVisible(true);
+        CardLayout cl = (CardLayout) cardContainer.getLayout();
+        cl.previous(cardContainer);
 
     }
 

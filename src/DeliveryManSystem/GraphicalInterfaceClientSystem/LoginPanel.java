@@ -31,6 +31,7 @@ public class LoginPanel extends JPanel implements ActionListener {
     private JLabel l1, l2, l3, l4;
     private JPanel p;
     private JButton b;
+    private JPanel cardContainer;
 
     LoginPanel(Frame frame, int width, int height){
 
@@ -47,20 +48,26 @@ public class LoginPanel extends JPanel implements ActionListener {
 
     private void setLoginPanel(){
 
-        //settings panelBackground
+        add(cardLayoutSettings());
+        setAction();
 
-        setLayout(new BorderLayout());
-        setBorder(BorderFactory.createLineBorder(Color.black,height/80 ));
+    }
 
-        //settings panelContainer
+    private JPanel cardLayoutSettings(){
+
+        cardContainer = new JPanel(new CardLayout());
+        JPanel loginPanelCard = panelContainer();
+        cardContainer.add(loginPanelCard);
+        return cardContainer;
+    }
+
+    private JPanel panelContainer(){
 
         JPanel panelContainer = new JPanel();
         panelContainer.setLayout(new GridLayout(2,1 ));
         panelContainer.add(panelPasswordId());
         panelContainer.add(buttonPanel());
-        add(panelContainer);
-
-        setAction();
+        return panelContainer;
 
     }
 
@@ -222,7 +229,7 @@ public class LoginPanel extends JPanel implements ActionListener {
 
         try {
             deliveryMan = new DeliveryMan(jtf.getText(), new String(jpf.getPassword()));
-            newFrame();
+            nextCard();
         } catch (Exception e1) {
             errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[9]);
             errorLabel.setVisible(true);
@@ -230,14 +237,20 @@ public class LoginPanel extends JPanel implements ActionListener {
         }
     }
 
-    private void newFrame(){
+    private void nextCard(){
 
-        frame.remove(this);
-        frame.add(new StartingPanel(frame, deliveryMan, width, height));
-        frame.repaint();
-        frame.validate();
-        frame.setVisible(false);
-        frame.setVisible(true);
+        newCards();
+        CardLayout cl = (CardLayout) cardContainer.getLayout();
+        cl.next(cardContainer);
+
+    }
+
+    private void newCards(){
+
+        StartingPanel s =  new StartingPanel(cardContainer, deliveryMan, width, height);
+        PackagePanel p = new PackagePanel(cardContainer, deliveryMan, width, height);
+        cardContainer.add(s.startingPanelCard());
+        cardContainer.add(p.packagePanelCard());
 
     }
 
