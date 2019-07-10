@@ -24,8 +24,6 @@ public class Gui extends JFrame {
      */
     public void ClientGUI() {
 
-        //settings frame
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         screenSize = getToolkit().getScreenSize();
         width = screenSize.width/6;

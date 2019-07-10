@@ -10,6 +10,7 @@ import ServerAndDatabase.MainServer;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static junit.framework.Assert.*;
 import static org.junit.Assert.*;
 
 public class PickupPointTest {
