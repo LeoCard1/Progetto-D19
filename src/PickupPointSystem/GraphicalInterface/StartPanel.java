@@ -48,8 +48,6 @@ public class StartPanel extends JPanel {
         setLayout(new BorderLayout());
         add(createTouchToStartPanel(), BorderLayout.NORTH);
         add(createButtonStart(), BorderLayout.CENTER);
-        setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
     }
 
     /**

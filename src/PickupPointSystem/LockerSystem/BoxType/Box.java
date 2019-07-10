@@ -15,21 +15,19 @@ import java.util.Random;
 
 public abstract class Box  implements Comparable {
 
-    private boolean availability;
     protected Size size;
     private PackageTable pack;
     private int boxNumber;
     private static int numBox;
-    private Date date;
 
     /**
      * The constructor.
      */
 
     public Box(){
-        availability = true;
         numBox ++;
         boxNumber = numBox;
+        pack = null;
     }
 
     /**
@@ -38,7 +36,7 @@ public abstract class Box  implements Comparable {
      */
 
     public boolean isAvailable(){
-        return availability;
+        return pack == null;
     }
 
     public Size getSize(){
@@ -52,20 +50,13 @@ public abstract class Box  implements Comparable {
     public PackageTable getPack(){
         return pack;
     }
-    
-    public void setDate(Date date){
-        this.date = date;
-    }
 
     public void addPackage(PackageTable pack){
-        availability = false;
         this.pack = pack;
     }
 
     public void removePackage(){
-        availability = true;
         pack = null;
-        date = null;
     }
 
     public int compareTo(Object o){

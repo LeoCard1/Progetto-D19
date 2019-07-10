@@ -19,6 +19,8 @@ public class AlertLabel extends JLabel {
     private String correctCodeString;
     private String wrongCodeString;
     private Timer timer;
+    private Image correctImage;
+    private Image wrongImage;
 
     /**
      * The constructor. Creates the AlertLabel receiving as argument the string
@@ -34,8 +36,10 @@ public class AlertLabel extends JLabel {
         this.wrongCodeString = wrongCodeString;
         Toolkit tk = getDefaultToolkit();
         int height = tk.getScreenSize().height;
+        correctImage = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/correct.jpg").getScaledInstance(height/20, height/20,Image.SCALE_DEFAULT);
+        wrongImage = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/wrong.jpg").getScaledInstance(height/20, height/20,Image.SCALE_DEFAULT);
         setHorizontalAlignment(0);
-        setFont(new Font("", Font.PLAIN, height/20));
+        setFont(new Font("", Font.PLAIN, height/25));
         setVisible(false);
         createTimer();
     }
@@ -46,7 +50,8 @@ public class AlertLabel extends JLabel {
      */
 
     public void correctCode(){
-        setText(correctCodeString);
+        setIcon(new ImageIcon(correctImage));
+        setText(" "+correctCodeString);
         setForeground(Color.decode("#228b22"));
         setVisible(true);
         timer.start();
@@ -58,7 +63,8 @@ public class AlertLabel extends JLabel {
      */
 
     public void wrongCode(){
-        setText(wrongCodeString);
+        setIcon(new ImageIcon(wrongImage));
+        setText(" "+wrongCodeString);
         setForeground(Color.RED);
         setVisible(true);
         timer.start();

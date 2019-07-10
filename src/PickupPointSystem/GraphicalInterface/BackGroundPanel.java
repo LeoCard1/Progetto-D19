@@ -4,6 +4,7 @@ import PickupPointSystem.PickupPoint;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 import static java.awt.Toolkit.getDefaultToolkit;
 
@@ -24,6 +25,7 @@ public class BackGroundPanel extends JPanel {
     private CardLayout cardLayout = new CardLayout();
     private JPanel panelCont = new JPanel();
     private String currentPanel = "";
+
 
     /**
      * The constructor. Creates boxAccessPanel, viewBoxesPanel, loginDelManPanel and startPanel.
@@ -98,6 +100,7 @@ public class BackGroundPanel extends JPanel {
         cardLayout.show(panelCont,namePanel);
         currentPanel = namePanel;
     }
+
 
     /**
      * This method checks if you need to call some method of the current panel before

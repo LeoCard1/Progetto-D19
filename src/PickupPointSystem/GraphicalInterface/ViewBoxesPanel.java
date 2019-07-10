@@ -20,6 +20,8 @@ public class ViewBoxesPanel extends JPanel {
     private GridBoxesPanel gridBoxesPanel;
     private InfoPackPanel infoPackPanel;
     private BackGroundPanel bgp;
+    private int height;
+    private int width;
 
     /**
      * The constructor.
@@ -30,6 +32,9 @@ public class ViewBoxesPanel extends JPanel {
         this.bgp = bgp;
         infoPackPanel = new InfoPackPanel(pipo);
         gridBoxesPanel = new GridBoxesPanel(pipo);
+        Toolkit tk = getDefaultToolkit();
+        height = tk.getScreenSize().height;
+        width = tk.getScreenSize().width;
 
         initPanel();
     }
@@ -64,8 +69,8 @@ public class ViewBoxesPanel extends JPanel {
      */
 
     private JPanel createExitPanel(){
-        JButton buttonExit = new JButton("Exit");
-        buttonExit.addActionListener(new ActionListener() {
+        BackButton buttonBack = new BackButton();
+        buttonBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 bgp.changePanel("startPanel");
@@ -73,7 +78,7 @@ public class ViewBoxesPanel extends JPanel {
         });
         JPanel p = new JPanel();
         p.setLayout(new BorderLayout());
-        p.add(buttonExit, BorderLayout.WEST);
+        p.add(buttonBack, BorderLayout.WEST);
         p.setOpaque(false);
         return p;
     }

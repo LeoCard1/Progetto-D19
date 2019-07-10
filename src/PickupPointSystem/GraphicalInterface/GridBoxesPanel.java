@@ -48,7 +48,7 @@ public class GridBoxesPanel extends JPanel {
         jp.setLayout(new GridLayout(3, 1));
 
         jp.setPreferredSize(new Dimension(width*5/19, height*2/5));
-        setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/32));
+        setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/80));
 
         JLabel textLabel = new JLabel("<html><font face = 'Bookman'> <center> <br> <strong>" +
                 "THANKS FOR USING <font color='green'>SMART</font> <font color='orange'>LOCKER</font> ! </strong>" +

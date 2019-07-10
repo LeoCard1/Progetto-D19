@@ -49,7 +49,6 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
         height = tk.getScreenSize().height;
         width = tk.getScreenSize().width;
 
-
         initPanel();
     }
 
@@ -76,17 +75,17 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
         alertLabel = new AlertLabel("Correct Credentials", "Wrong Credentials");
         JLabel insertCred = new JLabel("Insert Your Credentials");
         insertCred.setFont(new Font("", Font.PLAIN, height/20));
+
         JPanel loginPanel = new JPanel();
         loginPanel.setLayout(new GridLayout(4,1));
         loginPanel.add(insertCred);
         loginPanel.add(createCredentialsPanel());
-
         loginPanel.add(createConfirmButton());
         loginPanel.add(alertLabel);
         Toolkit tk = getDefaultToolkit();
         int height = tk.getScreenSize().height;
         loginPanel.setOpaque(false);
-        JPanel p = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, height/12));
+        JPanel p = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, height/20));
         p.setOpaque(false);
         p.add(loginPanel);
         return p;
@@ -104,8 +103,10 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
     private JPanel createCredentialsPanel(){
         JLabel idLabel = new JLabel("ID: ");
         idLabel.setFont(new Font("", Font.PLAIN, height/30));
+        idLabel.setForeground(Color.DARK_GRAY);
         JLabel passwordLabel = new JLabel("Password: ");
         passwordLabel.setFont(new Font("", Font.PLAIN, height/30));
+        passwordLabel.setForeground(Color.DARK_GRAY);
         JPanel credPanel = new JPanel();
         credPanel.setLayout(new GridLayout(2,2));
         delID.setFont(new Font("", Font.PLAIN, height/30));
@@ -130,6 +131,7 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
         buttonConfirm = new JButton("Confirm");
         buttonConfirm.setPreferredSize(new Dimension(width/10, height/20));
         buttonConfirm.setFont(new Font("", Font.PLAIN, height/50));
+        buttonConfirm.setBackground(Color.WHITE);
         buttonConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -164,7 +166,7 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
      */
 
     private JPanel createBackPanel(){
-        JButton buttonBack = new JButton("Back");
+        BackButton buttonBack = new BackButton();
         buttonBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -208,6 +210,7 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
      * @param g the Graphics
      */
 
+
     @Override
     public void paintComponent(Graphics g){
         setOpaque(false);
@@ -218,4 +221,5 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
         g.drawImage(img,0,0,this);
         super.paintComponent(g);
     }
+
 }

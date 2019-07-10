@@ -59,7 +59,7 @@ public class SetLanguage {
     public String[] setInsertCodePanel(){
 
         if(language.equals("italiano")){
-            String[] s = {"Inserisci codice:", "Conferma"};
+            String[] s = {"Inserisci Codice", "Conferma"};
             return s;
         }else{
             String[] s = {"Insert Code", "Confirm"};

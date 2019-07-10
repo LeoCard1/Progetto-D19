@@ -29,6 +29,7 @@ public class InsertCodePanel extends JPanel {
     private JTextField textF = new JTextField();
     private AlertLabel alertLabel;
     private int height;
+    private int width;
     JLabel l;
     JButton b;
     // l e b sono variabili necessarie per cambiare la lingua delle tab (più informazioni nella classe SetLanguage)
@@ -41,9 +42,9 @@ public class InsertCodePanel extends JPanel {
     public InsertCodePanel(PickupPoint pipo, BackGroundPanel bgp) {
         this.bgp = bgp;
         piPo = pipo;
-        setLayout(new GridLayout(4, 1));
         Toolkit tk = getDefaultToolkit();
         height = tk.getScreenSize().height;
+        width = tk.getScreenSize().width;
         initPanel();
     }
 
@@ -54,6 +55,8 @@ public class InsertCodePanel extends JPanel {
     private void initPanel() {
         alertLabel = new AlertLabel("Correct Code", "Wrong Code");
         textF.setFont(new Font("", Font.PLAIN, height/20));
+        setLayout(new GridLayout(4, 1));
+        setPreferredSize(new Dimension(width/4,height/3));
         add(createInsCodLabel());
         add(textF);
         add(createConfirmButton());
@@ -64,13 +67,16 @@ public class InsertCodePanel extends JPanel {
         JLabel insCod = new JLabel(SetLanguage.getInstance().setInsertCodePanel()[0]);
         insCod.setHorizontalAlignment(JLabel.CENTER);
         insCod.setFont(new Font("", Font.PLAIN, height/20));
+
         l = insCod;
         return insCod;
     }
 
-    private JButton createConfirmButton(){
+    private JPanel createConfirmButton(){
         JButton confBut = new JButton(SetLanguage.getInstance().setInsertCodePanel()[1]);
+        confBut.setPreferredSize(new Dimension(width/10, height/20));
         confBut.setFont(new Font("", Font.PLAIN, height/50));
+        confBut.setBackground(Color.WHITE);
 
         b = confBut;
         confBut.addActionListener(new ActionListener() {
@@ -91,7 +97,10 @@ public class InsertCodePanel extends JPanel {
                 }
             }
         });
-        return confBut;
+        JPanel p = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, height/30));
+        p.setOpaque(false);
+        p.add(confBut);
+        return p;
     }
 
     /*

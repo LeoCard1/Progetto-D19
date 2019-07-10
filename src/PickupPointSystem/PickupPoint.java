@@ -82,7 +82,6 @@ public class PickupPoint {
             if(box.isAvailable() && box.getSize().compareTo(pack.getSize()) > -1){
                 box.addPackage(pack);
                 Date dateOfDelivery = new Date();
-                box.setDate(dateOfDelivery);
                 String password = box.generateBoxPassword();
                 unavailablesBoxes.put(password, box);
 
@@ -135,7 +134,6 @@ public class PickupPoint {
             for (Box box : boxList) {
                 if(delivery.hasBoxNumber(box.getBoxNumber())){
                     box.addPackage(facade.getPackage(delivery.getPackID()));
-                    box.setDate(delivery.getDateOfDelivery());
                     unavailablesBoxes.put(delivery.getBoxPassword(),box);
                 }
             }

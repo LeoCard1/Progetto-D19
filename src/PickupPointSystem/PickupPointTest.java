@@ -1,4 +1,6 @@
+/*
 package PickupPointSystem;
+
 
 import PickupPointSystem.DatabaseSystem.Tables.PackageTable;
 import PickupPointSystem.GraphicalInterface.GraIntMain;
@@ -74,4 +76,6 @@ public class PickupPointTest {
     @org.junit.Test
     public void getId() {
     }
+
 }
+*/

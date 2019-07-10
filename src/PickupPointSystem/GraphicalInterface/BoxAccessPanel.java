@@ -24,6 +24,7 @@ public class BoxAccessPanel extends JPanel {
     private JComboBox c;
     private JLabel l;
     private int n;
+    private int height;
 
     /**
      * The constructor.
@@ -36,6 +37,8 @@ public class BoxAccessPanel extends JPanel {
         piPo = pipo;
         this.gra = gra;
         this.bgp = bgp;
+        Toolkit tk = getDefaultToolkit();
+        height = tk.getScreenSize().height;
 
         initPanel();
     }
@@ -51,58 +54,58 @@ public class BoxAccessPanel extends JPanel {
     }
 
     /**
-     * This method creates the PasswordPanel by inserting the InsertCodePanel and the
-     * languagePanel into it
+     * This method creates the PasswordPanel by inserting the InsertCodePanel into it
      * @return the panel that has been created
      */
 
     private JPanel createPasswordPanel(){
         ins = new InsertCodePanel(piPo, bgp);
         ins.setOpaque(false);
-        JPanel p1 = new JPanel();
-        p1.setOpaque(false);
-        p1.setLayout(new BoxLayout(p1, BoxLayout.PAGE_AXIS));
-        p1.add(languagePanel());
-        p1.add(ins);
-        Toolkit tk = getDefaultToolkit();
-        int height = tk.getScreenSize().height;
-        JPanel p2 = new JPanel();
-        p2.setBackground(Color.BLACK);
-        p2.setOpaque(false);
-        p2.setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/8));
-        p2.add(p1);
-        return p2;
+        JPanel p = new JPanel();
+        p.setBackground(Color.BLACK);
+        p.setOpaque(false);
+        p.setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/8));
+        p.add(ins);
+        return p;
     }
 
     /**
-     * This method creates the NorthPanel by inserting the buttonExit and the
-     * buttonDelManLogin into it.
+     * This method creates the NorthPanel by inserting the buttonExit, the languagePanel
+     * and the buttonDelManLogin into it.
      * When the buttonExit is clicked, the panel is changed to startPanel.
      * When the buttonDelManLogin, the panel is changed to loginDelManPanel.
      * @return the panel that has been created
      */
 
     private JPanel createNorthPanel(){
-        JButton buttonExit = new JButton("Exit");
-        JButton buttonDelManLogin = new JButton("I'm delivery man");
+        BackButton buttonBack = new BackButton();
+        JButton buttonDelManLogin = new JButton();
+        Image delImage = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/deliveryman.jpg").getScaledInstance(height/20, height/20,Image.SCALE_DEFAULT);
+        buttonDelManLogin.setIcon(new ImageIcon(delImage));
+        buttonDelManLogin.setContentAreaFilled(false);
         buttonDelManLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 bgp.changePanel("loginDelManPanel");
             }
         });
-        buttonExit.addActionListener(new ActionListener() {
+        buttonBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 bgp.changePanel("startPanel");
             }
         });
-        JPanel p = new JPanel();
-        p.setLayout(new BorderLayout());
-        p.add(buttonExit, BorderLayout.WEST);
-        p.add(buttonDelManLogin,BorderLayout.EAST);
-        p.setOpaque(false);
-        return p;
+        JPanel langPan = new JPanel();
+        langPan.setLayout(new BorderLayout());
+        langPan.add(languagePanel(), BorderLayout.SOUTH);
+        langPan.setOpaque(false);
+        JPanel northPanel = new JPanel();
+        northPanel.setLayout(new BorderLayout());
+        northPanel.add(buttonBack, BorderLayout.WEST);
+        northPanel.add(langPan, BorderLayout.CENTER);
+        northPanel.add(buttonDelManLogin,BorderLayout.EAST);
+        northPanel.setOpaque(false);
+        return northPanel;
     }
 
     /**
@@ -113,18 +116,16 @@ public class BoxAccessPanel extends JPanel {
     private JPanel languagePanel() {
         JPanel langPan = new JPanel();
         langPan.setLayout(new BoxLayout(langPan, BoxLayout.PAGE_AXIS));
-
         JPanel panBox = new JPanel();
         panBox.setOpaque(false);
-
-
         JComboBox langBox = new JComboBox();
-
         langBox.addItem(SetLanguage.getInstance().setBoxAccessPanel()[2]);
         langBox.addItem(SetLanguage.getInstance().setBoxAccessPanel()[3]);
         c = langBox;
-
         JLabel labelBox = new JLabel(SetLanguage.getInstance().setBoxAccessPanel()[1]);
+        Image britishFlagImage = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/britishflag.jpg").getScaledInstance(height/20, height/30,Image.SCALE_DEFAULT);
+        Image italianFlagImage = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/italianflag.jpg").getScaledInstance(height/20, height/30,Image.SCALE_DEFAULT);
+        labelBox.setIcon(new ImageIcon(britishFlagImage));
         panBox.add(labelBox);
         panBox.add(langBox);
         langPan.add(panBox);
@@ -136,8 +137,10 @@ public class BoxAccessPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if(langBox.getSelectedIndex() == n){
                     SetLanguage.getInstance().changeLanguage("english");
+                    labelBox.setIcon(new ImageIcon(britishFlagImage));
                 }else{
                     SetLanguage.getInstance().changeLanguage("italiano");
+                    labelBox.setIcon(new ImageIcon(italianFlagImage));
                 }
                 refresh();
                 gra.refresh();
