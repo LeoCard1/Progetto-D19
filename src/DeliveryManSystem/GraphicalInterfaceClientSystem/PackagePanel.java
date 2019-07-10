@@ -58,6 +58,7 @@ public class PackagePanel extends JPanel implements ActionListener {
 
                 String[] p = {e.getPipoID() , e.getPackID()};
                 table[i] = p;
+                i++;
 
             }
             return new JTable(table , prova );
@@ -81,6 +82,7 @@ public class PackagePanel extends JPanel implements ActionListener {
 
                 String[] p = {e.getPipoID() , e.getPackID()};
                 table[i] = p;
+                i++;
 
             }
 
