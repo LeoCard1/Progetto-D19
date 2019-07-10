@@ -30,7 +30,7 @@ public class StartingPanel extends JPanel implements ActionListener {
 
     }
 
-    public JPanel startingPanelCard(){
+    JPanel startingPanelCard(){
 
         JPanel panelContainer = new JPanel();
         panelContainer.setLayout(new GridLayout(2,1 ));
@@ -91,7 +91,7 @@ public class StartingPanel extends JPanel implements ActionListener {
         instructionLabel = new JLabel("Selezionare l ' Id del punto di ritiro");
         Font font = new Font("Arial" ,ITALIC , 15);
         instructionLabel.setBorder(BorderFactory.createTitledBorder(instructionLabel.getBorder(),SetDMLanguage.getInstance().setLoginPanel()[7] , ITALIC , 0, font, Color.red));
-        instructionLabel.setVisible(false);
+        instructionLabel.setVisible(true);
         buttonPanel.add(instructionLabel);
 
 
@@ -136,6 +136,7 @@ public class StartingPanel extends JPanel implements ActionListener {
 
         CardLayout cl = (CardLayout) cardContainer.getLayout();
         cl.next(cardContainer);
+        revalidate();
 
     }
 

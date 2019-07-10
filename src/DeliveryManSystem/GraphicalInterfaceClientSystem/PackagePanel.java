@@ -9,8 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-
-
 public class PackagePanel extends JPanel implements ActionListener {
 
     private JPanel cardContainer;
@@ -121,6 +119,7 @@ public class PackagePanel extends JPanel implements ActionListener {
 
         CardLayout cl = (CardLayout) cardContainer.getLayout();
         cl.previous(cardContainer);
+        revalidate();
 
     }
 
