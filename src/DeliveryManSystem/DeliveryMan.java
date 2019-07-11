@@ -94,9 +94,9 @@ public class DeliveryMan {
     }
 
     /**
-     * This method returns an Arraylist of pickup point id associated with deliveries
+     * This method returns an TreeSet of pickup point id associated with deliveries
      * to be made and those that have expired
-     * @return the created ArrayList of pickup point id
+     * @return the created TreeSet of pickup point id
      * @throws IOException if the server is not available
      */
 

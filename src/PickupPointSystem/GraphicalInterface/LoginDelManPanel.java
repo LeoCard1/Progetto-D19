@@ -75,7 +75,6 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
         alertLabel = new AlertLabel("Correct Credentials", "Wrong Credentials");
         JLabel insertCred = new JLabel("Insert Your Credentials");
         insertCred.setFont(new Font("", Font.PLAIN, height/20));
-
         JPanel loginPanel = new JPanel();
         loginPanel.setLayout(new GridLayout(4,1));
         loginPanel.add(insertCred);
@@ -85,7 +84,7 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
         Toolkit tk = getDefaultToolkit();
         int height = tk.getScreenSize().height;
         loginPanel.setOpaque(false);
-        JPanel p = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, height/20));
+        JPanel p = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, height/15));
         p.setOpaque(false);
         p.add(loginPanel);
         return p;

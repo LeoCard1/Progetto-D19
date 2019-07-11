@@ -47,9 +47,7 @@ public class MainServerConnector {
     }
 
     public String packageGet(String packageID) throws IOException {
-
         return sendAndWaitForResponse("package get " + packageID);
-
     }
 
     public void removePackage(String packID) {
@@ -57,9 +55,7 @@ public class MainServerConnector {
     }
 
     public String pickupPointGet(String piPoID) throws IOException {
-
         return sendAndWaitForResponse("pickuppoint get " + piPoID);
-
     }
 
     public void close() {

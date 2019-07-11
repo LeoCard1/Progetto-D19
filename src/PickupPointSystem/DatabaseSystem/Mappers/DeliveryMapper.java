@@ -19,8 +19,6 @@ import java.util.StringTokenizer;
 
 public class DeliveryMapper implements Mapper {
 
-    /*private ArrayList<DeliveryTable> cache = new ArrayList<>();*/
-
     /**
      * This method returns an ArrayList of deliveries inside the database given the PickupPointTable
      * id passed as an argument.
@@ -30,7 +28,6 @@ public class DeliveryMapper implements Mapper {
 
     @Override
     public ArrayList<DeliveryTable> get(String pipoID) throws IOException {
-        /*if (!cache.isEmpty()) return cache;*/
 
         MainServerConnector server = new MainServerConnector();
 
@@ -59,8 +56,7 @@ public class DeliveryMapper implements Mapper {
                 DeliveryTable deliveryToAdd = new DeliveryTable(elements[0], elements [1], dateOfDelivery, boxNumber, elements[5], elements[4]);
 
                 deliveries.add(deliveryToAdd);
-                /*if (cache.size() > 50) cache.remove(0);
-                cache.add(deliveryToAdd);*/
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -76,7 +72,6 @@ public class DeliveryMapper implements Mapper {
      */
 
     public void removeRowFromPackID(String packID) throws IOException {
-        /*clearCache();*/
         MainServerConnector server = new MainServerConnector();
         server.removeRowFromPackID(packID);
         server.close();
@@ -89,14 +84,10 @@ public class DeliveryMapper implements Mapper {
      */
 
     public void update(DeliveryTable delivery) throws IOException {
-        /*clearCache();*/
         MainServerConnector server = new MainServerConnector();
         server.updateDelivery(delivery.getPackID(), String.valueOf(delivery.getDateOfDelivery().getTime()),
                 String.valueOf(delivery.getBoxNumber()), delivery.getBoxPassword());
         server.close();
     }
 
-    /*public void clearCache() {
-        cache.clear();
-    }*/
 }
