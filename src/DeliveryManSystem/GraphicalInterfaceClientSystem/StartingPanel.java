@@ -136,7 +136,7 @@ public class StartingPanel extends JPanel implements ActionListener {
 
         CardLayout cl = (CardLayout) cardContainer.getLayout();
         cl.next(cardContainer);
-        revalidate();
+
 
     }
 

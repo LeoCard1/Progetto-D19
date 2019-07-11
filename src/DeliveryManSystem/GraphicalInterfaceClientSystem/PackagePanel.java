@@ -49,46 +49,53 @@ public class PackagePanel extends JPanel implements ActionListener {
 
     private JTable deliveries(){
 
+        String[] prova = {"Id Pipo" , "Id Pacco" };
+
         try {
 
-            String[] prova = {"Id Pipo" , "Id Pacco" };
             String[][] table = new String[deliveryMan.getDeliveries().size()][];
             int i = 0;
             for (DeliveryTable e : deliveryMan.getDeliveries() ){
 
                 String[] p = {e.getPipoID() , e.getPackID()};
                 table[i] = p;
+                i++;
 
             }
-            return new JTable(table , prova );
+
+            JTable tabella = new JTable(table,prova);
+            tabella.setGridColor(Color.green);
+            return tabella;
 
         }catch (IOException e){
 
-            System.out.println("problema con la tabella");
-            return new JTable();
+           return new JTable();
 
         }
     }
 
     private JTable deliveriesExpired(){
 
+        String[] prova = {"Id Pipo" , "Id Pacco" };
         try {
 
-            String[] prova = {"Id Pipo" , "Id Pacco" };
-            String[][] table = new String[deliveryMan.getDeliveries().size()][];
+            String[][] table = new String[deliveryMan.getDeliveriesExpired().size()][];
             int i = 0;
             for (DeliveryTable e : deliveryMan.getDeliveriesExpired() ){
 
                 String[] p = {e.getPipoID() , e.getPackID()};
                 table[i] = p;
+                i++;
 
             }
 
-            return new JTable(table , prova );
+            JTable tabella = new JTable(table,prova);
+            tabella.setGridColor(Color.red);
+
+            return tabella;
 
         }catch (IOException e){
 
-            System.out.println("problema con la tabella");
             return new JTable();
 
         }
@@ -119,7 +126,7 @@ public class PackagePanel extends JPanel implements ActionListener {
 
         CardLayout cl = (CardLayout) cardContainer.getLayout();
         cl.previous(cardContainer);
-        revalidate();
+
 
     }
 
