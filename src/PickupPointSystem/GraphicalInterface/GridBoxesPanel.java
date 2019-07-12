@@ -82,6 +82,8 @@ public class GridBoxesPanel extends JPanel {
         for (int i = 0; i < elements; i++) {
             Box box = piPo.getBoxFromIndex(numBox);
             ButtonBox bu = new ButtonBox(Integer.toString(box.getBoxNumber()));
+            bu.setBorderPainted(false);
+            bu.setFocusPainted(false);
             bu.setFont(new Font(Font.SERIF, Font.BOLD, 10));
             if(box.isAvailable()) {
                 bu.setForeground(Color.decode("#228b22"));

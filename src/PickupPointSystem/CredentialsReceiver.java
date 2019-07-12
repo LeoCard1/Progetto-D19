@@ -25,7 +25,7 @@ public class CredentialsReceiver {
      * @return the one and only instance of the class
      */
 
-    public static CredentialsReceiver getInstance(){
+    public static synchronized CredentialsReceiver getInstance(){
         return instance;
     }
 
