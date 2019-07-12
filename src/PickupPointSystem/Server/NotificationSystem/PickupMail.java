@@ -1,8 +1,20 @@
 package PickupPointSystem.Server.NotificationSystem;
 
+/**
+ * @author Gruppo D19
+ * @version 1.0.0
+ */
+
 public class PickupMail extends EMailSender {
     private String email;
     private String packID;
+
+    /**
+     * This is the constructor
+     *
+     * @param email Customer's email
+     * @param packID Pack's ID
+     */
 
     public PickupMail(String email, String packID) {
         super();
@@ -10,6 +22,10 @@ public class PickupMail extends EMailSender {
         this.email = email;
         this.packID = packID;
     }
+
+    /**
+     * This method sends the emails
+     */
 
     @Override
     public void run() {

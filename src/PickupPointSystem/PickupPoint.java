@@ -5,10 +5,8 @@ import PickupPointSystem.DatabaseSystem.Tables.DeliveryTable;
 import PickupPointSystem.DatabaseSystem.Tables.PackageTable;
 import PickupPointSystem.DatabaseSystem.Tables.PickupPointTable;
 import PickupPointSystem.Exceptions.IncorrectIDException;
-import PickupPointSystem.GraphicalInterface.GraIntMain;
 import PickupPointSystem.LockerSystem.BoxType.*;
 
-import PickupPointSystem.ObserverPattern.Observer;
 import PickupPointSystem.Server.NotificationSystem.DeliveryMail;
 import PickupPointSystem.Server.PickupPointServer;
 

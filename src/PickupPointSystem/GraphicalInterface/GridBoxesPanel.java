@@ -2,7 +2,6 @@ package PickupPointSystem.GraphicalInterface;
 
 import PickupPointSystem.LockerSystem.BoxType.Box;
 import PickupPointSystem.PickupPoint;
-import PickupPointSystem.ObserverPattern.Observer;
 
 import javax.swing.*;
 import java.awt.*;

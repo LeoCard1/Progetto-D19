@@ -1,25 +1,36 @@
 package PickupPointSystem.Server;
 
 import PickupPointSystem.CredentialsReceiver;
-import PickupPointSystem.PickupPoint;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.StringTokenizer;
 
+/**
+ * @author Gruppo D19
+ * @version 1.0.0
+ */
+
 public class ManageConnectionsDeliveryMan implements ManageConnections {
 
-    private ServerSocket server;
+
     private Socket client;
     private BufferedReader in;
     private PrintStream out;
 
+    /**
+     * This method reads the String sent by the client.
+     *
+     * @param client This is the client who is connected.
+     * @param in Input Operation.
+     * @param out Output Operation.
+     * @throws IOException Exception caused by I/O operations.
+     */
+
     @Override
-    public void goConnect(ServerSocket server, Socket client, BufferedReader in, PrintStream out) throws IOException {
-        this.server = server;
+    public void goConnect(Socket client, BufferedReader in, PrintStream out) throws IOException {
         this.client = client;
         this.in = in;
         this.out = out;
@@ -29,6 +40,12 @@ public class ManageConnectionsDeliveryMan implements ManageConnections {
             manageConnection();
         }
     }
+
+    /**
+     * This method manages the connection based on the string.
+     *
+     * @throws IOException Exception caused by I/O operations.
+     */
 
     private void manageConnection() throws IOException {
         String line = in.readLine();
