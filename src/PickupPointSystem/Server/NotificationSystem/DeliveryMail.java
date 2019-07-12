@@ -3,6 +3,11 @@ package PickupPointSystem.Server.NotificationSystem;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @author Gruppo D19
+ * @version 1.0.0
+ */
+
 public class DeliveryMail extends EMailSender {
 
     private String email;
@@ -12,6 +17,18 @@ public class DeliveryMail extends EMailSender {
     private Date pickupDate;
     private String location;
     private String address;
+
+    /**
+     * This is the constructor
+     *
+     * @param email Customer's email
+     * @param piPoID PickUpPoint's ID
+     * @param packID Pack's ID
+     * @param password Customer's Password
+     * @param pickupDate Date of delivery
+     * @param location PickUpPoint location
+     * @param address PickUpPoint address
+     */
 
     public DeliveryMail(String email, String piPoID, String packID, String password, Date pickupDate, String location, String address) {
         super();
@@ -25,6 +42,10 @@ public class DeliveryMail extends EMailSender {
         this.address = address;
     }
 
+
+    /**
+     * This method sends the emails
+     */
     @Override
     public void run() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");

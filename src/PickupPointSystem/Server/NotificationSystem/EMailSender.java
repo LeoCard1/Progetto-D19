@@ -5,11 +5,20 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.*;
 
+/**
+ * @author Gruppo D19
+ * @version 1.0.0
+ */
+
 public abstract class EMailSender extends Thread {
 
     private final String username = "smartlocker.d19@gmail.com";
     private final String password = "ProgettoD19";
     private Session session;
+
+    /**
+     * This is the constructor that logs into its mail
+     */
 
     public EMailSender(){
         Properties prop = new Properties();
@@ -26,6 +35,11 @@ public abstract class EMailSender extends Thread {
                 });
     }
 
+    /**
+     * This methods sends the actual email
+     * @param email Customer's email address
+     * @param text this is the body of the mail
+     */
     protected void sendEmail(String email, String text){
 
         try {

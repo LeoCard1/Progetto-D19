@@ -9,12 +9,21 @@ import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * @author Gruppo D19
+ * @version 1.0.0
+ */
+
 public class PickupPointServer extends Thread {
 
     private ServerSocket server;
     private Socket client;
     private BufferedReader in;
     private PrintStream out;
+
+    /**
+     * Constructor.
+     */
 
     public PickupPointServer(){
 
@@ -31,6 +40,11 @@ public class PickupPointServer extends Thread {
         }
     }
 
+    /**
+     * This method initializes the server, which awaits a connection and manages it.
+     * @throws IOException Exception caused by I/O operations.
+     */
+
     private void startServer() throws IOException {
         while (true) {
             System.out.println("[1] Waiting for connection...");
@@ -46,7 +60,7 @@ public class PickupPointServer extends Thread {
             String line = in.readLine();
             ManageConnections connection = new ManageConnectionsFactory().getConnection(line);
 
-            connection.goConnect(server, client, in, out);
+            connection.goConnect(client, in, out);
         }
     }
 }

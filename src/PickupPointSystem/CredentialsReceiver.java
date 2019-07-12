@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 /**
  * This Singleton class is used to forward credentials
- * @author Andrea Stella
- * @version 1.0
+ * @author Gruppo D19
+ * @version 1.0.0
  */
 
 public class CredentialsReceiver {
@@ -32,8 +32,8 @@ public class CredentialsReceiver {
     /**
      * This method receives the credentials passed as an argument and forwards
      * them to the observers who need it
-     * @param id the id
-     * @param password the password
+     * @param id Deliveryman's ID
+     * @param password DeliveryMan's password
      */
 
     public void receiveCredentials(String id, String password){
@@ -52,8 +52,8 @@ public class CredentialsReceiver {
     /**
      * This method notifies the observers by passing the id and password
      * passed as an argument
-     * @param id the id
-     * @param password the password
+     * @param id Deliveryman's ID
+     * @param password DeliveryMan's password
      */
 
     private void notifyObservers(String id, String password){

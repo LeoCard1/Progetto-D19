@@ -7,7 +7,6 @@ import DeliveryManSystem.DatabaseSystem.Tables.DeliveryManTable;
 import DeliveryManSystem.DatabaseSystem.Tables.DeliveryTable;
 import DeliveryManSystem.DatabaseSystem.Tables.PickupPointTable;
 import DeliveryManSystem.Exceptions.UsernameOrPasswordException;
-import PickupPointSystem.ObserverPattern.Observer;
 
 
 import java.io.IOException;

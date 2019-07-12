@@ -4,8 +4,6 @@ import PickupPointSystem.Exceptions.IncorrectIDException;
 import PickupPointSystem.GraphicalInterface.ErrorGUI.ErrorGUIMain;
 import PickupPointSystem.GraphicalInterface.LoadingGUI.LoadingGUIMain;
 import PickupPointSystem.PickupPoint;
-import PickupPointSystem.ObserverPattern.Observer;
-import PickupPointSystem.Server.PickupPointServer;
 
 import javax.swing.*;
 import java.awt.*;
