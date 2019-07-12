@@ -29,7 +29,6 @@ public class PersistenceFacade {
         mappers = mapperFactory.getAllMappers();
     }
 
-
     /**
      * This method returns deliveries of the delivery man specified by the id passed as
      * an argument
@@ -38,7 +37,7 @@ public class PersistenceFacade {
      */
 
     public ArrayList<DeliveryTable> getDeliveries(String delID) throws IOException {
-        return getDeliveryMapper().get(delID);
+        return (ArrayList<DeliveryTable>) getMapper("DeliveryMapper").get(delID);
     }
 
     /**
@@ -48,7 +47,7 @@ public class PersistenceFacade {
      */
 
     public DeliveryManTable getDeliveryMan(String delID) throws IOException {
-        return getDeliveryManMapper().get(delID);
+        return (DeliveryManTable) getMapper("DeliveryManMapper").get(delID);
     }
 
 
@@ -59,24 +58,17 @@ public class PersistenceFacade {
      */
 
     public PickupPointTable getPickupPoint(String piPoID) throws IOException {
-        return getPickupPointMapper().get(piPoID);
+        return (PickupPointTable) getMapper("PickupPointMapper").get(piPoID);
     }
 
     /**
-     * This methods return the mappers.
-     * @return Mapper
+     * This method returns a mapper by the mapperName passed as an argument
+     * @param mapperName the name of the requested mapper
+     * @return the requested mapper
      */
 
-    private DeliveryMapper getDeliveryMapper(){
-        return (DeliveryMapper) mappers.get("DeliveryMapper");
-    }
-
-    private DeliveryManMapper getDeliveryManMapper(){
-        return (DeliveryManMapper) mappers.get("DeliveryManMapper");
-    }
-
-    private PickupPointMapper getPickupPointMapper() {
-        return (PickupPointMapper) mappers.get("PickupPointMapper");
+    public Mapper getMapper(String mapperName){
+        return mappers.get(mapperName);
     }
 }
 

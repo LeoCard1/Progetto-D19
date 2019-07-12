@@ -28,7 +28,7 @@ public class Gui extends JFrame {
         screenSize = getToolkit().getScreenSize();
         width = screenSize.width/6;
         height = screenSize.height/2;
-        setSize(new java.awt.Dimension(width, height));
+        setSize(new Dimension(width, height));
         //setResizable(false);
         setTitle("Amazon for poor people");
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Icons/amazonFakeIcon.png"));

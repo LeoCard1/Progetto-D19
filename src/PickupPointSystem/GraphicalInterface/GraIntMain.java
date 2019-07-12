@@ -24,7 +24,7 @@ public class GraIntMain extends JFrame {
 
     /**
      * The constructor.
-     * @param pipo The pickup point.
+     * @param piPoID The pickup point id
      */
 
     public GraIntMain(String piPoID){

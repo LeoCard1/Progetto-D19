@@ -20,7 +20,6 @@ public class BackButton extends JButton {
     public BackButton(){
         Toolkit tk = getDefaultToolkit();
         int height = tk.getScreenSize().height;
-        int width = tk.getScreenSize().width;
         Image backImage = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/back.jpg").getScaledInstance(height/20, height/20,Image.SCALE_DEFAULT);
         super.setIcon(new ImageIcon(backImage));
         super.setContentAreaFilled(false);

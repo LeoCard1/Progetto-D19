@@ -59,8 +59,9 @@ public class LoginDelMan{
     }
 
     /**
-     * This method empties the box that have inside them a package delivered for at least 3 days
-     * by the delivery man who made the access and send the pick up mail
+     * This method empties the box that have inside them a package delivered
+     * for at least 3 days by the delivery man who made the access and sends
+     * the pick up mail
      */
 
     public void pickupPackages() throws IOException {

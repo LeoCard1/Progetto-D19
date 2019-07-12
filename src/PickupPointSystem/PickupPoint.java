@@ -35,8 +35,7 @@ public class PickupPoint {
     /**
      * The constructor. Requests to the central server the information of the PickupPoint
      * associated to the id passed as an argument, through these it updates the attributes,
-     * adds the boxes to the list, updates the boxes from the database, creates the server
-     * and the graphical interface.
+     * adds the boxes to the list and creates the server
      * @param id the Pickup Point id
      */
 
@@ -190,9 +189,5 @@ public class PickupPoint {
     private void createServer() {
         PickupPointServer server = new PickupPointServer();
         server.start();
-    }
-
-    public HashMap<String, Box> getUnavailablesBoxes() {
-        return unavailablesBoxes;
     }
 }

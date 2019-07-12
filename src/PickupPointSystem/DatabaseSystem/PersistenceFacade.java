@@ -37,7 +37,8 @@ public class PersistenceFacade {
      */
 
     public void updateDelivery(DeliveryTable delivery) throws IOException {
-        getDeliveryMapper().update(delivery);
+        DeliveryMapper deliveryMapper = (DeliveryMapper) getMapper("DeliveryMapper");
+        deliveryMapper.update(delivery);
     }
 
     /**
@@ -47,7 +48,8 @@ public class PersistenceFacade {
      */
 
     public void removeDelivery(String packID) throws IOException {
-        getDeliveryMapper().removeRowFromPackID(packID);
+        DeliveryMapper deliveryMapper = (DeliveryMapper) getMapper("DeliveryMapper");
+        deliveryMapper.removeRowFromPackID(packID);
     }
 
     /**
@@ -56,9 +58,9 @@ public class PersistenceFacade {
      */
 
     public void removePack(String packID) throws IOException {
-        getPackageMapper().remove(packID);
+        PackageMapper packageMapper = (PackageMapper) getMapper("PackageMapper");
+        packageMapper.remove(packID);
     }
-
     /**
      * This method returns the deliveries to be made in the Pickup Point specified by the
      * id passed as an argument
@@ -67,7 +69,7 @@ public class PersistenceFacade {
      */
 
     public ArrayList<DeliveryTable> getDeliveries(String pipoID) throws IOException {
-        return getDeliveryMapper().get(pipoID);
+        return (ArrayList<DeliveryTable>) getMapper("DeliveryMapper").get(pipoID);
     }
 
     /**
@@ -77,7 +79,7 @@ public class PersistenceFacade {
      */
 
     public DeliveryManTable getDeliveryMan(String delID) throws IOException {
-        return getDeliveryManMapper().get(delID);
+        return (DeliveryManTable) getMapper("DeliveryManMapper").get(delID);
     }
 
     /**
@@ -87,7 +89,7 @@ public class PersistenceFacade {
      */
 
     public PackageTable getPackage(String packID) throws IOException {
-        return getPackageMapper().get(packID);
+        return (PackageTable) getMapper("PackageMapper").get(packID);
     }
 
     /**
@@ -97,38 +99,16 @@ public class PersistenceFacade {
      */
 
     public PickupPointTable getPickupPoint(String piPoID) throws IOException {
-        return getPickupPointMapper().get(piPoID);
+        return (PickupPointTable) getMapper("PickupPointMapper").get(piPoID);
     }
 
     /**
-     * @return the DeliveryMapper
+     * This method returns a mapper by the mapperName passed as an argument
+     * @param mapperName the name of the requested mapper
+     * @return the requested mapper
      */
 
-    private DeliveryMapper getDeliveryMapper(){
-        return (DeliveryMapper) mappers.get("DeliveryMapper");
-    }
-
-    /**
-     * @return the DeliveryManMapper
-     */
-
-    private DeliveryManMapper getDeliveryManMapper(){
-        return (DeliveryManMapper) mappers.get("DeliveryManMapper");
-    }
-
-    /**
-     * @return the PackageMapper
-     */
-
-    private PackageMapper getPackageMapper(){
-        return (PackageMapper) mappers.get("PackageMapper");
-    }
-
-    /**
-     * @return the PickupPointMapper
-     */
-
-    private PickupPointMapper getPickupPointMapper() {
-        return (PickupPointMapper) mappers.get("PickupPointMapper");
+    public Mapper getMapper(String mapperName){
+        return mappers.get(mapperName);
     }
 }
