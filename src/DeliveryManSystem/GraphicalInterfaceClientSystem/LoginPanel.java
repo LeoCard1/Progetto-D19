@@ -13,7 +13,7 @@ import static java.awt.Font.ITALIC;
 /**
  * This Class creates the Login Panel and what's inside it
  * @author Gruppo D19
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 public class LoginPanel extends JPanel implements ActionListener {
