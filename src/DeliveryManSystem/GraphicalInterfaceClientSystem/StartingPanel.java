@@ -93,6 +93,7 @@ public class StartingPanel extends JPanel implements ActionListener {
         button.setLayout(new GridLayout(1 ,2));
         setMessage(buttonPanel);
         setButton(button);
+        buttonPanel.add(button);
         return buttonPanel;
 
     }
@@ -153,6 +154,12 @@ public class StartingPanel extends JPanel implements ActionListener {
             nextCard();
         }
 
+        else if (string.equals(logOut.getActionCommand())){
+
+            previousCard();
+
+        }
+
         else {
             try {
 
@@ -175,6 +182,13 @@ public class StartingPanel extends JPanel implements ActionListener {
 
         CardLayout cl = (CardLayout) cardContainer.getLayout();
         cl.next(cardContainer);
+
+    }
+
+    private void previousCard(){
+
+        CardLayout cl = (CardLayout) cardContainer.getLayout();
+        cl.previous(cardContainer);
 
     }
 
