@@ -168,7 +168,7 @@ public class StartingPanel extends JPanel implements ActionListener {
 
             }catch (IOException exception){
 
-                System.out.println("Impossibile connettersi al Pickup Point");
+                System.out.println("errore passaggio id classe startingpanel");
 
             }
         }
