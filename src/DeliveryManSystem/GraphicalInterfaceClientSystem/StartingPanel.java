@@ -96,6 +96,7 @@ public class StartingPanel extends JPanel implements ActionListener {
     private void setButton(JPanel buttonPanel){
 
        viewPackage = new JButton("View Package");
+       viewPackage.setFont(new Font("",Font.BOLD,height/30));
 
        viewPackage.setBackground(Color.orange);
        viewPackage.setFocusable(false);
@@ -112,7 +113,7 @@ public class StartingPanel extends JPanel implements ActionListener {
     private void setMessage(JPanel buttonPanel){
 
         instructionLabel = new JLabel("Selezionare l ' Id del punto di ritiro");
-        Font font = new Font("Arial" ,ITALIC , 15);
+        Font font = new Font("Arial" ,ITALIC , height/25);
         instructionLabel.setBorder(BorderFactory.createTitledBorder(instructionLabel.getBorder(),SetDMLanguage.getInstance().setLoginPanel()[7] , ITALIC , 0, font, Color.red));
         instructionLabel.setVisible(true);
         buttonPanel.add(instructionLabel);
