@@ -184,6 +184,10 @@ public class PackagePanel extends JPanel implements ActionListener {
         update();
     }
 
+    /**
+     * This method updates the package table
+     */
+
     private void update(){
 
         deliveries();
