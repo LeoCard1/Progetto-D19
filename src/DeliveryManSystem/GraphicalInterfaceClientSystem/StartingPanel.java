@@ -15,6 +15,7 @@ public class StartingPanel extends JPanel implements ActionListener {
 
     private DeliveryMan deliveryMan;
     private JButton viewPackage;
+    private JButton logOut;
     private JLabel instructionLabel;
     private JComboBox pickupPointIdSelector;
     private JPanel cardContainer;
@@ -79,10 +80,12 @@ public class StartingPanel extends JPanel implements ActionListener {
     private JPanel buttonPanel(){
 
         JPanel buttonPanel = new JPanel();
+        JPanel button = new JPanel();
         buttonPanel.setLayout(new GridLayout(2,1));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(height/10,height/50,height/10,height/50));
+        button.setLayout(new GridLayout(1 ,2));
         setMessage(buttonPanel);
-        setButton(buttonPanel);
+        setButton(button);
         return buttonPanel;
 
     }
@@ -101,7 +104,14 @@ public class StartingPanel extends JPanel implements ActionListener {
        viewPackage.setBackground(Color.orange);
        viewPackage.setFocusable(false);
 
-       buttonPanel.add(viewPackage);
+       logOut = new JButton("LogOut");
+       logOut.setFont(new Font("",Font.BOLD,height/30));
+
+       logOut.setBackground(Color.orange);
+       logOut.setFocusable(false);
+
+        buttonPanel.add(logOut);
+        buttonPanel.add(viewPackage);
 
     }
 
