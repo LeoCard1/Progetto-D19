@@ -155,6 +155,7 @@ public class PackagePanel extends JPanel implements ActionListener {
         back = new JButton("Go back");
         back.setBackground(Color.orange);
         back.setFocusable(false);
+        back.setFont(new Font("", Font.BOLD, height/30));
 
         return back;
     }

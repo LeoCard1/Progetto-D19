@@ -28,7 +28,7 @@ public class Gui extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         screenSize = getToolkit().getScreenSize();
-        width = screenSize.width/6;
+        width = screenSize.width*2/11;
         height = screenSize.height/2;
         setSize(new Dimension(width, height));
         setLocation(width/100, height/100);

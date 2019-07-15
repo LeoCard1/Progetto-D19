@@ -3,6 +3,7 @@ package DeliveryManSystem.GraphicalInterfaceClientSystem;
 import DeliveryManSystem.DeliveryMan;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -56,7 +57,7 @@ public class LoginPanel extends JPanel implements ActionListener {
 
     private JPanel cardLayoutSettings(){
         cardContainer = new JPanel(new CardLayout());
-
+        cardContainer.setPreferredSize(new Dimension(width*15/16, height*15/16));
         JPanel loginPanelCard = panelContainer();
         cardContainer.add(loginPanelCard);
 
@@ -103,7 +104,11 @@ public class LoginPanel extends JPanel implements ActionListener {
     private JPanel panelPasswordId(){
         JPanel panelPasswordId = new JPanel();
         panelPasswordId.setLayout(new GridLayout(3,2));
-        panelPasswordId.setBorder(BorderFactory.createTitledBorder(SetDMLanguage.getInstance().setLoginPanel()[3]));
+        TitledBorder border = BorderFactory.createTitledBorder(SetDMLanguage.getInstance().setLoginPanel()[3]);
+        border.setTitleFont(new Font("", Font.BOLD, height/25));
+        panelPasswordId.setBorder(border);
+
+
 
         setLanguageSelection(panelPasswordId);
         setJTextFieldAndJPasswordField(panelPasswordId);
@@ -120,6 +125,8 @@ public class LoginPanel extends JPanel implements ActionListener {
 
     private void setLanguageSelection(JPanel panelPasswordId){
         JLabel labelLanguage = new JLabel(SetDMLanguage.getInstance().setLoginPanel()[4]);
+        labelLanguage.setFont(new Font("", Font.BOLD, height/34));
+
         JPanel panelLanguage = new JPanel();
         panelLanguage.setBorder(BorderFactory.createEmptyBorder(height/15,0,0,width/7));
         panelLanguage.add(labelLanguage);
@@ -128,6 +135,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         JPanel panelSelectLanguage = new JPanel();
         panelSelectLanguage.setBorder(BorderFactory.createEmptyBorder(height/15,0,0,0));
         JComboBox language = new JComboBox(languageSelector);
+        language.setFont(new Font("", Font.BOLD, height/34));
         panelSelectLanguage.add(language);
         l = language;
 
@@ -160,7 +168,11 @@ public class LoginPanel extends JPanel implements ActionListener {
         JLabel labelPassword = new JLabel(SetDMLanguage.getInstance().setLoginPanel()[5]);
         JLabel labelId = new JLabel(SetDMLanguage.getInstance().setLoginPanel()[6]);
         jpf = new JPasswordField();
+        jpf.setFont(new Font("", Font.PLAIN, height/34));
+        labelPassword.setFont(new Font("", Font.BOLD, height/34));
+        labelId.setFont(new Font("", Font.BOLD, height/34));
         jtf = new JTextField() ;
+        jtf.setFont(new Font("", Font.PLAIN, height/34));
 
         JPanel panelPassword = new JPanel();
         panelPassword.setBorder(BorderFactory.createEmptyBorder(height/20,0,0,width/7));
@@ -200,7 +212,7 @@ public class LoginPanel extends JPanel implements ActionListener {
                 .getScaledInstance(width/5, height/10, Image.SCALE_DEFAULT));
         errorLabel.setIcon(imageIcon);
 
-        Font font = new Font("Arial" ,ITALIC , 15);
+        Font font = new Font("Arial" ,ITALIC , height/25);
         errorLabel.setBorder(BorderFactory.createTitledBorder(errorLabel.getBorder(),SetDMLanguage.getInstance()
                 .setLoginPanel()[7] , ITALIC , 0, font, Color.red));
 
@@ -216,13 +228,20 @@ public class LoginPanel extends JPanel implements ActionListener {
      */
 
     private void setButton(JPanel buttonPanel){
+        //new button
 
         login = new JButton(SetDMLanguage.getInstance().setLoginPanel()[8]);
+        login.setFont(new Font("", Font.BOLD, height/30));
+
+        //settings button
+
         login.setBackground(Color.orange);
         login.setFocusable(false);
+
+        //add button
+
         buttonPanel.add(login);
         b = login;
-
     }
 
     /**
