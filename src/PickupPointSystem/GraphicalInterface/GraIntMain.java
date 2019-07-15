@@ -28,18 +28,12 @@ public class GraIntMain extends JFrame {
      */
 
     public GraIntMain(String piPoID){
-
         if(!createPickupPoint(piPoID)){
             return;
         }
-
         loadingGUIMain.setVisible(true);
         loadingGUIMain.setText("Graphical Interface Creation...");
-
-
         initPanel();
-
-
         loadingGUIMain.dispose();
     }
 
@@ -51,17 +45,13 @@ public class GraIntMain extends JFrame {
         Toolkit tk = Toolkit.getDefaultToolkit();
         height = tk.getScreenSize().height;
         width = tk.getScreenSize().width;
-
         setSize(width*2/3, height*4/5);
         setLocationRelativeTo(null);
-
         setResizable(false);
         setTitle(SetLanguage.getInstance().setGraIntMain()[0]);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
         backGroundPanel = new BackGroundPanel(piPo,this);
         add(backGroundPanel);
-
         setVisible(true);
     }
 
@@ -82,7 +72,6 @@ public class GraIntMain extends JFrame {
      */
 
     public boolean createPickupPoint(String piPoID){
-
         loadingGUIMain.setVisible(true);
         loadingGUIMain.setText("Pickup Point Creation...");
         try {

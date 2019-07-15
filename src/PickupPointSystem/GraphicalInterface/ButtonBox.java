@@ -15,8 +15,10 @@ import static java.awt.Toolkit.getDefaultToolkit;
 
 public class ButtonBox extends JButton {
 
-    private Image packImage = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/pack.jpg");
-    private Image emptyBoxImage = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/emptybox.jpg");
+    private Image packImage = getDefaultToolkit().createImage
+            ("src/PickupPointSystem/GraphicalInterface/Icons/pack.jpg");
+    private Image emptyBoxImage = getDefaultToolkit().createImage
+            ("src/PickupPointSystem/GraphicalInterface/Icons/emptybox.jpg");
 
     /**
      * The constructor.

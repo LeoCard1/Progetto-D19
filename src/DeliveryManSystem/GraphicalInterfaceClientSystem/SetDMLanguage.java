@@ -17,12 +17,14 @@ public class SetDMLanguage {
     public String[] setLoginPanel(){
 
         if(language.equals("italiano")){
-            String[] s = {"1", "Italiano", "Inglese", "Login", "Lingua   :", "Password   :", "Id   :",
-                          "Messaggio importante!", "Accedi", "Password o Id errati", "Servizio non disponibile"};
+            String[] s = {"1", "Italiano", "Inglese", "Accedi", "Lingua   :", "Password   :", "Id   :",
+                          "Messaggio importante!", "Accedi", "<html><center>Password o Id errati</html>",
+                          "<html><center>Servizio non disponibile</html>"};
             return s;
         }else{
             String[] s = {"0", "English", "Italian", "Sign In", "Language   :", "Password   :", "Id   :",
-                          "Important Message!", "Sign In", "Incorrect Password or Id", "Service unavailable"};
+                          "Important Message!", "Sign In", "<html><center>Incorrect Password or Id</html>",
+                          "<html><center>Service unavailable</html>"};
             return s;
         }
     }

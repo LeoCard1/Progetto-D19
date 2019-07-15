@@ -46,9 +46,9 @@ public class StartingPanel extends JPanel implements ActionListener {
     JPanel startingPanelCard(){
 
         JPanel panelContainer = new JPanel();
-        panelContainer.setLayout(new GridLayout(2,1 ));
-        panelContainer.add(pickupPoints());
-        panelContainer.add(buttonPanel());
+        panelContainer.setLayout(new BorderLayout());
+        panelContainer.add(pickupPoints(), BorderLayout.NORTH);
+        panelContainer.add(buttonPanel(), BorderLayout.CENTER);
         viewPackage.addActionListener(this);
         pickupPointIdSelector.addActionListener(this);
         return panelContainer;
@@ -62,9 +62,7 @@ public class StartingPanel extends JPanel implements ActionListener {
      */
 
     private JComboBox pickupPoints(){
-
         try {
-
             ArrayList<String> strings = new ArrayList<>();
             strings.addAll(deliveryMan.getPickupPointsID());
             pickupPointIdSelector = new JComboBox(strings.toArray(new String[0]));
@@ -90,7 +88,7 @@ public class StartingPanel extends JPanel implements ActionListener {
         JPanel button = new JPanel();
         buttonPanel.setLayout(new GridLayout(2,1));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(height/10,height/50,height/10,height/50));
-        button.setLayout(new GridLayout(1 ,2));
+        button.setLayout(new GridLayout(2 ,1));
         setMessage(buttonPanel);
         setButton(button);
         buttonPanel.add(button);
@@ -118,8 +116,8 @@ public class StartingPanel extends JPanel implements ActionListener {
        logOut.setBackground(Color.orange);
        logOut.setFocusable(false);
 
-        buttonPanel.add(logOut);
         buttonPanel.add(viewPackage);
+        buttonPanel.add(logOut);
 
     }
 
@@ -131,7 +129,7 @@ public class StartingPanel extends JPanel implements ActionListener {
 
     private void setMessage(JPanel buttonPanel){
 
-        instructionLabel = new JLabel("Selezionare l ' Id del punto di ritiro");
+        instructionLabel = new JLabel("<html> <center> Selezionare l ' Id del punto di ritiro</html>");
         Font font = new Font("Arial" ,ITALIC , height/25);
         instructionLabel.setBorder(BorderFactory.createTitledBorder(instructionLabel.getBorder(),SetDMLanguage.getInstance().setLoginPanel()[7] , ITALIC , 0, font, Color.red));
         instructionLabel.setVisible(true);
