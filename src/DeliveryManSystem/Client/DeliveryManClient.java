@@ -1,15 +1,11 @@
 package DeliveryManSystem.Client;
 
-import DeliveryManSystem.GraphicalInterfaceClientSystem.Gui;
-import DeliveryManSystem.ObserverResponse;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.ArrayList;
 
 public class DeliveryManClient {
     private Socket client;
