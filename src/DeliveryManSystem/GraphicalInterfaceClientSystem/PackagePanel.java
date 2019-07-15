@@ -4,6 +4,7 @@ import DeliveryManSystem.DatabaseSystem.Tables.DeliveryTable;
 import DeliveryManSystem.DeliveryMan;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -142,9 +143,12 @@ public class PackagePanel extends JPanel implements ActionListener {
 
         JTable finalTable = new JTable(table, tableParameters);
         finalTable.setGridColor(Color.red);
+        finalTable.setEnabled(false);
         return finalTable;
 
     }
+
+
 
     /**
      * This method creates the button used to cycle
