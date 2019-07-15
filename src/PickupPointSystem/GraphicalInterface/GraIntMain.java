@@ -36,6 +36,18 @@ public class GraIntMain extends JFrame {
         loadingGUIMain.setVisible(true);
         loadingGUIMain.setText("Graphical Interface Creation...");
 
+
+        initPanel();
+
+
+        loadingGUIMain.dispose();
+    }
+
+    /**
+     * This method initialises the panel.
+     */
+
+    private void initPanel() {
         Toolkit tk = Toolkit.getDefaultToolkit();
         height = tk.getScreenSize().height;
         width = tk.getScreenSize().width;
@@ -47,39 +59,10 @@ public class GraIntMain extends JFrame {
         setTitle(SetLanguage.getInstance().setGraIntMain()[0]);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        initPanel();
-        setVisible(true);
-
-        loadingGUIMain.dispose();
-    }
-
-    /**
-     * This method initialises the panel.
-     */
-
-    private void initPanel() {
-        setTheme("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         backGroundPanel = new BackGroundPanel(piPo,this);
         add(backGroundPanel);
-    }
 
-    /**
-     * This method changes the frame theme.
-     * @param className the name of the theme
-     */
-
-    public void setTheme(String className){
-        try {
-            UIManager.setLookAndFeel(className);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
+        setVisible(true);
     }
 
     /**

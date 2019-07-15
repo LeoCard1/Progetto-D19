@@ -208,8 +208,7 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
      * This method sets the background image
      * @param g the Graphics
      */
-
-
+    
     @Override
     public void paintComponent(Graphics g){
         setOpaque(false);

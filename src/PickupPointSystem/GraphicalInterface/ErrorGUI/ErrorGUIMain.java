@@ -1,18 +1,15 @@
 package PickupPointSystem.GraphicalInterface.ErrorGUI;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.HeadlessException;
-import java.awt.Toolkit;
+import PickupPointSystem.GraphicalInterface.AbstractPickupPointFrame;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ErrorGUIMain extends JFrame {
+import static java.awt.Toolkit.getDefaultToolkit;
+
+public class ErrorGUIMain extends AbstractPickupPointFrame {
     private int width;
     private int height;
     private boolean closeProgram;
@@ -41,7 +38,9 @@ public class ErrorGUIMain extends JFrame {
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
         JPanel messagePanel = new JPanel();
-        JLabel messageLabel = new JLabel("Error: " + message);
+        Image errorImage = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/wrong.jpg").getScaledInstance(height/4, height/4, Image.SCALE_DEFAULT);
+        JLabel messageLabel = new JLabel(" Error: " + message, new ImageIcon(errorImage), JLabel.CENTER);
+     
         messageLabel.setFont(new Font(Font.DIALOG, Font.PLAIN, 20));
         messageLabel.setForeground(new Color(255, 0, 0));
 

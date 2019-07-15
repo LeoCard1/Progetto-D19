@@ -1,5 +1,7 @@
 package PickupPointSystem.GraphicalInterface.LoadingGUI;
 
+import PickupPointSystem.GraphicalInterface.AbstractPickupPointFrame;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,7 +13,7 @@ import java.awt.*;
  * @version 1.0
  */
 
-public class LoadingGUIMain extends JFrame {
+public class LoadingGUIMain extends AbstractPickupPointFrame {
 
     private JLabel labelMessage;
 
