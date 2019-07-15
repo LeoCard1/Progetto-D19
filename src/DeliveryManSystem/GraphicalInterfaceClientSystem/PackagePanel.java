@@ -81,6 +81,7 @@ public class PackagePanel extends JPanel implements ActionListener {
     private JPanel jScrollTable(JTable table){
 
         JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
         JScrollPane scrollPanel = new JScrollPane(table);
         panel.add(scrollPanel , BorderLayout.CENTER);
         return panel;

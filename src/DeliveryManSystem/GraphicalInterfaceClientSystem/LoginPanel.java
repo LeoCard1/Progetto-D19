@@ -305,6 +305,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         borderl4.setTitleFont(new Font("Arial" ,ITALIC , height/25));
         borderl4.setTitleColor(Color.RED);
         l4.setBorder(borderl4);
+        l4.setText(SetDMLanguage.getInstance().setLoginPanel()[9]);
         b.setText(SetDMLanguage.getInstance().setLoginPanel()[8]);
     }
 }
