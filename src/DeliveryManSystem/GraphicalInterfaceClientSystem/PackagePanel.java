@@ -77,10 +77,12 @@ public class PackagePanel extends JPanel implements ActionListener {
 
     }
 
-    private JScrollPane jScrollTable(JTable table){
+    private JPanel jScrollTable(JTable table){
 
-        JScrollPane scrollTable = new JScrollPane(table);
-        return scrollTable;
+        JPanel panel = new JPanel();
+        JScrollPane scrollPanel = new JScrollPane(table);
+        panel.add(scrollPanel , BorderLayout.CENTER);
+        return panel;
 
     }
 
