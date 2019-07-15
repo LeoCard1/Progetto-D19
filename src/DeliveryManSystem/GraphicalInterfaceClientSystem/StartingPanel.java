@@ -11,6 +11,12 @@ import java.util.ArrayList;
 
 import static java.awt.Font.ITALIC;
 
+/**
+ * This Class creates the main panel used in the PDA
+ * @author Gruppo D19
+ * @version 1.0.2
+ */
+
 public class StartingPanel extends JPanel implements ActionListener {
 
     private DeliveryMan deliveryMan;
@@ -33,8 +39,8 @@ public class StartingPanel extends JPanel implements ActionListener {
 
     /**
      * This method builds part of the main panel.
-     * It adds the pickup point id fields and the views package button
-     * @return The panel containing the pickup point id fields and the button
+     * It adds the pickup point login fields and the "View Packages" button
+     * @return The panel containing the login fields and the button
      */
 
     JPanel startingPanelCard(){
@@ -50,9 +56,9 @@ public class StartingPanel extends JPanel implements ActionListener {
     }
 
     /**
-     * This method creates the The JCombobox
-     * whit related the id of pickup point
-     * @return JCombobox
+     * This method gets all the existing pickup points
+     * and puts them in an interactive list
+     * @return The JComboBox containing the pickup points list
      */
 
     private JComboBox pickupPoints(){
@@ -72,8 +78,9 @@ public class StartingPanel extends JPanel implements ActionListener {
     }
 
     /**
-     * This method creates the view package button
-     * and related details
+     * This method creates the panel used to view
+     * the packages carried by the deliveryman and
+     * other details
      * @return The panel containing the button
      */
 
@@ -91,14 +98,14 @@ public class StartingPanel extends JPanel implements ActionListener {
     }
 
     /**
-     *  This method builds the panel containing the
-     *  View Package button
-     * @param buttonPanel The panel containing the view package button
+     * This method builds the panel containing the
+     * "View Packages" button
+     * @param buttonPanel The panel itself
      */
 
     private void setButton(JPanel buttonPanel){
 
-       viewPackage = new JButton("View Package");
+       viewPackage = new JButton("View Packages");
        viewPackage.setFont(new Font("",Font.BOLD,height/30));
 
        viewPackage.setBackground(Color.orange);
@@ -116,7 +123,8 @@ public class StartingPanel extends JPanel implements ActionListener {
     }
 
     /**
-     * This method builds the label that contains information about the pickup points selector
+     * This method builds the label that contains
+     * information about the pickup points selector
      * @param buttonPanel The panel containing the confirmation button
      */
 
@@ -131,8 +139,8 @@ public class StartingPanel extends JPanel implements ActionListener {
     }
 
     /**
-     * This method shows a new panel if the view Package is pushed or
-     *  send credentials to the selected pickup point
+     * This method shows a new panel if the "View Packages" is
+     * pressed or sends the credentials to the selected pickup point
      * @param e The event that triggers the listener
      */
 
@@ -160,7 +168,7 @@ public class StartingPanel extends JPanel implements ActionListener {
     }
 
     /**
-     * cycles to the next one
+     * This method cycles to the next panel
      */
 
     private void nextCard(){
@@ -169,6 +177,10 @@ public class StartingPanel extends JPanel implements ActionListener {
         cl.next(cardContainer);
 
     }
+
+    /**
+     * This method updates the pickup points list
+     */
 
     private void update(){
 
