@@ -27,6 +27,7 @@ public class StartingPanel extends JPanel implements ActionListener {
     private JPanel cardContainer;
     private int width;
     private int height;
+    private String message = "Selezionare l ' Id del punto di ritiro" ;
 
     StartingPanel( JPanel cardContainer, DeliveryMan deliveryman, int width, int height){
 
@@ -50,6 +51,7 @@ public class StartingPanel extends JPanel implements ActionListener {
         panelContainer.add(pickupPoints());
         panelContainer.add(buttonPanel());
         viewPackage.addActionListener(this);
+        logOut.addActionListener(this);
         pickupPointIdSelector.addActionListener(this);
         return panelContainer;
 
@@ -131,7 +133,7 @@ public class StartingPanel extends JPanel implements ActionListener {
 
     private void setMessage(JPanel buttonPanel){
 
-        instructionLabel = new JLabel("Selezionare l ' Id del punto di ritiro");
+        instructionLabel = new JLabel(message);
         Font font = new Font("Arial" ,ITALIC , height/25);
         instructionLabel.setBorder(BorderFactory.createTitledBorder(instructionLabel.getBorder(),SetDMLanguage.getInstance().setLoginPanel()[7] , ITALIC , 0, font, Color.red));
         instructionLabel.setVisible(true);
@@ -148,18 +150,15 @@ public class StartingPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         String string = e.getActionCommand();
-
         if (string.equals(viewPackage.getActionCommand())){
 
             nextCard();
         }
-
         else if (string.equals(logOut.getActionCommand())){
 
             previousCard();
 
         }
-
         else {
             try {
 
@@ -168,8 +167,9 @@ public class StartingPanel extends JPanel implements ActionListener {
 
             }catch (IOException exception){
 
-                System.out.println("errore passaggio id classe startingpanel");
-
+                message = "Impossibile connettersi con il pickup point selezionato";
+                instructionLabel.setText(message);
+                System.out.println("prova");
             }
         }
     }
