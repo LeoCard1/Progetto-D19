@@ -295,11 +295,16 @@ public class LoginPanel extends JPanel implements ActionListener {
 
         l.addItem(SetDMLanguage.getInstance().setLoginPanel()[1]);
         l.addItem(SetDMLanguage.getInstance().setLoginPanel()[2]);
-        p.setBorder(BorderFactory.createTitledBorder(SetDMLanguage.getInstance().setLoginPanel()[3]));
+        TitledBorder border = BorderFactory.createTitledBorder(SetDMLanguage.getInstance().setLoginPanel()[3]);
+        border.setTitleFont(new Font("", Font.BOLD, height/25));
+        p.setBorder(border);
         l1.setText(SetDMLanguage.getInstance().setLoginPanel()[4]);
         l2.setText(SetDMLanguage.getInstance().setLoginPanel()[5]);
         l3.setText(SetDMLanguage.getInstance().setLoginPanel()[6]);
-        l4.setBorder(BorderFactory.createTitledBorder(SetDMLanguage.getInstance().setLoginPanel()[7]));
+        TitledBorder borderl4 = BorderFactory.createTitledBorder(SetDMLanguage.getInstance().setLoginPanel()[7]);
+        borderl4.setTitleFont(new Font("Arial" ,ITALIC , height/25));
+        borderl4.setTitleColor(Color.RED);
+        l4.setBorder(borderl4);
         b.setText(SetDMLanguage.getInstance().setLoginPanel()[8]);
     }
 }
