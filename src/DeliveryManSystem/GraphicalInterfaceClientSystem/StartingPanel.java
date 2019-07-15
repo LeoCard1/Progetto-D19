@@ -30,16 +30,51 @@ public class StartingPanel extends JPanel implements ActionListener {
 
     }
 
+    /**
+     * This method builds part of the main panel.
+     * It adds the pickup point id fields and the views package button
+     * @return The panel containing the pickup point id fields and the button
+     */
+
     JPanel startingPanelCard(){
 
         JPanel panelContainer = new JPanel();
         panelContainer.setLayout(new GridLayout(2,1 ));
         panelContainer.add(pickupPoints());
         panelContainer.add(buttonPanel());
-        setAction();
+        viewPackage.addActionListener(this);
+        pickupPointIdSelector.addActionListener(this);
         return panelContainer;
 
     }
+
+    /**
+     * This method creates the The JCombobox
+     * whit related the id of pickup point
+     * @return JCombobox
+     */
+
+    private JComboBox pickupPoints(){
+
+        try {
+
+            ArrayList<String> strings = new ArrayList<>();
+            strings.addAll(deliveryMan.getPickupPointsID());
+            pickupPointIdSelector = new JComboBox(strings.toArray(new String[0]));
+            return pickupPointIdSelector;
+
+        }catch (Exception e){
+
+            return pickupPointIdSelector;
+
+        }
+    }
+
+    /**
+     * This method creates the view package button
+     * and related details
+     * @return The panel containing the button
+     */
 
     private JPanel buttonPanel(){
 
@@ -52,39 +87,27 @@ public class StartingPanel extends JPanel implements ActionListener {
 
     }
 
-    private JComboBox pickupPoints(){
-
-       try {
-
-            ArrayList<String> stringhe = new ArrayList<>();
-            stringhe.addAll(deliveryMan.getPickupPointsID());
-            pickupPointIdSelector = new JComboBox(stringhe.toArray(new String[0]));
-            return pickupPointIdSelector;
-
-        }catch (Exception e){
-
-            return pickupPointIdSelector;
-
-        }
-    }
+    /**
+     *  This method builds the panel containing the
+     *  View Package button
+     * @param buttonPanel The panel containing the view package button
+     */
 
     private void setButton(JPanel buttonPanel){
 
-        //new button
+       viewPackage = new JButton("View Package");
 
+       viewPackage.setBackground(Color.orange);
+       viewPackage.setFocusable(false);
 
-        viewPackage = new JButton("View Package");
-
-        //settings button
-
-        viewPackage.setBackground(Color.orange);
-        viewPackage.setFocusable(false);
-
-        //add button
-
-        buttonPanel.add(viewPackage);
+       buttonPanel.add(viewPackage);
 
     }
+
+    /**
+     * This method builds the label that contains information about the pickup points selector
+     * @param buttonPanel The panel containing the confirmation button
+     */
 
     private void setMessage(JPanel buttonPanel){
 
@@ -94,15 +117,13 @@ public class StartingPanel extends JPanel implements ActionListener {
         instructionLabel.setVisible(true);
         buttonPanel.add(instructionLabel);
 
-
     }
 
-    private void setAction(){
-
-        viewPackage.addActionListener(this);
-        pickupPointIdSelector.addActionListener(this);
-
-    }
+    /**
+     * This method shows a new panel if the view Package is pushed or
+     *  send credentials to the selected pickup point
+     * @param e The event that triggers the listener
+     */
 
     public void actionPerformed(ActionEvent e) {
 
@@ -123,20 +144,18 @@ public class StartingPanel extends JPanel implements ActionListener {
 
                 System.out.println("errore passaggio id classe startingpanel");
 
-
             }
-
         }
-
-
-
     }
+
+    /**
+     * cycles to the next one
+     */
 
     private void nextCard(){
 
         CardLayout cl = (CardLayout) cardContainer.getLayout();
         cl.next(cardContainer);
-
 
     }
 

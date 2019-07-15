@@ -216,19 +216,13 @@ public class LoginPanel extends JPanel implements ActionListener {
      */
 
     private void setButton(JPanel buttonPanel){
-        //new button
 
         login = new JButton(SetDMLanguage.getInstance().setLoginPanel()[8]);
-
-        //settings button
-
         login.setBackground(Color.orange);
         login.setFocusable(false);
-
-        //add button
-
         buttonPanel.add(login);
         b = login;
+
     }
 
     /**

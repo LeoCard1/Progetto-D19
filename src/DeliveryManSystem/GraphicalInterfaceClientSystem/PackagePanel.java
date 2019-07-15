@@ -34,10 +34,12 @@ public class PackagePanel extends JPanel implements ActionListener {
      */
 
     PackagePanel(JPanel cardContainer, DeliveryMan deliveryman, int width, int height){
+
         this.width = width;
         this.height = height;
         this.deliveryMan = deliveryman;
         this.cardContainer = cardContainer;
+
     }
 
     /**
@@ -46,6 +48,7 @@ public class PackagePanel extends JPanel implements ActionListener {
      */
 
     public JPanel packagePanelCard(){
+
         JPanel panelContainer = new JPanel();
         panelContainer.setLayout(new GridLayout(3,1 ));
 
@@ -55,6 +58,7 @@ public class PackagePanel extends JPanel implements ActionListener {
 
         back.addActionListener(this);
         return panelContainer;
+
     }
 
     /**
@@ -65,11 +69,12 @@ public class PackagePanel extends JPanel implements ActionListener {
      */
 
     private JPanel buttonPanel(){
+
         JPanel buttonPanel = new JPanel(new GridLayout(1,1));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(height/10,height/50,height/10,height/50));
-
         buttonPanel.add(setButton());
         return buttonPanel;
+
     }
 
     /**
@@ -80,11 +85,13 @@ public class PackagePanel extends JPanel implements ActionListener {
      */
 
     private JTable deliveries() {
+
         try {
             return buildTable(deliveryMan.getDeliveries());
         } catch (IOException e) {
            return new JTable();
         }
+
     }
 
     /**
@@ -95,11 +102,13 @@ public class PackagePanel extends JPanel implements ActionListener {
      */
 
     private JTable deliveriesExpired() {
+
         try {
             return buildTable(deliveryMan.getDeliveriesExpired());
         } catch (IOException e) {
             return new JTable();
         }
+
     }
 
     /**
@@ -111,6 +120,7 @@ public class PackagePanel extends JPanel implements ActionListener {
      */
 
     private JTable buildTable(ArrayList<DeliveryTable> delTabList) {
+
         String[] tableParameters = {"Pickup Point ID", "Package ID"};
 
         String[][] table = new String[delTabList.size()][];
@@ -124,6 +134,7 @@ public class PackagePanel extends JPanel implements ActionListener {
         JTable finalTable = new JTable(table, tableParameters);
         finalTable.setGridColor(Color.red);
         return finalTable;
+
     }
 
     /**
@@ -133,6 +144,7 @@ public class PackagePanel extends JPanel implements ActionListener {
      */
 
     private JButton setButton(){
+
         back = new JButton("Go back");
         back.setBackground(Color.orange);
         back.setFocusable(false);
@@ -147,6 +159,7 @@ public class PackagePanel extends JPanel implements ActionListener {
      */
 
     public void actionPerformed(ActionEvent e) {
+
         previousCard();
     }
 
@@ -158,4 +171,5 @@ public class PackagePanel extends JPanel implements ActionListener {
         CardLayout cl = (CardLayout)cardContainer.getLayout();
         cl.previous(cardContainer);
     }
+
 }
