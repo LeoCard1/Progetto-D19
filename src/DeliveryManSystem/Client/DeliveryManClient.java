@@ -13,8 +13,7 @@ public class DeliveryManClient {
     private PrintStream out;
 
 
-    public void connectToPickupPoint(String ip, String id, String password) {
-        try {
+    public void connectToPickupPoint(String ip, String id, String password) throws IOException {
             client = new Socket();
             client.connect(new InetSocketAddress(ip, 8000));
 
@@ -22,11 +21,6 @@ public class DeliveryManClient {
             out = new PrintStream(client.getOutputStream(), true);
 
             goConnect(id, password);
-
-        } catch(IOException e) {
-            e.printStackTrace();
-            System.err.println("Error: can't connect to the pickup point.");
-        }
     }
 
     private void goConnect(String id, String password) throws IOException {

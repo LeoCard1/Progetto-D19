@@ -1,12 +1,14 @@
 package DeliveryManSystem.GraphicalInterfaceClientSystem;
 
 import DeliveryManSystem.DeliveryMan;
+import DeliveryManSystem.Exceptions.UsernameOrPasswordException;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import static java.awt.Font.ITALIC;
 
@@ -254,10 +256,13 @@ public class LoginPanel extends JPanel implements ActionListener {
         try {
             deliveryMan = new DeliveryMan(jtf.getText(), new String(jpf.getPassword()));
             nextCard();
-        } catch (Exception e1) {
+        } catch (UsernameOrPasswordException u) {
             errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[9]);
             errorLabel.setVisible(true);
-            e1.printStackTrace();
+        } catch (IOException e1){
+            errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[10]);
+            errorLabel.setVisible(true);
+
         }
     }
 
@@ -305,7 +310,6 @@ public class LoginPanel extends JPanel implements ActionListener {
         borderl4.setTitleFont(new Font("Arial" ,ITALIC , height/25));
         borderl4.setTitleColor(Color.RED);
         l4.setBorder(borderl4);
-        l4.setText(SetDMLanguage.getInstance().setLoginPanel()[9]);
         b.setText(SetDMLanguage.getInstance().setLoginPanel()[8]);
     }
 }

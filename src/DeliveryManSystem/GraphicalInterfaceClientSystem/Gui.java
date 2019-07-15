@@ -31,7 +31,7 @@ public class Gui extends JFrame {
         width = screenSize.width*2/11;
         height = screenSize.height/2;
         setSize(new Dimension(width, height));
-        setLocation(width/100, height/100);
+        setLocationRelativeTo(null);
         //setResizable(false);
 
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Icons/amazonFakeIcon.png"));

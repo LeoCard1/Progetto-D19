@@ -96,43 +96,6 @@ public class InsertCodePanel extends JPanel {
         return p;
     }
 
-    /*
-    private JPanel createPasswordField() {
-        JPanel passwordPanel = new JPanel();
-        passwordPanel.setLayout((new GridLayout(1, 8)));
-        for(int i = 0; i<8; i++){
-            texts.add(new JTextField());
-        }
-        for (JTextField text : texts) {
-            passwordPanel.add(text);
-            text.setFont(new Font("", Font.PLAIN, 24));
-            int index = texts.indexOf(text);
-            text.addKeyListener(new KeyListener() {
-                @Override
-                public void keyTyped(KeyEvent keyEvent) {
-                }
-                @Override
-                public void keyPressed(KeyEvent keyEvent) {
-                }
-                @Override
-                public void keyReleased(KeyEvent keyEvent) {
-                    if (keyEvent.getKeyCode() == KeyEvent.VK_BACK_SPACE && index!=0) {
-                        text.setText("");
-                        texts.get(index-1).setEditable(true);
-                        texts.get(index-1).grabFocus();
-                        return;
-                    }
-                    if(index!=texts.size()-1) {
-                        texts.get(index + 1).grabFocus();
-                        text.setEditable(false);
-                    }
-
-                }
-            });
-        }
-        return passwordPanel;
-    }
-    */
 
     /**
      * This method deletes the text from the JTextField textF.
