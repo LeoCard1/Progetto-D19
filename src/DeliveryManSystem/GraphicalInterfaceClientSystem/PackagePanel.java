@@ -52,8 +52,8 @@ public class PackagePanel extends JPanel implements ActionListener {
         JPanel panelContainer = new JPanel();
         panelContainer.setLayout(new GridLayout(3,1 ));
 
-        panelContainer.add(deliveries());
-        panelContainer.add(deliveriesExpired());
+        panelContainer.add(jScrollTable(deliveries()));
+        panelContainer.add(jScrollTable(deliveriesExpired()));
         panelContainer.add(buttonPanel());
 
         back.addActionListener(this);
@@ -74,6 +74,13 @@ public class PackagePanel extends JPanel implements ActionListener {
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(height/10,height/50,height/10,height/50));
         buttonPanel.add(setButton());
         return buttonPanel;
+
+    }
+
+    private JScrollPane jScrollTable(JTable table){
+
+        JScrollPane scrollTable = new JScrollPane(table);
+        return scrollTable;
 
     }
 
@@ -168,8 +175,18 @@ public class PackagePanel extends JPanel implements ActionListener {
      */
 
     private void previousCard(){
+
         CardLayout cl = (CardLayout)cardContainer.getLayout();
         cl.previous(cardContainer);
+        update();
+    }
+
+    private void update(){
+
+        deliveries();
+        deliveriesExpired();
+        revalidate();
+
     }
 
 }

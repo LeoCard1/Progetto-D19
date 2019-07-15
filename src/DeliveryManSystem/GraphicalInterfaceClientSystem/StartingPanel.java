@@ -132,13 +132,13 @@ public class StartingPanel extends JPanel implements ActionListener {
         if (string.equals(viewPackage.getActionCommand())){
 
             nextCard();
-
         }
 
         else {
             try {
 
                 deliveryMan.sendCredentials((String)pickupPointIdSelector.getSelectedItem());
+                update();
 
             }catch (IOException exception){
 
@@ -156,6 +156,13 @@ public class StartingPanel extends JPanel implements ActionListener {
 
         CardLayout cl = (CardLayout) cardContainer.getLayout();
         cl.next(cardContainer);
+
+    }
+
+    private void update(){
+
+        pickupPoints();
+        revalidate();
 
     }
 
