@@ -116,6 +116,8 @@ public class StartingPanel extends JPanel implements ActionListener {
        logOut.setBackground(Color.orange);
        logOut.setFocusable(false);
 
+       logOut.addActionListener(this);
+
         buttonPanel.add(viewPackage);
         buttonPanel.add(logOut);
 
