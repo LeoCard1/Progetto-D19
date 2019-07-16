@@ -43,14 +43,16 @@ public class StartingPanel extends JPanel implements ActionListener {
      * @return The panel containing the login fields and the button
      */
 
-    JPanel startingPanelCard(){
-
+    public JPanel startingPanelCard(){
         JPanel panelContainer = new JPanel();
         panelContainer.setLayout(new BorderLayout());
-        panelContainer.add(pickupPoints(), BorderLayout.NORTH);
+
+        createAndRefreshPickupPointsList(panelContainer);
+
         panelContainer.add(buttonPanel(), BorderLayout.CENTER);
         viewPackage.addActionListener(this);
         pickupPointIdSelector.addActionListener(this);
+
         return panelContainer;
 
     }
@@ -66,6 +68,7 @@ public class StartingPanel extends JPanel implements ActionListener {
             ArrayList<String> strings = new ArrayList<>();
             strings.addAll(deliveryMan.getPickupPointsID());
             pickupPointIdSelector = new JComboBox(strings.toArray(new String[0]));
+
             return pickupPointIdSelector;
 
         }catch (Exception e){
@@ -203,6 +206,32 @@ public class StartingPanel extends JPanel implements ActionListener {
 
     }
 
+    private void createAndRefreshPickupPointsList(JPanel panelContainer) {
+        JPanel subPanel = new JPanel();
+        subPanel.setLayout(new BorderLayout());
 
+        JPanel centeredPanel = new JPanel();
+        JButton refreshButton = new JButton("@");
+
+        centeredPanel.add(refreshButton);
+
+        subPanel.add(centeredPanel, BorderLayout.NORTH);
+
+        Component piPoList = pickupPoints();
+        subPanel.add(piPoList, BorderLayout.SOUTH);
+
+        panelContainer.add(subPanel, BorderLayout.NORTH);
+
+        ActionListener buttonListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                panelContainer.remove(subPanel);
+                createAndRefreshPickupPointsList(panelContainer);
+                panelContainer.revalidate();
+            }
+        };
+
+        refreshButton.addActionListener(buttonListener);
+    }
 
 }
