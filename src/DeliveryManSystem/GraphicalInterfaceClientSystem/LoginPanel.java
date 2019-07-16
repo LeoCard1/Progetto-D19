@@ -2,6 +2,7 @@ package DeliveryManSystem.GraphicalInterfaceClientSystem;
 
 import DeliveryManSystem.DeliveryMan;
 import DeliveryManSystem.Exceptions.UsernameOrPasswordException;
+import DeliveryManSystem.Observers.ObserverLogin;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -9,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static java.awt.Font.ITALIC;
 
@@ -18,15 +20,16 @@ import static java.awt.Font.ITALIC;
  * @version 1.0.2
  */
 
-public class LoginPanel extends JPanel implements ActionListener {
+public class LoginPanel extends JPanel {
 
     private DeliveryMan deliveryMan;
-    private Frame frame;
+    private ArrayList<ObserverLogin> observers = new ArrayList<>();
     private String[] languageSelector = {SetDMLanguage.getInstance().setLoginPanel()[1], SetDMLanguage.getInstance().setLoginPanel()[2]};
     private JButton login;
     private JPasswordField jpf;
     private JTextField jtf;
     private JLabel errorLabel;
+    private BackgroundPanel bgp;
     private int width;
     private int height;
     private int n;
@@ -34,12 +37,11 @@ public class LoginPanel extends JPanel implements ActionListener {
     private JLabel l1, l2, l3, l4;
     private JPanel p;
     private JButton b;
-    private JPanel cardContainer;
 
-    LoginPanel(Frame frame, int width, int height){
+    LoginPanel(BackgroundPanel bgp, int width, int height){
         this.width = width;
         this.height = height;
-        this.frame = frame;
+        this.bgp = bgp;
         setLoginPanel();
     }
 
@@ -48,37 +50,31 @@ public class LoginPanel extends JPanel implements ActionListener {
      */
 
     private void setLoginPanel(){
-        add(cardLayoutSettings());
-        login.addActionListener(this);
-    }
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(2,1 ));
 
-    /**
-     * This method creates the main panel and adds it
-     * @return The panel itself
-     */
+        mainPanel.add(panelPasswordId());
+        mainPanel.add(buttonPanel());
+        add(mainPanel);
 
-    private JPanel cardLayoutSettings(){
-        cardContainer = new JPanel(new CardLayout());
-        cardContainer.setPreferredSize(new Dimension(width*15/16, height*15/16));
-        JPanel loginPanelCard = panelContainer();
-        cardContainer.add(loginPanelCard);
+        ActionListener panelListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                try {
+                    deliveryMan = new DeliveryMan(jtf.getText(), new String(jpf.getPassword()));
+                    notifyObservers(deliveryMan);
+                    bgp.changePanel("startingPanel");
+                } catch (UsernameOrPasswordException u) {
+                    errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[9]);
+                    errorLabel.setVisible(true);
+                } catch (IOException e1){
+                    errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[10]);
+                    errorLabel.setVisible(true);
+                }
+            }
+        };
 
-        return cardContainer;
-    }
-
-    /**
-     * This method builds part of the main panel.
-     * It adds the login fields and the confirmation button
-     * @return The panel containing the login fields and the button
-     */
-
-    private JPanel panelContainer(){
-        JPanel panelContainer = new JPanel();
-        panelContainer.setLayout(new GridLayout(2,1 ));
-
-        panelContainer.add(panelPasswordId());
-        panelContainer.add(buttonPanel());
-        return panelContainer;
+        login.addActionListener(panelListener);
     }
 
     /**
@@ -147,7 +143,7 @@ public class LoginPanel extends JPanel implements ActionListener {
         ActionListener languageListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(language.getSelectedIndex() == n){
+                if (language.getSelectedIndex() == n) {
                     SetDMLanguage.getInstance().changeLanguage("english");
                 } else {
                     SetDMLanguage.getInstance().changeLanguage("italiano");
@@ -247,49 +243,6 @@ public class LoginPanel extends JPanel implements ActionListener {
     }
 
     /**
-     * This method shows a new panel if the inserted
-     * credentials are accepted by the main server
-     * @param e The event that triggers the listener
-     */
-
-    public void actionPerformed(ActionEvent e) {
-        try {
-            deliveryMan = new DeliveryMan(jtf.getText(), new String(jpf.getPassword()));
-            nextCard();
-        } catch (UsernameOrPasswordException u) {
-            errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[9]);
-            errorLabel.setVisible(true);
-        } catch (IOException e1){
-            errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[10]);
-            errorLabel.setVisible(true);
-
-        }
-    }
-
-    /**
-     * This method adds more panels and
-     * cycles to the next one
-     */
-
-    private void nextCard(){
-        newCards();
-        CardLayout cl = (CardLayout)cardContainer.getLayout();
-        cl.next(cardContainer);
-    }
-
-    /**
-     * This method adds further panels to the
-     * main panel, which uses a card layout
-     */
-
-    private void newCards(){
-        StartingPanel s =  new StartingPanel(cardContainer, deliveryMan, width, height);
-        PackagePanel p = new PackagePanel(cardContainer, deliveryMan, width, height);
-        cardContainer.add(s.startingPanelCard());
-        cardContainer.add(p.packagePanelCard());
-    }
-
-    /**
      * This method refreshes the panel after
      * the language has been changed
      */
@@ -311,5 +264,15 @@ public class LoginPanel extends JPanel implements ActionListener {
         borderl4.setTitleColor(Color.RED);
         l4.setBorder(borderl4);
         b.setText(SetDMLanguage.getInstance().setLoginPanel()[8]);
+    }
+
+    public void addObserver(ObserverLogin ob){
+        observers.add(ob);
+    }
+
+    public void notifyObservers(DeliveryMan deliveryMan){
+        for(ObserverLogin ob : observers){
+            ob.update(deliveryMan);
+        }
     }
 }

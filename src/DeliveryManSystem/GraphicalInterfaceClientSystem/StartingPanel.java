@@ -24,16 +24,17 @@ public class StartingPanel extends JPanel implements ActionListener {
     private JButton logOut;
     private JLabel instructionLabel;
     private JComboBox pickupPointIdSelector;
-    private JPanel cardContainer;
+    private BackgroundPanel bgp;
     private int width;
     private int height;
 
-    StartingPanel( JPanel cardContainer, DeliveryMan deliveryman, int width, int height){
-
+    StartingPanel( BackgroundPanel bgp, DeliveryMan deliveryman, int width, int height){
+        this.bgp = bgp;
         this.width = width;
         this.height = height;
         this.deliveryMan = deliveryman;
-        this.cardContainer = cardContainer;
+
+        initPanel();
 
     }
 
@@ -43,17 +44,17 @@ public class StartingPanel extends JPanel implements ActionListener {
      * @return The panel containing the login fields and the button
      */
 
-    public JPanel startingPanelCard(){
-        JPanel panelContainer = new JPanel();
-        panelContainer.setLayout(new BorderLayout());
+    private void initPanel(){
 
-        createAndRefreshPickupPointsList(panelContainer);
+        setLayout(new BorderLayout());
 
-        panelContainer.add(buttonPanel(), BorderLayout.CENTER);
+        createAndRefreshPickupPointsList(this);
+
+        add(buttonPanel(), BorderLayout.CENTER);
         viewPackage.addActionListener(this);
         pickupPointIdSelector.addActionListener(this);
 
-        return panelContainer;
+
 
     }
 
@@ -153,13 +154,12 @@ public class StartingPanel extends JPanel implements ActionListener {
         String string = e.getActionCommand();
 
         if (string.equals(viewPackage.getActionCommand())){
-
-            nextCard();
+            bgp.changePanel("packagePanel");
         }
 
         else if (string.equals(logOut.getActionCommand())){
 
-            previousCard();
+            bgp.changePanel("loginPanel");
 
         }
 
@@ -177,23 +177,7 @@ public class StartingPanel extends JPanel implements ActionListener {
         }
     }
 
-    /**
-     * This method cycles to the next panel
-     */
 
-    private void nextCard(){
-
-        CardLayout cl = (CardLayout) cardContainer.getLayout();
-        cl.next(cardContainer);
-
-    }
-
-    private void previousCard(){
-
-        CardLayout cl = (CardLayout) cardContainer.getLayout();
-        cl.previous(cardContainer);
-
-    }
 
     /**
      * This method updates the pickup points list
