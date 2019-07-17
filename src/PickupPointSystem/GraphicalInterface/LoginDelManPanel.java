@@ -29,6 +29,7 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
     private JButton buttonConfirm;
     private AlertLabel alertLabel;
     private LoginDelMan loginDelMan;
+    JLabel insertCred;
     private int height;
     private int width;
 
@@ -72,8 +73,8 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
      */
 
     private JPanel createLoginPanel(){
-        alertLabel = new AlertLabel("Correct Credentials", "Wrong Credentials");
-        JLabel insertCred = new JLabel("Insert Your Credentials");
+        alertLabel = new AlertLabel(SetLanguage.getInstance().setLoginDelManPanel()[1], SetLanguage.getInstance().setLoginDelManPanel()[2]);
+        insertCred = new JLabel(SetLanguage.getInstance().setLoginDelManPanel()[0]);
         insertCred.setFont(new Font("", Font.PLAIN, height/20));
         JPanel loginPanel = new JPanel();
         loginPanel.setLayout(new GridLayout(4,1));
@@ -127,7 +128,7 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
      */
 
     private JPanel createConfirmButton(){
-        buttonConfirm = new JButton("Confirm");
+        buttonConfirm = new JButton(SetLanguage.getInstance().setLoginDelManPanel()[3]);
         buttonConfirm.setPreferredSize(new Dimension(width/10, height/20));
         buttonConfirm.setFont(new Font("", Font.PLAIN, height/50));
         buttonConfirm.setBackground(Color.WHITE);
@@ -159,7 +160,7 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
     }
 
     /**
-     * This method creates the back panel by inserting into it tha back button.
+     * This method creates the back panel by inserting into it the back button.
      * When the back button is clicked the panel will change to BoxAccessPanel
      * @return the panel that has been created
      */
@@ -218,6 +219,16 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
         imgLoader.loadImage(img, this);
         g.drawImage(img,0,0,this);
         super.paintComponent(g);
+    }
+
+    /**
+     * This method is used to change the language of the text
+     */
+
+    public void refresh() {
+        insertCred.setText(SetLanguage.getInstance().setLoginDelManPanel()[0]);
+        alertLabel.refreshDelMan();
+        buttonConfirm.setText(SetLanguage.getInstance().setLoginDelManPanel()[3]);
     }
 
 }

@@ -85,4 +85,18 @@ public class AlertLabel extends JLabel {
             }
         });
     }
+
+    /**
+     * These methods are used to change the language of the text
+     */
+
+    public void refreshDelMan(){
+        correctCodeString = SetLanguage.getInstance().setLoginDelManPanel()[1];
+        wrongCodeString = SetLanguage.getInstance().setLoginDelManPanel()[2];
+    }
+
+    public void refreshInsCod(){
+        correctCodeString = SetLanguage.getInstance().setInsertCodePanel()[2];
+        wrongCodeString = SetLanguage.getInstance().setInsertCodePanel()[3];
+    }
 }
