@@ -50,12 +50,12 @@ public class LoginPanel extends JPanel {
      */
 
     private void setLoginPanel(){
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(2,1 ));
 
-        mainPanel.add(panelPasswordId());
-        mainPanel.add(buttonPanel());
-        add(mainPanel);
+        setLayout(new GridLayout(2,1 ));
+
+        add(panelPasswordId());
+        add(buttonPanel());
+
 
         ActionListener panelListener = new ActionListener() {
             @Override

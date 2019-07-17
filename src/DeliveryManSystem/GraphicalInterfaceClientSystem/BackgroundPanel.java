@@ -18,6 +18,8 @@ public class BackgroundPanel extends JPanel implements ObserverLogin {
     private JPanel panelContainer = new JPanel();
 
     public BackgroundPanel(int width, int height) {
+        this.width = width;
+        this.height = height;
 
         panelContainer.setPreferredSize(new Dimension(width*15/16, height*15/16));
 

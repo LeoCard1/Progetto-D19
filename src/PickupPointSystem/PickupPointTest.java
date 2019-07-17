@@ -1,4 +1,5 @@
 package PickupPointSystem;
+/*
 
 import PickupPointSystem.DatabaseSystem.Mappers.MainServerConnector;
 import ServerAndDatabase.ServerMain;
@@ -57,4 +58,6 @@ public class PickupPointTest {
             fail();
         }
     }
+
 }
+*/
