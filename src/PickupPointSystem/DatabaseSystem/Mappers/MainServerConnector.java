@@ -13,10 +13,10 @@ public class MainServerConnector {
     private PrintStream out;
 
     public MainServerConnector() throws IOException {
-        startServer();
+        startClient();
     }
 
-    private void startServer() throws IOException {
+    private void startClient() throws IOException {
 
         System.out.println("[0] Connecting to main server...");
         client.connect(new InetSocketAddress("127.0.0.1", 8600));

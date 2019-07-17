@@ -1,7 +1,6 @@
 package PickupPointSystem;
 
 import PickupPointSystem.DatabaseSystem.Mappers.MainServerConnector;
-import PickupPointSystem.GraphicalInterface.GraIntMain;
 import ServerAndDatabase.ServerMain;
 
 import java.io.IOException;
