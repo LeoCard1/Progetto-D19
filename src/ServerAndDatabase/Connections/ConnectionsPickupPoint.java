@@ -23,6 +23,20 @@ public class ConnectionsPickupPoint implements Connection {
         if (nextToken.equalsIgnoreCase("get")) {
             get(strTok, out);
         }
+
+        /*
+        pickuppoint test
+         */
+        if (nextToken.equalsIgnoreCase("test")) {
+            addTestPackages();
+        }
+
+        /*
+        pickuppoint testpassword
+         */
+        if (nextToken.equalsIgnoreCase("testpassword")) {
+            returnTestPassword(out);
+        }
     }
 
     private void get(StringTokenizer strTok, PrintStream out) throws SQLException {
@@ -38,5 +52,18 @@ public class ConnectionsPickupPoint implements Connection {
         }
 
         out.println(strBuf);
+    }
+
+    private void addTestPackages() throws SQLException {
+        statement.executeUpdate("INSERT INTO `QaZzMlKPoa`.`packages` (`id`, `width`, `height`, `length`, `customer_email`)" +
+                "VALUES ('test', '10', '10', '10', 'random@gmail.com');\n");
+        statement.executeUpdate("INSERT INTO `QaZzMlKPoa`.`deliveries` (`package_id`, `pickuppoint_id`, `deliveryman_id`)" +
+                "VALUES ('test', 'TEST', 'test');\n");
+    }
+
+    private void returnTestPassword(PrintStream out) throws SQLException {
+        ResultSet res = statement.executeQuery("select * from deliveries where package_id = 'test'");
+        res.next();
+        out.println(res.getString("box_password"));
     }
 }

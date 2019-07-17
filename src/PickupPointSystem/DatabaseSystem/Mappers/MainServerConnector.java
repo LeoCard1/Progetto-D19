@@ -58,6 +58,14 @@ public class MainServerConnector {
         return sendAndWaitForResponse("pickuppoint get " + piPoID);
     }
 
+    public void addTestPackages() {
+        out.println("pickuppoint test");
+    }
+
+    public String getTestPassword() throws IOException {
+        return sendAndWaitForResponse("pickuppoint testpassword");
+    }
+
     public void close() {
         out.println("close");
     }
