@@ -1,78 +1,60 @@
-/*package PickupPointSystem;
+package PickupPointSystem;
 
-import PickupPointSystem.DatabaseSystem.Tables.PackageTable;
-import PickupPointSystem.GraphicalInterface.GraIntMain;
-import PickupPointSystem.LockerSystem.BoxType.Box;
-import ServerAndDatabase.MainServer;
+import PickupPointSystem.DatabaseSystem.Mappers.MainServerConnector;
+import ServerAndDatabase.ServerMain;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import static junit.framework.Assert.*;
 import static org.junit.Assert.*;
 
 public class PickupPointTest {
+    private static ServerMain serverMain;
+    private static PickupPoint pickupPoint;
 
-    private PickupPoint pickupPoint;
+    @org.junit.BeforeClass
+    public static void startMainServer() {
+        try {
+            serverMain = new ServerMain();
+            pickupPoint = new PickupPoint("TEST");
+        } catch (IOException e) {
+            System.err.println("Error: can't connect to the server.");
+            e.printStackTrace();
 
-    @org.junit.Before
-    public void setUp() throws Exception {
-       // MainServer server = new MainServer();
-        //server.start();
-       //new GraIntMain("PAV01");
-        ArrayList<Box> boxList = new ArrayList<>();
-        pickupPoint=  new PickupPoint("PAV01");
-
-        assertNotNull("Pickup creato",pickupPoint);
-        assertNotNull("boxList creata",boxList);
-
-
-
+            fail();
+        }
     }
-
-    @org.junit.After
-    public void tearDown() throws Exception {
-    }
-
 
     @org.junit.Test
-    public void addPackage() throws IOException{
-        pickupPoint.updateBox();
-        PackageTable packageTable = new PackageTable("packTabId",3.5,4.5,5.5,"smartlocker.d19@gmail.com");
-        pickupPoint.addPackage(packageTable);
-        assertTrue(pickupPoint.getUnavailablesBoxes().containsKey("packTabId"));
+    public void addPackage() {
+        try {
+            MainServerConnector serverConnector = new MainServerConnector();
+            serverConnector.addTestPackages();
+            serverConnector.close();
 
-        pickupPoint.emptyBox("packTabId");
-        assertFalse(pickupPoint.getUnavailablesBoxes().containsKey("packTabId"));
+            LoginDelMan delMan = new LoginDelMan(pickupPoint);
+            delMan.login("test", "test");
+            delMan.addDeliverymanPackages();
+        } catch (IOException e) {
+            System.err.println("Error: can't connect to the server.");
+            e.printStackTrace();
+
+            fail();
+        }
     }
 
     @org.junit.Test
     public void emptyBox() {
+        try {
+            MainServerConnector serverConnector = new MainServerConnector();
+            String password = serverConnector.getTestPassword().replaceAll("\n", "");
+            serverConnector.close();
+
+            assertTrue(pickupPoint.emptyBox(password));
+        } catch (IOException e) {
+            System.err.println("Error: can't connect to the server.");
+            e.printStackTrace();
+
+            fail();
+        }
     }
-
-
-
-    @org.junit.Test
-    public void updateBox() {
-    }
-
-    @org.junit.Test
-    public void getSmallBoxes() {
-    }
-
-    @org.junit.Test
-    public void getMediumBoxes() {
-    }
-
-    @org.junit.Test
-    public void getLargeBoxes() {
-    }
-
-    @org.junit.Test
-    public void getBoxFromIndex() {
-    }
-
-    @org.junit.Test
-    public void getId() {
-    }
-}*/
+}

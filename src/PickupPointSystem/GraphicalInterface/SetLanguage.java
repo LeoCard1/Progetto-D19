@@ -7,7 +7,7 @@ public class SetLanguage {
     private SetLanguage() {
         this.language = "english";
     }
-    // Metodo statico per ottenere l'istanza
+    // Static method to obtain the instance
     public static synchronized SetLanguage getInstance() {
         if (instance == null)
             instance = new SetLanguage();
@@ -15,10 +15,10 @@ public class SetLanguage {
     }
 
     /*
-     * setGraIntMain cambia la lingua delle string in GraIntMain:
-     * Indice [0]: titolo
-     * Indice [1]: prima tab in alto
-     * Indice [2]: seconda tab in alto
+     * setGraIntMain changes the language of the strings in GraIntMain:
+     * Index [0]: title
+     * Index [1]: first upper tab
+     * Index [2]: second upper tab
      */
     public String[] setGraIntMain(){
 
@@ -32,11 +32,11 @@ public class SetLanguage {
     }
 
     /*
-     * setBoxAccessPanel cambia la lingua delle string in BoxAccessPanel:
-     * Indice [0]: indice della tendina da scegliere per cambiare lingua (al cambio di lingua si inverte l'ordine della tendina perché si seleziona il valore più in fondo dei due)
-     * Indice [1]: JLabel di fianco alla tendina
-     * Indice [2]: primo elemento della tendina (che diventa il secondo al cambio di lingua)
-     * Indice [3]: secondo elemento della tendina (che diventa il primo al cambio di lingua)
+     * setBoxAccessPanel changes the language of the strings in BoxAccessPanel:
+     * Index [0]: indice della tendina da scegliere per cambiare lingua (al cambio di lingua si inverte l'ordine della tendina perché si seleziona il valore più in fondo dei due)
+     * Index [1]: JLabel di fianco alla tendina
+     * Index [2]: primo elemento della tendina (che diventa il secondo al cambio di lingua)
+     * Index [3]: secondo elemento della tendina (che diventa il primo al cambio di lingua)
      */
     public String[] setBoxAccessPanel(){
 
@@ -50,19 +50,35 @@ public class SetLanguage {
 
     }
 
+    /*
+     * setLoginDelManPanel changes the language of the strings in LoginDelManPanel:
+     * Index [0]: scritta sopra lo spazio in cui inserire il codice
+     * Index [1]: scritta di conferma sul bottone appena sotto
+     */
+    public String[] setLoginDelManPanel(){
+
+        if(language.equals("italiano")){
+            String[] s = {"Inserire le Credenziali", "Credenziali Corrette", "Credenziali Errate", "Conferma"};
+            return s;
+        }else{
+            String[] s = {"Insert Your Credentials", "Correct Credentials", "Wrong Credentials", "Confirm"};
+            return s;
+        }
+
+    }
 
     /*
-     * setInsertCodePanel cambia la lingua delle string in InsertCodePanel:
-     * Indice [0]: scritta sopra lo spazio in cui inserire il codice
-     * Indice [1]: scritta di conferma sul bottone appena sotto
+     * setInsertCodePanel changes the language of the strings in InsertCodePanel:
+     * Index [0]: scritta sopra lo spazio in cui inserire il codice
+     * Index [1]: scritta di conferma sul bottone appena sotto
      */
     public String[] setInsertCodePanel(){
 
         if(language.equals("italiano")){
-            String[] s = {"Inserisci Codice", "Conferma"};
+            String[] s = {"Inserisci Codice", "Conferma", "Codice Corretto", "Codice Errato"};
             return s;
         }else{
-            String[] s = {"Insert Code", "Confirm"};
+            String[] s = {"Insert Code", "Confirm", "Correct Code", "Wrong Code"};
             return s;
         }
 

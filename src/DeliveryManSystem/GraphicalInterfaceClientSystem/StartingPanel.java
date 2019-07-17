@@ -24,16 +24,17 @@ public class StartingPanel extends JPanel implements ActionListener {
     private JButton logOut;
     private JLabel instructionLabel;
     private JComboBox pickupPointIdSelector;
-    private JPanel cardContainer;
+    private BackgroundPanel bgp;
     private int width;
     private int height;
 
-    StartingPanel( JPanel cardContainer, DeliveryMan deliveryman, int width, int height){
-
+    StartingPanel( BackgroundPanel bgp, DeliveryMan deliveryman, int width, int height){
+        this.bgp = bgp;
         this.width = width;
         this.height = height;
         this.deliveryMan = deliveryman;
-        this.cardContainer = cardContainer;
+
+        initPanel();
 
     }
 
@@ -43,15 +44,17 @@ public class StartingPanel extends JPanel implements ActionListener {
      * @return The panel containing the login fields and the button
      */
 
-    JPanel startingPanelCard(){
+    private void initPanel(){
 
-        JPanel panelContainer = new JPanel();
-        panelContainer.setLayout(new BorderLayout());
-        panelContainer.add(pickupPoints(), BorderLayout.NORTH);
-        panelContainer.add(buttonPanel(), BorderLayout.CENTER);
+        setLayout(new BorderLayout());
+
+        createAndRefreshPickupPointsList(this);
+
+        add(buttonPanel(), BorderLayout.CENTER);
         viewPackage.addActionListener(this);
         pickupPointIdSelector.addActionListener(this);
-        return panelContainer;
+
+
 
     }
 
@@ -66,6 +69,7 @@ public class StartingPanel extends JPanel implements ActionListener {
             ArrayList<String> strings = new ArrayList<>();
             strings.addAll(deliveryMan.getPickupPointsID());
             pickupPointIdSelector = new JComboBox(strings.toArray(new String[0]));
+
             return pickupPointIdSelector;
 
         }catch (Exception e){
@@ -116,6 +120,8 @@ public class StartingPanel extends JPanel implements ActionListener {
        logOut.setBackground(Color.orange);
        logOut.setFocusable(false);
 
+       logOut.addActionListener(this);
+
         buttonPanel.add(viewPackage);
         buttonPanel.add(logOut);
 
@@ -148,13 +154,12 @@ public class StartingPanel extends JPanel implements ActionListener {
         String string = e.getActionCommand();
 
         if (string.equals(viewPackage.getActionCommand())){
-
-            nextCard();
+            bgp.changePanel("packagePanel");
         }
 
         else if (string.equals(logOut.getActionCommand())){
 
-            previousCard();
+            bgp.changePanel("loginPanel");
 
         }
 
@@ -172,23 +177,7 @@ public class StartingPanel extends JPanel implements ActionListener {
         }
     }
 
-    /**
-     * This method cycles to the next panel
-     */
 
-    private void nextCard(){
-
-        CardLayout cl = (CardLayout) cardContainer.getLayout();
-        cl.next(cardContainer);
-
-    }
-
-    private void previousCard(){
-
-        CardLayout cl = (CardLayout) cardContainer.getLayout();
-        cl.previous(cardContainer);
-
-    }
 
     /**
      * This method updates the pickup points list
@@ -201,6 +190,32 @@ public class StartingPanel extends JPanel implements ActionListener {
 
     }
 
+    private void createAndRefreshPickupPointsList(JPanel panelContainer) {
+        JPanel subPanel = new JPanel();
+        subPanel.setLayout(new BorderLayout());
 
+        JPanel centeredPanel = new JPanel();
+        JButton refreshButton = new JButton("@");
+
+        centeredPanel.add(refreshButton);
+
+        subPanel.add(centeredPanel, BorderLayout.NORTH);
+
+        Component piPoList = pickupPoints();
+        subPanel.add(piPoList, BorderLayout.SOUTH);
+
+        panelContainer.add(subPanel, BorderLayout.NORTH);
+
+        ActionListener buttonListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                panelContainer.remove(subPanel);
+                createAndRefreshPickupPointsList(panelContainer);
+                panelContainer.revalidate();
+            }
+        };
+
+        refreshButton.addActionListener(buttonListener);
+    }
 
 }

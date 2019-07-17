@@ -120,11 +120,12 @@ public class BackGroundPanel extends JPanel {
     }
 
     /**
-     * This method refreshes the boxAccessPanel.
+     * This method is used to change the language of the text
      */
 
     public void refresh(){
         boxAccessPanel.refresh();
+        loginDelManPanel.refresh();
     }
 
 }

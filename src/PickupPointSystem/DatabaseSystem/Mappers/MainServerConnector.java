@@ -13,10 +13,10 @@ public class MainServerConnector {
     private PrintStream out;
 
     public MainServerConnector() throws IOException {
-        startServer();
+        startClient();
     }
 
-    private void startServer() throws IOException {
+    private void startClient() throws IOException {
 
         System.out.println("[0] Connecting to main server...");
         client.connect(new InetSocketAddress("127.0.0.1", 8600));
@@ -56,6 +56,14 @@ public class MainServerConnector {
 
     public String pickupPointGet(String piPoID) throws IOException {
         return sendAndWaitForResponse("pickuppoint get " + piPoID);
+    }
+
+    public void addTestPackages() {
+        out.println("pickuppoint test");
+    }
+
+    public String getTestPassword() throws IOException {
+        return sendAndWaitForResponse("pickuppoint testpassword");
     }
 
     public void close() {

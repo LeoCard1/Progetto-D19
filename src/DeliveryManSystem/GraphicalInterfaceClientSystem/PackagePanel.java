@@ -4,7 +4,6 @@ import DeliveryManSystem.DatabaseSystem.Tables.DeliveryTable;
 import DeliveryManSystem.DeliveryMan;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,11 +19,11 @@ import java.util.ArrayList;
 
 public class PackagePanel extends JPanel implements ActionListener {
 
-    private JPanel cardContainer;
     private DeliveryMan deliveryMan;
     private JButton back;
     private int width;
     private int height;
+    private BackgroundPanel bgp;
 
     /**
      * The constructor
@@ -34,12 +33,13 @@ public class PackagePanel extends JPanel implements ActionListener {
      * @param height Screen height
      */
 
-    PackagePanel(JPanel cardContainer, DeliveryMan deliveryman, int width, int height){
+    PackagePanel(BackgroundPanel bgp, DeliveryMan deliveryman, int width, int height){
+        this.bgp = bgp;
 
         this.width = width;
         this.height = height;
         this.deliveryMan = deliveryman;
-        this.cardContainer = cardContainer;
+        initPanel();
 
     }
 
@@ -48,17 +48,17 @@ public class PackagePanel extends JPanel implements ActionListener {
      * @return The panel that's just been created
      */
 
-    public JPanel packagePanelCard(){
+    private void initPanel(){
 
-        JPanel panelContainer = new JPanel();
-        panelContainer.setLayout(new GridLayout(3,1 ));
+        setLayout(new GridLayout(3,1 ));
 
-        panelContainer.add(jScrollTable(deliveries()));
-        panelContainer.add(jScrollTable(deliveriesExpired()));
-        panelContainer.add(buttonPanel());
+        add(jScrollTable(deliveries()));
+        add(jScrollTable(deliveriesExpired()));
+        add(buttonPanel());
+
+
 
         back.addActionListener(this);
-        return panelContainer;
 
     }
 
@@ -175,30 +175,8 @@ public class PackagePanel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
 
-        previousCard();
+        bgp.changePanel("startingPanel");
     }
 
-    /**
-     * The method used to cycle to the previous panel
-     */
-
-    private void previousCard(){
-
-        CardLayout cl = (CardLayout)cardContainer.getLayout();
-        cl.previous(cardContainer);
-        update();
-    }
-
-    /**
-     * This method updates the package table
-     */
-
-    private void update(){
-
-        deliveries();
-        deliveriesExpired();
-        revalidate();
-
-    }
 
 }
