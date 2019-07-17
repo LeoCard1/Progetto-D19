@@ -56,8 +56,7 @@ public class LoginPanel extends JPanel {
         add(panelPasswordId());
         add(buttonPanel());
 
-
-        ActionListener panelListener = new ActionListener() {
+        login.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
@@ -72,9 +71,7 @@ public class LoginPanel extends JPanel {
                     errorLabel.setVisible(true);
                 }
             }
-        };
-
-        login.addActionListener(panelListener);
+        });
     }
 
     /**
@@ -105,8 +102,6 @@ public class LoginPanel extends JPanel {
         TitledBorder border = BorderFactory.createTitledBorder(SetDMLanguage.getInstance().setLoginPanel()[3]);
         border.setTitleFont(new Font("", Font.BOLD, height/25));
         panelPasswordId.setBorder(border);
-
-
 
         setLanguageSelection(panelPasswordId);
         setJTextFieldAndJPasswordField(panelPasswordId);
@@ -264,6 +259,12 @@ public class LoginPanel extends JPanel {
         borderl4.setTitleColor(Color.RED);
         l4.setBorder(borderl4);
         b.setText(SetDMLanguage.getInstance().setLoginPanel()[8]);
+    }
+
+    public void deleteText(){
+        jpf.setText("");
+        jtf.setText("");
+        errorLabel.setVisible(false);
     }
 
     public void addObserver(ObserverLogin ob){

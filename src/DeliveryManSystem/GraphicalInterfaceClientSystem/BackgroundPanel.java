@@ -10,12 +10,12 @@ public class BackgroundPanel extends JPanel implements ObserverLogin {
 
     private int width;
     private int height;
-    private DeliveryMan deliveryMan;
     private LoginPanel loginPanel;
     private StartingPanel startingPanel;
     private PackagePanel packagePanel;
     private CardLayout cardLayout = new CardLayout();
     private JPanel panelContainer = new JPanel();
+    private String currentPanel = "";
 
     public BackgroundPanel(int width, int height) {
         this.width = width;
@@ -40,9 +40,15 @@ public class BackgroundPanel extends JPanel implements ObserverLogin {
     }
 
     public void changePanel(String panelName) {
-        //checkCurrentPanel();
+        checkCurrentPanel();
         cardLayout.show(panelContainer, panelName);
-        //currentPanel = panelName;
+        currentPanel = panelName;
+    }
+
+    public void checkCurrentPanel(){
+        if(currentPanel.equals("loginPanel")){
+            loginPanel.deleteText();
+        }
     }
 
     @Override

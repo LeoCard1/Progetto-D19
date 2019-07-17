@@ -48,7 +48,7 @@ public class StartingPanel extends JPanel implements ActionListener {
 
         setLayout(new BorderLayout());
 
-        createAndRefreshPickupPointsList(this);
+        createAndRefreshPickupPointsList();
 
         add(buttonPanel(), BorderLayout.CENTER);
         viewPackage.addActionListener(this);
@@ -150,47 +150,24 @@ public class StartingPanel extends JPanel implements ActionListener {
      */
 
     public void actionPerformed(ActionEvent e) {
-
         String string = e.getActionCommand();
-
         if (string.equals(viewPackage.getActionCommand())){
             bgp.changePanel("packagePanel");
         }
-
         else if (string.equals(logOut.getActionCommand())){
-
             bgp.changePanel("loginPanel");
-
         }
-
         else {
             try {
-
                 deliveryMan.sendCredentials((String)pickupPointIdSelector.getSelectedItem());
-                update();
-
             }catch (IOException exception){
-
                 System.out.println("errore passaggio id classe startingpanel");
-
             }
         }
     }
 
 
-
-    /**
-     * This method updates the pickup points list
-     */
-
-    private void update(){
-
-        pickupPoints();
-        revalidate();
-
-    }
-
-    private void createAndRefreshPickupPointsList(JPanel panelContainer) {
+    private void createAndRefreshPickupPointsList() {
         JPanel subPanel = new JPanel();
         subPanel.setLayout(new BorderLayout());
 
@@ -204,14 +181,14 @@ public class StartingPanel extends JPanel implements ActionListener {
         Component piPoList = pickupPoints();
         subPanel.add(piPoList, BorderLayout.SOUTH);
 
-        panelContainer.add(subPanel, BorderLayout.NORTH);
+        add(subPanel, BorderLayout.NORTH);
 
         ActionListener buttonListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                panelContainer.remove(subPanel);
-                createAndRefreshPickupPointsList(panelContainer);
-                panelContainer.revalidate();
+                remove(subPanel);
+                createAndRefreshPickupPointsList();
+                revalidate();
             }
         };
 
