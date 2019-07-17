@@ -5,6 +5,8 @@ import DeliveryManSystem.Observers.ObserverLogin;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BackgroundPanel extends JPanel implements ObserverLogin {
 
@@ -43,6 +45,9 @@ public class BackgroundPanel extends JPanel implements ObserverLogin {
         checkCurrentPanel();
         cardLayout.show(panelContainer, panelName);
         currentPanel = panelName;
+        if (panelName.equals("PackagePanel")){
+            packagePanel.RefreshPackageList();
+        }
     }
 
     public void checkCurrentPanel(){
@@ -58,4 +63,6 @@ public class BackgroundPanel extends JPanel implements ObserverLogin {
         panelContainer.add(startingPanel,"startingPanel");
         panelContainer.add(packagePanel,"packagePanel");
     }
+
+
 }

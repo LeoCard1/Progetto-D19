@@ -24,6 +24,8 @@ public class PackagePanel extends JPanel implements ActionListener {
     private int width;
     private int height;
     private BackgroundPanel bgp;
+    private JPanel deliveries;
+    private JPanel deliveriesExpired;
 
     /**
      * The constructor
@@ -51,12 +53,8 @@ public class PackagePanel extends JPanel implements ActionListener {
     private void initPanel(){
 
         setLayout(new GridLayout(3,1 ));
-
-        add(jScrollTable(deliveries()));
-        add(jScrollTable(deliveriesExpired()));
+        addDeliveriesPanels();
         add(buttonPanel());
-
-
 
         back.addActionListener(this);
 
@@ -165,6 +163,23 @@ public class PackagePanel extends JPanel implements ActionListener {
         back.setFont(new Font("", Font.BOLD, height/30));
 
         return back;
+    }
+
+    private void addDeliveriesPanels(){
+        deliveries = jScrollTable(deliveries());
+        deliveriesExpired = jScrollTable(deliveriesExpired());
+        add(deliveries);
+        add(deliveriesExpired);
+
+    }
+
+    public void RefreshPackageList() {
+
+        remove(deliveries);
+        remove(deliveriesExpired);
+        addDeliveriesPanels();
+        revalidate();
+
     }
 
     /**
