@@ -46,7 +46,7 @@ public class InsertCodePanel extends JPanel {
      */
 
     private void initPanel() {
-        alertLabel = new AlertLabel("Correct Code", "Wrong Code");
+        alertLabel = new AlertLabel(SetLanguage.getInstance().setInsertCodePanel()[2], SetLanguage.getInstance().setInsertCodePanel()[3]);
         textF.setFont(new Font("", Font.PLAIN, height/20));
         setLayout(new GridLayout(4, 1));
         setPreferredSize(new Dimension(width/4,height/3));
@@ -111,6 +111,7 @@ public class InsertCodePanel extends JPanel {
 
     public void refresh() {
         l.setText(SetLanguage.getInstance().setInsertCodePanel()[0]);
+        alertLabel.refreshInsCod();
         b.setText(SetLanguage.getInstance().setInsertCodePanel()[1]);
     }
 

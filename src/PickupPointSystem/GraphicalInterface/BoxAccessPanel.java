@@ -87,6 +87,7 @@ public class BoxAccessPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 bgp.changePanel("loginDelManPanel");
+                ///////////////////////
             }
         });
         buttonBack.addActionListener(new ActionListener() {
@@ -163,7 +164,7 @@ public class BoxAccessPanel extends JPanel {
     }
 
     /**
-     * The refresh method is needed after changing the language.
+     * This method is used to change the language of the text
      */
 
     public void refresh() {
