@@ -169,9 +169,10 @@ public class StartingPanel extends JPanel implements ActionListener {
     }
 
     private void refreshPickupPointsList(){
-        remove(subPanel);
-        createAndRefreshPickupPointsList();
+        removeAll();
+        initPanel();
         revalidate();
+
     }
 
 

@@ -29,7 +29,6 @@ public class PackagePanel extends JPanel implements ActionListener {
 
     /**
      * The constructor
-     * @param cardContainer The main panel. This panel is added to the former
      * @param deliveryman The deliveryman who's logged in the system
      * @param width Screen width
      * @param height Screen height
@@ -175,9 +174,8 @@ public class PackagePanel extends JPanel implements ActionListener {
 
     public void RefreshPackageList() {
 
-        remove(deliveries);
-        remove(deliveriesExpired);
-        addDeliveriesPanels();
+        removeAll();
+        initPanel();
         revalidate();
 
     }

@@ -45,7 +45,7 @@ public class BackgroundPanel extends JPanel implements ObserverLogin {
         checkCurrentPanel();
         cardLayout.show(panelContainer, panelName);
         currentPanel = panelName;
-        if (panelName.equals("PackagePanel")){
+        if(currentPanel.equals("packagePanel")){
             packagePanel.RefreshPackageList();
         }
     }
@@ -54,6 +54,7 @@ public class BackgroundPanel extends JPanel implements ObserverLogin {
         if(currentPanel.equals("loginPanel")){
             loginPanel.deleteText();
         }
+
     }
 
     @Override
