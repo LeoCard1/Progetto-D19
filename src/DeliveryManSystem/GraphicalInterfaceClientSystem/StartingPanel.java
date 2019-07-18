@@ -27,6 +27,7 @@ public class StartingPanel extends JPanel implements ActionListener {
     private BackgroundPanel bgp;
     private int width;
     private int height;
+    private JPanel subPanel;
 
     StartingPanel( BackgroundPanel bgp, DeliveryMan deliveryman, int width, int height){
         this.bgp = bgp;
@@ -160,15 +161,22 @@ public class StartingPanel extends JPanel implements ActionListener {
         else {
             try {
                 deliveryMan.sendCredentials((String)pickupPointIdSelector.getSelectedItem());
+                refreshPickupPointsList();
             }catch (IOException exception){
                 System.out.println("errore passaggio id classe startingpanel");
             }
         }
     }
 
+    private void refreshPickupPointsList(){
+        remove(subPanel);
+        createAndRefreshPickupPointsList();
+        revalidate();
+    }
+
 
     private void createAndRefreshPickupPointsList() {
-        JPanel subPanel = new JPanel();
+        subPanel = new JPanel();
         subPanel.setLayout(new BorderLayout());
 
         JPanel centeredPanel = new JPanel();
