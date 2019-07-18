@@ -1,6 +1,5 @@
 package ServerAndDatabase;
 
-/*
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -37,7 +36,7 @@ public class MainServerTest {
 
 
     @org.junit.Test
-    public void getErrorResponse() {
+    public void verifyNoTestPackages() {
         out.println("delivery getfrompipoid test");
 
         StringBuilder response = getResponse();
@@ -83,4 +82,3 @@ public class MainServerTest {
         return stringBuilder;
     }
 }
-*/
