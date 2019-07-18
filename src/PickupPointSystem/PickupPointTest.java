@@ -7,8 +7,23 @@ import java.io.IOException;
 
 import static org.junit.Assert.*;
 
+/**
+ * This test class is used to check whether
+ * it is possible to connect to the server.
+ * A subsequent test adds a package and
+ * then removes it in order to check if
+ * everything works correctly
+ * @author Gruppo D19
+ * @version 1.0.0
+ */
+
 public class PickupPointTest {
     private static PickupPoint pickupPoint;
+
+    /**
+     * Before carrying out the tests, the
+     * main server must be launched
+     */
 
     @org.junit.BeforeClass
     public static void startMainServer() {
@@ -30,6 +45,12 @@ public class PickupPointTest {
 
 
 
+    /**
+     * This method adds a package, then
+     * checks that inputting a wrong code
+     * doesn't stop or impede the server
+     */
+
     @org.junit.Test
     public void addPackageAndTestWrongCode() {
         try {
@@ -50,6 +71,15 @@ public class PickupPointTest {
         }
     }
 
+    /**
+     * This method checks whether it is
+     * possible to remove the package that
+     * has just been added.
+     * The last lines make sure the server
+     * won't be closed before carrying out
+     * all the necessary operations
+     */
+
     @org.junit.Test
     public void emptyBox() {
         try {
@@ -68,6 +98,12 @@ public class PickupPointTest {
             fail();
         }
     }
+
+    /**
+     * This method checks that inputting
+     * a wrong deliveryman ID will return
+     * 'null'
+     */
 
     @org.junit.Test
     public void wrongIDTest() {
