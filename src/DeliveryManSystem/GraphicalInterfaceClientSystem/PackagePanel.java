@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * This Class creates the panel showing a
  * deliveryman's packages and their destination
- * @author Gruppo D19
+ * @author Zappa Roberto
  * @version 1.0.1
  */
 
@@ -21,23 +21,17 @@ public class PackagePanel extends JPanel implements ActionListener {
 
     private DeliveryMan deliveryMan;
     private JButton back;
-    private int width;
     private int height;
     private BackgroundPanel bgp;
-    private JPanel deliveries;
-    private JPanel deliveriesExpired;
 
     /**
      * The constructor
      * @param deliveryman The deliveryman who's logged in the system
-     * @param width Screen width
      * @param height Screen height
      */
 
-    PackagePanel(BackgroundPanel bgp, DeliveryMan deliveryman, int width, int height){
+    PackagePanel(BackgroundPanel bgp, DeliveryMan deliveryman, int height){
         this.bgp = bgp;
-
-        this.width = width;
         this.height = height;
         this.deliveryMan = deliveryman;
         initPanel();
@@ -45,14 +39,15 @@ public class PackagePanel extends JPanel implements ActionListener {
     }
 
     /**
-     * This method builds the panel
-     * @return The panel that's just been created
+     * This method initialized the PackagePanel
      */
 
     private void initPanel(){
 
         setLayout(new GridLayout(3,1 ));
-        addDeliveriesPanels();
+
+        add(jScrollTable(deliveries()));
+        add(jScrollTable(deliveriesExpired()));
         add(buttonPanel());
 
         back.addActionListener(this);
@@ -74,6 +69,12 @@ public class PackagePanel extends JPanel implements ActionListener {
         return buttonPanel;
 
     }
+
+    /**
+     * This method create a jPanel and add to it the jScrollTable
+     * @param table create by deliveries and deliveriesExpired methods
+     * @return the jPanel that's just been created
+     */
 
     private JPanel jScrollTable(JTable table){
 
@@ -146,8 +147,6 @@ public class PackagePanel extends JPanel implements ActionListener {
 
     }
 
-
-
     /**
      * This method creates the button used to cycle
      * back to the previous panel
@@ -164,13 +163,9 @@ public class PackagePanel extends JPanel implements ActionListener {
         return back;
     }
 
-    private void addDeliveriesPanels(){
-        deliveries = jScrollTable(deliveries());
-        deliveriesExpired = jScrollTable(deliveriesExpired());
-        add(deliveries);
-        add(deliveriesExpired);
-
-    }
+    /**
+     * This method refresh the package list
+     */
 
     public void RefreshPackageList() {
 
@@ -189,7 +184,7 @@ public class PackagePanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         bgp.changePanel("startingPanel");
-    }
 
+    }
 
 }

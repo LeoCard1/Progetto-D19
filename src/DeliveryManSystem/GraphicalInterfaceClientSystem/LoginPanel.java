@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import static java.awt.Font.ITALIC;
 
 /**
- * This Class creates the Login Panel and what's inside it
- * @author Gruppo D19
+ * This Class creates the Login Panel and everything inside it
+ * @author Zappa Roberto
  * @version 1.0.2
  */
 
@@ -38,18 +38,25 @@ public class LoginPanel extends JPanel {
     private JPanel p;
     private JButton b;
 
+    /**
+     * The constructor
+     * @param bgp
+     * @param width
+     * @param height
+     */
+
     LoginPanel(BackgroundPanel bgp, int width, int height){
         this.width = width;
         this.height = height;
         this.bgp = bgp;
-        setLoginPanel();
+        initLoginPanel();
     }
 
     /**
-     * This method builds the Login Panel
+     * This class initializes the LoginPanel
      */
 
-    private void setLoginPanel(){
+    private void initLoginPanel(){
 
         setLayout(new GridLayout(2,1 ));
 
@@ -261,11 +268,17 @@ public class LoginPanel extends JPanel {
         b.setText(SetDMLanguage.getInstance().setLoginPanel()[8]);
     }
 
+    /**
+     * This method delete credentials for better security
+     */
+
     public void deleteText(){
         jpf.setText("");
         jtf.setText("");
         errorLabel.setVisible(false);
     }
+
+
 
     public void addObserver(ObserverLogin ob){
         observers.add(ob);

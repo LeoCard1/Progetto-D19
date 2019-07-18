@@ -23,7 +23,7 @@ public class Gui extends JFrame {
      * This method creates the frame and add to it the Login Panel
      */
     public void ClientGUI() {
-        setTitle("Amazon for poor people");
+        setTitle("Amazon");
         setLayout(new BorderLayout());
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -32,7 +32,6 @@ public class Gui extends JFrame {
         height = screenSize.height/2;
         setSize(new Dimension(width, height));
         setLocationRelativeTo(null);
-       // setResizable(false);
 
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Icons/amazonFakeIcon.png"));
         setIconImage(image);

@@ -25,13 +25,18 @@ public class StartingPanel extends JPanel implements ActionListener {
     private JLabel instructionLabel;
     private JComboBox pickupPointIdSelector;
     private BackgroundPanel bgp;
-    private int width;
     private int height;
     private JPanel subPanel;
 
-    StartingPanel( BackgroundPanel bgp, DeliveryMan deliveryman, int width, int height){
+    /**
+     * The constructor
+     * @param bgp
+     * @param deliveryman
+     * @param height
+     */
+
+    StartingPanel( BackgroundPanel bgp, DeliveryMan deliveryman, int height){
         this.bgp = bgp;
-        this.width = width;
         this.height = height;
         this.deliveryMan = deliveryman;
 
@@ -42,7 +47,6 @@ public class StartingPanel extends JPanel implements ActionListener {
     /**
      * This method builds part of the main panel.
      * It adds the pickup point login fields and the "View Packages" button
-     * @return The panel containing the login fields and the button
      */
 
     private void initPanel(){
@@ -52,10 +56,9 @@ public class StartingPanel extends JPanel implements ActionListener {
         createAndRefreshPickupPointsList();
 
         add(buttonPanel(), BorderLayout.CENTER);
+
         viewPackage.addActionListener(this);
         pickupPointIdSelector.addActionListener(this);
-
-
 
     }
 
@@ -168,6 +171,10 @@ public class StartingPanel extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * This method refresh the pickup point list
+     */
+
     private void refreshPickupPointsList(){
         removeAll();
         initPanel();
@@ -175,6 +182,9 @@ public class StartingPanel extends JPanel implements ActionListener {
 
     }
 
+    /**
+     * This method create and refresh the pickup point list
+     */
 
     private void createAndRefreshPickupPointsList() {
         subPanel = new JPanel();
