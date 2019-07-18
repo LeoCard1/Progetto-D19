@@ -62,7 +62,7 @@ public class MainServerConnector {
         out.println("pickuppoint test");
     }
 
-    public String getTestPassword() throws IOException {
+    public String getTestPackageCode() throws IOException {
         return sendAndWaitForResponse("pickuppoint testpassword");
     }
 

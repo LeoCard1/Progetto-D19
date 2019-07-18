@@ -26,7 +26,7 @@ public class PickupPoint {
     private String address;
     private String location;
     private ArrayList<Box> boxList = new ArrayList<>();
-    private HashMap<String, Box> unavailablesBoxes = new HashMap<>();
+    private HashMap<String, Box> unavailableBoxes = new HashMap<>();
     private PersistenceFacade facade = new PersistenceFacade();
     private int smallBoxes;
     private int mediumBoxes;
@@ -80,7 +80,7 @@ public class PickupPoint {
                 box.addPackage(pack);
                 Date dateOfDelivery = new Date();
                 String password = box.generateBoxPassword();
-                unavailablesBoxes.put(password, box);
+                unavailableBoxes.put(password, box);
 
                 for(DeliveryTable delivery : facade.getDeliveries(id)){
                     if(delivery.hasPackage(pack.getId())){
@@ -102,19 +102,19 @@ public class PickupPoint {
 
     /**
      * This method empties the box associated with the entered password and remove it from
-     * the unavailablesBoxes, remove the package and delivery from the database.
+     * the unavailableBoxes, remove the package and delivery from the database.
      * @param cod the code to unlock the box
      */
 
     public boolean emptyBox(String cod) throws IOException {
         Box box = null;
         PackageTable pack = null;
-        box = unavailablesBoxes.get(cod);
+        box = unavailableBoxes.get(cod);
         if(box == null){
             return false;
         }
         pack = box.getPack();
-        unavailablesBoxes.remove(cod);
+        unavailableBoxes.remove(cod);
         facade.removeDelivery(pack.getId());
         facade.removePack(pack.getId());
         box.removePackage();
@@ -131,7 +131,7 @@ public class PickupPoint {
             for (Box box : boxList) {
                 if(delivery.hasBoxNumber(box.getBoxNumber())){
                     box.addPackage(facade.getPackage(delivery.getPackID()));
-                    unavailablesBoxes.put(delivery.getBoxPassword(),box);
+                    unavailableBoxes.put(delivery.getBoxPassword(),box);
                 }
             }
         }
