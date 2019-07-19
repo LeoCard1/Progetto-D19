@@ -55,7 +55,7 @@ public class DeliveryMan {
     public void sendCredentials(String piPoID) throws IOException {
         PickupPointTable piPoTable = facade.getPickupPoint(piPoID);
 
-        client.connectToPickupPoint(piPoTable.getIp(), id, password);
+        client.connectToPickupPoint(piPoTable, id, password);
     }
 
     /**

@@ -60,7 +60,6 @@ public class ConnectionsDelivery implements Connection {
                 + strTok.nextToken() + "\"");
 
         sendDelivery(res, out);
-
     }
 
     private void sendDelivery(ResultSet res, PrintStream out) throws SQLException {
