@@ -74,6 +74,18 @@ public class StartingPanel extends JPanel implements ActionListener {
             strings.addAll(deliveryMan.getPickupPointsID());
             pickupPointIdSelector = new JComboBox(strings.toArray(new String[0]));
 
+            pickupPointIdSelector.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    try {
+                        deliveryMan.sendCredentials((String)pickupPointIdSelector.getSelectedItem());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    refreshPickupPointsList();
+                }
+            });
+
             return pickupPointIdSelector;
 
         }catch (Exception e){
@@ -161,14 +173,6 @@ public class StartingPanel extends JPanel implements ActionListener {
         else if (string.equals(logOut.getActionCommand())){
             bgp.changePanel("loginPanel");
         }
-        else {
-            try {
-                deliveryMan.sendCredentials((String)pickupPointIdSelector.getSelectedItem());
-                refreshPickupPointsList();
-            }catch (IOException exception){
-                System.out.println("errore passaggio id classe startingpanel");
-            }
-        }
     }
 
     /**
@@ -205,9 +209,7 @@ public class StartingPanel extends JPanel implements ActionListener {
         ActionListener buttonListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                remove(subPanel);
-                createAndRefreshPickupPointsList();
-                revalidate();
+                refreshPickupPointsList();
             }
         };
 
