@@ -1,21 +1,21 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/xercesImpl-2.9.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/js-email-api-2.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/xml-apis-1.4.01.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/smtp-1.4.5.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/protobuf-java-3.6.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/js-xhtml-template-1.0.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/nekohtml-1.9.6.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/js-commons-1.1.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-8.0.16.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/js-template-api-1.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/js-dom-1.0.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/js-dom-api-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/protobuf-java-3.6.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/mailapi-1.4.3.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/activation-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/js-dom-api-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/js-xhtml-template-1.0.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/js-javamail-1.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nekohtml-1.9.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/js-dom-1.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/xml-apis-1.4.01.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activation-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-8.0.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/xercesImpl-2.9.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/js-template-api-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/smtp-1.4.5.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
