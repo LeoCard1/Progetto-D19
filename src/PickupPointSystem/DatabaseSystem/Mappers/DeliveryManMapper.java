@@ -6,17 +6,20 @@ import PickupPointSystem.DatabaseSystem.Tables.DeliveryManTable;
 import java.io.IOException;
 
 /**
- * @author D19 Group
+ *
+ * This method returns the internal DeliveryManTable to the database given the
+ * id passed as an argument
+ *
+ * @author Gruppo D19
  * @version 2.0
  */
 
 public class DeliveryManMapper implements Mapper {
 
     /**
-     * This method returns the internal DeliveryManTable to the database given the
-     * id passed as an argument.
-     * @param delID
-     * @return DeliveryManTable
+     *
+     * @param delID DeliveryMan ID
+     * @return DeliveryManTable the table received by DB
      */
 
     public DeliveryManTable get(String delID) throws IOException {

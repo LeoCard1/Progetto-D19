@@ -11,19 +11,24 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.StringTokenizer;
 
-
 /**
- * @author D19 Group
+ *
+ * This method returns an ArrayList of deliveries inside the database given the PickupPointTable
+ * id passed as an argument
+ *
+ * @author Gruppo D19
  * @version 2.0
  */
+
 
 public class DeliveryMapper implements Mapper {
 
     /**
      * This method returns an ArrayList of deliveries inside the database given the PickupPointTable
-     * id passed as an argument.
-     * @param pipoID
-     * @return ArrayList<DeliveryTable>
+     * id passed as an argument
+     *
+     * @param pipoID pickUp point id
+     * @return ArrayList<DeliveryTable> pickup point deliveries
      */
 
     @Override
@@ -67,8 +72,8 @@ public class DeliveryMapper implements Mapper {
     }
 
     /**
-     * This method removes the row containing the given pack id.
-     * @param packID
+     * This method removes the row containing the given pack id
+     * @param packID ID of the package to remove
      */
 
     public void removeRowFromPackID(String packID) throws IOException {
@@ -79,8 +84,8 @@ public class DeliveryMapper implements Mapper {
 
     /**
      * This method updates the delivery date, the box number and the box password of
-     * the given DeliveryTable.
-     * @param delivery
+     * the given DeliveryTable
+     * @param delivery delivery to update
      */
 
     public void update(DeliveryTable delivery) throws IOException {
