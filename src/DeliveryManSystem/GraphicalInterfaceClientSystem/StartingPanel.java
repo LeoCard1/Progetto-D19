@@ -1,6 +1,7 @@
 package DeliveryManSystem.GraphicalInterfaceClientSystem;
 
 import DeliveryManSystem.DeliveryMan;
+import DeliveryManSystem.Exceptions.PickupPointServerUnavailableException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static java.awt.Font.ITALIC;
+import static java.awt.Toolkit.getDefaultToolkit;
 
 /**
  * This Class creates the main panel used in the PDA
@@ -78,11 +80,18 @@ public class StartingPanel extends JPanel implements ActionListener {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
                     try {
-                        deliveryMan.sendCredentials((String)pickupPointIdSelector.getSelectedItem());
+
+                        if(pickupPointIdSelector.getSelectedItem()!=null) {
+                            deliveryMan.sendCredentials((String) pickupPointIdSelector.getSelectedItem());
+                            refreshPickupPointsList();
+                        }
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        instructionLabel.setText("<html> <center> Impossibile connettersi al server</html>");
+                    } catch (PickupPointServerUnavailableException p){
+                        instructionLabel.setText("<html> <center> Impossibile connettersi al server del PickupPoint</html>");
                     }
-                    refreshPickupPointsList();
+
+
                 }
             });
 
@@ -195,7 +204,12 @@ public class StartingPanel extends JPanel implements ActionListener {
         subPanel.setLayout(new BorderLayout());
 
         JPanel centeredPanel = new JPanel();
-        JButton refreshButton = new JButton("@");
+        JButton refreshButton = new JButton();
+        Image backImage = getDefaultToolkit().createImage("src/DeliveryManSystem/GraphicalInterfaceClientSystem/Icons/update.jpg").getScaledInstance(height/10, height/10,Image.SCALE_DEFAULT);
+        refreshButton.setIcon(new ImageIcon(backImage));
+        refreshButton.setContentAreaFilled(false);
+        refreshButton.setBorderPainted(false);
+
 
         centeredPanel.add(refreshButton);
 

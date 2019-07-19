@@ -23,7 +23,7 @@ public class Gui extends JFrame {
      * This method creates the frame and add to it the Login Panel
      */
     public void ClientGUI() {
-        setTitle("Amazon");
+        setTitle("SMART LOCKER");
         setLayout(new BorderLayout());
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -32,8 +32,9 @@ public class Gui extends JFrame {
         height = screenSize.height/2;
         setSize(new Dimension(width, height));
         setLocationRelativeTo(null);
+        setResizable(true);
 
-        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Icons/amazonFakeIcon.png"));
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Icons/logo.jpg"));
         setIconImage(image);
         getRootPane().setBorder(BorderFactory.createLineBorder(Color.black,height/80 ));
 

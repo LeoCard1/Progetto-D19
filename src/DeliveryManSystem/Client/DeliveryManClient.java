@@ -18,7 +18,6 @@ public class DeliveryManClient {
     private BufferedReader in;
     private PrintStream out;
     private PickupPointTable pickupPointTable;
-    private PersistenceFacade facade = new PersistenceFacade();
 
     public void connectToPickupPoint(PickupPointTable pickupPointTable, String id, String password) throws IOException {
         this.pickupPointTable = pickupPointTable;
@@ -35,14 +34,10 @@ public class DeliveryManClient {
     private void goConnect(String id, String password) throws IOException {
         System.out.println("Connection estabilished!");
 
-        ArrayList<DeliveryTable> deliveries = facade.getDeliveries(pickupPointTable.getId());
-
         out.println("deliveryman");
         out.println("login " + id + " " + password);
 
-        /*while (deliveries.equals(facade.getDeliveries(pickupPointTable.getId()))) {
-
-        }*/
+        while(!in.ready());
 
         out.println("close");
 

@@ -6,6 +6,7 @@ import DeliveryManSystem.DatabaseSystem.PersistenceFacade;
 import DeliveryManSystem.DatabaseSystem.Tables.DeliveryManTable;
 import DeliveryManSystem.DatabaseSystem.Tables.DeliveryTable;
 import DeliveryManSystem.DatabaseSystem.Tables.PickupPointTable;
+import DeliveryManSystem.Exceptions.PickupPointServerUnavailableException;
 import DeliveryManSystem.Exceptions.UsernameOrPasswordException;
 
 
@@ -55,7 +56,11 @@ public class DeliveryMan {
     public void sendCredentials(String piPoID) throws IOException {
         PickupPointTable piPoTable = facade.getPickupPoint(piPoID);
 
-        client.connectToPickupPoint(piPoTable, id, password);
+        try {
+            client.connectToPickupPoint(piPoTable, id, password);
+        } catch (IOException e) {
+            throw new PickupPointServerUnavailableException();
+        }
     }
 
     /**
