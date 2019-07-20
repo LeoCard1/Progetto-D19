@@ -13,12 +13,27 @@ import java.net.Socket;
 import java.sql.SQLException;
 import java.util.StringTokenizer;
 
+/**
+ * This thread runs the server which
+ * accepts requests from pickup points
+ * and deliverymen and responds accordingly
+ *
+ * @author Gruppo D19
+ * @version 1.0.1
+ */
+
 public class MainServer extends Thread {
     private ServerSocket server;
     private Socket client;
     private BufferedReader in;
     private PrintStream out;
     private ConnectionsFactory conStr;
+
+    /**
+     * This method starts the thread. It
+     * also signals that the server has
+     * started
+     */
 
     @Override
     public void run() {
@@ -31,6 +46,13 @@ public class MainServer extends Thread {
             e.printStackTrace();
         }
     }
+
+    /**
+     * This method starts the server. It
+     * listens and accepts connections
+     *
+     * @throws IOException
+     */
 
     private void startServer() throws IOException {
         while (true) {
@@ -45,6 +67,13 @@ public class MainServer extends Thread {
             handleConnection();
         }
     }
+
+    /**
+     * This method executes the requests
+     * demanded by a client
+     *
+     * @throws IOException Input/Output error between client and server
+     */
 
     private void handleConnection() throws IOException {
         String firstWord;
@@ -81,6 +110,11 @@ public class MainServer extends Thread {
             }
         }
     }
+
+    /**
+     * This method closes the connection
+     * between the server and a client
+     */
 
     private void closeConnection() {
         try {

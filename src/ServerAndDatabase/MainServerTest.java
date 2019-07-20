@@ -7,10 +7,11 @@ import java.net.Socket;
 import static org.junit.Assert.*;
 
 /**
- * This test class is used to check that no
+ * This test class is used to make sure that no
  * packages are assigned to the test pickup
  * point and that the test password has not
  * been altered
+ *
  * @author Gruppo D19
  * @version 1.0.0
  */
@@ -88,6 +89,7 @@ public class MainServerTest {
     /**
      * This method creates a client in order to
      * communicate with the server
+     *
      * @throws IOException Client socket input and output
      */
 
@@ -102,7 +104,8 @@ public class MainServerTest {
 
     /**
      * This method waits for the server to send
-     * a string, saves it then returns it
+     * a string, saves it, then returns it
+     *
      * @return The string sent by the server
      */
 
