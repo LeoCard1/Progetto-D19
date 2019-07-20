@@ -19,7 +19,7 @@ import static java.awt.Toolkit.getDefaultToolkit;
  * @version 1.0.2
  */
 
-public class StartingPanel extends JPanel implements ActionListener {
+public class StartingPanel extends JPanel {
 
     private DeliveryMan deliveryMan;
     private JButton viewPackage;
@@ -59,8 +59,7 @@ public class StartingPanel extends JPanel implements ActionListener {
 
         createAndRefreshPickupPointsList();
 
-        viewPackage.addActionListener(this);
-        pickupPointIdSelector.addActionListener(this);
+      
 
     }
 
@@ -76,7 +75,7 @@ public class StartingPanel extends JPanel implements ActionListener {
         try {
             strings.addAll(deliveryMan.getPickupPointsID());
         } catch (IOException e) {
-            alertLabel.setText("<html> <center> Impossibile connettersi al server</html>");
+            alertLabel.setTextAndIcon("<html> <center> Impossibile connettersi al server</html>", true);
         }
         pickupPointIdSelector = new JComboBox(strings.toArray(new String[0]));
 
@@ -87,11 +86,12 @@ public class StartingPanel extends JPanel implements ActionListener {
                         if(pickupPointIdSelector.getSelectedItem()!=null) {
                             deliveryMan.sendCredentials((String) pickupPointIdSelector.getSelectedItem());
                             refreshPickupPointsList();
+                            alertLabel.showMessageForAFewSeconds("<html><center>Credentials sent succesfully</html>", false);
                         }
                     } catch (IOException e) {
-                        alertLabel.setText("<html> <center> Impossibile connettersi al server</html>");
+                        alertLabel.setTextAndIcon("<html> <center> Impossibile connettersi al server</html>", true);
                     } catch (PickupPointServerUnavailableException p){
-                        alertLabel.showMessageForAFewSeconds("<html> <center> Impossibile connettersi al server del PickupPoint</html>");
+                        alertLabel.showMessageForAFewSeconds("<html> <center> Impossibile connettersi al server del PickupPoint</html>", true);
                     }
                 }
             });
@@ -131,21 +131,74 @@ public class StartingPanel extends JPanel implements ActionListener {
     private void setButton(JPanel buttonPanel){
 
        viewPackage = new JButton("View Packages");
+       viewPackage.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               bgp.changePanel("packagePanel");
+           }
+       });
        viewPackage.setFont(new Font("",Font.BOLD,height/30));
 
        viewPackage.setBackground(Color.orange);
        viewPackage.setFocusable(false);
 
        logOut = new JButton("LogOut");
+       logOut.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               buttonPanel.remove(logOut);
+               buttonPanel.add(getConfirmPanel(buttonPanel));
+               revalidate();
+           }
+       });
        logOut.setFont(new Font("",Font.BOLD,height/30));
 
        logOut.setBackground(Color.orange);
        logOut.setFocusable(false);
 
-       logOut.addActionListener(this);
 
         buttonPanel.add(viewPackage);
         buttonPanel.add(logOut);
+    }
+
+    /**
+     * This method creates the panel containing the request for
+     * confirmation of exit
+     * @param panelCont the panel that will containing the confirm panel
+     * @return the panel that has been created
+     */
+
+    public JPanel getConfirmPanel(JPanel panelCont){
+        JPanel confirmPanel = new JPanel();
+        JLabel areYouSureLabel = new JLabel("Are You Sure?");
+        areYouSureLabel.setFont(new Font("Arial", Font.BOLD, height/30));
+        JButton buttonYes = new JButton("YES");
+        buttonYes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bgp.changePanel("loginPanel");
+            }
+        });
+        JButton buttonNo = new JButton("NO");
+        buttonNo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelCont.remove(confirmPanel);
+                panelCont.add(logOut);
+                panelCont.repaint();
+                
+            }
+        });
+        buttonYes.setBackground(Color.ORANGE);
+        buttonNo.setBackground(Color.ORANGE);
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new GridLayout(1,2));
+        buttonsPanel.add(buttonYes);
+        buttonsPanel.add(buttonNo);
+        confirmPanel.setLayout(new GridLayout(2,1));
+        confirmPanel.add(areYouSureLabel);
+        confirmPanel.add(buttonsPanel);
+        return confirmPanel;
 
     }
 
@@ -157,29 +210,15 @@ public class StartingPanel extends JPanel implements ActionListener {
 
     private void setMessage(JPanel buttonPanel){
 
-        alertLabel = new AlertLabel("<html> <center> Selezionare l ' Id del punto di ritiro</html>");
-        alertLabel.setDefaultText("<html> <center> Selezionare l ' Id del punto di ritiro</html>");
+        alertLabel = new AlertLabel("<html> <center> Selezionare l ' Id del punto di ritiro</html>", true);
+        alertLabel.setDefaultTextAndIcon("<html> <center> Selezionare l ' Id del punto di ritiro</html>", true);
         Font font = new Font("Arial" ,ITALIC , height/25);
         alertLabel.setBorder(BorderFactory.createTitledBorder(alertLabel.getBorder(),SetDMLanguage.getInstance().setLoginPanel()[7] , ITALIC , 0, font, Color.red));
         buttonPanel.add(alertLabel);
 
     }
 
-    /**
-     * This method shows a new panel if the "View Packages" is
-     * pressed or sends the credentials to the selected pickup point
-     * @param e The event that triggers the listener
-     */
 
-    public void actionPerformed(ActionEvent e) {
-        String string = e.getActionCommand();
-        if (string.equals(viewPackage.getActionCommand())){
-            bgp.changePanel("packagePanel");
-        }
-        else if (string.equals(logOut.getActionCommand())){
-            bgp.changePanel("loginPanel");
-        }
-    }
 
     /**
      * This method refresh the pickup point list

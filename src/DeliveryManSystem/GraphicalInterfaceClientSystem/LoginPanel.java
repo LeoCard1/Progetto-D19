@@ -72,9 +72,9 @@ public class LoginPanel extends JPanel {
                     notifyObservers(deliveryMan);
                     bgp.changePanel("startingPanel");
                 } catch (UsernameOrPasswordException u) {
-                    errorLabel.showMessageForAFewSeconds(SetDMLanguage.getInstance().setLoginPanel()[9]);
+                    errorLabel.showMessageForAFewSeconds(SetDMLanguage.getInstance().setLoginPanel()[9], true);
                 } catch (IOException e1){
-                    errorLabel.showMessageForAFewSeconds(SetDMLanguage.getInstance().setLoginPanel()[10]);
+                    errorLabel.showMessageForAFewSeconds(SetDMLanguage.getInstance().setLoginPanel()[10], true);
                 }
             }
         });
@@ -206,8 +206,8 @@ public class LoginPanel extends JPanel {
 
     private void setMessageError(JPanel buttonPanel){
         errorLabel = new AlertLabel();
-        errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[11]);
-        errorLabel.setDefaultText(SetDMLanguage.getInstance().setLoginPanel()[11]);
+        errorLabel.setTextAndIcon(SetDMLanguage.getInstance().setLoginPanel()[11], true);
+        errorLabel.setDefaultTextAndIcon(SetDMLanguage.getInstance().setLoginPanel()[11], true);
         buttonPanel.add(errorLabel);
         l4 = errorLabel;
     }
@@ -256,8 +256,8 @@ public class LoginPanel extends JPanel {
         borderl4.setTitleFont(new Font("Arial" ,ITALIC , height/25));
         borderl4.setTitleColor(Color.RED);
         l4.setBorder(borderl4);
-        l4.setText(SetDMLanguage.getInstance().setLoginPanel()[11]);
-        l4.setDefaultText(SetDMLanguage.getInstance().setLoginPanel()[11]);
+        l4.setTextAndIcon(SetDMLanguage.getInstance().setLoginPanel()[11], true);
+        l4.setDefaultTextAndIcon(SetDMLanguage.getInstance().setLoginPanel()[11], true);
         b.setText(SetDMLanguage.getInstance().setLoginPanel()[8]);
     }
 
