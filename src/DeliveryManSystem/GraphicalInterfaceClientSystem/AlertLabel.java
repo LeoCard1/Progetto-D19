@@ -70,11 +70,13 @@ public class AlertLabel extends JLabel {
 
 
     /**
-     * This method sets the label visible for a few seconds
+     * This method shows the message passed as an argument for a few
+     * seconds
+     * @param message the message to show
      */
 
-
-    public void setVisibleForAFewSeconds(){
+    public void showMessageForAFewSeconds(String message){
+        setText(message);
         setVisible(true);
         timer.start();
     }

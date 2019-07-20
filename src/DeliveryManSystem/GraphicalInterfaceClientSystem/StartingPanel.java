@@ -91,8 +91,7 @@ public class StartingPanel extends JPanel implements ActionListener {
                     } catch (IOException e) {
                         alertLabel.setText("<html> <center> Impossibile connettersi al server</html>");
                     } catch (PickupPointServerUnavailableException p){
-                        alertLabel.setText("<html> <center> Impossibile connettersi al server del PickupPoint</html>");
-                        alertLabel.setVisibleForAFewSeconds();
+                        alertLabel.showMessageForAFewSeconds("<html> <center> Impossibile connettersi al server del PickupPoint</html>");
                     }
                 }
             });

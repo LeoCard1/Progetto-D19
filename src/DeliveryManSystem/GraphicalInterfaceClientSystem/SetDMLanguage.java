@@ -7,7 +7,7 @@ public class SetDMLanguage {
     private SetDMLanguage() {
         this.language = "english";
     }
-    // Metodo statico per ottenere l'istanza
+
     public static synchronized SetDMLanguage getInstance() {
         if (instance == null)
             instance = new SetDMLanguage();

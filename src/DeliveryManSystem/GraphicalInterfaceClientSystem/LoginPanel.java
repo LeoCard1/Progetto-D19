@@ -72,11 +72,9 @@ public class LoginPanel extends JPanel {
                     notifyObservers(deliveryMan);
                     bgp.changePanel("startingPanel");
                 } catch (UsernameOrPasswordException u) {
-                    errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[9]);
-                    errorLabel.setVisibleForAFewSeconds();
+                    errorLabel.showMessageForAFewSeconds(SetDMLanguage.getInstance().setLoginPanel()[9]);
                 } catch (IOException e1){
-                    errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[10]);
-                    errorLabel.setVisibleForAFewSeconds();
+                    errorLabel.showMessageForAFewSeconds(SetDMLanguage.getInstance().setLoginPanel()[10]);
                 }
             }
         });
