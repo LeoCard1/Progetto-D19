@@ -2,7 +2,7 @@ package ServerAndDatabase;
 
 import ServerAndDatabase.Connections.Connection;
 import ServerAndDatabase.Connections.ConnectionUnknownException;
-import ServerAndDatabase.Connections.ConnectionsStrategy;
+import ServerAndDatabase.Connections.ConnectionsFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,14 +18,14 @@ public class MainServer extends Thread {
     private Socket client;
     private BufferedReader in;
     private PrintStream out;
-    private ConnectionsStrategy conStr;
+    private ConnectionsFactory conStr;
 
     @Override
     public void run() {
         try {
             server = new ServerSocket(8600);
-            conStr = new ConnectionsStrategy();
-            System.out.println("[0] Server waiting on port "+server.getLocalPort()+"...");
+            conStr = new ConnectionsFactory();
+            System.out.println("[0] Server waiting on port " + server.getLocalPort()+ "...");
             startServer();
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,7 +61,7 @@ public class MainServer extends Thread {
 
                 firstWord = strTok.nextToken();
 
-                if (firstWord.equalsIgnoreCase("close")){
+                if (firstWord.equals("close")){
                     closeConnection();
                     return;
                 }

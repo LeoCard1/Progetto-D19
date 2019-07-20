@@ -20,21 +20,21 @@ public class ConnectionsPickupPoint implements Connection {
         /*
         pickuppoint get piPoName
          */
-        if (nextToken.equalsIgnoreCase("get")) {
+        if (nextToken.equals("get")) {
             get(strTok, out);
         }
 
         /*
         pickuppoint test
          */
-        if (nextToken.equalsIgnoreCase("test")) {
+        if (nextToken.equals("test")) {
             addTestPackages();
         }
 
         /*
         pickuppoint testpassword
          */
-        if (nextToken.equalsIgnoreCase("testpassword")) {
+        if (nextToken.equals("testpassword")) {
             returnTestPassword(out);
         }
     }

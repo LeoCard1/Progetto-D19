@@ -1,6 +1,6 @@
 package ServerAndDatabase.Connections;
 
-public class ConnectionsStrategy {
+public class ConnectionsFactory {
 
     private ConnectionsDeliveryMan connectionsDeliveryMan = new ConnectionsDeliveryMan();
     private ConnectionsDelivery connectionsDelivery = new ConnectionsDelivery();
@@ -8,10 +8,10 @@ public class ConnectionsStrategy {
     private ConnectionsPickupPoint connectionsPickupPoint = new ConnectionsPickupPoint();
 
     public Connection getConnection(String type) {
-        if (type.equalsIgnoreCase("deliveryman")) return connectionsDeliveryMan;
-        if (type.equalsIgnoreCase("delivery")) return connectionsDelivery;
-        if (type.equalsIgnoreCase("package")) return connectionsPackage;
-        if (type.equalsIgnoreCase("pickuppoint")) return connectionsPickupPoint;
+        if (type.equals("deliveryman")) return connectionsDeliveryMan;
+        if (type.equals("delivery")) return connectionsDelivery;
+        if (type.equals("package")) return connectionsPackage;
+        if (type.equals("pickuppoint")) return connectionsPickupPoint;
         throw new ConnectionUnknownException();
     }
 }

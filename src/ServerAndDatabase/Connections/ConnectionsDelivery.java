@@ -20,28 +20,28 @@ public class ConnectionsDelivery implements Connection {
         /*
         delivery getfrompipoid piPoName
          */
-        if (nextToken.equalsIgnoreCase("getfrompipoid")) {
+        if (nextToken.equals("getfrompipoid")) {
             getFromPipoID(strTok, out);
         }
 
          /*
         delivery getfromdelid DeliveryManName
          */
-        if (nextToken.equalsIgnoreCase("getfromdelid")) {
+        if (nextToken.equals("getfromdelid")) {
             getFromDelManID(strTok, out);
         }
 
         /*
         delivery removerowfrompackid packID
          */
-        if (nextToken.equalsIgnoreCase("removerowfrompackid")) {
+        if (nextToken.equals("removerowfrompackid")) {
             removeRowFromPackID(strTok);
         }
 
         /*
         delivery refresh packID dateOfDelivery boxNumber boxPassword
          */
-        if (nextToken.equalsIgnoreCase("refresh")) {
+        if (nextToken.equals("refresh")) {
             updateDelivery(strTok);
         }
     }
@@ -74,7 +74,6 @@ public class ConnectionsDelivery implements Connection {
 
         out.println(strBuf);
     }
-
 
     private void removeRowFromPackID(StringTokenizer strTok) throws SQLException {
         String packageID = strTok.nextToken();

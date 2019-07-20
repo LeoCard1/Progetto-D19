@@ -20,7 +20,7 @@ public class ConnectionsDeliveryMan implements Connection {
         /*
         deliveryman get delID
          */
-        if (nextToken.equalsIgnoreCase("get")) {
+        if (nextToken.equals("get")) {
             get(strTok, out);
         }
     }

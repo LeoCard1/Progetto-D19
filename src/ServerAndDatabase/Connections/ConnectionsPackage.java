@@ -20,14 +20,14 @@ public class ConnectionsPackage implements Connection {
         /*
         package get packID
          */
-        if (nextToken.equalsIgnoreCase("get")) {
+        if (nextToken.equals("get")) {
             get(strTok, out);
         }
 
         /*
         package remove packID
          */
-        if (nextToken.equalsIgnoreCase("remove")) {
+        if (nextToken.equals("remove")) {
             remove(strTok);
         }
     }
