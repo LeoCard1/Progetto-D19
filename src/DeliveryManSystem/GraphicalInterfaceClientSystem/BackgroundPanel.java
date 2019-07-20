@@ -17,6 +17,7 @@ public class BackgroundPanel extends JPanel implements ObserverLogin {
     private LoginPanel loginPanel;
     private StartingPanel startingPanel;
     private PackagePanel packagePanel;
+    private PickupPointInfoPanel pickupPointInfoPanel;
     private CardLayout cardLayout = new CardLayout();
     private JPanel panelContainer = new JPanel();
 
@@ -76,22 +77,26 @@ public class BackgroundPanel extends JPanel implements ObserverLogin {
         }
         if(panelName.equals("packagePanel")){
             packagePanel.refreshPackageList();
-
+        }
+        if(panelName.equals("pickupPointInfoPanel")){
+            pickupPointInfoPanel.refreshPickupPointList();
         }
 
     }
 
     /**
-     * This method create the startingPanel and the packagePanel
-     * and adds they to the panelContainer
+     * This method create the startingPanel, the packagePanel and the
+     * pickupPointInfoPanel and adds they to the panelContainer
      * @param deliveryMan the delivery man created after login
      */
 
     public void update(DeliveryMan deliveryMan) {
         startingPanel = new StartingPanel(this, deliveryMan, height);
         packagePanel = new PackagePanel(this, deliveryMan, height);
+        pickupPointInfoPanel = new PickupPointInfoPanel(this, deliveryMan, height);
         panelContainer.add(startingPanel,"startingPanel");
         panelContainer.add(packagePanel,"packagePanel");
+        panelContainer.add(pickupPointInfoPanel, "pickupPointInfoPanel");
     }
 
 

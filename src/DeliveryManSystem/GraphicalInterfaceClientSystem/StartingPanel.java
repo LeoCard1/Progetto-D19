@@ -79,14 +79,15 @@ public class StartingPanel extends JPanel {
                 public void actionPerformed(ActionEvent actionEvent) {
                     try {
                         if(pickupPointIdSelector.getSelectedItem()!=null) {
-                            deliveryMan.sendCredentials((String) pickupPointIdSelector.getSelectedItem());
+                            String piPoID = pickupPointIdSelector.getSelectedItem().toString();
+                            deliveryMan.sendCredentials(piPoID);
                             refreshPickupPointsList();
-                            alertLabel.showMessageForAFewSeconds("<html><center>Credentials sent succesfully</html>", false);
+                            alertLabel.showMessageForAFewSeconds("<html><center>Credenziali inviate correttamente al punto di ritiro "+piPoID+"</html>", false);
                         }
                     } catch (IOException e) {
                         alertLabel.setTextAndIcon("<html> <center> Impossibile connettersi al server</html>", true);
                     } catch (PickupPointServerUnavailableException p){
-                        alertLabel.showMessageForAFewSeconds("<html> <center> Impossibile connettersi al server del PickupPoint</html>", true);
+                        alertLabel.showMessageForAFewSeconds("<html> <center> Impossibile connettersi al server di " +pickupPointIdSelector.getSelectedItem().toString()+ "</html>", true);
                     }
                 }
             });

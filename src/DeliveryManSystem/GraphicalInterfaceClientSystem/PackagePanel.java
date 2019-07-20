@@ -11,8 +11,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static java.awt.Font.ITALIC;
-
 /**
  * This Class creates the panel showing a
  * deliveryman's packages and their destination
@@ -20,10 +18,9 @@ import static java.awt.Font.ITALIC;
  * @version 1.0.1
  */
 
-public class PackagePanel extends JPanel implements ActionListener {
+public class PackagePanel extends JPanel {
 
     private DeliveryMan deliveryMan;
-    private JButton back;
     private int height;
     private BackgroundPanel bgp;
 
@@ -53,7 +50,6 @@ public class PackagePanel extends JPanel implements ActionListener {
         add(deliveriesExpired());
         add(buttonPanel());
 
-        back.addActionListener(this);
 
     }
 
@@ -65,10 +61,12 @@ public class PackagePanel extends JPanel implements ActionListener {
      */
 
     private JPanel buttonPanel(){
-        JPanel buttonPanel = new JPanel(new GridLayout(1,1));
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(2,1));
         buttonPanel.setOpaque(false);
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(height/10,height/50,height/10,height/50));
-        buttonPanel.add(setButton());
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(height/50,height/50,height/12,height/50));
+        buttonPanel.add(getButtonInfoPickupPoint());
+        buttonPanel.add(getButtonBack());
         return buttonPanel;
     }
 
@@ -153,8 +151,10 @@ public class PackagePanel extends JPanel implements ActionListener {
         }
 
         JTable finalTable = new JTable(table, tableParameters);
+
         finalTable.setGridColor(Color.red);
         finalTable.setEnabled(false);
+
         return finalTable;
     }
 
@@ -175,14 +175,37 @@ public class PackagePanel extends JPanel implements ActionListener {
      * @return The button
      */
 
-    private JButton setButton(){
+    private JButton getButtonBack(){
 
-        back = new JButton("Go back");
+        JButton back = new JButton("Go back");
         back.setBackground(new Color(255,153,0));
         back.setFocusable(false);
         back.setFont(new Font("", Font.BOLD, height/30));
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bgp.changePanel("startingPanel");
+            }
+        });
 
         return back;
+
+    }
+
+    private JButton getButtonInfoPickupPoint(){
+        JButton info = new JButton("Info Pickup Points");
+        info.setBackground(new Color(255,153,0));
+        info.setFocusable(false);
+        info.setFont(new Font("", Font.BOLD, height/30));
+        info.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bgp.changePanel("pickupPointInfoPanel");
+            }
+        });
+
+        return info;
+
     }
 
     /**
@@ -196,16 +219,6 @@ public class PackagePanel extends JPanel implements ActionListener {
 
     }
 
-    /**
-     * The panel's action listener, used to cycle to
-     * the previous panel
-     * @param e The event that triggers the listener
-     */
 
-    public void actionPerformed(ActionEvent e) {
-
-        bgp.changePanel("startingPanel");
-
-    }
 
 }

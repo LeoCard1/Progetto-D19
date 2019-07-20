@@ -114,5 +114,4 @@ public class DeliveryMan {
         return pickupPointsID;
     }
 
-
 }
