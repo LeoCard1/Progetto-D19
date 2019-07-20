@@ -10,5 +10,6 @@ public class MainAll {
         new GraIntMain("PAV01");
 
         new Gui();
+
     }
 }

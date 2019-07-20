@@ -167,8 +167,7 @@ public class PackagePanel extends JPanel implements ActionListener {
      * This method refresh the package list
      */
 
-    public void RefreshPackageList() {
-
+    public void refreshPackageList() {
         removeAll();
         initPanel();
         revalidate();

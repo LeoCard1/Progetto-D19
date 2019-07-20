@@ -28,13 +28,14 @@ public class LoginPanel extends JPanel {
     private JButton login;
     private JPasswordField jpf;
     private JTextField jtf;
-    private JLabel errorLabel;
+    private AlertLabel errorLabel;
     private BackgroundPanel bgp;
     private int width;
     private int height;
     private int n;
     private JComboBox l;
-    private JLabel l1, l2, l3, l4;
+    private JLabel l1, l2, l3;
+    private AlertLabel l4;
     private JPanel p;
     private JButton b;
 
@@ -72,10 +73,10 @@ public class LoginPanel extends JPanel {
                     bgp.changePanel("startingPanel");
                 } catch (UsernameOrPasswordException u) {
                     errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[9]);
-                    errorLabel.setVisible(true);
+                    errorLabel.setVisibleForAFewSeconds();
                 } catch (IOException e1){
                     errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[10]);
-                    errorLabel.setVisible(true);
+                    errorLabel.setVisibleForAFewSeconds();
                 }
             }
         });
@@ -175,28 +176,28 @@ public class LoginPanel extends JPanel {
         jtf.setFont(new Font("", Font.PLAIN, height/34));
 
         JPanel panelPassword = new JPanel();
-        panelPassword.setBorder(BorderFactory.createEmptyBorder(height/20,0,0,width/7));
         panelPassword.add(labelPassword);
         l2 = labelPassword;
         l3 = labelId;
 
         JPanel panelPasswordField = new JPanel();
         panelPasswordField.setLayout(new GridLayout(2,1));
-        panelPasswordField.setBorder(BorderFactory.createEmptyBorder(height/20,0,0,0));
+        panelPasswordField.setBorder(BorderFactory.createEmptyBorder(0,0,height/20,0));
         panelPasswordField.add(jpf);
 
         JPanel panelText = new JPanel();
+        panelText.setBorder(BorderFactory.createEmptyBorder(height/20,0,0,width/7));
         panelText.add(labelId);
 
         JPanel panelTextField = new JPanel();
         panelTextField.setLayout(new GridLayout(2,1));
-        panelTextField.setBorder(BorderFactory.createEmptyBorder(0,0,height/20,0));
+        panelTextField.setBorder(BorderFactory.createEmptyBorder(height/20,0,0,0));
         panelTextField.add(jtf);
 
-        panelPasswordId.add(panelPassword);
-        panelPasswordId.add(panelPasswordField);
         panelPasswordId.add(panelText);
         panelPasswordId.add(panelTextField);
+        panelPasswordId.add(panelPassword);
+        panelPasswordId.add(panelPasswordField);
     }
 
     /**
@@ -206,17 +207,9 @@ public class LoginPanel extends JPanel {
      */
 
     private void setMessageError(JPanel buttonPanel){
-        errorLabel = new JLabel();
-
-        ImageIcon imageIcon = new ImageIcon(new ImageIcon(getClass().getResource("Icons/problem.png")).getImage()
-                .getScaledInstance(width/5, height/10, Image.SCALE_DEFAULT));
-        errorLabel.setIcon(imageIcon);
-
-        Font font = new Font("Arial" ,ITALIC , height/25);
-        errorLabel.setBorder(BorderFactory.createTitledBorder(errorLabel.getBorder(),SetDMLanguage.getInstance()
-                .setLoginPanel()[7] , ITALIC , 0, font, Color.red));
-
-        errorLabel.setVisible(false);
+        errorLabel = new AlertLabel();
+        errorLabel.setText(SetDMLanguage.getInstance().setLoginPanel()[11]);
+        errorLabel.setDefaultText(SetDMLanguage.getInstance().setLoginPanel()[11]);
         buttonPanel.add(errorLabel);
         l4 = errorLabel;
     }
@@ -265,6 +258,8 @@ public class LoginPanel extends JPanel {
         borderl4.setTitleFont(new Font("Arial" ,ITALIC , height/25));
         borderl4.setTitleColor(Color.RED);
         l4.setBorder(borderl4);
+        l4.setText(SetDMLanguage.getInstance().setLoginPanel()[11]);
+        l4.setDefaultText(SetDMLanguage.getInstance().setLoginPanel()[11]);
         b.setText(SetDMLanguage.getInstance().setLoginPanel()[8]);
     }
 
@@ -275,7 +270,6 @@ public class LoginPanel extends JPanel {
     public void deleteText(){
         jpf.setText("");
         jtf.setText("");
-        errorLabel.setVisible(false);
     }
 
 

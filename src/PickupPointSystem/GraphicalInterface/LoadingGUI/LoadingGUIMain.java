@@ -16,6 +16,7 @@ import java.awt.*;
 public class LoadingGUIMain extends AbstractPickupPointFrame {
 
     private JLabel labelMessage;
+    private int height;
 
     /**
      * The constructor. Sets some parameters related to the frame
@@ -23,7 +24,7 @@ public class LoadingGUIMain extends AbstractPickupPointFrame {
 
     public LoadingGUIMain(){
         Toolkit tk = Toolkit.getDefaultToolkit();
-        int height = tk.getScreenSize().height/4;
+        height = tk.getScreenSize().height/4;
         int width = tk.getScreenSize().width/2;
         setTitle("Loading");
         setSize(width, height);
@@ -43,7 +44,7 @@ public class LoadingGUIMain extends AbstractPickupPointFrame {
 
         labelMessage = new JLabel();
         labelMessage.setText("<html></html>");
-        labelMessage.setFont(new Font(Font.DIALOG, Font.PLAIN, 20));
+        labelMessage.setFont(new Font(Font.DIALOG, Font.PLAIN, height/9));
         labelMessage.setHorizontalAlignment(0);
         panelMessage.setLayout(new BorderLayout());
         panelMessage.add(labelMessage, BorderLayout.CENTER);

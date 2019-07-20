@@ -5,8 +5,6 @@ import DeliveryManSystem.Observers.ObserverLogin;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * This class initializes the backgroundPanel
@@ -60,21 +58,25 @@ public class BackgroundPanel extends JPanel implements ObserverLogin {
      */
 
     public void changePanel(String panelName) {
-        checkCurrentPanel();
+        checkPanelActions(panelName);
         cardLayout.show(panelContainer, panelName);
         currentPanel = panelName;
-        if(currentPanel.equals("packagePanel")){
-            packagePanel.RefreshPackageList();
-        }
     }
 
     /**
-     * This method delete the text of loginPanel if is it
+     * This method runs the panel to change methods
      */
 
-    public void checkCurrentPanel(){
-        if(currentPanel.equals("loginPanel")){
+    public void checkPanelActions(String panelName){
+        if(panelName.equals("loginPanel")){
             loginPanel.deleteText();
+        }
+        if(panelName.equals("startingPanel")){
+            startingPanel.refreshPickupPointsList();
+        }
+        if(panelName.equals("packagePanel")){
+            packagePanel.refreshPackageList();
+
         }
 
     }

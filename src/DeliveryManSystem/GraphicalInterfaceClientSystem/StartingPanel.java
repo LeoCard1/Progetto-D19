@@ -24,7 +24,7 @@ public class StartingPanel extends JPanel implements ActionListener {
     private DeliveryMan deliveryMan;
     private JButton viewPackage;
     private JButton logOut;
-    private JLabel instructionLabel;
+    private AlertLabel alertLabel;
     private JComboBox pickupPointIdSelector;
     private BackgroundPanel bgp;
     private int height;
@@ -55,9 +55,9 @@ public class StartingPanel extends JPanel implements ActionListener {
 
         setLayout(new BorderLayout());
 
-        createAndRefreshPickupPointsList();
-
         add(buttonPanel(), BorderLayout.CENTER);
+
+        createAndRefreshPickupPointsList();
 
         viewPackage.addActionListener(this);
         pickupPointIdSelector.addActionListener(this);
@@ -71,37 +71,35 @@ public class StartingPanel extends JPanel implements ActionListener {
      */
 
     private JComboBox pickupPoints(){
-        try {
+
             ArrayList<String> strings = new ArrayList<>();
+        try {
             strings.addAll(deliveryMan.getPickupPointsID());
-            pickupPointIdSelector = new JComboBox(strings.toArray(new String[0]));
+        } catch (IOException e) {
+            alertLabel.setText("<html> <center> Impossibile connettersi al server</html>");
+        }
+        pickupPointIdSelector = new JComboBox(strings.toArray(new String[0]));
 
             pickupPointIdSelector.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
                     try {
-
                         if(pickupPointIdSelector.getSelectedItem()!=null) {
                             deliveryMan.sendCredentials((String) pickupPointIdSelector.getSelectedItem());
                             refreshPickupPointsList();
                         }
                     } catch (IOException e) {
-                        instructionLabel.setText("<html> <center> Impossibile connettersi al server</html>");
+                        alertLabel.setText("<html> <center> Impossibile connettersi al server</html>");
                     } catch (PickupPointServerUnavailableException p){
-                        instructionLabel.setText("<html> <center> Impossibile connettersi al server del PickupPoint</html>");
+                        alertLabel.setText("<html> <center> Impossibile connettersi al server del PickupPoint</html>");
+                        alertLabel.setVisibleForAFewSeconds();
                     }
-
-
                 }
             });
 
             return pickupPointIdSelector;
 
-        }catch (Exception e){
 
-            return pickupPointIdSelector;
-
-        }
     }
 
     /**
@@ -160,11 +158,11 @@ public class StartingPanel extends JPanel implements ActionListener {
 
     private void setMessage(JPanel buttonPanel){
 
-        instructionLabel = new JLabel("<html> <center> Selezionare l ' Id del punto di ritiro</html>");
+        alertLabel = new AlertLabel("<html> <center> Selezionare l ' Id del punto di ritiro</html>");
+        alertLabel.setDefaultText("<html> <center> Selezionare l ' Id del punto di ritiro</html>");
         Font font = new Font("Arial" ,ITALIC , height/25);
-        instructionLabel.setBorder(BorderFactory.createTitledBorder(instructionLabel.getBorder(),SetDMLanguage.getInstance().setLoginPanel()[7] , ITALIC , 0, font, Color.red));
-        instructionLabel.setVisible(true);
-        buttonPanel.add(instructionLabel);
+        alertLabel.setBorder(BorderFactory.createTitledBorder(alertLabel.getBorder(),SetDMLanguage.getInstance().setLoginPanel()[7] , ITALIC , 0, font, Color.red));
+        buttonPanel.add(alertLabel);
 
     }
 
@@ -188,7 +186,7 @@ public class StartingPanel extends JPanel implements ActionListener {
      * This method refresh the pickup point list
      */
 
-    private void refreshPickupPointsList(){
+    public void refreshPickupPointsList(){
         removeAll();
         initPanel();
         revalidate();

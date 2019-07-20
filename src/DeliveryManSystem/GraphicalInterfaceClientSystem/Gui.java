@@ -16,15 +16,19 @@ public class Gui extends JFrame {
 
     public Gui() {
 
-        ClientGUI();
+        initFrame();
     }
 
     /**
      * This method creates the frame and add to it the Login Panel
      */
-    public void ClientGUI() {
+    public void initFrame() {
+
+        setTheme("javax.swing.plaf.metal.MetalLookAndFeel");
         setTitle("SMART LOCKER");
-        setLayout(new BorderLayout());
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Icons/logo.jpg"));
+        setIconImage(image);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         screenSize = getToolkit().getScreenSize();
@@ -32,14 +36,31 @@ public class Gui extends JFrame {
         height = screenSize.height/2;
         setSize(new Dimension(width, height));
         setLocationRelativeTo(null);
-        setResizable(true);
+        setResizable(false);
 
-        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Icons/logo.jpg"));
-        setIconImage(image);
         getRootPane().setBorder(BorderFactory.createLineBorder(Color.black,height/80 ));
 
         add(new BackgroundPanel(width, height));
         setVisible(true);
+    }
+
+    /**
+     * This method changes the frame theme.
+     * @param className the name of the theme
+     */
+
+    public void setTheme(String className){
+        try {
+            UIManager.setLookAndFeel(className);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
     }
 
 
