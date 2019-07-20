@@ -186,7 +186,6 @@ public class StartingPanel extends JPanel {
                 panelCont.remove(confirmPanel);
                 panelCont.add(logOut);
                 panelCont.repaint();
-                
             }
         });
         buttonYes.setBackground(Color.ORANGE);
@@ -209,13 +208,11 @@ public class StartingPanel extends JPanel {
      */
 
     private void setMessage(JPanel buttonPanel){
-
         alertLabel = new AlertLabel("<html> <center> Selezionare l ' Id del punto di ritiro</html>", true);
         alertLabel.setDefaultTextAndIcon("<html> <center> Selezionare l ' Id del punto di ritiro</html>", true);
         Font font = new Font("Arial" ,ITALIC , height/25);
         alertLabel.setBorder(BorderFactory.createTitledBorder(alertLabel.getBorder(),SetDMLanguage.getInstance().setLoginPanel()[7] , ITALIC , 0, font, Color.red));
         buttonPanel.add(alertLabel);
-
     }
 
 
@@ -228,7 +225,6 @@ public class StartingPanel extends JPanel {
         removeAll();
         initPanel();
         revalidate();
-
     }
 
     /**
@@ -241,12 +237,11 @@ public class StartingPanel extends JPanel {
 
         JPanel centeredPanel = new JPanel();
         JButton refreshButton = new JButton();
-        Image backImage = getDefaultToolkit().createImage("src/DeliveryManSystem/GraphicalInterfaceClientSystem/Icons/update.jpg").getScaledInstance(height/10, height/10,Image.SCALE_DEFAULT);
+        refreshButton.setPreferredSize(new Dimension(height/11,height/11));
+        Image backImage = getDefaultToolkit().createImage("src/DeliveryManSystem/GraphicalInterfaceClientSystem/Icons/update.jpg").getScaledInstance(height/12, height/12,Image.SCALE_DEFAULT);
         refreshButton.setIcon(new ImageIcon(backImage));
-        refreshButton.setContentAreaFilled(false);
-        refreshButton.setBorderPainted(false);
-
-
+        refreshButton.setBackground(Color.ORANGE);
+        
         centeredPanel.add(refreshButton);
 
         subPanel.add(centeredPanel, BorderLayout.NORTH);
