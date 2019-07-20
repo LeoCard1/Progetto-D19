@@ -68,7 +68,6 @@ public class AlertLabel extends JLabel {
         hasDefaultText = true;
     }
 
-
     /**
      * This method shows the message passed as an argument for a few
      * seconds
@@ -83,8 +82,8 @@ public class AlertLabel extends JLabel {
 
     /**
      * This method creates the timer, when the timer expires, the label
-     * becomes invisible
-     *
+     * becomes invisible if it has not the default text, else shows the
+     * default text
      */
 
     public void createTimer(){

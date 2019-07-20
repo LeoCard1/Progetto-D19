@@ -25,7 +25,7 @@ public class MainServer extends Thread {
         try {
             server = new ServerSocket(8600);
             conStr = new ConnectionsStrategy();
-            System.out.println("[0] Server waiting on port 8600...");
+            System.out.println("[0] Server waiting on port "+server.getLocalPort()+"...");
             startServer();
         } catch (IOException e) {
             e.printStackTrace();

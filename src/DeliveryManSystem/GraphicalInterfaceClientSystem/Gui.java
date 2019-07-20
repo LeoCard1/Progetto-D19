@@ -20,8 +20,9 @@ public class Gui extends JFrame {
     }
 
     /**
-     * This method creates the frame and add to it the Login Panel
+     * This method creates the frame and adds into it the BackgroundPanel
      */
+
     public void initFrame() {
 
         setTheme("javax.swing.plaf.metal.MetalLookAndFeel");

@@ -19,12 +19,11 @@ public class BackgroundPanel extends JPanel implements ObserverLogin {
     private PackagePanel packagePanel;
     private CardLayout cardLayout = new CardLayout();
     private JPanel panelContainer = new JPanel();
-    private String currentPanel = "";
 
     /**
      * The constructor
-     * @param width
-     * @param height
+     * @param width the panel width
+     * @param height the panel height
      */
 
     public BackgroundPanel(int width, int height) {
@@ -54,13 +53,12 @@ public class BackgroundPanel extends JPanel implements ObserverLogin {
 
     /**
      * This method change the current panel with the panel that have the name equals to the panelName
-     * @param panelName
+     * @param panelName the panel name
      */
 
     public void changePanel(String panelName) {
         checkPanelActions(panelName);
         cardLayout.show(panelContainer, panelName);
-        currentPanel = panelName;
     }
 
     /**
@@ -83,8 +81,8 @@ public class BackgroundPanel extends JPanel implements ObserverLogin {
 
     /**
      * This method create the startingPanel and the packagePanel
-     * and add they to the panelContainer
-     * @param deliveryMan
+     * and adds they to the panelContainer
+     * @param deliveryMan the delivery man created after login
      */
 
     public void update(DeliveryMan deliveryMan) {

@@ -103,18 +103,16 @@ public class PickupPoint {
     /**
      * This method empties the box associated with the entered password and remove it from
      * the unavailableBoxes, remove the package and delivery from the database.
-     * @param cod the code to unlock the box
+     * @param code the code to unlock the box
      */
 
-    public boolean emptyBox(String cod) throws IOException {
-        Box box = null;
-        PackageTable pack = null;
-        box = unavailableBoxes.get(cod);
+    public boolean emptyBox(String code) throws IOException {
+        Box box = unavailableBoxes.get(code);
         if(box == null){
             return false;
         }
-        pack = box.getPack();
-        unavailableBoxes.remove(cod);
+        PackageTable pack = box.getPack();
+        unavailableBoxes.remove(code);
         facade.removeDelivery(pack.getId());
         facade.removePack(pack.getId());
         box.removePackage();
