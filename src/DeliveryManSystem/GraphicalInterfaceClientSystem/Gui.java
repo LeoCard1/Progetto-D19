@@ -25,7 +25,7 @@ public class Gui extends JFrame {
     public void initFrame() {
 
         setTheme("javax.swing.plaf.metal.MetalLookAndFeel");
-        setTitle("SMART LOCKER");
+        setTitle("Smart Locker");
         Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Icons/logo.jpg"));
         setIconImage(image);
 

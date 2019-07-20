@@ -18,12 +18,12 @@ public class SetDMLanguage {
 
         if(language.equals("italiano")){
             String[] s = {"1", "Italiano", "Inglese", "Accedi", "Lingua   :", "Password   :", "ID   :",
-                          "Messaggio importante!", "Accedi", "<html><center>Password o Id errati</html>",
+                          "<html><center>Messaggio importante</html>!", "Accedi", "<html><center>Password o Id errati</html>",
                           "<html><center>Servizio non disponibile</html>", "<html><center>Inserire ID e Password</html>"};
             return s;
         }else{
             String[] s = {"0", "English", "Italian", "Sign In", "Language   :", "Password   :", "ID   :",
-                          "Important Message!", "Sign In", "<html><center>Incorrect Password or Id</html>",
+                          "<html><center>Important Message!</html>", "Sign In", "<html><center>Incorrect Password or Id</html>",
                           "<html><center>Service unavailable</html>", "<html><center>Enter ID and Password</html>"};
             return s;
         }

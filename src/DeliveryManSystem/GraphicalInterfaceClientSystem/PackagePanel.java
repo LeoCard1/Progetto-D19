@@ -98,7 +98,7 @@ public class PackagePanel extends JPanel implements ActionListener {
         try {
             return buildTable(deliveryMan.getDeliveries());
         } catch (IOException e) {
-           return new JTable();
+           return getEmptyTable();
         }
 
     }
@@ -115,7 +115,7 @@ public class PackagePanel extends JPanel implements ActionListener {
         try {
             return buildTable(deliveryMan.getDeliveriesExpired());
         } catch (IOException e) {
-            return new JTable();
+            return getEmptyTable();
         }
 
     }
@@ -144,7 +144,17 @@ public class PackagePanel extends JPanel implements ActionListener {
         finalTable.setGridColor(Color.red);
         finalTable.setEnabled(false);
         return finalTable;
+    }
 
+    /**
+     * This method creates an empty JTable
+     * @return the created empty JTable
+     */
+
+    private JTable getEmptyTable() {
+        String[] tableParameters = {"Pickup Point ID", "Package ID"};
+        String[][] table = new String[0][];
+        return new JTable(table,tableParameters);
     }
 
     /**
