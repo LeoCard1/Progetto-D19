@@ -28,8 +28,10 @@ public class BackgroundPanel extends JPanel implements ObserverLogin {
 
     public BackgroundPanel(int width, int height) {
         this.height = height;
+        setBackground(Color.decode("#232F3E"));
 
         panelContainer.setPreferredSize(new Dimension(width*15/16, height*15/16));
+        panelContainer.setOpaque(false);
 
         loginPanel = new LoginPanel(this, width, height );
         loginPanel.addObserver(this);

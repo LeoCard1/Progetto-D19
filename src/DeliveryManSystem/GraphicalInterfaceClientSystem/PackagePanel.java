@@ -4,11 +4,14 @@ import DeliveryManSystem.DatabaseSystem.Tables.DeliveryTable;
 import DeliveryManSystem.DeliveryMan;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import static java.awt.Font.ITALIC;
 
 /**
  * This Class creates the panel showing a
@@ -43,11 +46,11 @@ public class PackagePanel extends JPanel implements ActionListener {
      */
 
     private void initPanel(){
-
+        setOpaque(false);
         setLayout(new GridLayout(3,1 ));
 
-        add(jScrollTable(deliveries()));
-        add(jScrollTable(deliveriesExpired()));
+        add(deliveries());
+        add(deliveriesExpired());
         add(buttonPanel());
 
         back.addActionListener(this);
@@ -62,12 +65,11 @@ public class PackagePanel extends JPanel implements ActionListener {
      */
 
     private JPanel buttonPanel(){
-
         JPanel buttonPanel = new JPanel(new GridLayout(1,1));
+        buttonPanel.setOpaque(false);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(height/10,height/50,height/10,height/50));
         buttonPanel.add(setButton());
         return buttonPanel;
-
     }
 
     /**
@@ -77,13 +79,12 @@ public class PackagePanel extends JPanel implements ActionListener {
      */
 
     private JPanel jScrollTable(JTable table){
-
         JPanel panel = new JPanel();
+        panel.setOpaque(false);
         panel.setLayout(new BorderLayout());
         JScrollPane scrollPanel = new JScrollPane(table);
         panel.add(scrollPanel , BorderLayout.CENTER);
         return panel;
-
     }
 
     /**
@@ -93,14 +94,25 @@ public class PackagePanel extends JPanel implements ActionListener {
      * @return The panel containing the table
      */
 
-    private JTable deliveries() {
-
+    private JPanel deliveries() {
+        JPanel panelDel = createPanelDeliveries("Parcels to be delivered");
         try {
-            return buildTable(deliveryMan.getDeliveries());
+            panelDel.add(jScrollTable(buildTable(deliveryMan.getDeliveries())), BorderLayout.CENTER);
         } catch (IOException e) {
-           return getEmptyTable();
+            panelDel.add(jScrollTable(getEmptyTable()), BorderLayout.CENTER);
         }
+        return panelDel;
+    }
 
+    private JPanel createPanelDeliveries(String text){
+        JPanel panelDel = new JPanel();
+        panelDel.setOpaque(false);
+        panelDel.setLayout(new BorderLayout());
+        TitledBorder border = BorderFactory.createTitledBorder(text);
+        border.setTitleFont(new Font("Bold" ,Font.BOLD , height/30));
+        border.setTitleColor(Color.WHITE);
+        panelDel.setBorder(border);
+        return panelDel;
     }
 
     /**
@@ -110,14 +122,14 @@ public class PackagePanel extends JPanel implements ActionListener {
      * @return The panel containing the table
      */
 
-    private JTable deliveriesExpired() {
-
+    private JPanel deliveriesExpired() {
+        JPanel panelDelExp = createPanelDeliveries("Parcels to collect");
         try {
-            return buildTable(deliveryMan.getDeliveriesExpired());
+            panelDelExp.add(jScrollTable(buildTable(deliveryMan.getDeliveriesExpired())), BorderLayout.CENTER);
         } catch (IOException e) {
-            return getEmptyTable();
+            panelDelExp.add(jScrollTable(getEmptyTable()), BorderLayout.CENTER);
         }
-
+        return panelDelExp;
     }
 
     /**
@@ -166,7 +178,7 @@ public class PackagePanel extends JPanel implements ActionListener {
     private JButton setButton(){
 
         back = new JButton("Go back");
-        back.setBackground(Color.orange);
+        back.setBackground(new Color(255,153,0));
         back.setFocusable(false);
         back.setFont(new Font("", Font.BOLD, height/30));
 

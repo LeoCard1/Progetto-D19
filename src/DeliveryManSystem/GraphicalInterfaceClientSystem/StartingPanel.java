@@ -38,6 +38,7 @@ public class StartingPanel extends JPanel {
      */
 
     StartingPanel( BackgroundPanel bgp, DeliveryMan deliveryman, int height){
+        setOpaque(false);
         this.bgp = bgp;
         this.height = height;
         this.deliveryMan = deliveryman;
@@ -52,15 +53,9 @@ public class StartingPanel extends JPanel {
      */
 
     private void initPanel(){
-
         setLayout(new BorderLayout());
-
         add(buttonPanel(), BorderLayout.CENTER);
-
         createAndRefreshPickupPointsList();
-
-      
-
     }
 
     /**
@@ -109,9 +104,10 @@ public class StartingPanel extends JPanel {
      */
 
     private JPanel buttonPanel(){
-
         JPanel buttonPanel = new JPanel();
+        buttonPanel.setOpaque(false);
         JPanel button = new JPanel();
+        button.setOpaque(false);
         buttonPanel.setLayout(new GridLayout(2,1));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(height/10,height/50,height/10,height/50));
         button.setLayout(new GridLayout(2 ,1));
@@ -139,7 +135,7 @@ public class StartingPanel extends JPanel {
        });
        viewPackage.setFont(new Font("",Font.BOLD,height/30));
 
-       viewPackage.setBackground(Color.orange);
+       viewPackage.setBackground(new Color(255,153,0));
        viewPackage.setFocusable(false);
 
        logOut = new JButton("LogOut");
@@ -153,7 +149,7 @@ public class StartingPanel extends JPanel {
        });
        logOut.setFont(new Font("",Font.BOLD,height/30));
 
-       logOut.setBackground(Color.orange);
+       logOut.setBackground(new Color(255,153,0));
        logOut.setFocusable(false);
 
 
@@ -170,7 +166,9 @@ public class StartingPanel extends JPanel {
 
     public JPanel getConfirmPanel(JPanel panelCont){
         JPanel confirmPanel = new JPanel();
+        confirmPanel.setOpaque(false);
         JLabel areYouSureLabel = new JLabel("Are You Sure?");
+        areYouSureLabel.setForeground(Color.WHITE);
         areYouSureLabel.setFont(new Font("Arial", Font.BOLD, height/30));
         JButton buttonYes = new JButton("YES");
         buttonYes.addActionListener(new ActionListener() {
@@ -188,9 +186,10 @@ public class StartingPanel extends JPanel {
                 panelCont.repaint();
             }
         });
-        buttonYes.setBackground(Color.ORANGE);
-        buttonNo.setBackground(Color.ORANGE);
+        buttonYes.setBackground(new Color(255,153,0));
+        buttonNo.setBackground(new Color(255,153,0));
         JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setOpaque(false);
         buttonsPanel.setLayout(new GridLayout(1,2));
         buttonsPanel.add(buttonYes);
         buttonsPanel.add(buttonNo);
@@ -210,6 +209,7 @@ public class StartingPanel extends JPanel {
     private void setMessage(JPanel buttonPanel){
         alertLabel = new AlertLabel("<html> <center> Selezionare l ' Id del punto di ritiro</html>", true);
         alertLabel.setDefaultTextAndIcon("<html> <center> Selezionare l ' Id del punto di ritiro</html>", true);
+        alertLabel.setForeground(Color.WHITE);
         Font font = new Font("Arial" ,ITALIC , height/25);
         alertLabel.setBorder(BorderFactory.createTitledBorder(alertLabel.getBorder(),SetDMLanguage.getInstance().setLoginPanel()[7] , ITALIC , 0, font, Color.red));
         buttonPanel.add(alertLabel);
@@ -233,14 +233,16 @@ public class StartingPanel extends JPanel {
 
     private void createAndRefreshPickupPointsList() {
         subPanel = new JPanel();
+        subPanel.setOpaque(false);
         subPanel.setLayout(new BorderLayout());
 
         JPanel centeredPanel = new JPanel();
+        centeredPanel.setOpaque(false);
         JButton refreshButton = new JButton();
         refreshButton.setPreferredSize(new Dimension(height/11,height/11));
         Image backImage = getDefaultToolkit().createImage("src/DeliveryManSystem/GraphicalInterfaceClientSystem/Icons/update.jpg").getScaledInstance(height/12, height/12,Image.SCALE_DEFAULT);
         refreshButton.setIcon(new ImageIcon(backImage));
-        refreshButton.setBackground(Color.ORANGE);
+        refreshButton.setBackground(new Color(255,153,0));
         
         centeredPanel.add(refreshButton);
 

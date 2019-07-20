@@ -125,7 +125,7 @@ public class AlertLabel extends JLabel {
      */
 
     public void createTimer(){
-        timer = new Timer(3000, new ActionListener() {
+        timer = new Timer(4000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(hasDefaultText){

@@ -58,7 +58,7 @@ public class LoginPanel extends JPanel {
      */
 
     private void initLoginPanel(){
-
+        setOpaque(false);
         setLayout(new GridLayout(2,1 ));
 
         add(panelPasswordId());
@@ -88,6 +88,7 @@ public class LoginPanel extends JPanel {
 
     private JPanel buttonPanel(){
         JPanel buttonPanel = new JPanel();
+        buttonPanel.setOpaque(false);
         buttonPanel.setLayout(new GridLayout(2,1));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(0,height/50,height/10,height/50));
 
@@ -104,9 +105,11 @@ public class LoginPanel extends JPanel {
 
     private JPanel panelPasswordId(){
         JPanel panelPasswordId = new JPanel();
+        panelPasswordId.setOpaque(false);
         panelPasswordId.setLayout(new GridLayout(3,2));
         TitledBorder border = BorderFactory.createTitledBorder(SetDMLanguage.getInstance().setLoginPanel()[3]);
         border.setTitleFont(new Font("", Font.BOLD, height/25));
+        border.setTitleColor(Color.WHITE);
         panelPasswordId.setBorder(border);
 
         setLanguageSelection(panelPasswordId);
@@ -124,14 +127,17 @@ public class LoginPanel extends JPanel {
 
     private void setLanguageSelection(JPanel panelPasswordId){
         JLabel labelLanguage = new JLabel(SetDMLanguage.getInstance().setLoginPanel()[4]);
+        labelLanguage.setForeground(Color.WHITE);
         labelLanguage.setFont(new Font("", Font.BOLD, height/34));
 
         JPanel panelLanguage = new JPanel();
+        panelLanguage.setOpaque(false);
         panelLanguage.setBorder(BorderFactory.createEmptyBorder(height/15,0,0,width/7));
         panelLanguage.add(labelLanguage);
         l1 = labelLanguage;
 
         JPanel panelSelectLanguage = new JPanel();
+        panelSelectLanguage.setOpaque(false);
         panelSelectLanguage.setBorder(BorderFactory.createEmptyBorder(height/15,0,0,0));
         JComboBox language = new JComboBox(languageSelector);
         language.setFont(new Font("", Font.BOLD, height/34));
@@ -165,7 +171,9 @@ public class LoginPanel extends JPanel {
 
     private void setJTextFieldAndJPasswordField(JPanel panelPasswordId){
         JLabel labelPassword = new JLabel(SetDMLanguage.getInstance().setLoginPanel()[5]);
+        labelPassword.setForeground(Color.WHITE);
         JLabel labelId = new JLabel(SetDMLanguage.getInstance().setLoginPanel()[6]);
+        labelId.setForeground(Color.WHITE);
         jpf = new JPasswordField();
         jpf.setFont(new Font("", Font.PLAIN, height/34));
         labelPassword.setFont(new Font("", Font.BOLD, height/34));
@@ -174,20 +182,24 @@ public class LoginPanel extends JPanel {
         jtf.setFont(new Font("", Font.PLAIN, height/34));
 
         JPanel panelPassword = new JPanel();
+        panelPassword.setOpaque(false);
         panelPassword.add(labelPassword);
         l2 = labelPassword;
         l3 = labelId;
 
         JPanel panelPasswordField = new JPanel();
+        panelPasswordField.setOpaque(false);
         panelPasswordField.setLayout(new GridLayout(2,1));
         panelPasswordField.setBorder(BorderFactory.createEmptyBorder(0,0,height/20,0));
         panelPasswordField.add(jpf);
 
         JPanel panelText = new JPanel();
+        panelText.setOpaque(false);
         panelText.setBorder(BorderFactory.createEmptyBorder(height/20,0,0,width/7));
         panelText.add(labelId);
 
         JPanel panelTextField = new JPanel();
+        panelTextField.setOpaque(false);
         panelTextField.setLayout(new GridLayout(2,1));
         panelTextField.setBorder(BorderFactory.createEmptyBorder(height/20,0,0,0));
         panelTextField.add(jtf);
@@ -206,6 +218,7 @@ public class LoginPanel extends JPanel {
 
     private void setMessageError(JPanel buttonPanel){
         errorLabel = new AlertLabel();
+        errorLabel.setForeground(Color.WHITE);
         errorLabel.setTextAndIcon(SetDMLanguage.getInstance().setLoginPanel()[11], true);
         errorLabel.setDefaultTextAndIcon(SetDMLanguage.getInstance().setLoginPanel()[11], true);
         buttonPanel.add(errorLabel);
@@ -226,7 +239,7 @@ public class LoginPanel extends JPanel {
 
         //settings button
 
-        login.setBackground(Color.orange);
+        login.setBackground(new Color(255,153,0));
         login.setFocusable(false);
 
         //add button
@@ -247,6 +260,7 @@ public class LoginPanel extends JPanel {
         l.addItem(SetDMLanguage.getInstance().setLoginPanel()[1]);
         l.addItem(SetDMLanguage.getInstance().setLoginPanel()[2]);
         TitledBorder border = BorderFactory.createTitledBorder(SetDMLanguage.getInstance().setLoginPanel()[3]);
+        border.setTitleColor(Color.WHITE);
         border.setTitleFont(new Font("", Font.BOLD, height/25));
         p.setBorder(border);
         l1.setText(SetDMLanguage.getInstance().setLoginPanel()[4]);
