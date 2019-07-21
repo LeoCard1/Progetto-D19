@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+
 /**
- *
  * This class allows the connection between the pickup
  * point and the main server which connects to the database
  *
@@ -15,15 +15,14 @@ import java.net.Socket;
  * @version 1.0.3
  */
 
-
 public class MainServerConnector {
     private Socket client = new Socket();
     private BufferedReader in;
     private PrintStream out;
 
     /**
-     * constructor body
-     * @throws IOException Input/Output Error between client and server
+     * The constructor
+     * @throws IOException Input/Output error between client and server
      */
 
     public MainServerConnector() throws IOException {
@@ -33,8 +32,10 @@ public class MainServerConnector {
     /**
      * This method starts the client, which then connects
      * to the main server
+     *
      * @throws IOException Input/Output Error between client and server
      */
+
     private void startClient() throws IOException {
 
         System.out.println("[0] Connecting to main server...");
@@ -47,12 +48,12 @@ public class MainServerConnector {
     }
 
     /**
-     * this method gets the Delivery data of a specific pickup point
-     * from the main server
+     * This method gets the delivery data of a specific pickup point
+     * from the main server given the pickup point ID
      *
-     * @param piPoID pickup point ID
-     * @return received delivery string
-     * @throws IOException Input/Output Error between client and server
+     * @param piPoID The pickup point ID
+     * @return The delivery data received from the server
+     * @throws IOException Input/Output error between client and server
      */
 
     public String getDelivery(String piPoID) throws IOException {
@@ -60,8 +61,9 @@ public class MainServerConnector {
     }
 
     /**
-     * This method removes a row from the database
-     * through a given package ID
+     * This method removes a row from the database through a given
+     * package ID
+     *
      * @param packID The package ID
      */
 
@@ -84,27 +86,24 @@ public class MainServerConnector {
     }
 
     /**
-     * This method gets the deliveryman's password
-     * from his ID
+     * This method gets the deliveryman's password given his ID from
+     * the database
      *
-     * @param delID The ID of the deliveryman
+     * @param delID The deliveryman's ID
      * @return The password
-     * @throws IOException Input/Output Error between client and server
+     * @throws IOException Input/Output error between client and server
      */
 
     public String deliveryManGet(String delID) throws IOException {
-
         return sendAndWaitForResponse("deliveryman get " + delID);
-
     }
 
     /**
-     * This method gets the package data
-     * from a package ID
+     * This method gets the package data from a package ID
      *
      * @param packageID The package ID
      * @return The package data
-     * @throws IOException Input/Output Error between client and server
+     * @throws IOException Input/Output error between client and server
      */
 
     public String packageGet(String packageID) throws IOException {
@@ -122,12 +121,11 @@ public class MainServerConnector {
     }
 
     /**
-     * This method gets the pickup point data
-     * from its ID
+     * This method gets the pickup point data from its ID
      *
      * @param piPoID The pickup point ID
      * @return The pickup point data
-     * @throws IOException Input/Output Error between client and server
+     * @throws IOException Input/Output error between client and server
      */
 
     public String pickupPointGet(String piPoID) throws IOException {
@@ -135,8 +133,8 @@ public class MainServerConnector {
     }
 
     /**
-     * This method adds test packages to the
-     * database. Used with JUnit
+     * This method adds test packages to the database. Used with
+     * JUnit
      */
 
     public void addTestPackages() {
@@ -144,11 +142,11 @@ public class MainServerConnector {
     }
 
     /**
-     * This method gets the test deliveryman's
-     * password. Used with JUnit
+     * This method gets the test deliveryman's password. Used with
+     * JUnit
      *
      * @return The test deliveryman's password
-     * @throws IOException Input/Output Error between client and server
+     * @throws IOException Input/Output error between client and server
      */
 
     public String getTestPackageCode() throws IOException {
@@ -156,8 +154,7 @@ public class MainServerConnector {
     }
 
     /**
-     * This method signals to the server to
-     * close the connection
+     * This method signals to the server to close the connection
      */
 
     public void close() {
@@ -165,12 +162,12 @@ public class MainServerConnector {
     }
 
     /**
-     * This method lets the client send a string
-     * and then wait for a response by the server
+     * This method lets the client send a string and then wait for a
+     * response from the server
      *
      * @param command The string that must be sent
      * @return The received string
-     * @throws IOException Input/Output Error between client and server
+     * @throws IOException Input/Output error between client and server
      */
 
     private String sendAndWaitForResponse(String command) throws IOException {

@@ -1,15 +1,32 @@
 package DeliveryManSystem.DatabaseSystem.Mappers;
 
-
 import DeliveryManSystem.DatabaseSystem.Tables.PickupPointTable;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
 
+/**
+ * This class returns PickupPointTable
+ * objects from the database
+ *
+ * @author Gruppo D19
+ * @version 2.0.0
+ */
+
 public class PickupPointMapper implements Mapper {
+
+    /**
+     * This method returns a PickupPointTable
+     * object from the database given the
+     * pickup point ID
+     *
+     * @param piPoID The pickup point ID
+     * @return The PickupPointTable object
+     * @throws IOException Input/Output error between client and server
+     */
+
     @Override
     public PickupPointTable get(String piPoID) throws IOException {
-
         MainServerConnector server = new MainServerConnector();
 
         StringTokenizer strTok = new StringTokenizer(server.getPickupPoint(piPoID).replace("\n", ""), ":");

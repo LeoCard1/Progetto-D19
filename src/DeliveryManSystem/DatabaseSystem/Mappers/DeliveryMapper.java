@@ -1,6 +1,5 @@
 package DeliveryManSystem.DatabaseSystem.Mappers;
 
-
 import DeliveryManSystem.DatabaseSystem.Tables.DeliveryTable;
 
 import java.io.IOException;
@@ -12,18 +11,24 @@ import java.util.Date;
 import java.util.StringTokenizer;
 
 /**
- * @author D19 Group
- * @version 2.0
+ * This class returns DeliveryTable
+ * objects from the database
+ *
+ * @author Gruppo D19
+ * @version 2.0.0
  */
 
 public class DeliveryMapper implements Mapper {
 
-
     /**
-     * This method returns an ArrayList of deliveries inside the database given the PickupPointTable
-     * id passed as an argument.
-     * @param delID
-     * @return ArrayList<DeliveryTable>
+     * This method returns a list of
+     * DeliveryTable objects from the
+     * database given the deliveryman's
+     * ID
+     *
+     * @param delID The deliveryman's ID
+     * @return ArrayList<DeliveryTable> The list of DeliveryTable objects
+     * @throws IOException Input/Output error between client and server
      */
 
     @Override
@@ -65,7 +70,5 @@ public class DeliveryMapper implements Mapper {
         server.close();
         return deliveries;
     }
-
-
 }
 

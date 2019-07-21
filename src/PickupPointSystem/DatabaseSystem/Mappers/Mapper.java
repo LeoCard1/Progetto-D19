@@ -3,17 +3,18 @@ package PickupPointSystem.DatabaseSystem.Mappers;
 import java.io.IOException;
 
 /**
- * @author Andrea Stella
- * @version 1.0
+ * @author Gruppo D19
+ * @version 1.0.0
  */
 
 public interface Mapper {
 
     /**
-     * This method returns some kind of object given a key.
-     * @param oid
-     * @return Object
+     * This method returns some kind of object given a key
+     *
+     * @param oid The key
+     * @return The object
      */
 
-    public Object get(String oid) throws IOException;
+    Object get(String oid) throws IOException;
 }

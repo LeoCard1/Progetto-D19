@@ -1,19 +1,21 @@
 package DeliveryManSystem.DatabaseSystem.Mappers;
 
-
 import java.util.HashMap;
 
 /**
- * @author Andrea Stella
- * @version 1.0
+ * This factory creates mapper instances
+ *
+ * @author Gruppo D19
+ * @version 1.0.0
  */
 
 public class MapperFactory {
 
     /**
-     * This method return a HashMap containing all types of mappers associated
-     * with strings.
-     * @return HashMap<String, Mapper>
+     * This method returns a HashMap containing
+     * all the types of mappers
+     *
+     * @return HashMap<String, Mapper> The mappers
      */
 
     public HashMap<String, Mapper> getAllMappers() {
