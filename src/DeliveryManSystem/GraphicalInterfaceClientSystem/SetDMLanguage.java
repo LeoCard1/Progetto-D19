@@ -29,8 +29,19 @@ public class SetDMLanguage {
         }
     }
 
-    public void changeLanguage(String language){
-        this.language=language;
+    public String[] setPackagePanel(){
+        if(language.equals("italiano")){
+            String[] s = {"Pacchi da consegnare", "Pacchi da ritirare", "ID Punto di Ritiro", "ID Pacco", "Indietro",
+                          "Info Punti di Ritiro"};
+            return s;
+        } else {
+            String[] s = {"Parcels to be delivered", "Parcels to collect", "Pickup Point ID", "Package ID", "Go back",
+                          "Info Pickup Points"};
+            return s;
+        }
     }
+
+
+    public void changeLanguage(String language){this.language=language;}
 
 }

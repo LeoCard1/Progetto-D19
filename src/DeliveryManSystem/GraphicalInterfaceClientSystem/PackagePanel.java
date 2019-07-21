@@ -39,7 +39,7 @@ public class PackagePanel extends JPanel {
     }
 
     /**
-     * This method initialized the PackagePanel
+     * This method initializes the PackagePanel
      */
 
     private void initPanel(){
@@ -71,8 +71,8 @@ public class PackagePanel extends JPanel {
     }
 
     /**
-     * This method create a jPanel and add to it the jScrollTable
-     * @param table create by deliveries and deliveriesExpired methods
+     * This method create a jPanel and adds to it the jScrollTable
+     * @param table created by deliveries and deliveriesExpired methods
      * @return the jPanel that's just been created
      */
 
@@ -93,7 +93,7 @@ public class PackagePanel extends JPanel {
      */
 
     private JPanel deliveries() {
-        JPanel panelDel = createPanelDeliveries("Parcels to be delivered");
+        JPanel panelDel = createPanelDeliveries(SetDMLanguage.getInstance().setPackagePanel()[0]);
         try {
             panelDel.add(jScrollTable(buildTable(deliveryMan.getDeliveries())), BorderLayout.CENTER);
         } catch (IOException e) {
@@ -121,7 +121,7 @@ public class PackagePanel extends JPanel {
      */
 
     private JPanel deliveriesExpired() {
-        JPanel panelDelExp = createPanelDeliveries("Parcels to collect");
+        JPanel panelDelExp = createPanelDeliveries(SetDMLanguage.getInstance().setPackagePanel()[1]);
         try {
             panelDelExp.add(jScrollTable(buildTable(deliveryMan.getDeliveriesExpired())), BorderLayout.CENTER);
         } catch (IOException e) {
@@ -140,7 +140,8 @@ public class PackagePanel extends JPanel {
 
     private JTable buildTable(ArrayList<DeliveryTable> delTabList) {
 
-        String[] tableParameters = {"Pickup Point ID", "Package ID"};
+        String[] tableParameters = {SetDMLanguage.getInstance().setPackagePanel()[2],
+                                    SetDMLanguage.getInstance().setPackagePanel()[3]};
 
         String[][] table = new String[delTabList.size()][];
         int i = 0;
@@ -164,7 +165,8 @@ public class PackagePanel extends JPanel {
      */
 
     private JTable getEmptyTable() {
-        String[] tableParameters = {"Pickup Point ID", "Package ID"};
+        String[] tableParameters = {SetDMLanguage.getInstance().setPackagePanel()[2],
+                                    SetDMLanguage.getInstance().setPackagePanel()[3]};
         String[][] table = new String[0][];
         return new JTable(table,tableParameters);
     }
@@ -177,7 +179,7 @@ public class PackagePanel extends JPanel {
 
     private JButton getButtonBack(){
 
-        JButton back = new JButton("Go back");
+        JButton back = new JButton(SetDMLanguage.getInstance().setPackagePanel()[4]);
         back.setBackground(new Color(255,153,0));
         back.setFocusable(false);
         back.setFont(new Font("", Font.BOLD, height/30));
@@ -193,7 +195,7 @@ public class PackagePanel extends JPanel {
     }
 
     private JButton getButtonInfoPickupPoint(){
-        JButton info = new JButton("Info Pickup Points");
+        JButton info = new JButton(SetDMLanguage.getInstance().setPackagePanel()[5]);
         info.setBackground(new Color(255,153,0));
         info.setFocusable(false);
         info.setFont(new Font("", Font.BOLD, height/30));
@@ -209,7 +211,7 @@ public class PackagePanel extends JPanel {
     }
 
     /**
-     * This method refresh the package list
+     * This method refreshes the package list
      */
 
     public void refreshPackageList() {
