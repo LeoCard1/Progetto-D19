@@ -1,14 +1,14 @@
 package PickupPointSystem.DatabaseSystem.Tables;
 
-
 import PickupPointSystem.DateHandler;
 
 import java.util.Date;
 
 /**
- * This class is the representation of the delivery database table
- * @author Andrea Stella
- * @version 1.0
+ * This class represents the 'deliveries' database table
+ *
+ * @author Gruppo D19
+ * @version 1.0.0
  */
 
 public class DeliveryTable {
@@ -21,14 +21,16 @@ public class DeliveryTable {
     private String delID;
 
     /**
-     * The constructor. Initializes pack id, pickup point id, delivery date,
-     * box number, box password and delivery man id
-     * @param packID the pack id
-     * @param pipoID the id of the pickup point where the pack was delivered
-     * @param dateOfDelivery the delivery date
-     * @param boxNumber the number of the box in which the pack was inserted
-     * @param boxPassword the password of the box in which the pack was inserted
-     * @param delID the id of the delivery man who made the delivery
+     * The constructor. It sets the package id, the pickup
+     * point id, the delivery date, the box number, the box
+     * password and the deliveryman's id
+     *
+     * @param packID The package id
+     * @param pipoID The ID of the pickup point where the package was delivered
+     * @param dateOfDelivery The delivery date
+     * @param boxNumber The box number identifying the package in the pickup point
+     * @param boxPassword The password of the box in which the pack was inserted
+     * @param delID The ID of the deliveryman who made the delivery
      */
 
     public DeliveryTable(String packID, String pipoID, Date dateOfDelivery, int boxNumber, String boxPassword, String delID){
@@ -41,7 +43,9 @@ public class DeliveryTable {
     }
 
     /**
-     * @return the pack id
+     * This method returns the package ID
+     *
+     * @return The package ID
      */
 
     public String getPackID(){
@@ -49,7 +53,9 @@ public class DeliveryTable {
     }
 
     /**
-     * @return the delivery date
+     * This method returns the delivery date
+     *
+     * @return The delivery date
      */
 
     public Date getDateOfDelivery(){
@@ -57,7 +63,10 @@ public class DeliveryTable {
     }
 
     /**
-     * @return the box number
+     * This method returns the number of the box where the
+     * package is stored
+     *
+     * @return The box number
      */
 
     public int getBoxNumber(){
@@ -65,7 +74,9 @@ public class DeliveryTable {
     }
 
     /**
-     * @return the box password
+     * This method returns the box password
+     *
+     * @return The box password
      */
 
     public String getBoxPassword(){
@@ -74,7 +85,8 @@ public class DeliveryTable {
 
     /**
      * This method sets the delivery date
-     * @param dateOfDelivery the date to be set
+     *
+     * @param dateOfDelivery The date to be set
      */
 
     public void setDateOfDelivery(Date dateOfDelivery){
@@ -83,7 +95,8 @@ public class DeliveryTable {
 
     /**
      * This method sets the box number
-     * @param boxNumber the box number to be set
+     *
+     * @param boxNumber The box number to be set
      */
 
     public void setBoxNumber(int boxNumber){
@@ -92,7 +105,8 @@ public class DeliveryTable {
 
     /**
      * This method sets the box password
-     * @param boxPassword the box password to be set
+     *
+     * @param boxPassword The box password to be set
      */
 
     public void setBoxPassword(String boxPassword) {
@@ -100,43 +114,47 @@ public class DeliveryTable {
     }
 
     /**
-     * This method checks that the delivery has been entrusted to
-     * the delivery man whose id is passed as an argument
-     * @param delID the delivery man id
-     * @return true if the delivery man id is the same as the one
-     * in the delivery, else false
+     * This method checks that the delivery has been entrusted
+     * to the delivery man whose ID is passed as an argument
+     *
+     * @param delID The deliveryman's ID
+     * @return Boolean that checks whether the deliveryman's ID is the same as the one specified in the delivery
      */
 
     public boolean hasDelID(String delID){
-        if(this.delID!=null && this.delID.equals(delID)){
+        if (this.delID != null && this.delID.equals(delID)) {
             return true;
         }
         return false;
     }
 
     /**
-     * This method checks if the box number passed as an argument is the
-     * same as the one in the delivery
-     * @param boxNumber the box number
-     * @return true if is the same, else false
+     * This method checks if the box number passed as an
+     * argument is the same as the one specified in the
+     * delivery
+     *
+     * @param boxNumber The box number
+     * @return Boolean that checks whether the box number is the same as the one specified in the delivery
      */
 
     public boolean hasBoxNumber(int boxNumber){
-        if(this.boxNumber == boxNumber){
+        if (this.boxNumber == boxNumber) {
             return true;
         }
         return false;
     }
 
     /**
-     * This method checks if the pack id passed as an argument is the same
-     * as the one in the delivery
-     * @param packID the pack id
-     * @return true if is the same, else false
+     * This method checks if the package ID passed as an
+     * argument is the same as the one specified in the
+     * delivery
+     *
+     * @param packID The package ID
+     * @return Boolean that checks whether the package ID is the same as the one specified in the delivery
      */
 
     public boolean hasPackage(String packID){
-        if(this.packID.equals(packID)){
+        if (this.packID.equals(packID)) {
             return true;
         }
         return false;
@@ -144,31 +162,29 @@ public class DeliveryTable {
 
     /**
      * This method checks if the delivery was made
-     * @return true if the delivery was made, else false
+     *
+     * @return True if the delivery was made, else it's false
      */
 
     public boolean wasMade(){
-        if(dateOfDelivery!=null){
+        if (dateOfDelivery != null) {
             return true;
         }
         return false;
     }
 
     /**
-     * This method checks if the delivery has been made for more
-     * than 3 days
-     * @return true if the delivery has been made for more 3 days,
-     * else false
+     * This method checks if 3 days or more have passed
+     * since the delivery was made
+     *
+     * @return True if 3 or more days have passed, else it's false
      */
 
     public boolean hasPackDeliveredForThreeDays(){
         DateHandler dateHandler = new DateHandler();
-        if(dateHandler.differenceInDays(new Date(),dateOfDelivery)>3){
+        if (dateHandler.differenceInDays(new Date(),dateOfDelivery) > 3) {
             return true;
         }
         return false;
-
-
     }
-
 }

@@ -1,9 +1,10 @@
 package PickupPointSystem.DatabaseSystem.Tables;
 
 /**
- * This class is the representation of the delivery man database table
- * @author Andrea Stella
- * @version 1.0
+ * This class represents the 'deliverymen' database table
+ *
+ * @author Gruppo D19
+ * @version 1.0.0
  */
 
 public class DeliveryManTable {
@@ -12,9 +13,10 @@ public class DeliveryManTable {
     private String password;
 
     /**
-     * The constructor. Initializes id and password
-     * @param delID the delivery man id
-     * @param password the delivery man password
+     * The constructor. It sets the ID and the password
+     *
+     * @param delID The deliveryman's ID
+     * @param password The deliveryman's password
      */
 
     public DeliveryManTable(String delID, String password){
@@ -23,12 +25,12 @@ public class DeliveryManTable {
     }
 
     /**
-     * @return the delivery man password
+     * This method returns the password
+     *
+     * @return The deliveryman's password
      */
 
     public String getPassword(){
         return password;
     }
-
-
 }
