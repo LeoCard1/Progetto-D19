@@ -4,9 +4,7 @@ public class SetDMLanguage {
     static SetDMLanguage instance;
     private String language;
 
-    private SetDMLanguage() {
-        this.language = "english";
-    }
+    private SetDMLanguage() {this.language = "english";}
 
     public static synchronized SetDMLanguage getInstance() {
         if (instance == null)
@@ -37,6 +35,34 @@ public class SetDMLanguage {
         } else {
             String[] s = {"Parcels to be delivered", "Parcels to collect", "Pickup Point ID", "Package ID", "Go back",
                           "Info Pickup Points"};
+            return s;
+        }
+    }
+
+    public String[] setPickupPointInfoPanel(){
+        if(language.equals("italiano")){
+            String[] s = {"Info Punti di Ritiro", "ID", "Luogo", "Indirizzo", "Indietro"};
+            return s;
+        } else {
+            String[] s = {"Pickup Points Info", "ID", "Location", "Address", "Go Back"};
+            return s;
+        }
+    }
+
+    public String[] setStartingPanel(){
+        if(language.equals("italiano")){
+            String[] s = {"<html> <center> Impossibile connettersi al server</html>",
+                          "<html><center>Credenziali inviate correttamente al punto di ritiro ",
+                          "<html> <center> Impossibile connettersi al server di ",
+                          "Mostra pacchi", "Sei sicuro?", "SI", "Disconnetti",
+                          "<html> <center> Selezionare l'ID del punto di ritiro</html>"};
+            return s;
+        } else {
+            String[] s = {"<html> <center> Can't connect to server</html>",
+                          "<html><center>Credentials sent to the pickup point succesfully ",
+                          "<html> <center> Can't connect to the server of ",
+                          "View Packages", "Are You Sure?", "YES", "Logout",
+                          "<html> <center> Select the ID of the pickup point</html>"};
             return s;
         }
     }

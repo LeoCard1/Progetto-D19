@@ -93,6 +93,7 @@ public class BackGroundPanel extends JPanel {
 
         if (namePanel.equals("viewBoxesPanel")) {
             viewBoxesPanel.getGridBoxesPanel().checkState();
+            viewBoxesPanel.getGridBoxesPanel().refresh();
             viewBoxesPanel.getInfoPackPanel().refresh();
         }
 

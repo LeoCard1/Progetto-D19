@@ -84,6 +84,20 @@ public class SetLanguage {
 
     }
 
+    public String[] setGridBoxesPanel(){
+
+        if(language.equals("italiano")){
+            String[] s = {"GRAZIE PER AVER USATO <font color='green'>SMART</font><font color='orange'>LOCKER</font>! </strong>",
+                    "<br/><br/> <font color='#696969'>CHIUDERE I BOX DOPO IL RITIRO</font></center></html>\""};
+            return s;
+        }else{
+            String[] s = {"THANKS FOR USING <font color='green'>SMART</font> <font color='orange'>LOCKER</font> ! </strong>",
+                    "<br/><br/> <font color='#696969'>CLOSE THE BOXES AFTER FINISHING</font></center></html>\""};
+            return s;
+        }
+
+    }
+
     public void changeLanguage(String language){
         this.language=language;
     }
