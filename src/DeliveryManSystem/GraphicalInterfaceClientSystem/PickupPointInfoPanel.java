@@ -72,7 +72,7 @@ public class PickupPointInfoPanel extends JPanel {
      */
 
     private JButton getButtonBack(){
-        JButton back = new JButton("Go back");
+        JButton back = new JButton(SetDMLanguage.getInstance().setPickupPointInfoPanel()[4]);
         back.setBackground(new Color(255,153,0));
         back.setFocusable(false);
         back.setFont(new Font("", Font.BOLD, height/30));
@@ -96,7 +96,7 @@ public class PickupPointInfoPanel extends JPanel {
         centeredPanel.setOpaque(false);
         centeredPanel.setLayout(new BorderLayout());
         JScrollPane scrollPanel = new JScrollPane(getTable());
-        TitledBorder border = BorderFactory.createTitledBorder("Pickup points info");
+        TitledBorder border = BorderFactory.createTitledBorder(SetDMLanguage.getInstance().setPickupPointInfoPanel()[0]);
         border.setTitleFont(new Font("Bold" ,Font.BOLD , height/30));
         border.setTitleColor(Color.WHITE);
         centeredPanel.setBorder(border);
@@ -110,7 +110,9 @@ public class PickupPointInfoPanel extends JPanel {
      */
 
     private JTable getTable(){
-        String[] tableParameters = {"ID", "Location", "Address"};
+        String[] tableParameters = {SetDMLanguage.getInstance().setPickupPointInfoPanel()[1],
+                                    SetDMLanguage.getInstance().setPickupPointInfoPanel()[2],
+                                    SetDMLanguage.getInstance().setPickupPointInfoPanel()[3]};
 
         try {
             TreeSet<String> pickupPoints = deliveryMan.getPickupPointsID();
@@ -141,7 +143,9 @@ public class PickupPointInfoPanel extends JPanel {
      */
 
     private JTable getEmptyTable() {
-        String[] tableParameters = {"ID", "Location", "Address"};
+        String[] tableParameters = {SetDMLanguage.getInstance().setPickupPointInfoPanel()[1],
+                                    SetDMLanguage.getInstance().setPickupPointInfoPanel()[2],
+                                    SetDMLanguage.getInstance().setPickupPointInfoPanel()[3]};
         String[][] table = new String[0][];
         return new JTable(table,tableParameters);
     }

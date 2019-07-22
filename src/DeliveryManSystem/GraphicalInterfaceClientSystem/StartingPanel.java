@@ -70,7 +70,7 @@ public class StartingPanel extends JPanel {
         try {
             strings.addAll(deliveryMan.getPickupPointsID());
         } catch (IOException e) {
-            alertLabel.setTextAndIcon("<html> <center> Impossibile connettersi al server</html>", true);
+            alertLabel.setTextAndIcon(SetDMLanguage.getInstance().setStartingPanel()[0], true);
         }
         pickupPointIdSelector = new JComboBox(strings.toArray(new String[0]));
 
@@ -82,12 +82,12 @@ public class StartingPanel extends JPanel {
                             String piPoID = pickupPointIdSelector.getSelectedItem().toString();
                             deliveryMan.sendCredentials(piPoID);
                             refreshPickupPointsList();
-                            alertLabel.showMessageForAFewSeconds("<html><center>Credenziali inviate correttamente al punto di ritiro "+piPoID+"</html>", false);
+                            alertLabel.showMessageForAFewSeconds(SetDMLanguage.getInstance().setStartingPanel()[1] + piPoID+"</html>", false);
                         }
                     } catch (IOException e) {
-                        alertLabel.setTextAndIcon("<html> <center> Impossibile connettersi al server</html>", true);
+                        alertLabel.setTextAndIcon(SetDMLanguage.getInstance().setStartingPanel()[0], true);
                     } catch (PickupPointServerUnavailableException p){
-                        alertLabel.showMessageForAFewSeconds("<html> <center> Impossibile connettersi al server di " +pickupPointIdSelector.getSelectedItem().toString()+ "</html>", true);
+                        alertLabel.showMessageForAFewSeconds(SetDMLanguage.getInstance().setStartingPanel()[2] + pickupPointIdSelector.getSelectedItem().toString()+ "</html>", true);
                     }
                 }
             });
@@ -127,7 +127,7 @@ public class StartingPanel extends JPanel {
 
     private void setButton(JPanel buttonPanel){
 
-       viewPackage = new JButton("View Packages");
+       viewPackage = new JButton(SetDMLanguage.getInstance().setStartingPanel()[3]);
        viewPackage.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
@@ -139,7 +139,7 @@ public class StartingPanel extends JPanel {
        viewPackage.setBackground(new Color(255,153,0));
        viewPackage.setFocusable(false);
 
-       logOut = new JButton("LogOut");
+       logOut = new JButton(SetDMLanguage.getInstance().setStartingPanel()[6]);
        logOut.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
@@ -168,10 +168,10 @@ public class StartingPanel extends JPanel {
     public JPanel getConfirmPanel(JPanel panelCont){
         JPanel confirmPanel = new JPanel();
         confirmPanel.setOpaque(false);
-        JLabel areYouSureLabel = new JLabel("Are You Sure?");
+        JLabel areYouSureLabel = new JLabel(SetDMLanguage.getInstance().setStartingPanel()[4]);
         areYouSureLabel.setForeground(Color.WHITE);
         areYouSureLabel.setFont(new Font("Arial", Font.BOLD, height/30));
-        JButton buttonYes = new JButton("YES");
+        JButton buttonYes = new JButton(SetDMLanguage.getInstance().setStartingPanel()[5]);
         buttonYes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -208,8 +208,8 @@ public class StartingPanel extends JPanel {
      */
 
     private void setMessage(JPanel buttonPanel){
-        alertLabel = new AlertLabel("<html> <center> Selezionare l ' Id del punto di ritiro</html>", true);
-        alertLabel.setDefaultTextAndIcon("<html> <center> Selezionare l ' Id del punto di ritiro</html>", true);
+        alertLabel = new AlertLabel(SetDMLanguage.getInstance().setStartingPanel()[7], true);
+        alertLabel.setDefaultTextAndIcon(SetDMLanguage.getInstance().setStartingPanel()[7], true);
         alertLabel.setForeground(Color.WHITE);
         Font font = new Font("Arial" ,ITALIC , height/25);
         alertLabel.setBorder(BorderFactory.createTitledBorder(alertLabel.getBorder(),SetDMLanguage.getInstance().setLoginPanel()[7] , ITALIC , 0, font, Color.red));
