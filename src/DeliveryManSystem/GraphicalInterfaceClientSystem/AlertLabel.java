@@ -8,7 +8,8 @@ import java.awt.event.ActionListener;
 import static java.awt.Font.ITALIC;
 
 /**
- * This class is the label that will contain warnings for the delivery man
+ * This class is the label that will contain warning and success messages
+ * for the delivery man
  * @author Andrea Stella
  * @version 1.0.0
  */

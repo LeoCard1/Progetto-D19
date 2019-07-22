@@ -59,7 +59,7 @@ public class SetDMLanguage {
             return s;
         } else {
             String[] s = {"<html> <center> Can't connect to server</html>",
-                          "<html><center>Credentials sent to the pickup point succesfully ",
+                          "<html><center>Credentials sents successfully to the pickup point ",
                           "<html> <center> Can't connect to the server of ",
                           "View Packages", "Are You Sure?", "YES", "Logout",
                           "<html> <center> Select the ID of the pickup point</html>"};
