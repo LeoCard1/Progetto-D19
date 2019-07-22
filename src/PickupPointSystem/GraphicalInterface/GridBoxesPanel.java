@@ -21,6 +21,7 @@ public class GridBoxesPanel extends JPanel {
     private int numBox;
     private int width;
     private int height;
+    private JLabel textLabel;
 
     /**
      * The constructor.
@@ -49,9 +50,9 @@ public class GridBoxesPanel extends JPanel {
         jp.setPreferredSize(new Dimension(width*5/19, height*2/5));
         setLayout(new FlowLayout(FlowLayout.CENTER, 0, height/80));
 
-        JLabel textLabel = new JLabel("<html><font face = 'Bookman'> <center> <br> <strong>" +
-                "THANKS FOR USING <font color='green'>SMART</font> <font color='orange'>LOCKER</font> ! </strong>" +
-                "<br/><br/> <font color='#696969'>CLOSE THE BOXES AFTER FINISHING</font></center></html>\"");
+        textLabel = new JLabel("<html><font face = 'Bookman'> <center> <br> <strong>" +
+                SetLanguage.getInstance().setGridBoxesPanel()[0] +
+                SetLanguage.getInstance().setGridBoxesPanel()[1]);
         textLabel.setFont(new Font("", Font.PLAIN, height/40));
 
         add(jp);
@@ -144,4 +145,10 @@ public class GridBoxesPanel extends JPanel {
         super.paintComponent(g);
     }
 
+
+    public void refresh() {
+        textLabel.setText("<html><font face = 'Bookman'> <center> <br> <strong>" +
+                          SetLanguage.getInstance().setGridBoxesPanel()[0] +
+                          SetLanguage.getInstance().setGridBoxesPanel()[1]);
+    }
 }
