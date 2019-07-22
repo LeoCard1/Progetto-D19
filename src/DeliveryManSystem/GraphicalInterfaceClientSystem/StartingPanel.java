@@ -1,6 +1,7 @@
 package DeliveryManSystem.GraphicalInterfaceClientSystem;
 
 import DeliveryManSystem.DeliveryMan;
+import DeliveryManSystem.Exceptions.PickupPointServerUnavailableException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static java.awt.Font.ITALIC;
+import static java.awt.Toolkit.getDefaultToolkit;
 
 /**
  * This Class creates the main panel used in the PDA
@@ -17,12 +19,12 @@ import static java.awt.Font.ITALIC;
  * @version 1.0.2
  */
 
-public class StartingPanel extends JPanel implements ActionListener {
+public class StartingPanel extends JPanel {
 
     private DeliveryMan deliveryMan;
     private JButton viewPackage;
     private JButton logOut;
-    private JLabel instructionLabel;
+    private AlertLabel alertLabel;
     private JComboBox pickupPointIdSelector;
     private BackgroundPanel bgp;
     private int height;
@@ -36,6 +38,7 @@ public class StartingPanel extends JPanel implements ActionListener {
      */
 
     StartingPanel( BackgroundPanel bgp, DeliveryMan deliveryman, int height){
+        setOpaque(false);
         this.bgp = bgp;
         this.height = height;
         this.deliveryMan = deliveryman;
@@ -50,16 +53,9 @@ public class StartingPanel extends JPanel implements ActionListener {
      */
 
     private void initPanel(){
-
         setLayout(new BorderLayout());
-
-        createAndRefreshPickupPointsList();
-
         add(buttonPanel(), BorderLayout.CENTER);
-
-        viewPackage.addActionListener(this);
-        pickupPointIdSelector.addActionListener(this);
-
+        createAndRefreshPickupPointsList();
     }
 
     /**
@@ -69,30 +65,36 @@ public class StartingPanel extends JPanel implements ActionListener {
      */
 
     private JComboBox pickupPoints(){
-        try {
+
             ArrayList<String> strings = new ArrayList<>();
+        try {
             strings.addAll(deliveryMan.getPickupPointsID());
-            pickupPointIdSelector = new JComboBox(strings.toArray(new String[0]));
+        } catch (IOException e) {
+            alertLabel.setTextAndIcon("<html> <center> Impossibile connettersi al server</html>", true);
+        }
+        pickupPointIdSelector = new JComboBox(strings.toArray(new String[0]));
 
             pickupPointIdSelector.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
                     try {
-                        deliveryMan.sendCredentials((String)pickupPointIdSelector.getSelectedItem());
+                        if(pickupPointIdSelector.getSelectedItem()!=null) {
+                            String piPoID = pickupPointIdSelector.getSelectedItem().toString();
+                            deliveryMan.sendCredentials(piPoID);
+                            refreshPickupPointsList();
+                            alertLabel.showMessageForAFewSeconds("<html><center>Credenziali inviate correttamente al punto di ritiro "+piPoID+"</html>", false);
+                        }
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        alertLabel.setTextAndIcon("<html> <center> Impossibile connettersi al server</html>", true);
+                    } catch (PickupPointServerUnavailableException p){
+                        alertLabel.showMessageForAFewSeconds("<html> <center> Impossibile connettersi al server di " +pickupPointIdSelector.getSelectedItem().toString()+ "</html>", true);
                     }
-                    refreshPickupPointsList();
                 }
             });
 
             return pickupPointIdSelector;
 
-        }catch (Exception e){
 
-            return pickupPointIdSelector;
-
-        }
     }
 
     /**
@@ -103,9 +105,10 @@ public class StartingPanel extends JPanel implements ActionListener {
      */
 
     private JPanel buttonPanel(){
-
         JPanel buttonPanel = new JPanel();
+        buttonPanel.setOpaque(false);
         JPanel button = new JPanel();
+        button.setOpaque(false);
         buttonPanel.setLayout(new GridLayout(2,1));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(height/10,height/50,height/10,height/50));
         button.setLayout(new GridLayout(2 ,1));
@@ -125,21 +128,76 @@ public class StartingPanel extends JPanel implements ActionListener {
     private void setButton(JPanel buttonPanel){
 
        viewPackage = new JButton("View Packages");
+       viewPackage.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               bgp.changePanel("packagePanel");
+           }
+       });
        viewPackage.setFont(new Font("",Font.BOLD,height/30));
 
-       viewPackage.setBackground(Color.orange);
+       viewPackage.setBackground(new Color(255,153,0));
        viewPackage.setFocusable(false);
 
        logOut = new JButton("LogOut");
+       logOut.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               buttonPanel.remove(logOut);
+               buttonPanel.add(getConfirmPanel(buttonPanel));
+               revalidate();
+           }
+       });
        logOut.setFont(new Font("",Font.BOLD,height/30));
 
-       logOut.setBackground(Color.orange);
+       logOut.setBackground(new Color(255,153,0));
        logOut.setFocusable(false);
 
-       logOut.addActionListener(this);
 
         buttonPanel.add(viewPackage);
         buttonPanel.add(logOut);
+    }
+
+    /**
+     * This method creates the panel containing the request for
+     * confirmation of exit
+     * @param panelCont the panel that will containing the confirm panel
+     * @return the panel that has been created
+     */
+
+    public JPanel getConfirmPanel(JPanel panelCont){
+        JPanel confirmPanel = new JPanel();
+        confirmPanel.setOpaque(false);
+        JLabel areYouSureLabel = new JLabel("Are You Sure?");
+        areYouSureLabel.setForeground(Color.WHITE);
+        areYouSureLabel.setFont(new Font("Arial", Font.BOLD, height/30));
+        JButton buttonYes = new JButton("YES");
+        buttonYes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bgp.changePanel("loginPanel");
+            }
+        });
+        JButton buttonNo = new JButton("NO");
+        buttonNo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelCont.remove(confirmPanel);
+                panelCont.add(logOut);
+                panelCont.repaint();
+            }
+        });
+        buttonYes.setBackground(new Color(255,153,0));
+        buttonNo.setBackground(new Color(255,153,0));
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setOpaque(false);
+        buttonsPanel.setLayout(new GridLayout(1,2));
+        buttonsPanel.add(buttonYes);
+        buttonsPanel.add(buttonNo);
+        confirmPanel.setLayout(new GridLayout(2,1));
+        confirmPanel.add(areYouSureLabel);
+        confirmPanel.add(buttonsPanel);
+        return confirmPanel;
 
     }
 
@@ -150,40 +208,24 @@ public class StartingPanel extends JPanel implements ActionListener {
      */
 
     private void setMessage(JPanel buttonPanel){
-
-        instructionLabel = new JLabel("<html> <center> Selezionare l ' Id del punto di ritiro</html>");
+        alertLabel = new AlertLabel("<html> <center> Selezionare l ' Id del punto di ritiro</html>", true);
+        alertLabel.setDefaultTextAndIcon("<html> <center> Selezionare l ' Id del punto di ritiro</html>", true);
+        alertLabel.setForeground(Color.WHITE);
         Font font = new Font("Arial" ,ITALIC , height/25);
-        instructionLabel.setBorder(BorderFactory.createTitledBorder(instructionLabel.getBorder(),SetDMLanguage.getInstance().setLoginPanel()[7] , ITALIC , 0, font, Color.red));
-        instructionLabel.setVisible(true);
-        buttonPanel.add(instructionLabel);
-
+        alertLabel.setBorder(BorderFactory.createTitledBorder(alertLabel.getBorder(),SetDMLanguage.getInstance().setLoginPanel()[7] , ITALIC , 0, font, Color.red));
+        buttonPanel.add(alertLabel);
     }
 
-    /**
-     * This method shows a new panel if the "View Packages" is
-     * pressed or sends the credentials to the selected pickup point
-     * @param e The event that triggers the listener
-     */
 
-    public void actionPerformed(ActionEvent e) {
-        String string = e.getActionCommand();
-        if (string.equals(viewPackage.getActionCommand())){
-            bgp.changePanel("packagePanel");
-        }
-        else if (string.equals(logOut.getActionCommand())){
-            bgp.changePanel("loginPanel");
-        }
-    }
 
     /**
      * This method refresh the pickup point list
      */
 
-    private void refreshPickupPointsList(){
+    public void refreshPickupPointsList(){
         removeAll();
         initPanel();
         revalidate();
-
     }
 
     /**
@@ -192,11 +234,17 @@ public class StartingPanel extends JPanel implements ActionListener {
 
     private void createAndRefreshPickupPointsList() {
         subPanel = new JPanel();
+        subPanel.setOpaque(false);
         subPanel.setLayout(new BorderLayout());
 
         JPanel centeredPanel = new JPanel();
-        JButton refreshButton = new JButton("@");
-
+        centeredPanel.setOpaque(false);
+        JButton refreshButton = new JButton();
+        refreshButton.setPreferredSize(new Dimension(height/11,height/11));
+        Image backImage = getDefaultToolkit().createImage("src/DeliveryManSystem/GraphicalInterfaceClientSystem/Icons/update.jpg").getScaledInstance(height/12, height/12,Image.SCALE_DEFAULT);
+        refreshButton.setIcon(new ImageIcon(backImage));
+        refreshButton.setBackground(new Color(255,153,0));
+        
         centeredPanel.add(refreshButton);
 
         subPanel.add(centeredPanel, BorderLayout.NORTH);

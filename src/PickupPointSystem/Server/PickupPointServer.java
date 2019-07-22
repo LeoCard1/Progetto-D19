@@ -33,7 +33,7 @@ public class PickupPointServer extends Thread {
     public void run() {
         try {
             server = new ServerSocket(8000);
-            System.out.println("[0] PickupPointServer waiting on port 8000...");
+            System.out.println("[0] PickupPointServer waiting on port " +server.getLocalPort()+"...");
             startServer();
         } catch (IOException e) {
             e.printStackTrace();

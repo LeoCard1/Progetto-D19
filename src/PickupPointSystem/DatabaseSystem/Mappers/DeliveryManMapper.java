@@ -6,17 +6,23 @@ import PickupPointSystem.DatabaseSystem.Tables.DeliveryManTable;
 import java.io.IOException;
 
 /**
- * @author D19 Group
- * @version 2.0
+ * This class returns DeliveryManTable
+ * objects from the database
+ *
+ * @author Gruppo D19
+ * @version 2.0.0
  */
 
 public class DeliveryManMapper implements Mapper {
 
     /**
-     * This method returns the internal DeliveryManTable to the database given the
-     * id passed as an argument.
-     * @param delID
-     * @return DeliveryManTable
+     * This method returns a DeliveryManTable
+     * object from the database given the
+     * deliveryman's ID
+     *
+     * @param delID The deliveryman's ID
+     * @return The DeliveryManTable object
+     * @throws IOException Input/Output error between client and server
      */
 
     public DeliveryManTable get(String delID) throws IOException {
@@ -30,5 +36,4 @@ public class DeliveryManMapper implements Mapper {
         if (password.equalsIgnoreCase("null")) return null;
         return new DeliveryManTable(delID, password);
     }
-
 }

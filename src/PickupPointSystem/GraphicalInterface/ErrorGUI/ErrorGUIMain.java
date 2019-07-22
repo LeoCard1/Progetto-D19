@@ -41,12 +41,12 @@ public class ErrorGUIMain extends AbstractPickupPointFrame {
         Image errorImage = getDefaultToolkit().createImage("src/PickupPointSystem/GraphicalInterface/Icons/wrong.jpg").getScaledInstance(height/4, height/4, Image.SCALE_DEFAULT);
         JLabel messageLabel = new JLabel(" Error: " + message, new ImageIcon(errorImage), JLabel.CENTER);
      
-        messageLabel.setFont(new Font(Font.DIALOG, Font.PLAIN, 20));
+        messageLabel.setFont(new Font(Font.DIALOG, Font.PLAIN, height/9));
         messageLabel.setForeground(new Color(255, 0, 0));
 
         JPanel okPanel = new JPanel();
         JButton okButton = new JButton("OK");
-        okButton.setFont(new Font(Font.DIALOG, Font.PLAIN, 20));
+        okButton.setFont(new Font(Font.DIALOG, Font.PLAIN, height/9));
 
         messagePanel.add(messageLabel);
         okPanel.add(okButton);

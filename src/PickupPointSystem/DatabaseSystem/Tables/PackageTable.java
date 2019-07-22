@@ -3,9 +3,10 @@ package PickupPointSystem.DatabaseSystem.Tables;
 import PickupPointSystem.LockerSystem.Size;
 
 /**
- * This class is the representation of the package database table
- * @author Andrea Stella
- * @version 1.0
+ * This class represents the 'packages' database table
+ *
+ * @author Gruppo D19
+ * @version 1.0.0
  */
 
 public class PackageTable {
@@ -15,13 +16,14 @@ public class PackageTable {
     private String customerEmail;
 
     /**
-     * The constructor. Initializes the size, the id and the customer
-     * e-mail
-     * @param id the pack id
-     * @param height the pack height
-     * @param length the pack length
-     * @param width the pack width
-     * @param customerEmail the customer e-mail
+     * The constructor. It sets the ID, the package sizes
+     * and the customer's e-mail address
+     *
+     * @param id The package id
+     * @param height The package height
+     * @param length The package length
+     * @param width The package width
+     * @param customerEmail The customer's e-mail address
      */
 
     public PackageTable(String id, double height, double length, double width, String customerEmail ){
@@ -31,7 +33,9 @@ public class PackageTable {
     }
 
     /**
-     * @return pack id
+     * This method returns the package ID
+     *
+     * @return The package ID
      */
 
     public String getId() {
@@ -39,7 +43,9 @@ public class PackageTable {
     }
 
     /**
-     * @return customer e-mail
+     * This method returns the customer's e-mail address
+     *
+     * @return The customer's e-mail address
      */
 
     public String getCustomerEmail(){
@@ -47,7 +53,9 @@ public class PackageTable {
     }
 
     /**
-     * @return the pack size
+     * This method returns the package size
+     *
+     * @return The package size
      */
 
     public Size getSize() {
@@ -55,12 +63,13 @@ public class PackageTable {
     }
 
     /**
-     * @return a string containing the id and the size of the pack
+     * This method returns a string containing the ID and
+     * the size of the package
+     *
+     * @return The string containing the ID and the size of the package
      */
 
     public String toString(){
         return getId()+"\t"+size.toString();
     }
-
-
 }

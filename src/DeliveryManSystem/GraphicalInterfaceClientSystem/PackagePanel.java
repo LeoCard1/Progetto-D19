@@ -4,6 +4,7 @@ import DeliveryManSystem.DatabaseSystem.Tables.DeliveryTable;
 import DeliveryManSystem.DeliveryMan;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,10 +18,9 @@ import java.util.ArrayList;
  * @version 1.0.1
  */
 
-public class PackagePanel extends JPanel implements ActionListener {
+public class PackagePanel extends JPanel {
 
     private DeliveryMan deliveryMan;
-    private JButton back;
     private int height;
     private BackgroundPanel bgp;
 
@@ -39,18 +39,17 @@ public class PackagePanel extends JPanel implements ActionListener {
     }
 
     /**
-     * This method initialized the PackagePanel
+     * This method initializes the PackagePanel
      */
 
     private void initPanel(){
-
+        setOpaque(false);
         setLayout(new GridLayout(3,1 ));
 
-        add(jScrollTable(deliveries()));
-        add(jScrollTable(deliveriesExpired()));
+        add(deliveries());
+        add(deliveriesExpired());
         add(buttonPanel());
 
-        back.addActionListener(this);
 
     }
 
@@ -62,28 +61,28 @@ public class PackagePanel extends JPanel implements ActionListener {
      */
 
     private JPanel buttonPanel(){
-
-        JPanel buttonPanel = new JPanel(new GridLayout(1,1));
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(height/10,height/50,height/10,height/50));
-        buttonPanel.add(setButton());
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(2,1));
+        buttonPanel.setOpaque(false);
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(height/50,height/50,height/12,height/50));
+        buttonPanel.add(getButtonInfoPickupPoint());
+        buttonPanel.add(getButtonBack());
         return buttonPanel;
-
     }
 
     /**
-     * This method create a jPanel and add to it the jScrollTable
-     * @param table create by deliveries and deliveriesExpired methods
+     * This method create a jPanel and adds to it the jScrollTable
+     * @param table created by deliveries and deliveriesExpired methods
      * @return the jPanel that's just been created
      */
 
     private JPanel jScrollTable(JTable table){
-
         JPanel panel = new JPanel();
+        panel.setOpaque(false);
         panel.setLayout(new BorderLayout());
         JScrollPane scrollPanel = new JScrollPane(table);
         panel.add(scrollPanel , BorderLayout.CENTER);
         return panel;
-
     }
 
     /**
@@ -93,14 +92,25 @@ public class PackagePanel extends JPanel implements ActionListener {
      * @return The panel containing the table
      */
 
-    private JTable deliveries() {
-
+    private JPanel deliveries() {
+        JPanel panelDel = createPanelDeliveries(SetDMLanguage.getInstance().setPackagePanel()[0]);
         try {
-            return buildTable(deliveryMan.getDeliveries());
+            panelDel.add(jScrollTable(buildTable(deliveryMan.getDeliveries())), BorderLayout.CENTER);
         } catch (IOException e) {
-           return new JTable();
+            panelDel.add(jScrollTable(getEmptyTable()), BorderLayout.CENTER);
         }
+        return panelDel;
+    }
 
+    private JPanel createPanelDeliveries(String text){
+        JPanel panelDel = new JPanel();
+        panelDel.setOpaque(false);
+        panelDel.setLayout(new BorderLayout());
+        TitledBorder border = BorderFactory.createTitledBorder(text);
+        border.setTitleFont(new Font("Bold" ,Font.BOLD , height/30));
+        border.setTitleColor(Color.WHITE);
+        panelDel.setBorder(border);
+        return panelDel;
     }
 
     /**
@@ -110,14 +120,14 @@ public class PackagePanel extends JPanel implements ActionListener {
      * @return The panel containing the table
      */
 
-    private JTable deliveriesExpired() {
-
+    private JPanel deliveriesExpired() {
+        JPanel panelDelExp = createPanelDeliveries(SetDMLanguage.getInstance().setPackagePanel()[1]);
         try {
-            return buildTable(deliveryMan.getDeliveriesExpired());
+            panelDelExp.add(jScrollTable(buildTable(deliveryMan.getDeliveriesExpired())), BorderLayout.CENTER);
         } catch (IOException e) {
-            return new JTable();
+            panelDelExp.add(jScrollTable(getEmptyTable()), BorderLayout.CENTER);
         }
-
+        return panelDelExp;
     }
 
     /**
@@ -130,7 +140,8 @@ public class PackagePanel extends JPanel implements ActionListener {
 
     private JTable buildTable(ArrayList<DeliveryTable> delTabList) {
 
-        String[] tableParameters = {"Pickup Point ID", "Package ID"};
+        String[] tableParameters = {SetDMLanguage.getInstance().setPackagePanel()[2],
+                                    SetDMLanguage.getInstance().setPackagePanel()[3]};
 
         String[][] table = new String[delTabList.size()][];
         int i = 0;
@@ -141,10 +152,23 @@ public class PackagePanel extends JPanel implements ActionListener {
         }
 
         JTable finalTable = new JTable(table, tableParameters);
+
         finalTable.setGridColor(Color.red);
         finalTable.setEnabled(false);
-        return finalTable;
 
+        return finalTable;
+    }
+
+    /**
+     * This method creates an empty JTable
+     * @return the created empty JTable
+     */
+
+    private JTable getEmptyTable() {
+        String[] tableParameters = {SetDMLanguage.getInstance().setPackagePanel()[2],
+                                    SetDMLanguage.getInstance().setPackagePanel()[3]};
+        String[][] table = new String[0][];
+        return new JTable(table,tableParameters);
     }
 
     /**
@@ -153,38 +177,50 @@ public class PackagePanel extends JPanel implements ActionListener {
      * @return The button
      */
 
-    private JButton setButton(){
+    private JButton getButtonBack(){
 
-        back = new JButton("Go back");
-        back.setBackground(Color.orange);
+        JButton back = new JButton(SetDMLanguage.getInstance().setPackagePanel()[4]);
+        back.setBackground(new Color(255,153,0));
         back.setFocusable(false);
         back.setFont(new Font("", Font.BOLD, height/30));
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bgp.changePanel("startingPanel");
+            }
+        });
 
         return back;
+
+    }
+
+    private JButton getButtonInfoPickupPoint(){
+        JButton info = new JButton(SetDMLanguage.getInstance().setPackagePanel()[5]);
+        info.setBackground(new Color(255,153,0));
+        info.setFocusable(false);
+        info.setFont(new Font("", Font.BOLD, height/30));
+        info.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bgp.changePanel("pickupPointInfoPanel");
+            }
+        });
+
+        return info;
+
     }
 
     /**
-     * This method refresh the package list
+     * This method refreshes the package list
      */
 
-    public void RefreshPackageList() {
-
+    public void refreshPackageList() {
         removeAll();
         initPanel();
         revalidate();
 
     }
 
-    /**
-     * The panel's action listener, used to cycle to
-     * the previous panel
-     * @param e The event that triggers the listener
-     */
 
-    public void actionPerformed(ActionEvent e) {
-
-        bgp.changePanel("startingPanel");
-
-    }
 
 }

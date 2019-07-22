@@ -65,6 +65,7 @@ public class ManageConnectionsDeliveryMan implements ManageConnections {
             String password = st.nextToken();
             CredentialsReceiver credentialReceiver = CredentialsReceiver.getInstance();
             credentialReceiver.receiveCredentials(delID, password);
+            out.println("ok");
 
         }
     }

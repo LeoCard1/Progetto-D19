@@ -11,19 +11,25 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.StringTokenizer;
 
-
 /**
- * @author D19 Group
- * @version 2.0
+ * This class returns DeliveryTable
+ * objects from the database
+ *
+ * @author Gruppo D19
+ * @version 2.0.0
  */
 
 public class DeliveryMapper implements Mapper {
 
     /**
-     * This method returns an ArrayList of deliveries inside the database given the PickupPointTable
-     * id passed as an argument.
-     * @param pipoID
-     * @return ArrayList<DeliveryTable>
+     * This method returns a list of
+     * DeliveryTable objects from the
+     * database given the pickup point
+     * id
+     *
+     * @param pipoID The pickup point ID
+     * @return ArrayList<DeliveryTable> The list of DeliveryTable objects
+     * @throws IOException Input/Output error between client and server
      */
 
     @Override
@@ -67,8 +73,11 @@ public class DeliveryMapper implements Mapper {
     }
 
     /**
-     * This method removes the row containing the given pack id.
-     * @param packID
+     * This method removes the row
+     * from the database containing
+     * the given pack ID
+     *
+     * @param packID The ID of the package to be removed
      */
 
     public void removeRowFromPackID(String packID) throws IOException {
@@ -78,9 +87,11 @@ public class DeliveryMapper implements Mapper {
     }
 
     /**
-     * This method updates the delivery date, the box number and the box password of
-     * the given DeliveryTable.
-     * @param delivery
+     * This method updates the delivery
+     * date, the box number and the box
+     * password of the given DeliveryTable
+     *
+     * @param delivery The delivery to be updated
      */
 
     public void update(DeliveryTable delivery) throws IOException {
@@ -89,5 +100,4 @@ public class DeliveryMapper implements Mapper {
                 String.valueOf(delivery.getBoxNumber()), delivery.getBoxPassword());
         server.close();
     }
-
 }

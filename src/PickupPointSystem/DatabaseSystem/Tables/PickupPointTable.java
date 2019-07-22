@@ -1,9 +1,10 @@
 package PickupPointSystem.DatabaseSystem.Tables;
 
 /**
- * This class is the representation of the pickup point database table
- * @author Andrea Stella
- * @version 1.0
+ * This class represents the 'pickuppoints' database table
+ *
+ * @author Gruppo D19
+ * @version 1.0.0
  */
 
 public class PickupPointTable {
@@ -17,19 +18,20 @@ public class PickupPointTable {
     private String address;
 
     /**
-     * The constructor. Initializes the pickup point id, the location, the ip,
-     * the small, medium and large boxes, and the address
-     * @param id the pickup point id
-     * @param location the pickup point location
-     * @param ip the pickup point server ip
-     * @param small_boxes the small boxes
-     * @param medium_boxes the medium boxes
-     * @param large_boxes the large boxes
-     * @param address the pickup point address
+     * The constructor. It sets the pickup point ID, its
+     * location, its IP address, the number of small,
+     * medium and large boxes it hosts, and its address
+     *
+     * @param id The pickup point ID
+     * @param location The pickup point location
+     * @param ip The pickup point IP address
+     * @param small_boxes The number of small boxes it hosts
+     * @param medium_boxes The number of medium boxes it hosts
+     * @param large_boxes The number of large boxes it hosts
+     * @param address The pickup point address
      */
 
     public PickupPointTable(String id, String location, String ip, String small_boxes, String medium_boxes, String large_boxes, String address) {
-
         this.id = id;
         this.location = location;
         this.ip = ip;
@@ -40,7 +42,9 @@ public class PickupPointTable {
     }
 
     /**
-     * @return the pickup point id
+     * This method returns the pickup point ID
+     *
+     * @return The pickup point ID
      */
 
     public String getId() {
@@ -48,7 +52,9 @@ public class PickupPointTable {
     }
 
     /**
-     * @return the pickup point location
+     * This method returns the pickup point location
+     *
+     * @return The pickup point location
      */
 
     public String getLocation() {
@@ -56,7 +62,9 @@ public class PickupPointTable {
     }
 
     /**
-     * @return the pickup point server ip
+     * This method returns the pickup point IP address
+     *
+     * @return The pickup point IP address
      */
 
     public String getIp() {
@@ -64,7 +72,10 @@ public class PickupPointTable {
     }
 
     /**
-     * @return the small boxes
+     * This method returns the number of small boxes the
+     * pickup point hosts
+     *
+     * @return The number of small boxes the pickup point hosts
      */
 
     public String getSmall_boxes() {
@@ -72,7 +83,10 @@ public class PickupPointTable {
     }
 
     /**
-     * @return the medium boxes
+     * This method returns the number of medium boxes the
+     * pickup point hosts
+     *
+     * @return The number of medium boxes the pickup point hosts
      */
 
     public String getMedium_boxes() {
@@ -80,7 +94,10 @@ public class PickupPointTable {
     }
 
     /**
-     * @return the large boxes
+     * This method returns the number of large boxes the
+     * pickup point hosts
+     *
+     * @return The number of large boxes the pickup point hosts
      */
 
     public String getLarge_boxes() {
@@ -88,7 +105,9 @@ public class PickupPointTable {
     }
 
     /**
-     * @return the pickup point address
+     * This method returns the pickup point address
+     *
+     * @return The pickup point address
      */
 
     public String getAddress() {

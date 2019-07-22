@@ -6,17 +6,23 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 /**
- * @author Andrea Stella
- * @version 1.0
+ * This class returns PackageTable
+ * objects from the database
+ *
+ * @author Gruppo D19
+ * @version 1.0.0
  */
 
 public class PackageMapper implements Mapper {
 
     /**
-     * This method returns the internal PackageTable to the database given the packID
-     * passed as an argument.
-     * @param packID
-     * @return PackageTable
+     * This method returns a PackageTable
+     * object from the database given the
+     * package ID
+     *
+     * @param packID The package ID
+     * @return The PackageTable object
+     * @throws IOException Input/Output error between client and server
      */
 
     @Override
@@ -37,8 +43,9 @@ public class PackageMapper implements Mapper {
     }
 
     /**
-     * This method removes the package from the database.
-     * @param packID
+     * This method removes the package from the database
+     *
+     * @param packID The package ID
      */
 
     public void remove(String packID) throws IOException {
@@ -46,6 +53,4 @@ public class PackageMapper implements Mapper {
         server.removePackage(packID);
         server.close();
     }
-
-
 }

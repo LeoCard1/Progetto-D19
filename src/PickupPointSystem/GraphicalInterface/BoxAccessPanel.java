@@ -87,7 +87,6 @@ public class BoxAccessPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 bgp.changePanel("loginDelManPanel");
-                ///////////////////////
             }
         });
         buttonBack.addActionListener(new ActionListener() {
