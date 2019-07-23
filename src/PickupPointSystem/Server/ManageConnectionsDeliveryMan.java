@@ -35,8 +35,8 @@ public class ManageConnectionsDeliveryMan implements ManageConnections {
         this.in = in;
         this.out = out;
 
-        while (!client.isClosed()) {
-            while (!in.ready()) ;
+        while (!this.client.isClosed()) {
+            while (!this.in.ready()) ;
             manageConnection();
         }
     }
@@ -48,6 +48,8 @@ public class ManageConnectionsDeliveryMan implements ManageConnections {
      */
 
     private void manageConnection() throws IOException {
+        if (!in.ready()) return;
+
         String line = in.readLine();
         StringTokenizer st = new StringTokenizer(line);
 
@@ -66,8 +68,6 @@ public class ManageConnectionsDeliveryMan implements ManageConnections {
             CredentialsReceiver credentialReceiver = CredentialsReceiver.getInstance();
             credentialReceiver.receiveCredentials(delID, password);
             out.println("ok");
-
         }
     }
-
 }

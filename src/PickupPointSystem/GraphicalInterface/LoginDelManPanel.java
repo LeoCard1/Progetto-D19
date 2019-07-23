@@ -29,7 +29,7 @@ public class LoginDelManPanel extends JPanel implements ObserverCredentials {
     private JButton buttonConfirm;
     private AlertLabel alertLabel;
     private LoginDelMan loginDelMan;
-    JLabel insertCred;
+    private JLabel insertCred;
     private int height;
     private int width;
 

@@ -1,0 +1,25 @@
+unnamed package
+DeliveryManSystem
+DeliveryManSystem.Client
+DeliveryManSystem.DatabaseSystem
+DeliveryManSystem.DatabaseSystem.Mappers
+DeliveryManSystem.DatabaseSystem.Tables
+DeliveryManSystem.Exceptions
+DeliveryManSystem.GraphicalInterfaceClientSystem
+DeliveryManSystem.Observers
+PickupPointSystem
+PickupPointSystem.DatabaseSystem
+PickupPointSystem.DatabaseSystem.Mappers
+PickupPointSystem.DatabaseSystem.Tables
+PickupPointSystem.Exceptions
+PickupPointSystem.GraphicalInterface
+PickupPointSystem.GraphicalInterface.ErrorGUI
+PickupPointSystem.GraphicalInterface.LoadingGUI
+PickupPointSystem.LockerSystem
+PickupPointSystem.LockerSystem.BoxType
+PickupPointSystem.ObserverPattern
+PickupPointSystem.Server
+PickupPointSystem.Server.NotificationSystem
+ServerAndDatabase
+ServerAndDatabase.Connections
+ServerAndDatabase.Database
