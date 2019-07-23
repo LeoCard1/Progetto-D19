@@ -48,11 +48,15 @@ public class PickupPointTest {
     /**
      * This method adds a package, then
      * checks that inputting a wrong code
-     * doesn't stop or impede the server
+     * doesn't stop or impede the server.
+     * Finally, it removes the package.
+     * The last lines make sure the server
+     * won't be closed before carrying out
+     * all the necessary operations
      */
 
     @org.junit.Test
-    public void addPackageAndTestWrongCode() {
+    public void addAndRemovePackage() {
         try {
             MainServerConnector serverConnector = new MainServerConnector();
             serverConnector.addTestPackages();
@@ -63,6 +67,12 @@ public class PickupPointTest {
             delMan.addDeliverymanPackages();
 
             assertFalse(pickupPoint.emptyBox("12345"));
+
+            serverConnector = new MainServerConnector();
+            String password = serverConnector.getTestPackageCode().replaceAll("\n", "");
+            serverConnector.close();
+
+            assertTrue(pickupPoint.emptyBox(password));
         } catch (IOException e) {
             System.err.println("Error: can't connect to the server.");
             e.printStackTrace();
@@ -72,23 +82,14 @@ public class PickupPointTest {
     }
 
     /**
-     * This method checks whether it is
-     * possible to remove the package that
-     * has just been added.
-     * The last lines make sure the server
+     * This class makes sure the server
      * won't be closed before carrying out
      * all the necessary operations
      */
 
-    @org.junit.Test
-    public void emptyBox() {
+    @org.junit.After
+    public void afterAddAndRemovePackage() {
         try {
-            MainServerConnector serverConnector = new MainServerConnector();
-            String password = serverConnector.getTestPackageCode().replaceAll("\n", "");
-            serverConnector.close();
-
-            assertTrue(pickupPoint.emptyBox(password));
-
             LoginDelMan delMan = new LoginDelMan(pickupPoint);
             delMan.login("test", "test");
         } catch (IOException e) {
